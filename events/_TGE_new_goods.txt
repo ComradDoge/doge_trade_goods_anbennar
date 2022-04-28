@@ -1286,7 +1286,6 @@ country_event = {
 		set_global_flag = tradegood_marcin
 
 		}
-
 	}
 	option = {
 		name = nothing

@@ -35,76 +35,76 @@ country_event = {
 }
 
 
-country_event = {
-	id = prices_marcin.3
-	title = prices_marcin.3.t
-	desc = prices_marcin.3.d
-	picture = TRADEGOODS_eventPicture
-
-	fire_only_once = yes
-	
-	major = yes
-
-	trigger = {
-		AND = {
-			OR = {
-				any_subject_country = {
-					is_colonial_nation = yes
-					any_owned_province = {
-						trade_goods = potato
-					}
-				}
-				any_owned_province = {
-					trade_goods = potato
-					continent = new_world
-				}
-				any_owned_province = {
-					trade_goods = potato
-					continent = north_america
-				}
-				any_owned_province = {
-					trade_goods = potato
-					continent = south_america
-				}
-			}
-			capital_scope = { continent = europe }
-			NOT = { has_global_flag = potatoislove }
-		}
-	}
-	
-	mean_time_to_happen = {
-		months = 600
-	}
-	
-	option = {
-		name = prices_marcin.3.a
-		ai_chance = { factor = 100 }
-		custom_tooltip = potato_tooltip
-		hidden_effect = {
-			every_province = {
-				limit = {
-					AND = {
-						OR = {	
-							trade_goods = livestock
-							trade_goods = grain
-						}
-						continent = europe 
-					}
-				}
-				
-				random = { 
-					chance = 20
-
-					change_trade_goods = potato
-				}			
-				
-			}
-		}
-		set_global_flag = potatoislove
-		add_years_of_income  = 0.15
-		add_prestige = 20
-	}
-}
+#country_event = {
+#	id = prices_marcin.3
+#	title = prices_marcin.3.t
+#	desc = prices_marcin.3.d
+#	picture = TRADEGOODS_eventPicture
+#
+#	fire_only_once = yes
+#	
+#	major = yes
+#
+#	trigger = {
+#		AND = {
+#			OR = {
+#				any_subject_country = {
+#					is_colonial_nation = yes
+#					any_owned_province = {
+#						trade_goods = potato
+#					}
+#				}
+#				any_owned_province = {
+#					trade_goods = potato
+#					continent = new_world
+#				}
+#				any_owned_province = {
+#					trade_goods = potato
+#					continent = north_america
+#				}
+#				any_owned_province = {
+#					trade_goods = potato
+#					continent = south_america
+#				}
+#			}
+#			capital_scope = { continent = europe }
+#			NOT = { has_global_flag = potatoislove }
+#		}
+#	}
+#	
+#	mean_time_to_happen = {
+#		months = 600
+#	}
+#	
+#	option = {
+#		name = prices_marcin.3.a
+#		ai_chance = { factor = 100 }
+#		custom_tooltip = potato_tooltip
+#		hidden_effect = {
+#			every_province = {
+#				limit = {
+#					AND = {
+#						OR = {	
+#							trade_goods = livestock
+#							trade_goods = grain
+#						}
+#						continent = europe 
+#					}
+#				}
+#				
+#				random = { 
+#					chance = 20
+#
+#					change_trade_goods = potato
+#				}			
+#				
+#			}
+#		}
+#		set_global_flag = potatoislove
+#		add_years_of_income  = 0.15
+#		add_prestige = 20
+#	}
+#}
 
 
 province_event = {
@@ -366,148 +366,148 @@ province_event = {
 	}
 }
 
-country_event = {
-	id = prices_marcin.10
-	title = prices_marcin.10.t
-	desc = prices_marcin.10.d
-	picture = TRADEGOODS_eventPicture
+#country_event = {
+#	id = prices_marcin.10
+#	title = prices_marcin.10.t
+#	desc = prices_marcin.10.d
+#	picture = TRADEGOODS_eventPicture
+#
+#	fire_only_once = yes
+#	
+#	major = yes
+#
+#	trigger = {
+#		AND = {
+#			OR = {
+#				any_subject_country = {
+#					is_colonial_nation = yes
+#					any_owned_province = {
+#						trade_goods = tomato
+#					}
+#				}
+#				any_owned_province = {
+#					trade_goods = tomato
+#					continent = new_world
+#				}
+#				any_owned_province = {
+#					trade_goods = tomato
+#					continent = north_america
+#				}
+#				any_owned_province = {
+#					trade_goods = tomato
+#					continent = south_america
+#				}
+#			}
+#			capital_scope = { continent = europe }
+#			NOT = { has_global_flag = tomatoislove }
+#		}
+#	}
+#	
+#	mean_time_to_happen = {
+#		months = 600
+#	}
+#	
+#	option = {
+#		name = prices_marcin.3.a
+#		ai_chance = { factor = 100 }
+#		custom_tooltip = tomato_tooltip
+#		hidden_effect = {
+#			every_province = {
+#				limit = {
+#					AND = {
+#						OR = {	
+#							trade_goods = livestock
+#							trade_goods = grain
+#							trade_goods = wine
+#						}
+#						
+#						OR = {
+#							region = france_region
+#							region = italy_region
+#							region = balkan_region
+#							region = iberia_region
+#						}
+#					}
+#				}
+#				
+#				random = { 
+#					chance = 20
+#
+#					change_trade_goods = tomato
+#				}			
+#				
+#			}
+#		}
+#		set_global_flag = tomatoislove
+#		add_years_of_income  = 0.15
+#		add_prestige = 20
+#	}
+#}
 
-	fire_only_once = yes
-	
-	major = yes
-
-	trigger = {
-		AND = {
-			OR = {
-				any_subject_country = {
-					is_colonial_nation = yes
-					any_owned_province = {
-						trade_goods = tomato
-					}
-				}
-				any_owned_province = {
-					trade_goods = tomato
-					continent = new_world
-				}
-				any_owned_province = {
-					trade_goods = tomato
-					continent = north_america
-				}
-				any_owned_province = {
-					trade_goods = tomato
-					continent = south_america
-				}
-			}
-			capital_scope = { continent = europe }
-			NOT = { has_global_flag = tomatoislove }
-		}
-	}
-	
-	mean_time_to_happen = {
-		months = 600
-	}
-	
-	option = {
-		name = prices_marcin.3.a
-		ai_chance = { factor = 100 }
-		custom_tooltip = tomato_tooltip
-		hidden_effect = {
-			every_province = {
-				limit = {
-					AND = {
-						OR = {	
-							trade_goods = livestock
-							trade_goods = grain
-							trade_goods = wine
-						}
-						
-						OR = {
-							region = france_region
-							region = italy_region
-							region = balkan_region
-							region = iberia_region
-						}
-					}
-				}
-				
-				random = { 
-					chance = 20
-
-					change_trade_goods = tomato
-				}			
-				
-			}
-		}
-		set_global_flag = tomatoislove
-		add_years_of_income  = 0.15
-		add_prestige = 20
-	}
-}
-
-country_event = {
-	id = prices_marcin.16
-	title = prices_marcin.16.t
-	desc = prices_marcin.16.d
-	picture = TRADE_GOODS_PLANTATION_GOODS_IN_WAREHOUSE_eventPicture
-
-	
-	fire_only_once = yes
-	major = yes
-
-	trigger = {
-		capital_scope = { continent = europe }
-		OR = {
-			has_discovered = 4457
-			has_discovered = 2030
-			has_discovered = 534
-			has_discovered = 540
-			has_discovered = 539
-			has_discovered = 561
-			has_discovered = 543
-		}
-		any_owned_province = {
-			trade_goods = indigo	
-		}
-		NOT = { has_global_flag = indigoislove }
-	}
-	
-	mean_time_to_happen = {
-		months = 1
-	}
-	
-	
-	option = {
-		name = prices_marcin.16.a
-		ai_chance = { factor = 100 }
-		custom_tooltip = my_tooltip_woad
-		hidden_effect = {
-			every_province = { 
-				limit = {
-					has_province_modifier = woad_type
-				}
-				remove_province_modifier = woad_type 
-				add_permanent_province_modifier = { 
-					name = woad_type_bad
-					duration = -1
-				}
-			
-			}
-			
-			every_province = { 
-				limit = {
-					superregion = india_superregion
-					trade_goods = indigo
-				}
-				add_permanent_province_modifier = { 
-					name = indigo_india
-					duration = 18250
-				}
-			
-			}
-			set_global_flag = indigoislove
-		}
-	}
-}
+#country_event = {
+#	id = prices_marcin.16
+#	title = prices_marcin.16.t
+#	desc = prices_marcin.16.d
+#	picture = TRADE_GOODS_PLANTATION_GOODS_IN_WAREHOUSE_eventPicture
+#
+#	
+#	fire_only_once = yes
+#	major = yes
+#
+#	trigger = {
+#		capital_scope = { continent = europe }
+#		OR = {
+#			has_discovered = 4457
+#			has_discovered = 2030
+#			has_discovered = 534
+#			has_discovered = 540
+#			has_discovered = 539
+#			has_discovered = 561
+#			has_discovered = 543
+#		}
+#		any_owned_province = {
+#			trade_goods = indigo	
+#		}
+#		NOT = { has_global_flag = indigoislove }
+#	}
+#	
+#	mean_time_to_happen = {
+#		months = 1
+#	}
+#	
+#	
+#	option = {
+#		name = prices_marcin.16.a
+#		ai_chance = { factor = 100 }
+#		custom_tooltip = my_tooltip_woad
+#		hidden_effect = {
+#			every_province = { 
+#				limit = {
+#					has_province_modifier = woad_type
+#				}
+#				remove_province_modifier = woad_type 
+#				add_permanent_province_modifier = { 
+#					name = woad_type_bad
+#					duration = -1
+#				}
+#			
+#			}
+#			
+#			every_province = { 
+#				limit = {
+#					superregion = india_superregion
+#					trade_goods = indigo
+#				}
+#				add_permanent_province_modifier = { 
+#					name = indigo_india
+#					duration = 18250
+#				}
+#			
+#			}
+#			set_global_flag = indigoislove
+#		}
+#	}
+#}
 
 
 

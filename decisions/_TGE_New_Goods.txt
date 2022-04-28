@@ -4,11 +4,12 @@ country_decisions = { # THIS IS DISABLED AND MADE INTO AN EVENT
 		major = yes
 		potential = {
 			ai = no
+			always = no
 			NOT = { has_global_flag = tradegood_marcin }	
 		}
 		
 		allow = {
-			always = no # yes 
+			always = no
 		}
 		effect = {
 				if = {

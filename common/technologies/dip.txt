@@ -51,7 +51,7 @@ technology = { #Merchants & Trade
 	expects_institution = {
 		feudalism = 0.25
 	}
-		
+	early_road = yes	
 	trade_range				=	100
 	global_colonial_growth	= 	10
 
@@ -190,7 +190,7 @@ technology = { #The Flute
 		renaissance = 0.5
 		new_world_i = 0.3
 	}
-		
+	gravel_road = yes	
 	trade_efficiency		= 	0.02
 	trade_range				=	20
 	global_colonial_growth  = 	10
@@ -311,7 +311,7 @@ technology = { #Merchantman
 	trade_range				=	20
 	range					=	50
 	
-	
+	royal_road = yes
 	trade_depot = yes 
 
 
@@ -432,6 +432,7 @@ technology = { #Heavy Frigates
 	global_colonial_growth  = 	20
 	range					=	150
 	allow_client_states = yes		
+	macadam_road = yes
 
 	
 	enable = heavy_frigate
@@ -539,6 +540,7 @@ technology = { #Joint Stock Companies
 	naval_maintenance = 0.1
 	
 	may_infiltrate_administration = yes
+	railroad = yes
 }
 
 technology = {
