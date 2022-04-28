@@ -6,51 +6,51 @@
 
 namespace = prices
 
-country_event = {
-	id = prices.1
-	title = prices.1.t
-	desc = prices.1.d
-	picture = TRADE_GOODS_PLANTATION_GOODS_IN_WAREHOUSE_eventPicture
-
-	fire_only_once = yes
-	
-	major = yes
-
-	trigger = {
-		colony = 1
-		NOT = { has_global_flag = triangle_happened }
-		any_subject_country = {
-			is_colonial_nation = yes
-			OR = {
-				capital_scope = { continent = north_america }
-				capital_scope = { continent = south_america }
-				capital_scope = { continent = new_world }
-			}
-			OR = {
-				tobacco = 4
-				sugar = 4
-				cotton = 4
-			}
-		}
-		
-	}
-	mean_time_to_happen = {
-		months = 1
-	}
-	
-	option = {
-		name = prices.1.a
-		change_price = {
-			trade_goods = slaves
-			key = TRIANGLE_TRADE
-			value = 1
-			duration = -1
-		}
-		add_years_of_income  = 0.25
-		add_prestige = 20
-		set_global_flag = triangle_happened
-	}
-}
+#country_event = {
+#	id = prices.1
+#	title = prices.1.t
+#	desc = prices.1.d
+#	picture = TRADE_GOODS_PLANTATION_GOODS_IN_WAREHOUSE_eventPicture
+#
+#	fire_only_once = yes
+#	
+#	major = yes
+#
+#	trigger = {
+#		colony = 1
+#		NOT = { has_global_flag = triangle_happened }
+#		any_subject_country = {
+#			is_colonial_nation = yes
+#			OR = {
+#				capital_scope = { continent = north_america }
+#				capital_scope = { continent = south_america }
+#				capital_scope = { continent = new_world }
+#			}
+#			OR = {
+#				tobacco = 4
+#				sugar = 4
+#				cotton = 4
+#			}
+#		}
+#		
+#	}
+#	mean_time_to_happen = {
+#		months = 1
+#	}
+#	
+#	option = {
+#		name = prices.1.a
+#		change_price = {
+#			trade_goods = slaves
+#			key = TRIANGLE_TRADE
+#			value = 1
+#			duration = -1
+#		}
+#		add_years_of_income  = 0.25
+#		add_prestige = 20
+#		set_global_flag = triangle_happened
+#	}
+#}
 
 
 # Europeans in China

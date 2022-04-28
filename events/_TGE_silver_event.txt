@@ -1,0 +1,14 @@
+	## Trade Goods Expanded
+	#if = {
+	#	limit = {
+	#		ROOT = { trade_goods = silver }
+	#		NOT = { has_province_modifier = silver_debuff }
+	#	}
+	#	add_province_modifier = { 
+	#		name = silver_debuff
+	#		duration = -1
+	#		hidden = yes	
+	#	}
+	#}
+
+    # From on_action on province owner change, make an event instead

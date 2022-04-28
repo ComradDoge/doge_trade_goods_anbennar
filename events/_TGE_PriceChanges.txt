@@ -107,118 +107,118 @@ country_event = {
 #}
 
 
-province_event = {
-	id = prices_marcin.5
-	title = flavor_jap.60.t
-	desc = flavor_jap.60.d
-	picture = COURT_eventPicture
-	
-	hidden = yes
-	fire_only_once = yes
-	
-	trigger = {
-		province_id = 4183 # Iwami
-		trade_goods = gold
-	}
-	
-	mean_time_to_happen = {
-		months = 1
-	}
-	
-	option = { 
-		name = flavor_jap.60.a
-		change_trade_goods = silver
-		ai_chance = { factor = 100 }
-	}
-}
+#province_event = {
+#	id = prices_marcin.5
+#	title = flavor_jap.60.t
+#	desc = flavor_jap.60.d
+#	picture = COURT_eventPicture
+#	
+#	hidden = yes
+#	fire_only_once = yes
+#	
+#	trigger = {
+#		province_id = 4183 # Iwami
+#		trade_goods = gold
+#	}
+#	
+#	mean_time_to_happen = {
+#		months = 1
+#	}
+#	
+#	option = { 
+#		name = flavor_jap.60.a
+#		change_trade_goods = silver
+#		ai_chance = { factor = 100 }
+#	}
+#}
 
-country_event = {
-	id = prices_marcin.4
-	title = prices_marcin.4.t
-	desc = prices_marcin.4.d
-	picture = TRADEGOODS_eventPicture
+#country_event = {
+#	id = prices_marcin.4
+#	title = prices_marcin.4.t
+#	desc = prices_marcin.4.d
+#	picture = TRADEGOODS_eventPicture
+#
+#	fire_only_once = yes
+#	
+#	major = yes
+#
+#	trigger = {
+#		dip_tech = 16
+#		cheese = 2
+#		NOT = { has_global_flag = cheeseislove }
+#		OR = {
+#			culture_group = latin
+#			culture_group = french
+#		}
+#	}
+#	
+#	mean_time_to_happen = {
+#		months = 1
+#	}
+#	
+#	option = {
+#		name = prices_marcin.4.a
+#		ai_chance = { factor = 100 }
+#		change_price = {
+#			trade_goods = cheese
+#			key = CHEESE_ART
+#			value = 0.25
+#			duration = -1
+#		}
+#		add_years_of_income  = 0.15
+#		add_prestige = 20
+#		set_global_flag = cheeseislove
+#	}
+#}
 
-	fire_only_once = yes
-	
-	major = yes
-
-	trigger = {
-		dip_tech = 16
-		cheese = 2
-		NOT = { has_global_flag = cheeseislove }
-		OR = {
-			culture_group = latin
-			culture_group = french
-		}
-	}
-	
-	mean_time_to_happen = {
-		months = 1
-	}
-	
-	option = {
-		name = prices_marcin.4.a
-		ai_chance = { factor = 100 }
-		change_price = {
-			trade_goods = cheese
-			key = CHEESE_ART
-			value = 0.25
-			duration = -1
-		}
-		add_years_of_income  = 0.15
-		add_prestige = 20
-		set_global_flag = cheeseislove
-	}
-}
-
-country_event = {
-	id = prices_marcin.7
-	title = prices_marcin.7.t
-	desc = prices_marcin.7.d
-	picture = TRADEGOODS_eventPicture
-
-	fire_only_once = yes
-
-	trigger = {
-		owns = 4740
-		is_year = 1510
-		NOT = { has_global_flag = como_silk }
-
-		4740 = {
-			NOT = { has_province_flag = has_latent_good }
-			NOT = { trade_goods = silk }
-		}
-	}
-	
-	mean_time_to_happen = {
-		months = 1
-	}
-	
-	option = {
-		name = prices_marcin.7.a
-		ai_chance = { factor = 98 }
-		4740 = {
-			change_trade_goods = silk
-			add_permanent_province_modifier = {
-				name = boldonis_efforts_modifier
-				duration = -1
-			}
-		}
-		ROOT = {
-			add_treasury = -500
-		}
-		
-		set_global_flag = como_silk
-		
-	}
-	
-	option = {
-		name = prices_marcin.7.b
-		ai_chance = { factor = 2 }
-		set_global_flag = como_silk
-		add_prestige = -5
-	}
-}
+#country_event = {
+#	id = prices_marcin.7
+#	title = prices_marcin.7.t
+#	desc = prices_marcin.7.d
+#	picture = TRADEGOODS_eventPicture
+#
+#	fire_only_once = yes
+#
+#	trigger = {
+#		owns = 4740
+#		is_year = 1510
+#		NOT = { has_global_flag = como_silk }
+#
+#		4740 = {
+#			NOT = { has_province_flag = has_latent_good }
+#			NOT = { trade_goods = silk }
+#		}
+#	}
+#	
+#	mean_time_to_happen = {
+#		months = 1
+#	}
+#	
+#	option = {
+#		name = prices_marcin.7.a
+#		ai_chance = { factor = 98 }
+#		4740 = {
+#			change_trade_goods = silk
+#			add_permanent_province_modifier = {
+#				name = boldonis_efforts_modifier
+#				duration = -1
+#			}
+#		}
+#		ROOT = {
+#			add_treasury = -500
+#		}
+#		
+#		set_global_flag = como_silk
+#		
+#	}
+#	
+#	option = {
+#		name = prices_marcin.7.b
+#		ai_chance = { factor = 2 }
+#		set_global_flag = como_silk
+#		add_prestige = -5
+#	}
+#}
 
 
 province_event = {

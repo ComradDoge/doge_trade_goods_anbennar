@@ -3486,7 +3486,7 @@ vanilla = {
 		province_trade_power_modifier = 0.1
 	}
 	chance = { 
-		factor = 50
+		factor = 1
 		#modifier = {  
 		#	factor = 0
 		#	NOT = { region = mexico_region }
