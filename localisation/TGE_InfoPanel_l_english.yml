@@ -22,3 +22,11 @@
 
  tge_mod_resource_lacking_title: "£trade_icon_me£ §YWARNING§! Lack of Resources"
  tge_mod_resource_lacking_desc: "A factory is not being supplied! We need to increase production in provinces producing the required goods.\n\nThe §RX§! building is what hinders you so delete it, if it reappears it means you havent sorted out your strategic resources."
+
+ tge_activate_goods_title: "£trade_icon_me£ §TActivate Goods§!"
+ tge_activate_goods_desc: "No description at the end of time."
+ tge_goods_activated: "Goods Activated"
+ new_goods.1.t: "Activation of Goods"
+ new_goods.1.d: "YOUR GOODS ARE ACTIVATED"
+
+ tge_activations_tooltip: "The new goods will be activated."

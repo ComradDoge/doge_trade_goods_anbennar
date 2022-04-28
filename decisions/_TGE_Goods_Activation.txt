@@ -1,0 +1,26 @@
+country_decisions = {
+
+
+    tge_activate_goods = {
+        major = yes
+
+        potential = {
+            ai = no
+            NOT = { has_global_flag = tge_goods_activated }
+        }
+
+        allow = {
+            NOT = { has_global_flag = tge_goods_activated }
+        }
+
+        effect = {
+            custom_tooltip = tge_activations_tooltip
+            set_global_flag = tge_goods_activated
+            hidden_effect = {
+                country_event = {
+                    id = new_goods.1
+                }
+            }
+        }
+    }
+}
