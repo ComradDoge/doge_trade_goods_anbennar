@@ -1,0 +1,24 @@
+[code]                                  [img] https://i.imgur.com/p7Fv1Z6.gif [/img] [/code]
+[quote]
+- This is a port of goods from my Shattered mod into Anbennar. Trade goods expanded being the base of this system.
+- This mod provides 50 new trade goods, new buildings and slight rebalance of existing ones.
+
+- Anyone is free to use this mod as they see fit, just add the credits.
+[/quote]
+
+
+[quote]
+[h1] NOTICE [/h1]
+- I fully welcome lore help in regards to where to place goods. I have done some minor placement but generally it's not manual. 
+
+- The goods are changed through a decision, so in theory you could add this to your existing saves and just click the decision. Making separate save is recommended though.
+
+- As of right now, aproach this mod as somewhat unstable. Although from the very quick testing it seems fine.
+
+[/quote]
+
+[quote]
+[h1] Main Mod [/h1]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2152606065] Doge Shattered Europa [/url]
+
+[/quote]
