@@ -80,7 +80,7 @@
  REIN: "Reinheitsgebot"
  
  New_TradeGood_Events.1.t: "Commercial Whaling"
- New_TradeGood_Events.1.d: "In the 1600s regular voyages were made into the Arctic to practice whaling. They were led by Basque specialists, who became the first to practice commecial whaling. The demand for whale goods and competition between whaling nations ensured prices remained high."
+ New_TradeGood_Events.1.d: "The demand for whale goods and competition has dramatically increased. Going to hurt some pockets but will definately benefit others."
  New_TradeGood_Events.1.a: "Yes, Please"
  COMMERCIAL_WHALING: "Commercial Whaling"
  
