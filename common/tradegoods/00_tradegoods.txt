@@ -2973,7 +2973,7 @@ cheese = {
 		local_culture_conversion_cost = -0.25
 	}
 	chance = { 
-		factor = 13
+		factor = 3
 
 		modifier = { 
 			factor = 0
