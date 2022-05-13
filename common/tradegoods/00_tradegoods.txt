@@ -786,7 +786,7 @@ iron = {
 		local_build_time = -0.2
 	}
 	chance = {
-		factor = 10
+		factor = 4
 		modifier = {
 			factor = 1.2
 			normal_or_historical_nations = no
@@ -2215,6 +2215,7 @@ apiculture = {
 				has_climate = arctic
 				has_climate = arid
 				has_winter = severe_winter
+				continent = serpentspine
 			}
 		}
 		modifier = {
@@ -2522,6 +2523,7 @@ horses = {
 				has_terrain = desert
 				has_terrain = jungle
 				continent = africa
+				continent = serpentspine
 				has_winter = severe_winter	
 			}
 		}
@@ -2872,7 +2874,7 @@ tin = {
 	}
 	
 	chance = {
-		factor = 15
+		factor = 5
 
 		modifier = {
 			factor = 0
@@ -2982,7 +2984,8 @@ cheese = {
 				has_climate = arctic
 				has_terrain = desert
 				has_terrain = jungle
-				continent = africa		
+				continent = africa
+				continent = serpentspine
 			}
 		}
 		modifier = {
@@ -3466,7 +3469,7 @@ exotic_animals = {
 		province_trade_power_modifier = 0.1
 	}	
 	chance = { 
-		factor = 10
+		factor = 5
 		
 		modifier = {
 			factor = 0
@@ -3485,17 +3488,18 @@ vanilla = {
 		province_trade_power_modifier = 0.1
 	}
 	chance = { 
-		factor = 1
-		#modifier = {  
-		#	factor = 0
-		#	NOT = { region = mexico_region }
-		#	NOT = { region = central_america_region }
-		#	NOT = { superregion = east_indies_superregion }
-		#	NOT = { superregion = china_superregion }	
-		#} 
+		factor = 3
+		modifier = {  
+			factor = 0
+			NOT = { region = mexico_region }
+			NOT = { region = central_america_region }
+			NOT = { continent = north_america }
+			NOT = { continent = south_america }
+		}
 		modifier = {
 			factor = 0
 			OR = {
+				continent = serpentspine
 				has_terrain = mountain
 				has_terrain = highlands
 				has_climate = arid
@@ -3847,7 +3851,7 @@ zinc = {
 		local_defensiveness = 0.15
 	}
 	chance = {
-		factor = 5
+		factor = 1
 		modifier = {
 			factor = 1.2
 			normal_or_historical_nations = no

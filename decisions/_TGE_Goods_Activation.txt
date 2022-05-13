@@ -264,7 +264,14 @@ country_decisions = {
                 every_province = {
                     limit = {
                         OR = {
-
+                            province_id = 2913
+                            province_id = 2928
+                            province_id = 2905
+                            province_id = 2900
+                            province_id = 2903
+                            province_id = 2920
+                            province_id = 2918
+                            province_id = 2915
                         }
                     }
 
