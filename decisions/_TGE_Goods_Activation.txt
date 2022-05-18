@@ -33,9 +33,6 @@ country_decisions = {
                 every_province = {
                     limit = {
                         OR = {
-                            province_id = 38
-                            province_id = 84
-                            province_id = 108
                             province_id = 130
                             province_id = 134
                             province_id = 139
@@ -264,14 +261,16 @@ country_decisions = {
                 every_province = {
                     limit = {
                         OR = {
+                            # Far Salahad Region
                             province_id = 2913
                             province_id = 2928
                             province_id = 2905
                             province_id = 2900
-                            province_id = 2903
-                            province_id = 2920
-                            province_id = 2918
-                            province_id = 2915
+                            # Far Bulwar Region
+                            province_id = 644
+                            province_id = 638
+                            province_id = 648
+
                         }
                     }
 
