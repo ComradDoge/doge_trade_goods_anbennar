@@ -635,7 +635,6 @@ technology = {
 		manufactories = 0.5
 		enlightenment = 1
 		industrialization = 1
-		nationalism_institution = 0.25
 	}
 	#Tin Can
 	trade_range				=	20
@@ -655,7 +654,6 @@ technology = {
 		manufactories = 0.5
 		enlightenment = 1
 		industrialization = 1
-		nationalism_institution = 0.5
 	}
 	#Steam Powered Ships
 	naval_morale = 0.5
@@ -676,7 +674,6 @@ technology = {
 		manufactories = 0.5
 		enlightenment = 1
 		industrialization = 1
-		nationalism_institution = 0.5
 	}
 	#Oil Refining
 	trade_efficiency = 0.03
@@ -695,8 +692,6 @@ technology = {
 		manufactories = 0.5
 		enlightenment = 1
 		industrialization = 1
-		nationalism_institution = 0.5
-		imperialism = 0.25
 	}
 	#Ironclad
 	naval_maintenance	= 0.2
@@ -717,8 +712,6 @@ technology = {
 		manufactories = 0.5
 		enlightenment = 1
 		industrialization = 1
-		nationalism_institution = 0.5
-		imperialism = 0.5
 	}
 	#Telephone
 
@@ -739,8 +732,6 @@ technology = {
 		manufactories = 0.5
 		enlightenment = 1
 		industrialization = 1
-		nationalism_institution = 0.5
-		imperialism = 0.5
 	}
 	#Refrigerated Shipping
 	trade_efficiency = 0.05
@@ -759,8 +750,6 @@ technology = {
 		manufactories = 0.5
 		enlightenment = 1
 		industrialization = 1
-		nationalism_institution = 0.75
-		imperialism = 0.75
 	}
 	#Radio
 	num_accepted_cultures	= 1

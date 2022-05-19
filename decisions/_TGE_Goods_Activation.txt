@@ -509,10 +509,10 @@ country_decisions = {
                 every_province = {
                     limit = {
                         OR = {
-                            province_id = 249
-                            province_id = 328
-                            province_id = 510
-                            province_id = 995
+                            #province_id = 249
+                            #province_id = 328
+                            #province_id = 510
+                            #province_id = 995
                         }
                     }
 

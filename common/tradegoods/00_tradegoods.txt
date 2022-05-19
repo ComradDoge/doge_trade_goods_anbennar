@@ -2545,7 +2545,7 @@ horses = {
 			}
 		}
 		modifier = {
-			factor = 10
+			factor = 15
 			region = forbidden_lands_superregion
 			OR = {
 				has_terrain = steppe
@@ -2713,51 +2713,7 @@ mercury = {
 		local_institution_spread = 0.2
 	}
 	chance = {
-		factor = 5
-
-		modifier = {
-			factor = 0
-			OR = {
-				FROM = { is_tribal = yes }
-				FROM = { technology_group = north_american }
-				FROM = { technology_group = aboriginal_tech }
-				FROM = { technology_group = south_american }
-			}
-		}
-		modifier = {
-			factor = 0
-			OR = {
-				AND = {	
-					is_random_new_world = no
-					NOT = { 
-						OR = {
-							continent = north_america 
-							continent = south_america
-						}
-					}
-				}
-				AND = {	
-					is_random_new_world = yes
-					NOT = { continent = new_world }
-				}
-			}
-			normal_or_historical_nations = yes
-			NOT = { superregion = tartary_superregion }
-			NOT = { province_id = 18 }
-			NOT = { continent = africa }
-			NOT = { region = australia_region }
-		}
-		modifier = {
-			factor = 0
-			OR = {
-				island = yes
-				AND = {
-					has_terrain = desert
-					NOT = { region = australia_region }
-				}
-				has_terrain = glacier
-			}
-		}
+		factor = 1
 		modifier = {
 			factor = 0.3
 			OR = {
@@ -2784,16 +2740,12 @@ mercury = {
 			}
 		}
 		modifier = {
-			factor = 1.5
+			factor = 1
 			OR = {
 				has_terrain = mountain
 				has_terrain = hills
 				has_terrain = highlands
 			}
-		}
-		modifier = {
-			factor = 1.5
-			continent = south_america
 		}
 		modifier = {
 			factor = 1.5
@@ -3344,7 +3296,7 @@ metalworking = {
 silver = { 
 	color = { 0.33 0.38 0.44 }
 	chance = {
-		factor = 5
+		factor = 0 # currently disabled
 		modifier = {
 			factor = 0
 			is_random_new_world = yes
@@ -3668,46 +3620,21 @@ sulfur = {
 		local_hostile_attrition = 1
 	}
 	chance = {
-		factor = 25
-		
+		factor = 5
 		modifier = {
 			factor = 0
-			NOT = {
-				OR = {
-					province_id = 2839
-					province_id = 2841
-					province_id = 4638
-					province_id = 1235 
-					province_id = 1236 
-					province_id = 1237 
-					province_id = 1238 
-					province_id = 1239 
-					province_id = 1240 
-					province_id = 1241 
-					province_id = 1242 
-					province_id = 1243 
-					province_id = 1244 
-					province_id = 1245 
-					province_id = 1789
-					province_id = 1986
-					province_id = 1987 
-					province_id = 1988 
-					province_id = 1989 
-					province_id = 1990 
-					province_id = 1991 
-					province_id = 1992 
-					province_id = 1993 
-					province_id = 1994 
-					province_id = 1995 
-					province_id = 1996 
-					province_id = 1997
-					province_id = 2718 
-					province_id = 2719 
-					province_id = 2720 
-					province_id = 2721 
-					province_id = 2722 
-					province_id = 2723 
-					province_id = 2724
+			AND = {
+				NOT = { superregion = west_serpentspine_superregion }
+				NOT = { superregion = east_serpentspine_superregion }
+			}
+		}
+		modifier = {
+			factor = 0
+			NOT = { 
+
+				OR = { 
+					has_terrain = cavern
+					has_terrain = mountains
 				}
 			}
 		}
@@ -3751,7 +3678,7 @@ maple_syrup = {
 		trade_value_modifier = 0.1
 	}
 	chance = {
-		factor = 0
+		factor = 1
 		modifier = {
 			factor = 0
 			NOT = { 
@@ -3774,7 +3701,7 @@ potato = {
 		local_manpower_modifier = 0.15
 	} 
 	chance = { 
-		factor = 10
+		factor = 0 # disabled for the time being
 		modifier = {
 			factor = 0
 			OR = {
@@ -3851,7 +3778,7 @@ zinc = {
 		local_defensiveness = 0.15
 	}
 	chance = {
-		factor = 1
+		factor = 5
 		modifier = {
 			factor = 1.2
 			normal_or_historical_nations = no

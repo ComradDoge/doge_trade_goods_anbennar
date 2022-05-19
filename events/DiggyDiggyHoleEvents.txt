@@ -1575,6 +1575,15 @@ province_event = {
 				trade_goods = mithril
 				trade_goods = copper
 				trade_goods = coal
+
+				trade_goods = tin
+				trade_goods = lead
+				trade_goods = mercury
+				trade_goods = zinc
+
+				trade_goods = steam_engine
+				trade_goods = metalworking
+				trade_goods = cannon
 			}
 		}
 		goto = ROOT
@@ -1593,6 +1602,7 @@ province_event = {
 				trade_goods = cloth
 				trade_goods = mithril
 				trade_goods = gold
+				trade_goods = silver
 				trade_goods = paper
 				trade_goods = wine
 				trade_goods = precursor_relics
@@ -1600,6 +1610,18 @@ province_event = {
 				trade_goods = incense
 				trade_goods = salt
 				base_tax = 30
+
+				trade_goods = beer
+				trade_goods = carpet
+				trade_goods = jewellery
+				trade_goods = champagne
+				trade_goods = cheese
+				trade_goods = rum
+				trade_goods = opium
+				trade_goods = saffron
+				trade_goods = vanilla
+				trade_goods = cigars
+				trade_goods = pearls
 			}
 		}
 		goto = ROOT
@@ -1622,6 +1644,12 @@ province_event = {
 				trade_goods = precursor_relics
 				trade_goods = incense
 				trade_goods = tropical_wood
+
+				trade_goods = lumber
+
+				trade_goods = optics
+				trade_goods = marble_sculpture
+				trade_goods = woodworking
 			}
 		}
 		goto = ROOT
@@ -1640,6 +1668,9 @@ province_event = {
 				trade_goods = serpentbloom
 				trade_goods = livestock
 				trade_goods = salt
+
+				trade_goods = horses
+				trade_goods = whales # meme
 			}
 		}
 		goto = ROOT
@@ -1659,6 +1690,12 @@ province_event = {
 				trade_goods = paper
 				trade_goods = mithril
 				base_manpower = 25
+
+				trade_goods = gunpowder
+				trade_goods = tar
+
+				trade_goods = uniforms
+				trade_goods = munitions
 			}
 		}
 		goto = ROOT
@@ -1851,8 +1888,13 @@ country_event = {
 		capital_scope = {
 			random_list = {
 				20 = { change_trade_goods = mithril }
-				35 = { change_trade_goods = iron }
-				45 = { change_trade_goods = copper }
+				25 = { change_trade_goods = iron }
+				25 = { change_trade_goods = copper }
+
+				25 = { change_trade_goods = tin }
+				25 = { change_trade_goods = lead }
+				#20 = { change_trade_goods = mercury }
+				25 = { change_trade_goods = zinc }
 			}
 			add_permanent_province_modifier = {
 				name = pristine_deposit
