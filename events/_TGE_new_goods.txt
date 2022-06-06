@@ -301,7 +301,8 @@ country_event = {
 		every_province = {
 			limit = {
 				OR = {
-
+					province_id = 534
+					province_id = 540
 				}
 			}
 

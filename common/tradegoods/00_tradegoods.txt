@@ -2644,7 +2644,11 @@ marble = {
 		local_development_cost = -0.05
 	}
 	chance = {
-		factor = 0
+		factor = 
+		modifier = {
+			factor = 0
+			NOT = { province_id = 2942 }
+		}
 	}
 }
 
