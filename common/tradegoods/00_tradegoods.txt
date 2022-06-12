@@ -2606,32 +2606,14 @@ jade = {
 		local_state_maintenance_modifier = -0.25
 	}
 	chance = {
-		factor = 1
-		
-		modifier = {
-			factor = 25
-			OR = {
-				area = te_ika_a_maui_waho_area
-				area = te_ika_a_maui_hauauru_area
-				area = salish_sea_area
-				area = hecate_strait_area
-				area = straits_of_georgia_area
-				region = cascadia_region
-			}
-			
-		}
-		
+		factor = 25
 		modifier = {
 			factor = 0
 			NOT = {
-				area = te_ika_a_maui_waho_area
-				area = te_ika_a_maui_hauauru_area
+				region = jade_mines_region
 			}
 			
 		}
-		
-		
-		
 	}
 }
 
@@ -2644,10 +2626,18 @@ marble = {
 		local_development_cost = -0.05
 	}
 	chance = {
-		factor = 5
+		factor = 10
 		modifier = {
 			factor = 0
-			NOT = { province_id = 2942 }
+			NOT = {
+				OR = {
+					has_terrain = mountain
+					has_terrain = hills
+					has_terrain = highlands
+					has_terrain = cavern
+					province_id = 2942
+				}
+			}
 		}
 	}
 }
