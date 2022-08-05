@@ -1,6 +1,9 @@
 
 # province
 on_dip_development = {
+	events = {
+		kheionai.4
+	}
 	if = {
 		limit = { has_province_modifier = jaddari_blessed_land }
 		random = {
@@ -14,7 +17,7 @@ on_dip_development = {
 		# governing_point_dip = yes
 	# }
 	if = {
-		limit = { 
+		limit = {
 			owner = { has_estate = estate_castonath_patricians }
 			OR = {
 				province_id = 831
@@ -30,7 +33,7 @@ on_dip_development = {
 	}
 	# Castanor stuff
 	if = {
-		limit = { owner = { TAG = B32 } }
+		limit = { owner = { tag = B32 } }
 		if = {
 			limit = {
 				OR = {
@@ -56,10 +59,10 @@ on_dip_development = {
 			}
 		}
 	}
-	
+
 	# Ancient Dwarven Knowledge
 	if = {
-		limit = { 
+		limit = {
 			OR = {
 				has_terrain = dwarven_hold
 				has_terrain = dwarven_hold_surface

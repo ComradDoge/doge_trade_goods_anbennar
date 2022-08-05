@@ -350,7 +350,7 @@ krakdhumvror_1b = {
 			anvils_horn_area = { add_province_modifier = { name = krak_road_building duration = -1 } }
 			4201 = { add_province_modifier = { name = krak_road_building duration = -1 } }
 			4198 = { add_province_modifier = { name = krak_road_building duration = -1 } }
-			hidden_effect = { country_event = { id = flavor_krak.13 days = 10950 } }
+			hidden_effect = { country_event = { id = flavor_krak.13 days = 7300 } }
 		}
 	}
 
@@ -382,7 +382,6 @@ krakdhumvror_1b = {
 				OR = {
 					has_production_building_trigger = yes
 					trade_goods = gold
-					trade_goods = silver
 				}
 				has_dwarven_hold_4 = yes
 				has_province_modifier = krak_ice_hold_modifier
@@ -962,12 +961,7 @@ krakdhumvror_2b = {
 						}
 						has_terrain = dwarven_road
 					}
-					random_list = {
-						10 = { add_base_tax = 1 }
-						10 = { add_base_production = 1 }
-						10 = { add_base_manpower = 1 }
-						70 = {}
-					}
+					province_event = { id = flavor_krak.300 }
 				}
 			}
 			4552 = { add_claim = ROOT }
@@ -1024,6 +1018,14 @@ krakdhumvror_2b = {
 		}
 		
 		trigger = {
+			4103 = {
+				owned_by = ROOT
+				has_fort_building_trigger = yes
+			}
+			2884 = {
+				owned_by = ROOT
+				has_fort_building_trigger = yes
+			}
 			4102 = {
 				owned_by = ROOT
 				has_fort_building_trigger = yes
@@ -1456,7 +1458,7 @@ krakdhumvror_3b = {
 			add_treasury = -300
 			add_adm_power = -100
 			hjyrtsikki_area = { add_permanent_province_modifier = { name = krak_hunting_camps duration = -1 } }
-			every_owned_province = {
+			every_owned_province = { #better tooltip than using area scope for this one
 				limit = { area = hjyrtsikki_area }
 				if = {
 					limit = {
@@ -1465,10 +1467,13 @@ krakdhumvror_3b = {
 							trade_goods = ivory
 						}
 					}
-					random_list = {
-						70 = { change_trade_goods = fur }
-						30 = { change_trade_goods = ivory }
+					tooltip = {
+						random_list = {
+							70 = { change_trade_goods = fur }
+							30 = { change_trade_goods = ivory }
+						}
 					}
+					hidden_effect = { province_event = { id = flavor_krak.301 } }
 				}
 			}
 		}
@@ -1539,7 +1544,7 @@ krakdhumvror_3b = {
 			4193 = { add_province_modifier = { name = krak_road_building duration = -1 } }
 			4183 = { add_province_modifier = { name = krak_road_building duration = -1 } }
 			4182 = { add_province_modifier = { name = krak_road_building duration = -1 } }
-			hidden_effect = { country_event = { id = flavor_krak.17 days = 7300 } }
+			hidden_effect = { country_event = { id = flavor_krak.17 days = 5475 } }
 		}
 	}
 
@@ -1900,7 +1905,10 @@ krakdhumvror_4 = {
 		
 		trigger = {
 			mil_tech = 9
-			6187 = { has_manpower_building_trigger = yes }
+			6187 = { 
+				owned_by = ROOT 
+				has_manpower_building_trigger = yes 
+			}
 			OR = {
 				AND = {
 					mil_power = 200
@@ -2069,7 +2077,7 @@ krakdhumvror_4b = {
 			else = {
 				custom_tooltip = krak_refocus_pass_tooltip
 				hidden_effect = {
-					every_owned_province = { #better tooltip than northern_pass_region
+					every_owned_province = {
 						limit = {
 							region = northern_pass_region
 							NOT = { area = lonely_mountains_area }
@@ -2080,17 +2088,8 @@ krakdhumvror_4b = {
 								trade_goods = fungi
 							}
 						}
-						random_list = {
-							30 = { change_trade_goods = fur }
-							30 = { change_trade_goods = iron }
-							20 = { change_trade_goods = copper }
-							15 = { change_trade_goods = tin }
-							15 = { change_trade_goods = lead }
-							15 = { change_trade_goods = zinc }
-							10 = { change_trade_goods = mercury }
-							10 = { change_trade_goods = incense }
-							10 = { change_trade_goods = naval_supplies }
-						}
+						province_event = { id = flavor_krak.302 }
+						#random list moved to event
 					}
 				}
 			}
@@ -2161,7 +2160,6 @@ krakdhumvror_4b = {
 				OR = {
 					has_production_building_trigger = yes
 					trade_goods = gold
-					trade_goods = silver
 				}
 				has_courthouse_building_trigger = yes
 			}
@@ -2344,125 +2342,14 @@ krakdhumvror_4b = {
 							base_production = 2
 							base_manpower = 2
 						}
-						random_list = {
-							33 = { add_base_tax = -1 }
-							33 = { add_base_production = -1 }
-							33 = { add_base_manpower = -1 }
-						}
-						random_list = {
-							33 = { 
-								modifier = {
-									factor = 0
-									NOT = { base_tax = 2 }
-								}
-								add_base_tax = -1 
-							}
-							33 = { 
-								modifier = {
-									factor = 0
-									NOT = { base_production = 2 }
-								}
-								add_base_production = -1 
-							}
-							33 = { 
-								modifier = {
-									factor = 0
-									NOT = { base_manpower = 2 }
-								}
-								add_base_manpower = -1 
-							}
-						}
+						province_event = { id = flavor_krak.303 }
 					}
 				}
 				#add mine dev
-				4185 = {
-					random_list = {
-						33 = { add_base_tax = 1 }
-						33 = { add_base_production = 1 }
-						33 = { add_base_manpower = 1 }
-					}
-					random_list = {
-						33 = { add_base_tax = 1 }
-						33 = { add_base_production = 1 }
-						33 = { add_base_manpower = 1 }
-					}
-					random_list = {
-						30 = { add_base_tax = 1 }
-						40 = { add_base_production = 1 }
-						30 = { add_base_manpower = 1 }
-					}
-					random_list = {
-						25 = { add_base_tax = 1 }
-						50 = { add_base_production = 1 }
-						25 = { add_base_manpower = 1 }
-					}
-				}
-				4186 = { 
-					random_list = {
-						33 = { add_base_tax = 1 }
-						33 = { add_base_production = 1 }
-						33 = { add_base_manpower = 1 }
-					}
-					random_list = {
-						33 = { add_base_tax = 1 }
-						33 = { add_base_production = 1 }
-						33 = { add_base_manpower = 1 }
-					}
-					random_list = {
-						30 = { add_base_tax = 1 }
-						40 = { add_base_production = 1 }
-						30 = { add_base_manpower = 1 }
-					}
-					random_list = {
-						25 = { add_base_tax = 1 }
-						50 = { add_base_production = 1 }
-						25 = { add_base_manpower = 1 }
-					}
-				}
-				4187 = { 
-					random_list = {
-						33 = { add_base_tax = 1 }
-						33 = { add_base_production = 1 }
-						33 = { add_base_manpower = 1 }
-					}
-					random_list = {
-						33 = { add_base_tax = 1 }
-						33 = { add_base_production = 1 }
-						33 = { add_base_manpower = 1 }
-					}
-					random_list = {
-						30 = { add_base_tax = 1 }
-						40 = { add_base_production = 1 }
-						30 = { add_base_manpower = 1 }
-					}
-					random_list = {
-						25 = { add_base_tax = 1 }
-						50 = { add_base_production = 1 }
-						25 = { add_base_manpower = 1 }
-					}
-				}
-				4188 = { 
-					random_list = {
-						33 = { add_base_tax = 1 }
-						33 = { add_base_production = 1 }
-						33 = { add_base_manpower = 1 }
-					}
-					random_list = {
-						33 = { add_base_tax = 1 }
-						33 = { add_base_production = 1 }
-						33 = { add_base_manpower = 1 }
-					}
-					random_list = {
-						30 = { add_base_tax = 1 }
-						40 = { add_base_production = 1 }
-						30 = { add_base_manpower = 1 }
-					}
-					random_list = {
-						25 = { add_base_tax = 1 }
-						50 = { add_base_production = 1 }
-						25 = { add_base_manpower = 1 }
-					}
-				}
+				4185 = { province_event = { id = flavor_krak.304 } }
+				4186 = { province_event = { id = flavor_krak.304 } }
+				4187 = { province_event = { id = flavor_krak.304 } }
+				4188 = { province_event = { id = flavor_krak.304 } }
 			}
 		}
 	}
@@ -3337,12 +3224,24 @@ krakdhumvror_5b = {
 				value = 10
 				OR = {
 					trade_goods = iron
-					trade_goods = copper
 					trade_goods = tin
 					trade_goods = lead
 					trade_goods = mercury
 					trade_goods = zinc
 				}
+				has_building = weapons
+				has_production_building_trigger = yes
+				base_production = 8
+			}
+			num_of_owned_provinces_with = {
+				value = 4
+				OR = {
+					trade_goods = copper
+					trade_goods = tin
+					trade_goods = lead
+					trade_goods = mercury
+					trade_goods = zinc
+				}					
 				has_building = weapons
 				has_production_building_trigger = yes
 				base_production = 8

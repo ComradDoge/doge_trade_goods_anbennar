@@ -780,28 +780,22 @@ fort_15th = {
 		fort_level = 2
 	}
 
-#	# THIS = Province, FROM = Builder(not nessecairly owner, can be overlord)
-#	on_built = {
-#		FROM = {
-#			add_army_professionalism = 0.005
-#		}
-#	}
-#
-#	# THIS = Province, FROM = Destroyer, Will not be called on buildings made obsolete!
-#	on_destroyed = {
-#		FROM = {
-#			add_army_professionalism = -0.01
-#		}
-#	}
-#
-#	# THIS = Province, FROM = Destroyer, Will not be called on buildings destroyed!
-#	on_obsolete = {
-#		hidden_effect = {
-#			FROM = {
-#				add_army_professionalism = -0.005
-#			}
-#		}
-#	}
+	#ANBENNAR - windward stuff
+	# THIS = Province, FROM = Builder(not nessecairly owner, can be overlord)
+	on_built = {
+		#ANBENNAR - windward stuff
+		province_event = {
+			id = kheionai.2
+		}
+	}
+
+	# THIS = Province, FROM = Destroyer, Will not be called on buildings made obsolete!
+	on_destroyed = {
+		#ANBENNAR - windward stuff
+		province_event = {
+			id = kheionai.2
+		}
+	}
 
 	onmap = yes
 	influencing_fort = yes
