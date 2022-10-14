@@ -7,6 +7,6 @@ tags={
 	"Goods"
 	"Buildings"
 }
-name="Doge - Anbennar Trade Goods & Buildings"
+name="1.33 Doge - Anbennar Trade Goods & Buildings"
 supported_version="1.33.*"
 path="mod/doge_trade_goods_anbennar"
