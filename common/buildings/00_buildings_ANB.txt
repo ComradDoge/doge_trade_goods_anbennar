@@ -1,3 +1,4 @@
+
 ####################### ANBENNAR ###########################
 
 mage_tower = {
@@ -5,7 +6,13 @@ mage_tower = {
 		all
 	}
 	build_trigger = {
-		FROM = { NOT = { has_country_flag = banned_magic } }
+		OR = {
+			OR = {
+				FROM = { NOT = { has_country_flag = banned_magic } }
+				FROM = { is_subject_of = Y63 }
+			}
+			FROM = { has_country_modifier = command_the_korashi_secret }
+		}
 	}
 
 	bonus_manufactory = { # Will apply an extra modifier if these goods
@@ -48,8 +55,23 @@ mage_tower = {
 			clr_province_flag = latest_manufactory_built_is_mills
 			clr_province_flag = latest_manufactory_built_is_furnace
 		}
-		province_event = {
-			id = kheionai.3
+		if = {
+			limit = {
+				region = alecand_region
+			}
+			hidden_effect = {
+				province_event = { id = kheionai.3 }
+			}
+		}
+	}
+	on_destroyed = {
+		if = {
+			limit = {
+				region = alecand_region
+			}
+			hidden_effect = {
+				province_event = { id = kheionai.3 }
+			}
 		}
 	}
 }
@@ -60,20 +82,20 @@ bulwari_canals = {
 	#time = 36 # ~3 years
 	time = 72 # Doubled for building events
 	#time = 1 # for testing
-	
+
 	indestructible = yes
-	
+
 	build_trigger = {
 	}
-	
+
 	modifier = {
 	}
-	
+
 	on_built = {
 		hidden_effect = { remove_building = bulwari_canals }
 		hidden_effect = { FROM = { country_event = { id = bulwar_flavour.14 } } }
     }
-	
+
 	ai_will_do = {
 		factor = 0
 	}
@@ -85,20 +107,20 @@ bulwari_locks_and_lifts = {
 	#time = 72 # ~6 years
 	time = 144 # Doubled for building events
 	#time = 1 # for testing
-	
+
 	indestructible = yes
-	
+
 	build_trigger = {
 	}
-	
+
 	modifier = {
 	}
-	
+
 	on_built = {
 		hidden_effect = { remove_building = bulwari_locks_and_lifts }
 		hidden_effect = { FROM = { country_event = { id = bulwar_flavour.15 } } }
     }
-	
+
 	ai_will_do = {
 		factor = 0
 	}
@@ -110,20 +132,20 @@ great_bulwari_watercourse = {
 	#time = 144 # ~12 years
 	time = 288 # Doubled for building events
 	#time = 1 # for testing
-	
+
 	indestructible = yes
-	
+
 	build_trigger = {
 	}
-	
+
 	modifier = {
 	}
-	
+
 	on_built = {
 		hidden_effect = { remove_building = great_bulwari_watercourse }
 		hidden_effect = { FROM = { country_event = { id = bulwar_flavour.16 } } }
     }
-	
+
 	ai_will_do = {
 		factor = 0
 	}
@@ -132,19 +154,19 @@ great_bulwari_watercourse = {
 restoring_hold = {
 	cost = 1
 	time = 12
-	
+
 	indestructible = yes
-	
+
 	build_trigger = {
 	}
-	
+
 	modifier = {
 	}
-	
+
 	on_destroyed = {
 		remove_province_modifier = hold_being_restored
     }
-	
+
 	on_built = {
 		hidden_effect = {
 			remove_building = restoring_hold
@@ -152,7 +174,7 @@ restoring_hold = {
 			province_event = { id = diggy.12 }
 		}
     }
-	
+
 	ai_will_do = {
 		factor = 0
 	}
@@ -161,15 +183,15 @@ restoring_hold = {
 triunic_road = {
 	cost = 50
 	time = 6
-	
+
 	indestructible = yes
-	
+
 	build_trigger = {
 	}
-	
+
 	modifier = {
 	}
-	
+
 	on_built = {
 		hidden_effect = {
 			remove_building = triunic_road
@@ -179,7 +201,7 @@ triunic_road = {
 			}
 		}
     }
-	
+
 	ai_will_do = {
 		factor = 0
 	}
@@ -188,22 +210,22 @@ triunic_road = {
 adenica_longlance_knights_academy = {
 	cost = 1
 	time = 36
-	
+
 	build_trigger = {
 		has_building = adenica_longlance_knights_academy
 	}
-	
+
 	modifier = {
 		allowed_num_of_buildings = 1
 		leader_cost = -0.2
 		drill_gain_modifier = 0.25
 		leader_land_shock = 1
 	}
-	
+
 	on_built = {
-		
+
     }
-	
+
 	ai_will_do = {
 		factor = 0
 	}
@@ -212,21 +234,21 @@ adenica_longlance_knights_academy = {
 adenica_grand_tourney_grounds = {
 	cost = 1
 	time = 36
-	
+
 	build_trigger = {
 		has_building = adenica_grand_tourney_grounds
 	}
-	
+
 	modifier = {
 		prestige_decay = -0.01
 		army_tradition_decay = -0.005
 		allowed_num_of_buildings = 1
 	}
-	
+
 	on_built = {
-		
+
     }
-	
+
 	ai_will_do = {
 		factor = 0
 	}
@@ -235,18 +257,18 @@ adenica_grand_tourney_grounds = {
 fort_magic = {
 	cost = 1500
 	time = 30
-	
+
 	modifier = {
 		fort_level = 1
 		local_defensiveness = 1.5
 	}
 
 	onmap = yes
-	
+
 	influencing_fort = yes
-	
+
 	#indestructible = yes
-	
+
 	ai_will_do = {
 		factor = 0 #Lots of logic in code instead, that multiplies with this value
 	}
@@ -255,10 +277,10 @@ fort_magic = {
 world_tree_lvl_1 = {
 	cost = 2000
 	time = 60
-	
+
 	indestructible = yes
 	influencing_fort = yes
-	
+
 	modifier = {
 		prestige_decay = -0.01
 		infantry_shock = 0.5
@@ -270,13 +292,13 @@ world_tree_lvl_1 = {
 		local_defensiveness = 0.15
 		fort_level = 4
 	}
-	
+
 	build_trigger = {
 		has_building = world_tree_lvl_1
 	}
-	
+
 	on_built = {
-		hidden_effect = { 
+		hidden_effect = {
 			set_global_flag = world_tree_lvl_1
 			remove_building = marketplace
 			remove_building = trade_depot
@@ -301,14 +323,14 @@ world_tree_lvl_1 = {
 			FROM = { country_event = { id = worldtree.1 } }
 		}
     }
-	
+
 	on_destroyed = {
 		if = {
 			limit = { NOT = { has_global_flag = world_tree_destroyed has_building = world_tree_lvl_2 } }
 			hidden_effect = { add_building = world_tree_lvl_1 }
 		}
     }
-	
+
 	ai_will_do = {
 		factor = 0
 	}
@@ -317,10 +339,10 @@ world_tree_lvl_1 = {
 world_tree_lvl_2 = {
 	cost = 2000
 	time = 120
-	
+
 	indestructible = yes
 	influencing_fort = yes
-	
+
 	modifier = {
 		prestige_decay = -0.01
 		infantry_shock = 1.0
@@ -332,23 +354,23 @@ world_tree_lvl_2 = {
 		local_defensiveness = 0.3
 		fort_level = 6
 	}
-	
+
 	build_trigger = {
 		has_building = world_tree_lvl_2
 	}
-	
+
 	on_built = {
 		hidden_effect = { remove_building = world_tree_lvl_1 }
 		hidden_effect = { FROM = { country_event = { id = worldtree.2 } } }
     }
-	
+
 	on_destroyed = {
 		if = {
 			limit = { NOT = { has_global_flag = world_tree_destroyed has_building = world_tree_lvl_3  } }
 			hidden_effect = { add_building = world_tree_lvl_2 }
 		}
     }
-	
+
 	ai_will_do = {
 		factor = 0
 	}
@@ -357,10 +379,10 @@ world_tree_lvl_2 = {
 world_tree_lvl_3 = {
 	cost = 2000
 	time = 180
-	
+
 	indestructible = yes
 	influencing_fort = yes
-	
+
 	modifier = {
 		prestige_decay = -0.02
 		infantry_shock = 2.0
@@ -372,23 +394,23 @@ world_tree_lvl_3 = {
 		fort_level = 8
 		local_defensiveness = 0.5
 	}
-	
+
 	build_trigger = {
 		has_building = world_tree_lvl_3
 	}
-	
+
 	on_built = {
 		hidden_effect = { remove_building = world_tree_lvl_2 }
 		hidden_effect = { FROM = { country_event = { id = worldtree.3 } } }
     }
-	
+
 	on_destroyed = {
 		if = {
 			limit = { NOT = { has_global_flag = world_tree_destroyed  } }
 			hidden_effect = { add_building = world_tree_lvl_3 }
 		}
     }
-	
+
 	ai_will_do = {
 		factor = 0
 	}
@@ -397,9 +419,9 @@ world_tree_lvl_3 = {
 world_tree_root = {
 	cost = 100
 	time = 12
-	
+
 	indestructible = yes
-	
+
 	modifier = {
 		local_development_cost = 0.75
 		trade_goods_size_modifier = 0.25
@@ -409,21 +431,21 @@ world_tree_root = {
 		local_hostile_movement_speed = -0.15
 		local_monthly_devastation = -0.05
 	}
-	
+
 	build_trigger = {
 		has_building = world_tree_root
 	}
-	
+
 	on_built = {
 		hidden_effect = {
-			if = { 
+			if = {
 				limit = { has_global_flag = world_tree_destroyed }
 				add_building = world_tree_dead_root
 				remove_building = world_tree_root
 			}
 		}
 	}
-	
+
 	on_destroyed = {
 		hidden_effect = {
 			if = {
@@ -432,7 +454,7 @@ world_tree_root = {
 			}
 		}
     }
-	
+
 	ai_will_do = {
 		factor = 0
 	}
@@ -441,9 +463,9 @@ world_tree_root = {
 world_tree_dead_root = {
 	cost = 100
 	time = 3
-	
+
 	indestructible = yes
-	
+
 	modifier = {
 		local_development_cost = 1
 		trade_goods_size_modifier = -0.5
@@ -451,15 +473,15 @@ world_tree_dead_root = {
 		local_hostile_movement_speed = -0.1
 		local_friendly_movement_speed = -0.1
 	}
-	
+
 	build_trigger = {
 		has_building = world_tree_dead_root
 	}
-	
+
 	ai_will_do = {
 		factor = 0
 	}
-	
+
 	on_destroyed = {
 		if = {
 			limit = { NOT = { has_building = destroying_root } }
@@ -473,21 +495,21 @@ destroyed_world_tree = {
 	time = 3
 
 	indestructible = yes
-	
+
 	build_trigger = {
 		has_building = destroyed_world_tree
 	}
-	
+
 	modifier = {
 		local_development_cost = 1
 		trade_goods_size_modifier = -1
 		allowed_num_of_buildings = -6
 	}
-	
+
 	ai_will_do = {
 		factor = 0
 	}
-	
+
 	on_destroyed = {
 		hidden_effect = { add_building = destroyed_world_tree }
     }
@@ -496,21 +518,21 @@ destroyed_world_tree = {
 destroying_root = {
 	cost = 200
 	time = 18
-	
+
 	build_trigger = {
 		has_building = destroying_root
 	}
-	
+
 	modifier = {
 	}
-	
+
 	on_built = {
 		hidden_effect = {
 			remove_building = world_tree_dead_root
 			remove_building = destroying_root
 		}
     }
-	
+
 	ai_will_do = {
 		factor = 0
 	}
@@ -519,15 +541,15 @@ destroying_root = {
 railway_work = {
 	cost = 15
 	time = 30
-	
+
 	indestructible = yes
-	
+
 	build_trigger = {
 	}
-	
+
 	modifier = {
 	}
-	
+
 	on_built = {
 		hidden_effect = {
 			remove_building = railway_work
@@ -549,61 +571,58 @@ railway_work = {
 				}
 				province_event = { id = diggy.42 }
 			}
-			else_if = {
-				limit = { has_province_modifier = advanced_rail }
-				remove_province_modifier = advanced_rail
-				add_permanent_province_modifier = {
-					name = rocket_rail
-					duration = -1
-				}
-				province_event = { id = allclan.31 }
-			}
+			# else_if = {
+			# 	limit = { has_province_modifier = advanced_rail }
+			# 	remove_province_modifier = advanced_rail
+			# 	add_permanent_province_modifier = {
+			# 		name = rocket_rail
+			# 		duration = -1
+			# 	}
+			# 	province_event = { id = allclan.31 }
+			# }
 		}
     }
-	
+
 	ai_will_do = {
 		factor = 0
 	}
 }
 
-allclan_industrialization_works = {
-	cost = 200
-	time = 60
-	
-	indestructible = yes
-	
-	build_trigger = {
-	}
-	
-	modifier = {
-	}
-	
-	on_built = {
-		hidden_effect = {
-			province_event = {
-				id = allclan.705
-				days = 0
-			}
-		}
-    }
-	
-	ai_will_do = {
-		factor = 0
-	}
-}
+# allclan_industrialization_works = {
+# 	cost = 200
+# 	time = 60
+
+# 	indestructible = yes
+
+# 	build_trigger = {
+# 	}
+
+# 	modifier = {
+# 	}
+
+# 	on_built = {
+# 		hidden_effect = {
+# 			province_event = { id = allclan.705 }
+# 		}
+#     }
+
+# 	ai_will_do = {
+# 		factor = 0
+# 	}
+# }
 
 digging_deeper = {
 	cost = 1
 	time = 12
-	
+
 	indestructible = yes
-	
+
 	build_trigger = {
 	}
-	
+
 	modifier = {
 	}
-	
+
 	on_built = {
 		hidden_effect = {
 			remove_building = digging_deeper
@@ -617,7 +636,7 @@ digging_deeper = {
 			province_event = { id = diggy.1 }
 		}
     }
-	
+
 	on_destroyed = {
 		hidden_effect = {
 			if = {
@@ -626,7 +645,7 @@ digging_deeper = {
 			}
 		}
 	}
-	
+
 	ai_will_do = {
 		factor = 0
 	}
@@ -635,32 +654,29 @@ digging_deeper = {
 ziggurat_of_surakel = {
 	cost = 1000
 	time = 120
-	
+
 	build_trigger = {
 		has_building = ziggurat_of_surakel
 		# owner = { NOT = { num_of_owned_provinces_with = { value = 2 has_building = ziggurat_of_surakel } } }
 	}
-	
+
 	modifier = {
 		allowed_num_of_buildings = 1
 		local_missionary_strength = -0.08
 		prestige = 1
 	}
-	
+
 	on_built = {
 		hidden_effect = {
-			province_event = {
-				id = dartaxagerdim_events.4
-				days = 0
-			}
+			province_event = { id = dartaxagerdim_events.4 }
 			FROM = { set_country_flag = ziggurat_of_surakel_built }
 		}
     }
-	
+
 	ai_will_do = {
 		factor = 0
 	}
-	
+
 	on_destroyed = {
 		FROM = {
 			add_prestige = 20
@@ -672,13 +688,13 @@ ziggurat_of_surakel = {
 garden_of_secrets_0 = {
 	cost = 100
 	time = 120
-	
+
 	indestructible = yes
-	
+
 	build_trigger = {
 		has_building = garden_of_secrets_0
 	}
-	
+
 	modifier = {
 		global_tax_income = -12
 	}
@@ -693,16 +709,16 @@ garden_of_secrets_1 = {
 	time = 120
 
 	indestructible = yes
-	
+
 	build_trigger = {
 		has_building = garden_of_secrets_1
 	}
-	
+
 	modifier = {
 		global_tax_income = -12
 		spy_offence = 0.3
 	}
-	
+
 	on_built = {
 		hidden_effect = { remove_building = garden_of_secrets_0 }
     }
@@ -715,19 +731,19 @@ garden_of_secrets_1 = {
 garden_of_secrets_2 = {
 	cost = 100
 	time = 120
-	
+
 	indestructible = yes
-	
+
 	build_trigger = {
 		has_building = garden_of_secrets_2
 	}
-	
+
 	modifier = {
 		global_tax_income = -12
 		spy_offence = 0.3
 		discovered_relations_impact = -0.5
 	}
-	
+
 	on_built = {
 		hidden_effect = { remove_building = garden_of_secrets_1 }
     }
@@ -740,20 +756,20 @@ garden_of_secrets_2 = {
 garden_of_secrets_3 = {
 	cost = 100
 	time = 120
-	
+
 	indestructible = yes
-	
+
 	build_trigger = {
 		has_building = garden_of_secrets_3
 	}
-	
+
 	modifier = {
 		global_tax_income = -12
 		spy_offence = 0.3
 		discovered_relations_impact = -0.5
 		rebel_support_efficiency = 1.0
 	}
-	
+
 	on_built = {
 		hidden_effect = { remove_building = garden_of_secrets_2 }
     }
@@ -766,21 +782,21 @@ garden_of_secrets_3 = {
 jaddari_sunset_temple = {
 	cost = 2000
 	time = 120
-	
+
 	build_trigger = {
 		has_building = jaddari_sunset_temple
 	}
-	
+
 	modifier = {
 		allowed_num_of_buildings = 1
 		all_power_cost = -0.025
 
 	}
-	
+
 	on_built = {
-		
+
     }
-	
+
 	ai_will_do = {
 		factor = 0
 	}
@@ -789,21 +805,21 @@ jaddari_sunset_temple = {
 jaddari_sunrise_temple = {
 	cost = 2000
 	time = 120
-	
+
 	build_trigger = {
 		has_building = jaddari_sunrise_temple
 	}
-	
+
 	modifier = {
 		allowed_num_of_buildings = 1
 		all_power_cost = -0.025
 
 	}
-	
+
 	on_built = {
-		
+
     }
-	
+
 	ai_will_do = {
 		factor = 0
 	}
@@ -812,28 +828,28 @@ jaddari_sunrise_temple = {
 castonath_preparation = {
 	cost = 1
 	time = 60
-	
+
 	indestructible = yes
-	
+
 	build_trigger = {
 	}
-	
+
 	modifier = {
 	}
-	
+
 	on_built = {
 		hidden_effect = {
 			remove_building = castonath_preparation
 			trigger_switch = {
 				on_trigger = province_id
-				
+
 				833 = { province_event = { id = castonath_wonders.1 } } #North Castonath - Splendid Court
 				832 = { province_event = { id = castonath_wonders.3 } } #Lower Castonath - Grand Bazaar
 				831 = { province_event = { id = castonath_wonders.5 } } #South Castonath - Dragonforge
 			}
 		}
     }
-	
+
 	ai_will_do = {
 		factor = 0
 	}
@@ -842,28 +858,28 @@ castonath_preparation = {
 castonath_build = {
 	cost = 1
 	time = 60
-	
+
 	indestructible = yes
-	
+
 	build_trigger = {
 	}
-	
+
 	modifier = {
 	}
-	
+
 	on_built = {
 		hidden_effect = {
 			remove_building = castonath_build
 			trigger_switch = {
 				on_trigger = province_id
-				
+
 				833 = { province_event = { id = castonath_wonders.2 } } #North Castonath - Splendid Court
 				832 = { province_event = { id = castonath_wonders.4 } } #Lower Castonath - Grand Bazaar
 				831 = { province_event = { id = castonath_wonders.6 } } #South Castonath - Dragonforge
 			}
 		}
     }
-	
+
 	ai_will_do = {
 		factor = 0
 	}
@@ -872,15 +888,15 @@ castonath_build = {
 phoenix_empire_palace_build = {
 	cost = 1
 	time = 120
-	
+
 	indestructible = yes
-	
+
 	build_trigger = {
 	}
-	
+
 	modifier = {
 	}
-	
+
 	on_built = {
 		hidden_effect = {
 			remove_building = phoenix_empire_palace_build
@@ -912,7 +928,7 @@ phoenix_empire_palace_build = {
 					duration = -1
 				}
 			}
-			
+
 			if = {
 				limit = { has_province_modifier = phoenix_empire_furnished_palace }
 				add_permanent_province_modifier = {
@@ -1092,7 +1108,7 @@ phoenix_empire_palace_build = {
 			}
 		}
     }
-	
+
 	ai_will_do = {
 		factor = 0
 	}
@@ -1101,17 +1117,45 @@ phoenix_empire_palace_build = {
 xhazobkult_pyre = {
 	cost = 10
 	time = 1
-	
+
 	indestructible = no
-	
+
 	build_trigger = {
 		owner = { religion = xhazobkult }
 	}
-	
+
 	modifier = {
 	}
-	
+
 	ai_will_do = {
 		factor = 0
 	}
 }
+
+#Mulen
+# hanging_city_foundation = {
+# 	cost = 500
+# 	time = 12
+# 
+# 	indestructible = yes
+# 
+# 	build_trigger = {
+# 	}
+# 
+# 	modifier = {
+# 	}
+# 
+# 	on_built = {
+# 		hidden_effect = {
+# 			remove_building = hanging_city_foundation
+# 	    add_permanent_province_modifier = {
+# 	      name = mulen_hanging_city_foundation
+# 	      duration = -1
+# 	    }
+# 		}
+#   }
+# 
+# 	ai_will_do = {
+# 		factor = 0
+# 	}
+# }
