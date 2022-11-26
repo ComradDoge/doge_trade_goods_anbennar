@@ -1289,6 +1289,9 @@ mine = {
 					has_terrain = mountain
 					has_terrain = hills
 					has_terrain = highlands
+					has_terrain = dwarven_hold
+					has_terrain = dwarven_hold_surface
+					has_terrain = dwarven_road
 					has_terrain = cavern
 				}
 				NOT = { has_province_modifier = mine_fail }

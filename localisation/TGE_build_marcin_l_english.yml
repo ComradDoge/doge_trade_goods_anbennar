@@ -13,7 +13,7 @@
  building_off_5: "No Resources - Spectacles"
 
  building_mine: "Mine"
- building_mine_desc: "Requires Terrain: Hills, Highlands or Mountains\n\nChance to fail: §Y80.00%§!\nChance to success: §Y20.00%§!\n\nOn success:\n -Copper: §O35.00%§!\n -Tin/Zinc: §O30.00%§!\n -Iron: §O20.00%§!\n -Lead: §O10.00%§!\n -Gold/Silver: §O5.00%§!\n\nIf the search and operations fail we might require to use our local resources.\n\n§Y-Only one mining operation may be run at a time.§!\n§Y-You cannot build mines if you are a subject.§!\n"
+ building_mine_desc: "Requires Terrain: Hills, Highlands, Mountains, Dwarven Holds, Dwarven Road or Cavern\n\nChance to fail: §Y80.00%§!\nChance to success: §Y20.00%§!\n\nOn success:\n -Copper: §O35.00%§!\n -Tin/Zinc: §O30.00%§!\n -Iron: §O20.00%§!\n -Lead: §O10.00%§!\n -Gold/Silver: §O5.00%§!\n\nIf the search and operations fail we might require to use our local resources.\n\n§Y-Only one mining operation may be run at a time.§!\n§Y-You cannot build mines if you are a subject.§!\n"
 
  building_cannon_foundry: "Cannon Foundry"
  building_cannon_foundry_desc: "§TProvince Requirements:§!\n-Development: 10¤1\n-Trade Good: §RNOT§! §YCopper§! §OOR§! §YTin§!\n\n§TCountry Requirements:§!\n-Military Technology (7)\n\n§TResources Requirements:§!\n-§YCopper§!: 0.4\n-§YTin§!: 0.3\n\n§TEffects:§!\n-Trade good change to: §YCannon§!\n\n§Y-Only one can be constructed at a time.§!\n"
