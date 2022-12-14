@@ -2847,79 +2847,27 @@ tin = {
 			}
 		}
 		modifier = {
-			factor = 0
-			area = newfoundland_area
-		}
-		modifier = {
-			factor = 0
-			OR = {
-				has_terrain = steppe
-				has_terrain = desert
-				has_terrain = coastal_desert
-				has_terrain = drylands
-				has_terrain = grasslands
-				has_terrain = savannah
-				has_terrain = coastline
-				has_terrain = glacier
-				has_terrain = jungle
-				has_terrain = farmlands
-				has_terrain = woods
+			factor = 2
+			FROM = {
+				has_country_flag = kherkan_prospectors
 			}
-		}
-		modifier = {
-			factor = 0
-			is_random_new_world = no
-			NOT = { province_id = 990 } #St Maurice ironworks
-			NOT = { area = minas_gerais_area }
-			NOT = { area = diamantina_area }
-			NOT = { area = mato_grosso_area }
-			NOT = { area = great_valley_area }
-			NOT = { area = susquehanna_area }
-			NOT = { area = hudson_valley_area }
-			NOT = { area = lake_superior_area }
-			NOT = { area = south_iroquoisia_area }
-			NOT = { area = upper_ontario_area }
-			NOT = { area = laurentian_area }
-			NOT = { area = inner_ontario_area }
-			NOT = { area = maryland_area }
-			NOT = { area = ofaie_area }
-			NOT = { region = west_siberia_region }
-			NOT = { region = east_siberia_region }
-			NOT = { region = central_africa_region }
-		}
-		modifier = {
-			factor = 0
-			is_random_new_world = yes
-			NOT = { region = west_siberia_region }
-			NOT = { region = east_siberia_region }
-			NOT = { continent = new_world }
-		}
-		modifier = {
-			factor = 0.7
-			region = central_africa_region
-		}
-		modifier = {
-			factor = 1.1
-			is_random_new_world = yes
-			OR = {
-				has_terrain = mountain
-				has_terrain = highlands
-			}
-		}
+		}	
 		modifier = {
 			factor = 1.5
+			is_random_new_world = yes
+			has_terrain = mountain
+			continent = new_world #Always in RNW
+		}
+		modifier = {
+			factor = 2 # new world mines
 			OR = {
-				area = minas_gerais_area
-				area = diamantina_area
-				area = mato_grosso_area
-				area = ofaie_area
-				area = great_valley_area
-				area = susquehanna_area
-				area = hudson_valley_area
-				area = lake_superior_area
-				area = south_iroquoisia_area
-				region = west_siberia_region
-				region = east_siberia_region
+			 	 region = endralliande_region
+				 region = ravenous_isle_region
+				 superregion = ynn_superregion
+				 region = dalaire_region
+				 region = amadia_region
+				 region = leechdens_region
+				 region = dry_coast_region
 			}
 		}
 	}
