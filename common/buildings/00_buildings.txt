@@ -4694,6 +4694,15 @@ railroad = {
     allow_in_gold_provinces = yes
     onmap = no
 
+	build_trigger = {
+		NOT = {
+			OR = { 
+				has_province_modifier = restored_rail
+				has_province_modifier = advanced_rail
+			}
+		}
+	}
+
     modifier = {
 		# Economy
     	province_trade_power_modifier = 0.5
