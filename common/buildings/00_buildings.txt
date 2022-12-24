@@ -4430,10 +4430,15 @@ state_house = {
 	modifier = {
 		statewide_governing_cost = -0.25
 		min_local_autonomy = -5
+		local_governing_cost = -0.15
+		local_governing_cost_increase = -10
+		allowed_num_of_buildings = 1
 	}
 	bonus_modifier = {
 		statewide_governing_cost = -0.25
 		min_local_autonomy = -5
+		local_governing_cost = -0.15
+		local_governing_cost_increase = -10
 	}
 	onmap = no
 	# ANBENNAR
