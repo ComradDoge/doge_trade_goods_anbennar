@@ -24,7 +24,7 @@ country_decisions = {
                 every_province = {
                     limit = {
                         OR = {
-                            
+                            province_id = 4149
                         }
                     }
 
@@ -35,8 +35,8 @@ country_decisions = {
                         OR = {
                             province_id = 130
                             province_id = 134
-                            province_id = 139
                             province_id = 148
+                            province_id = 151
                             province_id = 159
                             province_id = 174
                             province_id = 200
@@ -74,7 +74,6 @@ country_decisions = {
                             province_id = 4521
                             province_id = 4539
                             province_id = 4637
-                            province_id = 5235
                         }
                     }
 
@@ -297,7 +296,12 @@ country_decisions = {
                 every_province = {
                     limit = {
                         OR = {
-
+                            province_id = 4350
+                            province_id = 4338
+                            province_id = 4351
+                            province_id = 4311
+                            province_id = 4354
+                            province_id = 4331
                         }
                     }
 
@@ -329,6 +333,7 @@ country_decisions = {
                             province_id = 4341
                             province_id = 4538
                             province_id = 5250
+                            province_id = 4247
                         }
                     }
 
@@ -392,7 +397,6 @@ country_decisions = {
                             province_id = 393
                             province_id = 397
                             province_id = 733
-                            province_id = 4247
                             province_id = 4352
                             province_id = 4439
                         }
@@ -608,7 +612,12 @@ country_decisions = {
                 every_province = {
                     limit = {
                         OR = {	
-
+                            province_id = 139
+                            province_id = 147
+                            province_id = 5235
+                            province_id = 2520
+                            province_id = 281
+                            province_id = 4814 
                         }
                     }
                     

@@ -46,8 +46,17 @@
  building_uniforms_workshop_desc: "§TProvince Requirements:§!\n-Trade Good: §YCloth§! §OOR§! §YWool§! §OOR§! §YCotton§!\n-Development: 15¤1\n\n§TCountry Requirements:§!\n-Military Technology (20)\n-Innovativeness 10£ino_icon£\n\n§TEffects:§!\n-Trade good change to: §YUniforms§!\n"
 
  building_sculpture_workshop: "Sculpture Workshop"
- building_sculpture_workshop_desc: "§TProvince Requirements:§!\n-Trade Good: §YMarble§!\n-Development: 15¤1\n\n§TCountry Requirements:§!\n-Administrative Technology (10)\n-Innovativeness 10£ino_icon£\n\n§lDLC Requirements:§!\n-Has Enabled Leviathan\n\n§TEffects:§!\n-Trade good change to: §YMarble Sculpture§!\n"
+ building_sculpture_workshop_desc: "§TProvince Requirements:§!\n-Trade Good: §YMarble§! §OOR§! §YJade§!\n-Development: 15¤1\n\n§TCountry Requirements:§!\n-Administrative Technology (10)\n-Innovativeness 10£ino_icon£\n\n§TEffects:§!\n-Trade good change to: §YMarble Sculpture§! or §YJade Sculpture§!\n"
 
+
+ building_import_from_subjects: "Import Subject Resources"
+ building_import_from_subjects_desc: "§TProvince Requirements:§!\n-Owned by your subject.\n-Produces strategic resource\n\n§TEffects:§!\n-Resource will be transferred to your resource pool\n\n§TEffects Subject:§!" 
+ building_stop_import_from_subjects: "Stop Importing Resources"
+ building_stop_import_from_subjects_desc: "§TProvince Requirements:§!\n-Owned by your subject\n-Overlord is importing strategic resource\n\n§TEffects:§!\n-Resource will stop being transferred to your resource pool\n\n"
+
+ string_is_subject_tge: "Overlord"
+ string_is_not_subject_tge: "Subjects"
+ import_from_subjects_modifier: "Overlord Is Importing Resources"
 
  #Doge
  building_milkies_workshop: "Cheese Workshop"
@@ -59,7 +68,7 @@
  INNOVATION: "Innovation"
  MINING: "Mining"
  LATENT: "Latent Goods"
- LATENT_METALWORKING: "§WMetalworking 3.50¤\nNone; Only Strategic Bonus"
+ LATENT_METALWORKING: "§WMetalworking 3.50¤\nArea of Effect Production Efficiency:§! §G+5%§!"
  LATENT_MUNI: "§WMunitions 4.00¤\nLocal Regiment Cost:§! §G-15%§!"
  LATENT_LEATHER: "§WLeather 3.50¤\nLocal Trade Power:§! §G+10%§!"
  LATENT_WOOD: "§WWoodworking 3.50¤\nNumber of Buildings:§! §G+1§!"
@@ -68,7 +77,7 @@
  LATENT_CANNON: "§WCannons 4.25¤\nLocal Hostile Attrition:§! §G+1§!"
  LATENT_OPT: "§WOptics 4.00¤\nLocal State Maintenance:§! §G-25%§!"
  LATENT_UNIFORMS: "§WUniforms 4.25¤\nLocal Production Efficiency:§! §G+10%§!"
- LATENT_SCULPTURE: "§WMarble Sculptures 4.00¤\nLocal Development Cost:§! §G-5%§!"
+ LATENT_SCULPTURE: "§WSculptures 4.00¤\nLocal Development Cost:§! §G-5%§!"
 
  LATENT_MILKIES: "§WMilk 2.00¤\nLocal Trade Power:§! §G+10%§!"
  LATENT_CHEESE: "§WCheese 3.00¤\nLocal Culture Conversion Cost:§! §G-25%§!"
@@ -110,7 +119,6 @@
  metalworking_modifier_leader_new: "Metalworking Leader Bonus"
  indigo_leader_new: "Indigo Leader Bonus"
  camel_leader_new: "Camels Leader Bonus"
- ebony_leader_new: "Ebony Leader Bonus"
  llama_leader_new: "Llama Leader Bonus"
 
  woad_type: "Woad Origin\n§WIndigo dye is extracted from the woad plant which gives less dye than the true indigo extracted in India.§!"
@@ -119,7 +127,7 @@
  
  
  mod_goods_title: "£trade_icon_me£ Trade Strategic Resources"
- mod_goods_desc: "§OResource§! | §GAvailable§! | §YUsed§!  | §TTotal§! |\n£copper_icon£Copper: §G[Root.copper.GetValue]§!,    §Y[Root.copper_used.GetValue]§!,    §T[Root.copper_total.GetValue]§!\n£tin_icon£Tin: §G[Root.tin.GetValue]§!,    §Y[Root.tin_used.GetValue]§!,    §T[Root.tin_total.GetValue]§!\n£iron_icon£Iron: §G[Root.iron.GetValue]§!,    §Y[Root.iron_used.GetValue]§!,    §T[Root.iron_total.GetValue]§!\n£lead_icon£Lead: §G[Root.lead.GetValue]§!,    §Y[Root.lead_used.GetValue]§!,    §T[Root.lead_total.GetValue]§!\n£zinc_icon£Zinc: §G[Root.zinc.GetValue]§!,    §Y[Root.zinc_used.GetValue]§!,    §T[Root.zinc_total.GetValue]§!\n£glass_icon£Glass: §G[Root.glass.GetValue]§!,    §Y[Root.glass_used.GetValue]§!,    §T[Root.glass_total.GetValue]§!"
+ mod_goods_desc: "£trade_icon_me£Resource | §GAvailable§! | §MSubjects§! | §YUsed§!  | §OTotal§! |\n£copper_icon£Copper: §G[Root.copper.GetValue]§!,    §M[Root.from_subjects_copper.GetValue]§!,    §Y[Root.copper_used.GetValue]§!,    §O[Root.copper_total.GetValue]§!\n£tin_icon£Tin: §G[Root.tin.GetValue]§!,    §M[Root.from_subjects_tin.GetValue]§!,    §Y[Root.tin_used.GetValue]§!,    §O[Root.tin_total.GetValue]§!\n£iron_icon£Iron: §G[Root.iron.GetValue]§!,    §M[Root.from_subjects_iron.GetValue]§!,    §Y[Root.iron_used.GetValue]§!,    §O[Root.iron_total.GetValue]§!\n£lead_icon£Lead: §G[Root.lead.GetValue]§!,    §M[Root.from_subjects_lead.GetValue]§!,    §Y[Root.lead_used.GetValue]§!,    §O[Root.lead_total.GetValue]§!\n£zinc_icon£Zinc: §G[Root.zinc.GetValue]§!,    §M[Root.from_subjects_zinc.GetValue]§!,    §Y[Root.zinc_used.GetValue]§!,    §O[Root.zinc_total.GetValue]§!\n£glass_icon£Glass: §G[Root.glass.GetValue]§!,    §M[Root.from_subjects_glass.GetValue]§!,    §Y[Root.glass_used.GetValue]§!,    §O[Root.glass_total.GetValue]§!"
  New_TradeGood_Events.2.a: "Update"
 
  

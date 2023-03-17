@@ -4095,8 +4095,9 @@ ramparts = {
 		all
 	}
 	modifier = {
-		local_hostile_attrition = 3
-		local_defensiveness = 0.25
+		local_hostile_attrition = 1
+		local_defensiveness = 0.15
+		local_defender_dice_roll_bonus = 1
 
 	}
 	onmap = no
@@ -4566,6 +4567,10 @@ early_road = {
     cost = 100
     time = 8
 
+	build_trigger = {
+		NOT = { has_terrain = dwarven_road }
+	}
+
     one_per_country = no
     allow_in_gold_provinces = yes
     onmap = no
@@ -4600,6 +4605,10 @@ gravel_road= {
     time = 16
 	make_obsolete = early_road
 
+	build_trigger = {
+		NOT = { has_terrain = dwarven_road }
+	}
+
     one_per_country = no
     allow_in_gold_provinces = yes
     onmap = no
@@ -4632,6 +4641,10 @@ royal_road= {
     time = 24
 	make_obsolete = gravel_road
 
+	build_trigger = {
+		NOT = { has_terrain = dwarven_road }
+	}
+
     one_per_country = no
     allow_in_gold_provinces = yes
     onmap = no
@@ -4662,6 +4675,10 @@ macadam_road= {
     cost = 500
     time = 32
 	make_obsolete = royal_road
+
+	build_trigger = {
+		NOT = { has_terrain = dwarven_road }
+	}
 
     one_per_country = no
     allow_in_gold_provinces = yes
@@ -4700,13 +4717,17 @@ railroad = {
     onmap = no
 
 	build_trigger = {
-		NOT = {
-			OR = { 
-				has_province_modifier = restored_rail
-				has_province_modifier = advanced_rail
-			}
-		}
+		NOT = { has_terrain = dwarven_road }
 	}
+	
+	#build_trigger = {
+	#	NOT = {
+	#		OR = { 
+	#			has_province_modifier = restored_rail
+	#			has_province_modifier = advanced_rail
+	#		}
+	#	}
+	#}
 
     modifier = {
 		# Economy
