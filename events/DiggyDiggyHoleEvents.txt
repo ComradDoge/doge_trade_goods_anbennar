@@ -1055,6 +1055,8 @@ province_event = {
 				trade_goods = optics
 				trade_goods = marble_sculpture
 				trade_goods = marble
+				trade_goods = jade_sculptures
+				trade_goods = jade
 				trade_goods = woodworking
 			}
 		}
