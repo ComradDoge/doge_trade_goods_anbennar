@@ -1,0 +1,264 @@
+
+early_road = {
+    cost = 100
+    time = 8
+
+	build_trigger = {
+		if = {
+			limit = { FROM = { ai = yes } }
+			FROM = { NOT = { num_of_loans = 4 } }
+		}
+	}
+
+    one_per_country = no
+    allow_in_gold_provinces = yes
+    onmap = no
+    modifier = {
+		# Economy
+    	province_trade_power_modifier = 0.1
+		#local_tax_modifier = 0.05
+		#local_production_efficiency = 0.05
+
+		# Development
+		#local_development_cost = None
+
+		# Other
+		local_institution_spread = 0.05
+		#allowed_num_of_buildings = 1
+		#local_culture_conversion_cost = None
+
+		# Movement
+		local_friendly_movement_speed = 0.1
+		#local_hostile_movement_speed = None
+
+		
+    }
+    ai_will_do = {
+        factor = 5
+    }
+}
+
+
+gravel_road = {
+    cost = 300
+    time = 16
+	make_obsolete = early_road
+
+	build_trigger = {
+		if = {
+			limit = { FROM = { ai = yes } }
+			FROM = { NOT = { num_of_loans = 4 } }
+		}
+	}
+
+    one_per_country = no
+    allow_in_gold_provinces = yes
+    onmap = no
+    modifier = {
+		# Economy
+    	province_trade_power_modifier = 0.2
+		#local_tax_modifier = 0.1
+		#local_production_efficiency = 0.1
+
+		# Development
+		local_development_cost = -0.025
+
+		# Other
+		# Other
+		local_institution_spread = 0.1
+		allowed_num_of_buildings = 1
+		#local_culture_conversion_cost = None
+
+		# Movement
+		local_friendly_movement_speed = 0.15
+		#local_hostile_movement_speed = 0.05
+
+    }
+	ai_will_do = {
+		factor = 5
+		modifier = {
+			factor = 0
+			is_overseas = yes
+		}
+		modifier = {
+			factor = 0
+			NOT = { development = 14 }
+		}
+		modifier = {
+			factor = 1
+			development = 15
+		}
+		modifier = {
+			factor = 1
+			development = 30
+		}
+	}
+}
+
+royal_road = {
+    cost = 400
+    time = 24
+	make_obsolete = gravel_road
+
+	build_trigger = {
+		if = {
+			limit = { FROM = { ai = yes } }
+			FROM = { NOT = { num_of_loans = 4 } }
+		}
+	}
+
+    one_per_country = no
+    allow_in_gold_provinces = yes
+    onmap = no
+    modifier = {
+		# Economy
+    	province_trade_power_modifier = 0.3
+		#local_tax_modifier = 0.2
+		#local_production_efficiency = 0.2
+
+		# Development
+		local_development_cost = -0.05
+
+		# Other
+		local_institution_spread = 0.15
+		allowed_num_of_buildings = 1
+		#local_culture_conversion_cost = None
+		local_state_maintenance_modifier = 0.25
+
+		# Movement
+		local_friendly_movement_speed = 0.2
+		#local_hostile_movement_speed = 0.1
+    }
+	ai_will_do = {
+		factor = 5
+		modifier = {
+			factor = 0
+			is_overseas = yes
+		}
+		modifier = {
+			factor = 0
+			NOT = { development = 14 }
+		}
+		modifier = {
+			factor = 1
+			development = 15
+		}
+		modifier = {
+			factor = 1
+			development = 30
+		}
+	}
+}
+
+macadam_road = {
+    cost = 500
+    time = 32
+	make_obsolete = royal_road
+
+	build_trigger = {
+		if = {
+			limit = { FROM = { ai = yes } }
+			FROM = { NOT = { num_of_loans = 4 } }
+		}
+	}
+
+    one_per_country = no
+    allow_in_gold_provinces = yes
+    onmap = no
+    modifier = {
+		# Economy
+    	province_trade_power_modifier = 0.4
+		#local_tax_modifier = 0.3
+		#local_production_efficiency = 0.3
+
+		# Development
+		local_development_cost = -0.075
+
+		# Other
+		local_institution_spread = 0.2
+		allowed_num_of_buildings = 1
+		local_culture_conversion_cost = -0.1
+		local_state_maintenance_modifier = 0.5
+
+		# Movement
+		local_friendly_movement_speed = 0.25
+		#local_hostile_movement_speed = 0.15
+    }
+	ai_will_do = {
+		factor = 5
+		modifier = {
+			factor = 0
+			is_overseas = yes
+		}
+		modifier = {
+			factor = 0
+			NOT = { development = 14 }
+		}
+		modifier = {
+			factor = 1
+			development = 15
+		}
+		modifier = {
+			factor = 1
+			development = 30
+		}
+	}
+}
+
+
+railroad = {
+	cost = 1000
+	time = 40
+	make_obsolete = macadam_road
+
+	build_trigger = {
+		if = {
+			limit = { FROM = { ai = yes } }
+			FROM = { NOT = { num_of_loans = 4 } }
+		}
+	}
+
+    one_per_country = no
+    allow_in_gold_provinces = yes
+    onmap = no
+
+    modifier = {
+		# Economy
+    	province_trade_power_modifier = 0.5
+		#local_tax_modifier = 0.5
+		#local_production_efficiency = 0.5
+
+		# Development
+		local_development_cost = -0.1
+
+		# Other
+		local_institution_spread = 0.33
+		allowed_num_of_buildings = 2
+		local_culture_conversion_cost = -0.2
+		local_state_maintenance_modifier = 1
+
+		# Movement
+		local_friendly_movement_speed = 0.5
+		#local_hostile_movement_speed = 0.3
+    }
+
+	ai_will_do = {
+		factor = 5
+		modifier = {
+			factor = 0
+			is_overseas = yes
+		}
+		modifier = {
+			factor = 0
+			NOT = { development = 14 }
+		}
+		modifier = {
+			factor = 1
+			development = 15
+		}
+		modifier = {
+			factor = 1
+			development = 30
+		}
+	}
+}

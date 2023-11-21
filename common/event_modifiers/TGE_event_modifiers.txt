@@ -6,28 +6,10 @@ mine_fail = {
 	picture = "Mine_fail"
 }
 
-#woad_type = {
-#	picture = "woad"
-#	trade_value = -1
+#metalworking_modifier_leader_new = {
+#	picture = "metalworking_leader_modifier_icon"
+#	trade_goods_size = 0.1
 #}
-#
-#woad_type_bad = {
-#	picture = "woad"
-#	trade_value = -2
-#}
-
-#indigo_india = {
-#	local_production_efficiency = 0.15
-#}
-
-silver_debuff = {
-	trade_goods_size_modifier = -0.2
-}
-
-metalworking_modifier_leader_new = {
-	picture = "metalworking_leader_modifier_icon"
-	trade_goods_size = 0.1
-}
 
 metalworking_modifier_new = {
 	picture = "metalworking_province_modifier_icon"

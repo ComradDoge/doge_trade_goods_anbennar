@@ -1,34 +1,5 @@
-# Do not change tags in here without changing every other reference to them.
-# If adding new buildings, make sure they are uniquely named.
-
-# cost = x #==> cost in $ to build (subject to other modifiers)
-# time = x #==> number of months to build.
-# modifier = m # a modifier on the province that the building gives
-# trigger = t # an and trigger that needs to be fullfilled to build and keep the building
-# one_per_country = yes/no # if yes, only one of these can exist in a country
-# manufactory = { trade_good trade_good } # list of trade goods that get a production bonus
-# onmap = yes/no # show as a sprite on the map
-
-# FROM = owner
-# ROOT = province
-
-# Building AI is now mainly hard-coded. The AI will estimate how much it gains yearly from each building,
-# convert the value to ducats, and take the building with biggest yearly return as a percentage of the build cost.
-# If lower than 1%, the AI will not consider the yearly return worth it.
-# It will also require higher yearly return if the economy in not in prime shape.
-# Forts' value also get converted to a yearly return based on terrain and strategic position, as well as available budget for fort maintenance.
-
-# AI can still be modded though; it will multiply the yearly return with the value of ai_will_do.
-# If you don't want the AI to build a building at all, make ai_will_do become 0.
-# AI will consider each building to be worth 0.01 ducats per year as a base, so making ai_will_do above cost will have them build it at some point.
-# It will still check whether it can afford a building before doing so though, but may save up to it.
-
-
-################################################
-# Tier 1, 15th Century Buildings
-################################################
 marketplace = {
-	cost = 100
+	cost = 200
 	time = 12
 
 	modifier = {
@@ -40,6 +11,14 @@ marketplace = {
 			type = production
 			value = 1
 		}
+		
+		#Anbennar
+		anbennar_building_effect = yes
+
+		if = {
+			limit = { FROM = { has_government_attribute = learning_by_doing_reform_effect } }
+			FROM = { change_government_reform_progress = 4 }
+		}
 	}
 	on_destroyed = {
 		remove_development_from_building = {
@@ -48,78 +27,16 @@ marketplace = {
 			value = 1
 		}
 	}
+
+	on_construction_started = { } #Fires when you start the construction,  ROOT - Province FROM - Country that started 1.35
+	on_construction_canceled = { } #Fires when you cancel the construction, ROOT - Province FROM - Country that canceled 1.25
+
+
 	on_obsolete = {
 	}
+
 	ai_will_do = {
-		factor = 1.0
-		#LIMIT
-		modifier = {
-			factor = 0
-			FROM = { num_of_loans = 3 }
-		}
-		modifier = {
-			factor = 0.3
-			FROM = { num_of_loans = 2 }
-		}
-		modifier = {
-			factor = 0.5
-			FROM = { num_of_loans = 1 }
-		}
-		modifier = {
-			factor = 0.5
-			NOT = { province_has_center_of_trade_of_level = 1 }
-		}
-		modifier = {
-			factor = 0.75
-			has_no_manufactory_trigger = yes
-		}
-		modifier = {
-			factor = 0.75
-			FROM = { NOT = { treasury = 200 } }
-		}
-		modifier = {
-			factor = 0.75
-			FROM = { is_in_deficit = yes }
-		}
-		#TREASURY
-		modifier = {
-			factor = 1.1
-			FROM = { treasury = 200 }
-		}
-		modifier = {
-			factor = 1.2
-			FROM = { treasury = 400 }
-		}
-		modifier = {
-			factor = 1.3
-			FROM = { treasury = 600 }
-		}
-		modifier = {
-			factor = 1.4
-			FROM = { treasury = 800 }
-		}
-		modifier = {
-			factor = 1.5
-			FROM = { treasury = 1000 }
-		}
-		#MODIFIERS
-		modifier = {
-			factor = 2.0
-			has_river_estuary_trigger = yes
-		}
-		#TRADE CENTER
-		modifier = {
-			factor = 10.0
-			province_has_center_of_trade_of_level = 1
-		}
-		modifier = {
-			factor = 20.0
-			province_has_center_of_trade_of_level = 2
-		}
-		modifier = {
-			factor = 30.0
-			province_has_center_of_trade_of_level = 1
-		}
+		factor = 1.5 # Because hard-coded AI only considers what it will gain, not what its enemies will lose.
 	}
 }
 
@@ -127,18 +44,22 @@ workshop = {
 	cost = 150
 	time = 12
 	modifier = {
-		local_production_efficiency = 0.5
+		local_production_efficiency = 1
 	}
-	
-	allow_in_gold_provinces = no
 	on_built = {
 		add_development_from_building = {
 			building = workshop
 			type = production
 			value = 1
 		}
+		
+		#Anbennar
+		anbennar_building_effect = yes
+		if = {
+			limit = { FROM = { has_estate_privilege = estate_dragon_command_war_room_rights } }
+			FROM = { add_legitimacy = 0.5 }
+		}
 	}
-
 	on_destroyed = {
 		remove_development_from_building = {
 			building = workshop
@@ -148,383 +69,138 @@ workshop = {
 	}
 	on_obsolete = {
 	}
+
+	allow_in_gold_provinces = no
+
 	ai_will_do = {
-		factor = 8.0
-		#LIMIT
-		modifier = {
-			factor = 0
-			FROM = { num_of_loans = 3 }
-		}
-		modifier = {
-			factor = 0.3
-			FROM = { num_of_loans = 2 }
-		}
-		modifier = {
-			factor = 0.5
-			FROM = { num_of_loans = 1 }
-		}
-		modifier = {
-			factor = 0.75
-			has_no_manufactory_trigger = yes
-		}
-		modifier = {
-			factor = 0.75
-			FROM = { NOT = { treasury = 200 } }
-		}
-		modifier = {
-			factor = 0.75
-			FROM = { is_in_deficit = yes }
-		}
-		#TREASURY
-		modifier = {
-			factor = 1.1
-			FROM = { treasury = 200 }
-		}
-		modifier = {
-			factor = 1.2
-			FROM = { treasury = 400 }
-		}
-		modifier = {
-			factor = 1.3
-			FROM = { treasury = 600 }
-		}
-		modifier = {
-			factor = 1.4
-			FROM = { treasury = 800 }
-		}
-		modifier = {
-			factor = 1.5
-			FROM = { treasury = 1000 }
-		}
-		#BASE
-		modifier = {
-			factor = 1.5
-			base_production = 2
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 4
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 6
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 8
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 10
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 12
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 14
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 15
-		}
-
-		#AI
-		modifier = {
-			factor = 2.0
-			FROM = { ruler_has_good_adm_personality = yes }
-		}
-		modifier = {
-			factor = 2.0
-			FROM = {
-				OR = {
-					personality = ai_capitalist
-					personality = ai_balanced
-				}
-			}
-		}
-
-		#PROVINCE IMPORTANCE
-		modifier = {
-			factor = 2.5
-			development = 10
-		}
-		modifier = {
-			factor = 2.5
-			development = 20
-		}
-		modifier = {
-			factor = 3.5
-			xorme_wealthy_province_trigger = yes
-		}
-		#TERRAIN
-		modifier = {
-			factor = 4.0
-			xorme_flat_terrain_trigger = yes
-		}
-
-		#BUILDINGS
-		modifier = {
-			factor = 5.0
-			has_manufactory_trigger = yes
-		}
-
-		#TRADE GOODS
-		modifier = {
-			factor = 5.0
-			xorme_province_with_special_goods_produced_trigger = yes
-		}
-		modifier = {
-			factor = 7.5
-			xorme_lowest_quality_trade_goods_trigger = yes
-		}
-		modifier = {
-			factor = 10.0
-			xorme_low_quality_trade_goods_trigger = yes
-		}
-		modifier = {
-			factor = 12.5
-			xorme_medium_quality_trade_goods_trigger = yes
-		}
-		modifier = {
-			factor = 15.0
-			xorme_high_quality_trade_goods_trigger = yes
-		}
+		factor = 1
 	}
 }
 
 temple = {
-	cost = 100
+	cost = 150
 	time = 12
 	modifier = {
 		local_tax_modifier = 0.5
 		local_missionary_strength = 0.005
 	}
 	on_built = {
-		if = {
-			limit = {
-				FROM = {
-					OR = {
-						religion = buddhism
-						religion = mahayana
-						religion = vajrayana
-						
-						religion = corinite	#Anbennar
-					}
-					has_estate_privilege = estate_church_karma_temples
-				}
-			}
-			FROM = {
-				add_karma = 3
-			}
-		}
-		if = {
-			limit = {
-				FROM = {
-					religion = ravelian	#Anbennar, form Catholic baby
-					has_estate_privilege = estate_church_influence_temples
-				}
-			}
-			FROM = {
-				add_papal_influence = 3
-			}
-		}
-		if = {
-			limit = { FROM = { religion = ynn_river_worship } }
-			FROM = { add_authority = 10 }
-		}
+		on_built_tax_building_effect = yes
+		on_province_tax_building_built_estate_privileges_effect = yes
 		add_development_from_building = {
 			building = temple
 			type = tax
 			value = 1
 		}
-	}
-	on_destroyed = {
+		
+		#Anbennar
+		anbennar_building_effect = yes
+		if = {
+			limit = { FROM = { has_government_attribute = learning_by_doing_reform_effect } }
+			FROM = { change_government_reform_progress = 4 }
+		}
 		if = {
 			limit = {
-				FROM = {
-					OR = {
-						religion = buddhism
-						religion = mahayana
-						religion = vajrayana
-						
-						religion = corinite	#Anbennar
-					}
-					has_estate_privilege = estate_church_karma_temples
-				}
+				FROM = { has_government_attribute = on_church_built_clergy_loyalty }
 			}
 			FROM = {
-				add_karma = -3
+				add_estate_loyalty = {
+					estate = estate_church
+					loyalty = 2
+				}
 			}
 		}
 		if = {
 			limit = {
-				FROM = {
-					religion = ravelian	#Anbennar, form Catholic baby
-					has_estate_privilege = estate_church_influence_temples
-				}
+				FROM = { has_government_attribute = temples_modifier }
+				owned_by = FROM 
 			}
-			FROM = {
-				add_papal_influence = -3
+			add_province_modifier = {
+				name = gov_expanded_temple_rights_mod
+				duration = -1
 			}
 		}
 		if = {
 			limit = { FROM = { religion = ynn_river_worship } }
-			FROM = { add_authority = -10 }
+			FROM = { add_authority = 2 }
 		}
+		if = {
+			limit = { FROM = { has_estate_privilege = estate_tiger_command_war_room_rights } }
+			FROM = { add_legitimacy = 0.5 }
+		}
+		Y72_add_dev_from_building = { #1.35, Chien Binhrung
+			building = temple
+			type = tax
+			value = 1 
+		}
+	}
+	on_destroyed = {
+		on_province_tax_building_destroyed_estate_privileges_effect = yes
 		remove_development_from_building = {
 			building = temple
 			type = tax
 			value = 1
 		}
+		if = {
+			limit = {
+				FROM = { has_government_attribute = on_church_built_clergy_loyalty }
+			}
+			FROM = {
+				add_estate_loyalty = {
+					estate = estate_church
+					loyalty = -2
+				}
+			}
+		}
+		remove_province_modifier = gov_expanded_temple_rights_mod
+		if = {
+			limit = { FROM = { religion = ynn_river_worship } }
+			if = {
+				limit = { FROM = { is_subject = no } }
+				FROM = {
+					add_authority = -2
+					add_country_modifier = {
+						name = ynn_temple_crasher
+						duration = 1825 #5 Years
+					}
+				}
+			}
+			else = {
+				FROM = {
+					overlord = {
+						add_authority = -2
+						add_country_modifier = {
+							name = ynn_temple_crasher
+							duration = 1825 #5 Years
+						}
+					}
+				}
+			}
+		}
+		Y72_remove_dev_from_building = { #1.35, Chien Binhrung
+			building = temple
+			type = tax
+			value = 1 
+		}
 	}
 	on_obsolete = {
 	}
 	ai_will_do = {
-		factor = 4.0
-		#LIMIT
-		modifier = {
-			factor = 0
-			FROM = { num_of_loans = 3 }
-		}
-		modifier = {
-			factor = 0.3
-			FROM = { num_of_loans = 2 }
-		}
-		modifier = {
-			factor = 0.5
-			FROM = { num_of_loans = 1 }
-		}
-		modifier = {
-			factor = 0.5
-			has_no_manufactory_trigger = yes
-		}
-		modifier = {
-			factor = 0.75
-			FROM = { NOT = { treasury = 200 } }
-		}
-		modifier = {
-			factor = 0.75
-			FROM = { is_in_deficit = yes }
-		}
-		modifier = {
-			factor = 0.75
-			has_production_building_trigger = no
-		}
-		#TREASURY
-		modifier = {
-			factor = 1.1
-			FROM = { treasury = 200 }
-		}
-		modifier = {
-			factor = 1.2
-			FROM = { treasury = 400 }
-		}
-		modifier = {
-			factor = 1.3
-			FROM = { treasury = 600 }
-		}
-		modifier = {
-			factor = 1.4
-			FROM = { treasury = 800 }
-		}
-		modifier = {
-			factor = 1.5
-			FROM = { treasury = 1000 }
-		}
-		#BASE
-		modifier = {
-			factor = 1.5
-			base_tax = 3
-		}
-		modifier = {
-			factor = 1.5
-			base_tax = 4
-		}
-		modifier = {
-			factor = 1.5
-			base_tax = 6
-		}
-		modifier = {
-			factor = 1.5
-			base_tax = 8
-		}
-		modifier = {
-			factor = 1.5
-			base_tax = 10
-		}
-		modifier = {
-			factor = 1.5
-			base_tax = 12
-		}
-		modifier = {
-			factor = 1.5
-			base_tax = 14
-		}
-		modifier = {
-			factor = 1.5
-			base_tax = 15
-		}
-
-		#AI
-		modifier = {
-			factor = 2.0
-			FROM = { ruler_has_good_adm_personality = yes }
-		}
-		modifier = {
-			factor = 2.0
-			FROM = {
-				OR = {
-					personality = ai_capitalist
-					personality = ai_balanced
-				}
-			}
-		}
-
-		#PROVINCE IMPORTANCE
-		modifier = {
-			factor = 2.5
-			development = 10
-		}
-		modifier = {
-			factor = 2.5
-			development = 20
-		}
-		modifier = {
-			factor = 3.0
-			xorme_wealthy_province_trigger = yes
-		}
-		#TERRAIN
-		modifier = {
-			factor = 4.0
-			xorme_flat_terrain_trigger = yes
-		}
-
-		#BUILDINGS
-		modifier = {
-			factor = 5.0
-			has_manufactory_trigger = yes
-		}
-		modifier = {
-			factor = 10.0
-				has_manufactory_trigger = yes
-				has_production_building_trigger = yes
-		}
+		factor = 1
 	}
 }
 
 barracks = {
-	cost = 100
+	cost = 150
 	time = 12
 	modifier = {
-		local_manpower_modifier = 0.5
+		local_manpower_modifier = 0.25
 	}
 	on_built = {
 		# if = {
 			# limit = {
 				# FROM = {
-					# has_reform = corvee_reform
+					# has_government_attribute = manpower_sailors_on_build
 				# }
 			# }
 			# FROM = {
@@ -536,12 +212,23 @@ barracks = {
 			type = manpower
 			value = 1
 		}
+
+		update_improved_military_buildings_modifier = { #1.35
+			building = barracks
+		}
+
+		#Anbennar
+		anbennar_building_effect = yes
+		if = {
+			limit = { FROM = { has_estate_privilege = estate_boar_command_war_room_rights } }
+			FROM = { add_legitimacy = 0.5 }
+		}
 	}
 	on_destroyed = {
 		# if = {
 			# limit = {
 				# FROM = {
-					# has_reform = corvee_reform
+					# has_government_attribute = manpower_sailors_on_build
 				# }
 			# }
 			# FROM = {
@@ -553,135 +240,107 @@ barracks = {
 			type = manpower
 			value = 1
 		}
+
+		update_improved_military_buildings_modifier = {
+			building = barracks #1.35
+		}
+
 	}
 	on_obsolete = {
 	}
+
+#	# THIS = Province, FROM = Builder(not nessecairly owner, can be overlord)
+#	on_built = {
+#		FROM = {
+#			add_army_professionalism = 0.005
+#		}
+#	}
+#
+#	# THIS = Province, FROM = Destroyer, Will not be called on buildings made obsolete!
+#	on_destroyed = {
+#		FROM = {
+#			add_army_professionalism = -0.01
+#		}
+#	}
+#
+#	# THIS = Province, FROM = Destroyer, Will not be called on buildings destroyed!
+#	on_obsolete = {
+#		hidden_effect = {
+#			FROM = {
+#				add_army_professionalism = -0.005
+#			}
+#		}
+#	}
+
 	ai_will_do = {
-		factor = 1.75
-		#LIMIT
+		factor = 2.5
 		modifier = {
 			factor = 0
-			FROM = { num_of_loans = 3 }
-		}
-		modifier = {
-			factor = 0.3
-			FROM = { num_of_loans = 2 }
-		}
-		modifier = {
-			factor = 0.5
 			FROM = { num_of_loans = 1 }
 		}
 		modifier = {
-			factor = 0.5
-			has_no_manufactory_trigger = yes
+			factor = 4.5
+			owner = { is_subject = yes }
 		}
 		modifier = {
-			factor = 0.75
-			FROM = { NOT = { treasury = 250 } }
+			factor = 100.0
+			FROM = { treasury = 10000 }
+		}
+		#FROM AUTONOMY
+		modifier = {
+			factor = 0.05
+			OR = {
+				NOT = { num_free_building_slots = 2 }
+				xorme_has_production_buildings_trigger = no
+			}
 		}
 		modifier = {
-			factor = 0.75
-			FROM = { is_in_deficit = yes }
-		}
-		#TREASURY
-		modifier = {
-			factor = 1.1
-			FROM = { treasury = 250 }
+			factor = 0.4
+			local_autonomy = 75
 		}
 		modifier = {
-			factor = 1.2
-			FROM = { treasury = 500 }
+			factor = 0.6
+			local_autonomy = 50
 		}
 		modifier = {
-			factor = 1.3
-			FROM = { treasury = 750 }
+			factor = 0.8
+			local_autonomy = 25
 		}
+		#FROM BASE DEV
 		modifier = {
-			factor = 1.4
-			FROM = { treasury = 1000 }
-		}
-		#BASE
-		modifier = {
-			factor = 1.5
-			base_manpower = 2
-		}
-		modifier = {
-			factor = 1.5
+			factor = 3.0
 			base_manpower = 4
 		}
 		modifier = {
-			factor = 1.5
+			factor = 6.0
 			base_manpower = 6
 		}
 		modifier = {
-			factor = 1.5
+			factor = 9.0
 			base_manpower = 8
 		}
+		#FROM TRADE GOODS
 		modifier = {
-			factor = 1.5
-			base_manpower = 10
+			factor = 10.0
+			xorme_additional_manpower_goods_trigger = yes
 		}
-		modifier = {
-			factor = 1.5
-			base_manpower = 12
-		}
-		modifier = {
-			factor = 1.5
-			base_manpower = 14
-		}
-		modifier = {
-			factor = 1.5
-			base_manpower = 15
-		}
-
-		#AI
-		modifier = {
-			factor = 2.0
-			FROM = { ruler_has_good_mil_personality = yes }
-		}
-		modifier = {
-			factor = 2.0
-			FROM = { personality = ai_militarist }
-		}
-
-		#PROVINCE IMPORTANCE
-		modifier = {
-			factor = 2.5
-			development = 10
-		}
-		modifier = {
-			factor = 2.5
-			development = 20
-		}
-		#TERRAIN
-		modifier = {
-			factor = 2.5
-			xorme_flat_terrain_trigger = yes
-		}
-
 		#BUILDINGS
 		modifier = {
-			factor = 2.5
-			has_manufactory_trigger = yes
+			factor = 10.0
+			xorme_has_production_buildings_trigger = yes
 		}
+		#FROM CASH
 		modifier = {
-			factor = 5.0
-			has_building = soldier_households
-		}
-		#TRADE GOODS
-		modifier = {
-			factor = 5.0
-			xorme_lowest_quality_trade_goods_trigger = yes
-		}
-		modifier = {
-			factor = 7.5
-			xorme_additional_manpower_goods_trigger = yes
+			factor = 100.0
+			FROM = {
+				treasury = 7500
+			}
 		}
 	}
 }
 
 shipyard = {
-	cost = 100
+	cost = 150
 	time = 12
 	build_trigger = {
 		has_port = yes
@@ -690,6 +349,8 @@ shipyard = {
 		naval_forcelimit = 2
 		ship_recruit_speed = -0.25
 		local_ship_repair = 0.25
+		local_has_man_of_war = yes #1.35
+		local_has_galleass = yes #1.35
 	}
 	on_built = {
 		add_development_from_building = {
@@ -697,6 +358,8 @@ shipyard = {
 			type = production
 			value = 1
 		}
+		#Anbennar
+		anbennar_building_effect = yes
 	}
 	on_destroyed = {
 		remove_development_from_building = {
@@ -709,66 +372,10 @@ shipyard = {
 	}
 
 	ai_will_do = {
-		factor = 1.0
-		#LIMIT
+		factor = 1
 		modifier = {
-			factor = 0
-			FROM = { num_of_loans = 3 }
-		}
-		modifier = {
-			factor = 0.3
-			FROM = { num_of_loans = 2 }
-		}
-		modifier = {
-			factor = 0.5
-			FROM = { num_of_loans = 1 }
-		}
-		modifier = {
-			factor = 0.5
-			has_no_manufactory_trigger = yes
-		}
-		modifier = {
-			factor = 0.75
-			FROM = { NOT = { treasury = 250 } }
-		}
-		modifier = {
-			factor = 0.75
-			FROM = { is_in_deficit = yes }
-		}
-		#TREASURY
-		modifier = {
-			factor = 1.1
-			FROM = { treasury = 250 }
-		}
-		modifier = {
-			factor = 1.2
-			FROM = { treasury = 500 }
-		}
-		modifier = {
-			factor = 1.3
-			FROM = { treasury = 750 }
-		}
-		modifier = {
-			factor = 1.4
-			FROM = { treasury = 1000 }
-		}
-		#NAVY SIZE
-		modifier = {
-			factor = 1.5
-			FROM = { navy_size_percentage = 0.8 }
-		}
-		modifier = {
-			factor = 1.5
-			FROM = { navy_size_percentage = 0.9 }
-		}
-		modifier = {
-			factor = 1.5
-			FROM = { navy_size_percentage = 1 }
-		}
-		#BUILDINGS
-		modifier = {
-			factor = 7.5
-			xorme_has_every_essential_building_trigger = yes
+			factor = 1.5 # bit more likely if close to the naval force limit
+			FROM = { navy_size_percentage = 0.95 }
 		}
 	}
 }
@@ -780,58 +387,146 @@ fort_15th = {
 		fort_level = 2
 	}
 
-	#ANBENNAR - windward stuff
+	build_trigger = {
+		NOT = { has_province_modifier = verdant_link }
+	}
+
 	# THIS = Province, FROM = Builder(not nessecairly owner, can be overlord)
 	on_built = {
-		#ANBENNAR - windward stuff
-		province_event = {
-			id = kheionai.2
+		if = {
+			limit = {
+				FROM = { NOT = { mil_tech = 14 } has_government_attribute = on_fort_built_nobles_loyalty }
+			}
+			FROM = {
+				if = {
+					limit = {
+						has_estate = estate_nobles
+					}
+					add_estate_loyalty = {
+						estate = estate_nobles
+						loyalty = 5
+					}
+				}
+				if = {
+					limit = {
+						has_estate = estate_maratha
+					}
+					add_estate_loyalty = {
+						estate = estate_maratha
+						loyalty = 5
+					}
+				}
+				if = {
+					limit = {
+						has_estate = estate_rajput
+					}
+					add_estate_loyalty = {
+						estate = estate_rajput
+						loyalty = 5
+					}
+				}
+				#Anbennar
+				if = {
+					limit = {
+						has_estate = estate_eunuchs_anb
+					}
+					add_estate_loyalty = {
+						estate = estate_eunuchs_anb
+						loyalty = 5
+					}
+				}
+				if = {
+					limit = {
+						has_estate = estate_uppercastes
+					}
+					add_estate_loyalty = {
+						estate = estate_uppercastes
+						loyalty = 5
+					}
+				}
+				if = {
+					limit = {
+						has_estate = estate_ajgriijarul
+					}
+					add_estate_loyalty = {
+						estate = estate_ajgriijarul
+						loyalty = 5
+					}
+				}
+			}
+
+			if = { #1.35
+				limit = {
+					owner = {
+						has_estate_privilege = estate_nobles_development_of_castles
+					}
+					NOT = { has_province_modifier = estate_nobles_development_of_castles_mod }
+				}
+				add_province_modifier = {
+					name = estate_nobles_development_of_castles_mod
+					duration = -1
+				}
+			}
+
 		}
+		#ANBENNAR - windward stuff
+		if = {
+			limit = {
+				region = alecand_region
+			}
+			hidden_effect = {
+				province_event = { id = kheionai.2 }
+			}
+		}
+		if = {
+			limit = { FROM = { has_estate_privilege = estate_elephant_command_war_room_rights } }
+			FROM = { add_legitimacy = 1 }
+		}
+		#Anbennar
+		FROM = {
+			if = {
+				limit = {
+					has_church_aspect = white_dragon_1
+				}
+				add_church_power = 5
+			}
+		}
+		
+		#Anbennar
+		anbennar_building_effect = yes
 	}
 
 	# THIS = Province, FROM = Destroyer, Will not be called on buildings made obsolete!
 	on_destroyed = {
 		#ANBENNAR - windward stuff
-		province_event = {
-			id = kheionai.2
+		if = {
+			limit = {
+				region = alecand_region
+			}
+			hidden_effect = {
+				province_event = { id = kheionai.2 }
+			}
 		}
+
+		if = { #1.35
+			limit = {
+				has_province_modifier = estate_nobles_development_of_castles_mod
+			}
+			remove_province_modifier = estate_nobles_development_of_castles_mod
+		}
+	}
+
+	# THIS = Province, FROM = Destroyer, Will not be called on buildings destroyed!
+	on_obsolete = {
 	}
 
 	onmap = yes
 	influencing_fort = yes
 
 	ai_will_do = {
-		factor = 10.0
-		modifier = {
-			factor = 0.1
-			any_neighbor_province = {
-				xorme_ai_has_any_fort_trigger = yes
-			}
-		}
-		modifier = {
-			factor = 1.5
-			FROM = { treasury = 200 }
-		}
-		modifier = {
-			factor = 1.5
-			FROM = { treasury = 400 }
-		}
-		modifier = {
-			factor = 1.5
-			FROM = { treasury = 600 }
-		}
-		modifier = {
-			factor = 1.5
-			FROM = { treasury = 800 }
-		}
-		modifier = {
-			factor = 1.5
-			xorme_high_terrain_trigger = yes
-		}
-		modifier = {
-			factor = 2.5
-			is_capital = yes
-		}
+		factor = 1 #Lots of logic in code instead, that multiplies with this value
+
+		#Anbennar
 		modifier = {
 			factor = 100
 			OR = {
@@ -839,15 +534,26 @@ fort_15th = {
 				has_terrain = dwarven_hold_surface
 			}
 		}
+		modifier = {	#Exploiting Ynnic chokepoints
+			factor = 100
+			OR = {
+				has_province_modifier = ynnic_dam_modifier
+				has_province_flag = prov_ruin_cliff_passage
+			}
+		}
 	}
 }
 
 coastal_defence = {
 
-	cost = 100
+	cost = 200
 	time = 12
 	build_trigger = {
 		has_port = yes
+	}
+	on_built = {
+		#Anbennar
+		anbennar_building_effect = yes
 	}
 	modifier = {
 		blockade_force_required = 0.5
@@ -856,28 +562,37 @@ coastal_defence = {
 	}
 
 	ai_will_do = {
-		factor = 0
+		factor = 1
 	}
 }
-
 
 ################################################
 # Tier 2, 16th Century Buildings
 ################################################
 courthouse = {
-	cost = 100
+	cost = 150
 	time = 12
 	modifier = {
-		allowed_num_of_buildings = 1
 		local_state_maintenance_modifier = -0.25
 		local_autonomy = -0.1
 		local_governing_cost = -0.25
+		allowed_num_of_buildings = 1
 	}
 	on_built = {
 		add_development_from_building = {
 			building = courthouse
 			type = tax
 			value = 1
+		}
+		#Anbennar
+		anbennar_building_effect = yes
+		if = {
+			limit = { FROM = { has_government_attribute = learning_by_doing_reform_effect } }
+			FROM = { change_government_reform_progress = 4 }
+		}
+		if = {
+			limit = { FROM = { has_estate_privilege = estate_wolf_command_war_room_rights } }
+			FROM = { add_legitimacy = 0.5 }
 		}
 	}
 	on_destroyed = {
@@ -951,20 +666,22 @@ courthouse = {
 }
 
 dock = {
-	cost = 100
+	cost = 150
 	time = 12
 	build_trigger = {
 		has_port = yes
 	}
 	modifier = {
-		local_sailors_modifier = 0.5
+		local_sailors_modifier = 0.25
+		local_has_man_of_war = yes #1.35
+		local_has_galleass = yes #1.35
 	}
-	
+
 	on_built = {
 		# if = {
 			# limit = {
 				# FROM = {
-					# has_reform = corvee_reform
+					# has_government_attribute = manpower_sailors_on_build
 				# }
 			# }
 			# FROM = {
@@ -976,13 +693,15 @@ dock = {
 			type = production
 			value = 1
 		}
+		#Anbennar
+		anbennar_building_effect = yes
 	}
-	
+
 	on_destroyed = {
 		# if = {
 			# limit = {
 				# FROM = {
-					# has_reform = corvee_reform
+					# has_government_attribute = manpower_sailors_on_build
 				# }
 			# }
 			# FROM = {
@@ -997,16 +716,58 @@ dock = {
 	}
 	on_obsolete = {
 	}
+
 	ai_will_do = {
 		factor = 1
 		modifier = {
+			current_age = age_of_discovery
+			owner = { NOT = { navy_size = 25 } }
+			factor = 0.25
+		}
+		modifier = {
+			current_age = age_of_reformation
+			owner = { NOT = { navy_size = 50 } }
+			factor = 0.35
+		}
+		modifier = {
+			current_age = age_of_absolutism
+			owner = { NOT = { navy_size = 75 } }
 			factor = 0.5
+		}
+		modifier = {
+			current_age = age_of_revolutions
+			owner = { NOT = { navy_size = 100 } }
+			factor = 0.75
+		}
+		modifier = {
+			owner = {
+				OR = {
+					full_idea_group = naval_ideas
+					has_idea_group = maritime_ideas
+				}
+			}
+			factor = 1.25
+		}
+		modifier = {
+			owner = {
+				capital_scope = {
+					has_port = yes
+					is_island = yes
+				}
+			}
+			factor = 1.35
+		}
+		modifier = {
+			owner = {
+				sailors_percentage = 0.75
+			}
+			factor = 0
 		}
 	}
 }
 
 regimental_camp = {
-	cost = 200
+	cost = 150
 	time = 12
 	modifier = {
 		land_forcelimit = 1
@@ -1040,8 +801,20 @@ regimental_camp = {
 			type = manpower
 			value = 1
 		}
+		#Anbennar
+		anbennar_building_effect = yes
+		if = {
+			limit = { FROM = { has_estate_privilege = estate_boar_command_war_room_rights } }
+			FROM = { add_legitimacy = 0.5 }
+		}
+		update_improved_military_buildings_modifier = { #1.35
+			building = regimental_camp
+		}
 	}
 	on_destroyed = {
+		update_improved_military_buildings_modifier = { #1.35
+			building = regimental_camp
+		}
 		remove_development_from_building = {
 			building = regimental_camp
 			type = manpower
@@ -1052,66 +825,14 @@ regimental_camp = {
 	}
 
 	ai_will_do = {
-		factor = 1.0
-		#LIMIT
+		factor = 1
 		modifier = {
-			factor = 0
-			FROM = { num_of_loans = 3 }
+			factor = 1.5 # more likely if we have an army close to the force limit
+			FROM = { army_size_percentage = 0.95 }
 		}
-		modifier = {
-			factor = 0.3
-			FROM = { num_of_loans = 2 }
-		}
-		modifier = {
-			factor = 0.5
-			FROM = { num_of_loans = 1 }
-		}
-		modifier = {
-			factor = 0.5
-			has_no_manufactory_trigger = yes
-		}
-		modifier = {
-			factor = 0.75
-			FROM = { NOT = { treasury = 250 } }
-		}
-		modifier = {
-			factor = 0.75
-			FROM = { is_in_deficit = yes }
-		}
-		#TREASURY
 		modifier = {
 			factor = 1.1
-			FROM = { treasury = 250 }
-		}
-		modifier = {
-			factor = 1.2
-			FROM = { treasury = 500 }
-		}
-		modifier = {
-			factor = 1.3
-			FROM = { treasury = 750 }
-		}
-		modifier = {
-			factor = 1.4
-			FROM = { treasury = 1000 }
-		}
-		#ARMY SIZE
-		modifier = {
-			factor = 1.5
-			FROM = { army_size_percentage = 0.8 }
-		}
-		modifier = {
-			factor = 1.5
-			FROM = { army_size_percentage = 0.9 }
-		}
-		modifier = {
-			factor = 1.5
-			FROM = { army_size_percentage = 1 }
-		}
-		#BUILDINGS
-		modifier = {
-			factor = 7.5
-			xorme_has_every_essential_building_trigger = yes
+			local_autonomy = 50
 		}
 	}
 }
@@ -1124,70 +845,130 @@ fort_16th = {
 		fort_level = 4
 	}
 
-#	# THIS = Province, FROM = Builder(not nessecairly owner, can be overlord)
-#	on_built = {
-#		FROM = {
-#			add_army_professionalism = 0.01
-#		}
-#	}
-#
-#	# THIS = Province, FROM = Destroyer, Will not be called on buildings made obsolete!
-#	on_destroyed = {
-#		FROM = {
-#			add_army_professionalism = -0.02
-#		}
-#	}
-#
-#	# THIS = Province, FROM = Destroyer, Will not be called on buildings destroyed!
-#	on_obsolete = {
-#		hidden_effect = {
-#			FROM = {
-#				add_army_professionalism = -0.01
-#			}
-#		}
-#	}
+	build_trigger = {
+		NOT = { has_province_modifier = verdant_link }
+	}
+
+	# THIS = Province, FROM = Builder(not nessecairly owner, can be overlord)
+	on_built = {
+		if = {
+			limit = {
+				FROM = { NOT = { mil_tech = 19 } has_government_attribute = on_fort_built_nobles_loyalty }
+			}
+			FROM = {
+				if = {
+					limit = {
+						has_estate = estate_nobles
+					}
+					add_estate_loyalty = {
+						estate = estate_nobles
+						loyalty = 5
+					}
+				}
+				if = {
+					limit = {
+						has_estate = estate_maratha
+					}
+					add_estate_loyalty = {
+						estate = estate_maratha
+						loyalty = 5
+					}
+				}
+				if = {
+					limit = {
+						has_estate = estate_rajput
+					}
+					add_estate_loyalty = {
+						estate = estate_rajput
+						loyalty = 5
+					}
+				}
+			}
+		}
+
+		if = { #1.35
+			limit = {
+				owner = {
+					has_estate_privilege = estate_nobles_development_of_castles
+				}
+				NOT = { has_province_modifier = estate_nobles_development_of_castles_mod }
+			}
+			add_province_modifier = {
+				name = estate_nobles_development_of_castles_mod
+				duration = -1
+			}
+		}
+
+		#ANBENNAR - windward stuff
+		if = {
+			limit = {
+				region = alecand_region
+			}
+			hidden_effect = {
+				province_event = { id = kheionai.2 }
+			}
+		}
+		if = {
+			limit = { FROM = { has_estate_privilege = estate_elephant_command_war_room_rights } }
+			FROM = { add_legitimacy = 1 }
+		}
+		
+		#Anbennar
+		FROM = {
+			if = {
+				limit = {
+					has_church_aspect = white_dragon_1
+				}
+				add_church_power = 5
+			}
+		}
+		#Anbennar
+		anbennar_building_effect = yes
+	}
+
+	# THIS = Province, FROM = Destroyer, Will not be called on buildings made obsolete!
+	on_destroyed = {
+		#ANBENNAR - windward stuff
+		if = {
+			limit = {
+				region = alecand_region
+			}
+			hidden_effect = {
+				province_event = { id = kheionai.2 }
+			}
+		}
+	}
+
+	# THIS = Province, FROM = Destroyer, Will not be called on buildings destroyed!
+	on_obsolete = {
+		if = { #1.35
+			limit = {
+				has_province_modifier = estate_nobles_development_of_castles_mod
+			}
+			remove_province_modifier = estate_nobles_development_of_castles_mod
+		}
+	}
 
 	onmap = yes
 
 	influencing_fort = yes
 
 	ai_will_do = {
-		factor = 10.0
-		modifier = {
-			factor = 0.1
-			any_neighbor_province = {
-				xorme_ai_has_any_fort_trigger = yes
-			}
-		}
-		modifier = {
-			factor = 1.5
-			FROM = { treasury = 400 }
-		}
-		modifier = {
-			factor = 1.5
-			FROM = { treasury = 600 }
-		}
-		modifier = {
-			factor = 1.5
-			FROM = { treasury = 800 }
-		}
-		modifier = {
-			factor = 1.5
-			FROM = { treasury = 1000 }
-		}
-		modifier = {
-			factor = 2.0
-			xorme_high_terrain_trigger = yes
-		}
-		modifier = {
-			factor = 2.5
-			is_capital = yes
-		}
+		factor = 1 #Lots of logic in code instead, that multiplies with this value
+
+		#Anbennar
 		modifier = {
 			factor = 100
 			OR = {
 				has_terrain = dwarven_hold
 				has_terrain = dwarven_hold_surface
+			}
+		}
+		modifier = {	#Exploiting Ynnic chokepoints
+			factor = 100
+			OR = {
+				has_province_modifier = ynnic_dam_modifier
+				has_province_flag = prov_ruin_cliff_passage
 			}
 		}
 	}
@@ -1196,20 +977,25 @@ fort_16th = {
 naval_battery = {
 
 	make_obsolete = coastal_defence
-	cost = 200
+	cost = 400
 	time = 12
 	build_trigger = {
 		has_port = yes
+	}
+	on_built = {
+		#Anbennar
+		anbennar_building_effect = yes
 	}
 	modifier = {
 		blockade_force_required = 1.0
 		hostile_disembark_speed = 2.0
 		hostile_fleet_attrition = 5
+		allowed_num_of_buildings = 1
 		block_slave_raid = yes
 	}
 
 	ai_will_do = {
-		factor = 0
+		factor = 1
 	}
 }
 
@@ -1226,34 +1012,8 @@ cathedral = {
 		local_tax_modifier = 1
 	}
 	on_built = {
-		if = {
-			limit = {
-				FROM = {
-					OR = {
-						religion = buddhism
-						religion = mahayana
-						religion = vajrayana
-						
-						religion = corinite #Anbennar
-					}
-					has_estate_privilege = estate_church_karma_temples
-				}
-			}
-			FROM = {
-				add_karma = 3
-			}
-		}
-		if = {
-			limit = {
-				FROM = {
-					religion = ravelian	#Anbennar, form Catholic baby
-					has_estate_privilege = estate_church_influence_temples
-				}
-			}
-			FROM = {
-				add_papal_influence = 3
-			}
-		}
+		on_built_tax_building_effect = yes
+		on_province_tax_building_built_estate_privileges_effect = yes
 		add_development_from_upgrading_or_building = {
 			building = cathedral
 			obsolete_building = temple
@@ -1261,175 +1021,74 @@ cathedral = {
 			value = 2
 			upgrade_value = 1
 		}
+		if = {
+			limit = {
+				FROM = { has_government_attribute = on_church_built_clergy_loyalty }
+			}
+			FROM = {
+				add_estate_loyalty = {
+					estate = estate_church
+					loyalty = 5
+				}
+			}
+		}
+		if = {
+			limit = {
+				FROM = { has_government_attribute = temples_modifier }
+				owned_by = FROM 
+			}
+			add_province_modifier = {
+				name = gov_expanded_temple_rights_mod
+				duration = -1
+			}
+		}
+		#Anbennar
+		anbennar_building_effect = yes
+		if = {
+			limit = { FROM = { has_government_attribute = learning_by_doing_reform_effect } }
+			FROM = { change_government_reform_progress = 4 }
+		}
+		if = {
+			limit = { FROM = { has_estate_privilege = estate_tiger_command_war_room_rights } }
+			FROM = { add_legitimacy = 0.5 }
+		}
+		Y72_add_dev_from_building = { #1.35, Chien Binhrung
+			building = cathedral 
+			type = tax
+			value = 2 
+		}
 	}
 	on_destroyed = {
-		if = {
-			limit = {
-				FROM = {
-					OR = {
-						religion = buddhism
-						religion = mahayana
-						religion = vajrayana
-						
-						religion = corinite #Anbennar
-					}
-					has_estate_privilege = estate_church_karma_temples
-				}
-			}
-			FROM = {
-				add_karma = -3
-			}
-		}
-		if = {
-			limit = {
-				FROM = {
-					religion = ravelian	#Anbennar, form Catholic baby
-					has_estate_privilege = estate_church_influence_temples
-				}
-			}
-			FROM = {
-				add_papal_influence = -3
-			}
-		}
+		on_province_tax_building_destroyed_estate_privileges_effect = yes
 		remove_development_from_building = {
 			building = cathedral
 			type = tax
-			value = 3
+			value = 2 #1.35
+		}
+		if = {
+			limit = {
+				FROM = { has_government_attribute = on_church_built_clergy_loyalty }
+			}
+			FROM = {
+				add_estate_loyalty = {
+					estate = estate_church
+					loyalty = -5
+				}
+			}
+		}
+		remove_province_modifier = gov_expanded_temple_rights_mod
+		#Anbennar
+		Y72_remove_dev_from_building = { #1.35, Chien Binhrung
+			building = cathedral 
+			type = tax
+			value = 2 
 		}
 	}
 	on_obsolete = {
 	}
 
 	ai_will_do = {
-		factor = 6.0
-		#LIMIT
-		modifier = {
-			factor = 0
-			FROM = { num_of_loans = 3 }
-		}
-		modifier = {
-			factor = 0.3
-			FROM = { num_of_loans = 2 }
-		}
-		modifier = {
-			factor = 0.5
-			FROM = { num_of_loans = 1 }
-		}
-		modifier = {
-			factor = 0.5
-			has_no_manufactory_trigger = yes
-		}
-		modifier = {
-			factor = 0.75
-			FROM = { NOT = { treasury = 200 } }
-		}
-		modifier = {
-			factor = 0.75
-			FROM = { is_in_deficit = yes }
-		}
-		#TREASURY
-		modifier = {
-			factor = 1.1
-			FROM = { treasury = 200 }
-		}
-		modifier = {
-			factor = 1.2
-			FROM = { treasury = 400 }
-		}
-		modifier = {
-			factor = 1.3
-			FROM = { treasury = 600 }
-		}
-		modifier = {
-			factor = 1.4
-			FROM = { treasury = 800 }
-		}
-		modifier = {
-			factor = 1.5
-			FROM = { treasury = 1000 }
-		}
-		#BASE
-		modifier = {
-			factor = 1.5
-			base_tax = 2
-		}
-		modifier = {
-			factor = 1.5
-			base_tax = 4
-		}
-		modifier = {
-			factor = 1.5
-			base_tax = 6
-		}
-		modifier = {
-			factor = 1.5
-			base_tax = 8
-		}
-		modifier = {
-			factor = 1.5
-			base_tax = 10
-		}
-		modifier = {
-			factor = 1.5
-			base_tax = 12
-		}
-		modifier = {
-			factor = 1.5
-			base_tax = 14
-		}
-		modifier = {
-			factor = 1.5
-			base_tax = 15
-		}
-
-		#AI
-		modifier = {
-			factor = 2.0
-			FROM = { ruler_has_good_adm_personality = yes }
-		}
-		modifier = {
-			factor = 2.0
-			FROM = {
-				OR = {
-					personality = ai_capitalist
-					personality = ai_balanced
-				}
-			}
-		}
-
-		#PROVINCE IMPORTANCE
-		modifier = {
-			factor = 2.5
-			development = 10
-		}
-		modifier = {
-			factor = 2.5
-			development = 20
-		}
-		modifier = {
-			factor = 3.0
-			xorme_wealthy_province_trigger = yes
-		}
-		#TERRAIN
-		modifier = {
-			factor = 4.0
-			xorme_flat_terrain_trigger = yes
-		}
-
-		#BUILDINGS
-		modifier = {
-			factor = 5.0
-			has_manufactory_trigger = yes
-		}
-		modifier = {
-			factor = 10.0
-				has_manufactory_trigger = yes
-				has_production_building_trigger = yes
-		}
-		modifier = {
-			factor = 10.0
-			has_building = temple
-		}
+		factor = 1
 	}
 }
 
@@ -1437,7 +1096,7 @@ university = {
 	cost = 500
 	time = 24
 	modifier = {
-		local_development_cost = -0.10
+		local_development_cost = -0.20
 		allowed_num_of_buildings = 1
 	}
 
@@ -1447,6 +1106,12 @@ university = {
 			type = tax
 			value = 2
 		}
+		#Anbennar
+		anbennar_building_effect = yes
+		if = {
+			limit = { FROM = { has_estate_privilege = estate_tiger_command_war_room_rights } }
+			FROM = { add_legitimacy = 1 }
+		}
 	}
 	on_destroyed = {
 		remove_development_from_building = {
@@ -1459,80 +1124,53 @@ university = {
 	}
 
 	ai_will_do = {
-		factor = 10.0
-				#LIMIT
+		# Hard coded AI sees no value in this above the 0.01 ducats base. Let's multiply that
+		factor = 12 # Base of 0.01 ducats per MONTH
 		modifier = {
-			factor = 0
-			FROM = { num_of_loans = 3 }
-		}
-		modifier = {
-			factor = 0.3
-			FROM = { num_of_loans = 2 }
-		}
-		modifier = {
-			factor = 0.5
-			FROM = { num_of_loans = 1 }
-		}
-		modifier = {
-			factor = 0.75
-			has_no_manufactory_trigger = yes
-		}
-		modifier = {
-			factor = 0.75
-			FROM = { NOT = { treasury = 500 } }
-		}
-		modifier = {
-			factor = 0.75
-			FROM = { is_in_deficit = yes }
-		}
-		#TREASURY
-		modifier = {
-			factor = 1.2
-			FROM = { treasury = 500 }
-		}
-		modifier = {
-			factor = 1.3
-			FROM = { treasury = 750 }
+			factor = 10
+			development = 16
 		}
 		modifier = {
 			factor = 1.4
-			FROM = { treasury = 1000 }
-		}
-		#IDEA GROUP
-		modifier = {
-			factor = 2.0
-			FROM = { has_idea_group = innovativeness_ideas }
-		}
-		#DEVELOPMENT
-		modifier = {
-			factor = 3.0
-			development = 20
+			development = 21
 		}
 		modifier = {
-			factor = 3.5
-			development = 25
+			factor = 1.4
+			development = 26
 		}
 		modifier = {
-			factor = 4.0
+			factor = 1.4
 			development = 30
 		}
 		modifier = {
-			factor = 4.5
-			development = 35
+			factor = 0
+			is_state = no
 		}
 		modifier = {
-			factor = 5.0
-			development = 40
+			factor = 2
+			is_capital = yes
 		}
-		#MODIFIERS
 		modifier = {
-			factor = 7.5
-			xorme_wealthy_province_trigger = yes
+			factor = 0.5
+			OR = {
+				has_climate = tropical
+				has_climate = arid
+			}
 		}
-		#BUILDINGS
 		modifier = {
-			factor = 7.5
-			xorme_has_every_essential_building_trigger = yes
+			factor = 0.2
+			has_climate = arctic
+		}
+		modifier = {
+			factor = 1.2
+			OR = {
+				has_terrain = grasslands
+				has_terrain = drylands
+			}
+		}
+		modifier = {
+			factor = 1.3
+			has_terrain = farmlands
 		}
 		modifier = {
 			factor = 2
@@ -1553,7 +1191,7 @@ university = {
 }
 
 trade_depot = {
-	cost = 400
+	cost = 300
 	time = 18
 
 	make_obsolete = marketplace
@@ -1561,6 +1199,7 @@ trade_depot = {
 	modifier = {
 		province_trade_power_modifier = 1
 	}
+
 	on_built = {
 		add_development_from_upgrading_or_building = {
 			building = trade_depot
@@ -1568,6 +1207,12 @@ trade_depot = {
 			type = production
 			value = 2
 			upgrade_value = 1
+		}
+		#Anbennar
+		anbennar_building_effect = yes
+		if = {
+			limit = { FROM = { has_government_attribute = learning_by_doing_reform_effect } }
+			FROM = { change_government_reform_progress = 4 }
 		}
 	}
 	on_destroyed = {
@@ -1581,86 +1226,13 @@ trade_depot = {
 	}
 
 	ai_will_do = {
-		factor = 1.0
-		#LIMIT
-		modifier = {
-			factor = 0
-			FROM = { num_of_loans = 3 }
-		}
-		modifier = {
-			factor = 0.3
-			FROM = { num_of_loans = 2 }
-		}
-		modifier = {
-			factor = 0.5
-			FROM = { num_of_loans = 1 }
-		}
-		modifier = {
-			factor = 0.5
-			NOT = { province_has_center_of_trade_of_level = 1 }
-		}
-		modifier = {
-			factor = 0.75
-			has_no_manufactory_trigger = yes
-		}
-		modifier = {
-			factor = 0.75
-			FROM = { NOT = { treasury = 200 } }
-		}
-		modifier = {
-			factor = 0.75
-			FROM = { is_in_deficit = yes }
-		}
-		#TREASURY
-		modifier = {
-			factor = 1.1
-			FROM = { treasury = 200 }
-		}
-		modifier = {
-			factor = 1.2
-			FROM = { treasury = 400 }
-		}
-		modifier = {
-			factor = 1.3
-			FROM = { treasury = 600 }
-		}
-		modifier = {
-			factor = 1.4
-			FROM = { treasury = 800 }
-		}
-		modifier = {
-			factor = 1.5
-			FROM = { treasury = 1000 }
-		}
-		#MODIFIERS
-		modifier = {
-			factor = 2.0
-			has_river_estuary_trigger = yes
-		}
-		#BUILDING
-		modifier = {
-			factor = 10.0
-			has_building = marketplace
-		}
-		#TRADE CENTER
-		modifier = {
-			factor = 10.0
-			province_has_center_of_trade_of_level = 1
-		}
-		modifier = {
-			factor = 20.0
-			province_has_center_of_trade_of_level = 2
-		}
-		modifier = {
-			factor = 30.0
-			province_has_center_of_trade_of_level = 1
-		}
+		factor = 1.5 # Because hard-coded AI only considers what it will gain, not what its enemies will lose.
 	}
 }
 
 grand_shipyard = {
 	cost = 300
-	time = 12
+	time = 24
 
 	make_obsolete = shipyard
 
@@ -1668,9 +1240,11 @@ grand_shipyard = {
 		has_port = yes
 	}
 	modifier = {
-		naval_forcelimit = 4
+		naval_forcelimit = 1
 		ship_recruit_speed = -0.50
 		local_ship_repair = 0.50
+		local_has_man_of_war = yes
+		local_has_galleass = yes
 	}
 
 	on_built = {
@@ -1681,6 +1255,8 @@ grand_shipyard = {
 			value = 2
 			upgrade_value = 1
 		}
+		#Anbennar
+		anbennar_building_effect = yes
 	}
 	on_destroyed = {
 		remove_development_from_building = {
@@ -1688,82 +1264,30 @@ grand_shipyard = {
 			type = production
 			value = 2
 		}
+		if = {
+			limit = { has_province_modifier = sca_swe_danish_shipyard }
+			remove_province_modifier = sca_swe_danish_shipyard
+		}
 	}
 	on_obsolete = {
 	}
 
 	ai_will_do = {
-		factor = 1.5
-		#LIMIT
+		factor = 1
 		modifier = {
-			factor = 0
-			FROM = { num_of_loans = 3 }
+			factor = 1.5 # bit more likely if close to the force limit
+			FROM = { navy_size_percentage = 0.95 }
 		}
-		modifier = {
-			factor = 0.3
-			FROM = { num_of_loans = 2 }
-		}
-		modifier = {
-			factor = 0.5
-			FROM = { num_of_loans = 1 }
-		}
-		modifier = {
-			factor = 0.5
-			has_no_manufactory_trigger = yes
-		}
-		modifier = {
-			factor = 0.75
-			FROM = { NOT = { treasury = 400 } }
-		}
-		modifier = {
-			factor = 0.75
-			FROM = { is_in_deficit = yes }
-		}
-		#TREASURY
 		modifier = {
 			factor = 1.1
-			FROM = { treasury = 400 }
-		}
-		modifier = {
-			factor = 1.2
-			FROM = { treasury = 500 }
-		}
-		modifier = {
-			factor = 1.3
-			FROM = { treasury = 750 }
-		}
-		modifier = {
-			factor = 1.4
-			FROM = { treasury = 1000 }
-		}
-		#NAVY SIZE
-		modifier = {
-			factor = 1.5
-			FROM = { navy_size_percentage = 0.8 }
-		}
-		modifier = {
-			factor = 1.5
-			FROM = { navy_size_percentage = 0.9 }
-		}
-		modifier = {
-			factor = 1.5
-			FROM = { navy_size_percentage = 1 }
-		}
-		#BUILDINGS
-		modifier = {
-			factor = 5.0
-			has_building = shipyard
-		}
-		modifier = {
-			factor = 10.0
-			xorme_has_every_essential_building_trigger = yes
+			local_autonomy = 50
 		}
 	}
 }
 
 training_fields = {
 	cost = 300
-	time = 12
+	time = 24
 
 	make_obsolete = barracks
 
@@ -1791,14 +1315,14 @@ training_fields = {
 #	}
 
 	modifier = {
-		local_manpower_modifier = 1
+		local_manpower_modifier = 0.75
 	}
-	
+
 	on_built = {
 		# if = {
 			# limit = {
 				# FROM = {
-					# has_reform = corvee_reform
+					# has_government_attribute = manpower_sailors_on_build
 				# }
 			# }
 			# FROM = {
@@ -1812,12 +1336,25 @@ training_fields = {
 			value = 2
 			upgrade_value = 1
 		}
+
+		update_improved_military_buildings_modifier = { #1.35
+			building = training_fields
+		}
+		#Anbennar
+		anbennar_building_effect = yes
+		if = {
+			limit = { FROM = { has_estate_privilege = estate_boar_command_war_room_rights } }
+			FROM = { add_legitimacy = 0.5 }
+		}
 	}
 	on_destroyed = {
+		update_improved_military_buildings_modifier = { #1.35
+			building = training_fields
+		}
 		# if = {
 			# limit = {
 				# FROM = {
-					# has_reform = corvee_reform
+					# has_government_attribute = manpower_sailors_on_build
 				# }
 			# }
 			# FROM = {
@@ -1834,131 +1371,12 @@ training_fields = {
 	}
 
 	ai_will_do = {
-		factor = 3.5
-		#LIMIT
-		modifier = {
-			factor = 0
-			FROM = { num_of_loans = 3 }
-		}
-		modifier = {
-			factor = 0.3
-			FROM = { num_of_loans = 2 }
-		}
-		modifier = {
-			factor = 0.5
-			FROM = { num_of_loans = 1 }
-		}
-		modifier = {
-			factor = 0.5
-			has_no_manufactory_trigger = yes
-		}
-		modifier = {
-			factor = 0.75
-			FROM = { NOT = { treasury = 250 } }
-		}
-		modifier = {
-			factor = 0.75
-			FROM = { is_in_deficit = yes }
-		}
-		#TREASURY
-		modifier = {
-			factor = 1.1
-			FROM = { treasury = 250 }
-		}
-		modifier = {
-			factor = 1.2
-			FROM = { treasury = 500 }
-		}
-		modifier = {
-			factor = 1.3
-			FROM = { treasury = 750 }
-		}
-		modifier = {
-			factor = 1.4
-			FROM = { treasury = 1000 }
-		}
-		#BASE
-		modifier = {
-			factor = 1.5
-			base_manpower = 2
-		}
-		modifier = {
-			factor = 1.5
-			base_manpower = 4
-		}
-		modifier = {
-			factor = 1.5
-			base_manpower = 6
-		}
-		modifier = {
-			factor = 1.5
-			base_manpower = 8
-		}
-		modifier = {
-			factor = 1.5
-			base_manpower = 10
-		}
-		modifier = {
-			factor = 1.5
-			base_manpower = 12
-		}
-		modifier = {
-			factor = 1.5
-			base_manpower = 14
-		}
-		modifier = {
-			factor = 1.5
-			base_manpower = 15
-		}
-
-		#AI
-		modifier = {
-			factor = 2.0
-			FROM = { ruler_has_good_mil_personality = yes }
-		}
-		modifier = {
-			factor = 2.0
-			FROM = { personality = ai_militarist }
-		}
-
-		#PROVINCE IMPORTANCE
-		modifier = {
-			factor = 2.5
-			development = 10
-		}
-		modifier = {
-			factor = 2.5
-			development = 20
-		}
-		#TERRAIN
-		modifier = {
-			factor = 2.5
-			xorme_flat_terrain_trigger = yes
-		}
-
-		#BUILDINGS
-		modifier = {
-			factor = 2.5
-			has_manufactory_trigger = yes
-		}
-		modifier = {
-			factor = 5.0
-			has_building = soldier_households
-		}
-		#TRADE GOODS
-		modifier = {
-			factor = 5.0
-			xorme_lowest_quality_trade_goods_trigger = yes
-		}
-		modifier = {
-			factor = 7.5
-			xorme_additional_manpower_goods_trigger = yes
-		}
+		factor = 1
 	}
 }
 
 fort_17th = {
-	cost = 600
+	cost = 800
 	time = 30
 
 	make_obsolete = fort_16th
@@ -1967,75 +1385,140 @@ fort_17th = {
 		fort_level = 6
 	}
 
-#	# THIS = Province, FROM = Builder(not nessecairly owner, can be overlord)
-#	on_built = {
-#		FROM = {
-#			add_army_professionalism = 0.02
-#		}
-#	}
-#
-#	# THIS = Province, FROM = Destroyer, Will not be called on buildings made obsolete!
-#	on_destroyed = {
-#		FROM = {
-#			add_army_professionalism = -0.04
-#		}
-#	}
-#
-#	# THIS = Province, FROM = Destroyer, Will not be called on buildings destroyed!
-#	on_obsolete = {
-#		hidden_effect = {
-#			FROM = {
-#				add_army_professionalism = -0.02
-#			}
-#		}
-#	}
+	build_trigger = {
+		NOT = { has_province_modifier = verdant_link }
+	}
+
+	# THIS = Province, FROM = Builder(not nessecairly owner, can be overlord)
+	on_built = {
+		if = {
+			limit = {
+				FROM = { NOT = { mil_tech = 19 } has_government_attribute = on_fort_built_nobles_loyalty }
+			}
+			FROM = {
+				if = {
+					limit = {
+						has_estate = estate_nobles
+					}
+					add_estate_loyalty = {
+						estate = estate_nobles
+						loyalty = 5
+					}
+				}
+				if = {
+					limit = {
+						has_estate = estate_maratha
+					}
+					add_estate_loyalty = {
+						estate = estate_maratha
+						loyalty = 5
+					}
+				}
+				if = {
+					limit = {
+						has_estate = estate_rajput
+					}
+					add_estate_loyalty = {
+						estate = estate_rajput
+						loyalty = 5
+					}
+				}
+			}
+		}
+
+		if = { #1.35
+			limit = {
+				owner = {
+					has_estate_privilege = estate_nobles_development_of_castles
+				}
+				NOT = { has_province_modifier = estate_nobles_development_of_castles_mod }
+			}
+			add_province_modifier = {
+				name = estate_nobles_development_of_castles_mod
+				duration = -1
+			}
+		}
+
+		#Anbennar
+		FROM = {
+			if = {
+				limit = {
+					has_church_aspect = white_dragon_1
+				}
+				add_church_power = 5
+			}
+		}
+		#ANBENNAR - windward stuff
+		if = {
+			limit = {
+				region = alecand_region
+			}
+			hidden_effect = {
+				province_event = { id = kheionai.2 }
+			}
+		}
+		if = {
+			limit = { FROM = { has_estate_privilege = estate_elephant_command_war_room_rights } }
+			FROM = { add_legitimacy = 1 }
+		}
+		#Anbennar
+		anbennar_building_effect = yes
+	}
+
+	# THIS = Province, FROM = Destroyer, Will not be called on buildings made obsolete!
+	on_destroyed = {
+		#ANBENNAR - windward stuff
+		if = {
+			limit = {
+				region = alecand_region
+			}
+			hidden_effect = {
+				province_event = { id = kheionai.2 }
+			}
+		}
+
+		if = { #1.35
+			limit = {
+				has_province_modifier = estate_nobles_development_of_castles_mod
+			}
+			remove_province_modifier = estate_nobles_development_of_castles_mod
+		}
+	}
+
+	# THIS = Province, FROM = Destroyer, Will not be called on buildings destroyed!
+	on_obsolete = {
+	}
 
 	onmap = yes
 
 	influencing_fort = yes
 
 	ai_will_do = {
-		factor = 10.0
+		factor = 1 #Lots of logic in code instead, that multiplies with this value
+
+		#Anbennar
 		modifier = {
-			factor = 0.1
-			any_neighbor_province = {
-				xorme_ai_has_any_fort_trigger = yes
+			factor = 3
+			OR = {
+				has_terrain = dwarven_hold
+				has_terrain = dwarven_hold_surface
 			}
 		}
-		modifier = {
-			factor = 1.5
-			FROM = { treasury = 600 }
-		}
-		modifier = {
-			factor = 1.5
-			FROM = { treasury = 800 }
-		}
-		modifier = {
-			factor = 1.5
-			FROM = { treasury = 1000 }
-		}
-		modifier = {
-			factor = 1.5
-			FROM = { treasury = 1200 }
-		}
-		modifier = {
-			factor = 2.0
-			xorme_high_terrain_trigger = yes
-		}
-		modifier = {
-			factor = 2.5
-			is_capital = yes
+		modifier = {	#Exploiting Ynnic chokepoints
+			factor = 3
+			OR = {
+				has_province_modifier = ynnic_dam_modifier
+				has_province_flag = prov_ruin_cliff_passage
+			}
 		}
 	}
 }
-
-
 
 ################################################
 # Tier 4, 18th Century Buildings
 ################################################
 stock_exchange = {
-	cost = 600
+	cost = 400
 	time = 24
 
 	make_obsolete = trade_depot
@@ -2049,20 +1532,24 @@ stock_exchange = {
 			limit = {
 				has_province_flag = built_dev_trade_depot
 			}
-			add_development_from_building = {
+			add_development_from_upgrading_or_building = {
 				building = stock_exchange
+				obsolete_building = trade_depot
 				type = production
-				value = 1
+				value = 3
+				upgrade_value = 1
 			}
 		}
 		else_if = {
 			limit = {
 				has_province_flag = built_dev_marketplace
 			}
-			add_development_from_building = {
+			add_development_from_upgrading_or_building = {
 				building = stock_exchange
+				obsolete_building = marketplace
 				type = production
-				value = 2
+				value = 3
+				upgrade_value = 2
 			}
 		}
 		else = {
@@ -2071,6 +1558,12 @@ stock_exchange = {
 				type = production
 				value = 3
 			}
+		}
+		#Anbennar
+		anbennar_building_effect = yes
+		if = {
+			limit = { FROM = { has_government_attribute = learning_by_doing_reform_effect } }
+			FROM = { change_government_reform_progress = 4 }
 		}
 	}
 	on_destroyed = {
@@ -2084,96 +1577,18 @@ stock_exchange = {
 	}
 
 	ai_will_do = {
-		factor = 1.0
-		#LIMIT
-		modifier = {
-			factor = 0
-			FROM = { num_of_loans = 3 }
-		}
-		modifier = {
-			factor = 0.3
-			FROM = { num_of_loans = 2 }
-		}
-		modifier = {
-			factor = 0.5
-			FROM = { num_of_loans = 1 }
-		}
-		modifier = {
-			factor = 0.5
-			NOT = { province_has_center_of_trade_of_level = 1 }
-		}
-		modifier = {
-			factor = 0.75
-			has_no_manufactory_trigger = yes
-		}
-		modifier = {
-			factor = 0.75
-			FROM = { NOT = { treasury = 200 } }
-		}
-		modifier = {
-			factor = 0.75
-			FROM = { is_in_deficit = yes }
-		}
-		#TREASURY
-		modifier = {
-			factor = 1.1
-			FROM = { treasury = 200 }
-		}
-		modifier = {
-			factor = 1.2
-			FROM = { treasury = 400 }
-		}
-		modifier = {
-			factor = 1.3
-			FROM = { treasury = 600 }
-		}
-		modifier = {
-			factor = 1.4
-			FROM = { treasury = 800 }
-		}
-		modifier = {
-			factor = 1.5
-			FROM = { treasury = 1000 }
-		}
-		#MODIFIERS
-		modifier = {
-			factor = 2.0
-			has_river_estuary_trigger = yes
-		}
-		#BUILDINGS
-		modifier = {
-			factor = 10.0
-			OR = {
-				has_building = marketplace
-				has_building = trade_depot
-			}
-		}
-		#TRADE CENTER
-		modifier = {
-			factor = 10.0
-			province_has_center_of_trade_of_level = 1
-		}
-		modifier = {
-			factor = 20.0
-			province_has_center_of_trade_of_level = 2
-		}
-		modifier = {
-			factor = 30.0
-			province_has_center_of_trade_of_level = 1
-		}
+		factor = 1.5 # Because hard-coded AI only considers what it will gain, not what its enemies will lose.
 	}
 }
 
 counting_house = {
-	cost = 500
+	cost = 400
 	time = 24
 
 	make_obsolete = workshop
 	modifier = {
-		local_production_efficiency = 1
+		local_production_efficiency = 2
 	}
-
-	allow_in_gold_provinces = no
 
 	on_built = {
 		add_development_from_upgrading_or_building = {
@@ -2182,6 +1597,12 @@ counting_house = {
 			type = production
 			value = 2
 			upgrade_value = 1
+		}
+		#Anbennar
+		anbennar_building_effect = yes
+		if = {
+			limit = { FROM = { has_estate_privilege = estate_dragon_command_war_room_rights } }
+			FROM = { add_legitimacy = 0.5 }
 		}
 	}
 	on_destroyed = {
@@ -2194,167 +1615,24 @@ counting_house = {
 	on_obsolete = {
 	}
 
+	allow_in_gold_provinces = no
+
 	ai_will_do = {
-		factor = 8.0
-		#LIMIT
-		modifier = {
-			factor = 0
-			FROM = { num_of_loans = 3 }
-		}
-		modifier = {
-			factor = 0.3
-			FROM = { num_of_loans = 2 }
-		}
-		modifier = {
-			factor = 0.5
-			FROM = { num_of_loans = 1 }
-		}
-		modifier = {
-			factor = 0.75
-			has_no_manufactory_trigger = yes
-		}
-		modifier = {
-			factor = 0.75
-			FROM = { NOT = { treasury = 200 } }
-		}
-		modifier = {
-			factor = 0.75
-			FROM = { is_in_deficit = yes }
-		}
-		#TREASURY
-		modifier = {
-			factor = 1.1
-			FROM = { treasury = 200 }
-		}
-		modifier = {
-			factor = 1.2
-			FROM = { treasury = 400 }
-		}
-		modifier = {
-			factor = 1.3
-			FROM = { treasury = 600 }
-		}
-		modifier = {
-			factor = 1.4
-			FROM = { treasury = 800 }
-		}
-		modifier = {
-			factor = 1.5
-			FROM = { treasury = 1000 }
-		}
-		#BASE
-		modifier = {
-			factor = 1.5
-			base_production = 2
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 4
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 6
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 8
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 10
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 12
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 14
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 15
-		}
-
-		#AI
-		modifier = {
-			factor = 2.0
-			FROM = { ruler_has_good_adm_personality = yes }
-		}
-		modifier = {
-			factor = 2.0
-			FROM = {
-				OR = {
-					personality = ai_capitalist
-					personality = ai_balanced
-				}
-			}
-		}
-
-		#PROVINCE IMPORTANCE
-		modifier = {
-			factor = 2.5
-			development = 10
-		}
-		modifier = {
-			factor = 2.5
-			development = 20
-		}
-		modifier = {
-			factor = 3.5
-			xorme_wealthy_province_trigger = yes
-		}
-		#TERRAIN
-		modifier = {
-			factor = 4.0
-			xorme_flat_terrain_trigger = yes
-		}
-
-		#BUILDINGS
-		modifier = {
-			factor = 5.0
-			has_manufactory_trigger = yes
-		}
-		modifier = {
-			factor = 10.0
-			has_building = workshop
-		}
-		#TRADE GOODS
-		modifier = {
-			factor = 10.0
-			xorme_province_with_special_goods_produced_trigger = yes
-		}
-		modifier = {
-			factor = 10.0
-			xorme_lowest_quality_trade_goods_trigger = yes
-		}
-		modifier = {
-			factor = 12.5
-			xorme_low_quality_trade_goods_trigger = yes
-		}
-		modifier = {
-			factor = 15.0
-			xorme_medium_quality_trade_goods_trigger = yes
-		}
-		modifier = {
-			factor = 17.5
-			xorme_high_quality_trade_goods_trigger = yes
-		}
+		factor = 1
 	}
 }
 
-
 town_hall = {
-	cost = 200
-	time = 12
+	cost = 300
+	time = 24
 
 	make_obsolete = courthouse
 
 	modifier = {
-		allowed_num_of_buildings = 1
 		local_state_maintenance_modifier = -0.5
 		local_autonomy = -0.2
 		local_governing_cost = -0.5
+		allowed_num_of_buildings = 1
 	}
 
 	on_built = {
@@ -2364,6 +1642,16 @@ town_hall = {
 			type = tax
 			value = 2
 			upgrade_value = 1
+		}
+		#Anbennar
+		anbennar_building_effect = yes
+		if = {
+			limit = { FROM = { has_estate_privilege = estate_wolf_command_war_room_rights } }
+			FROM = { add_legitimacy = 0.5 }
+		}
+		if = {
+			limit = { FROM = { has_government_attribute = learning_by_doing_reform_effect } }
+			FROM = { change_government_reform_progress = 4 }
 		}
 	}
 	on_destroyed = {
@@ -2442,7 +1730,7 @@ town_hall = {
 
 drydock = {
 	cost = 300
-	time = 12
+	time = 24
 
 	make_obsolete = dock
 
@@ -2451,14 +1739,16 @@ drydock = {
 	}
 
 	modifier = {
-		local_sailors_modifier = 1.0
+		local_sailors_modifier = 0.75
+		local_has_man_of_war = yes #1.35
+		local_has_galleass = yes #1.35
 	}
-	
+
 	on_built = {
 		# if = {
 			# limit = {
 				# FROM = {
-					# has_reform = corvee_reform
+					# has_government_attribute = manpower_sailors_on_build
 				# }
 			# }
 			# FROM = {
@@ -2472,13 +1762,15 @@ drydock = {
 			value = 2
 			upgrade_value = 1
 		}
+		#Anbennar
+		anbennar_building_effect = yes
 	}
-	
+
 	on_destroyed = {
 		# if = {
 			# limit = {
 				# FROM = {
-					# has_reform = corvee_reform
+					# has_government_attribute = manpower_sailors_on_build
 				# }
 			# }
 			# FROM = {
@@ -2491,9 +1783,9 @@ drydock = {
 			value = 2
 		}
 	}
-
 	on_obsolete = {
 	}
+
 
 	ai_will_do = {
 		factor = 1
@@ -2501,7 +1793,7 @@ drydock = {
 }
 
 conscription_center = {
-	cost = 400
+	cost = 300
 	time = 12
 
 
@@ -2529,9 +1821,16 @@ conscription_center = {
 #			}
 #		}
 #	}
+	build_trigger = {
+		if = {
+			limit = { FROM = { ai = yes } }
+			FROM = { NOT = { num_of_loans = 4 } }
+			development = 10
+		}
+	}
 
 	modifier = {
-		land_forcelimit = 2
+		land_forcelimit = 1
 	}
 	on_built = {
 		add_development_from_upgrading_or_building = {
@@ -2541,6 +1840,18 @@ conscription_center = {
 			value = 2
 			upgrade_value = 1
 		}
+
+		update_improved_military_buildings_modifier = { #1.35
+			building = conscription_center
+		}
+
+		#Anbennar
+		anbennar_building_effect = yes
+		if = {
+			limit = { FROM = { has_estate_privilege = estate_boar_command_war_room_rights } }
+			FROM = { add_legitimacy = 0.5 }
+		}
+
 	}
 	on_destroyed = {
 		remove_development_from_building = {
@@ -2548,83 +1859,29 @@ conscription_center = {
 			type = manpower
 			value = 2
 		}
+
+		update_improved_military_buildings_modifier = { #1.35
+			building = conscription_center
+		}
 	}
 	on_obsolete = {
 	}
 
 	ai_will_do = {
-		factor = 1.5
-		#LIMIT
+		factor = 1
 		modifier = {
-			factor = 0
-			FROM = { num_of_loans = 3 }
+			factor = 1.5 # more likely if we have an army close to the force limit
+			FROM = { army_size_percentage = 0.95 }
 		}
-		modifier = {
-			factor = 0.3
-			FROM = { num_of_loans = 2 }
-		}
-		modifier = {
-			factor = 0.5
-			FROM = { num_of_loans = 1 }
-		}
-		modifier = {
-			factor = 0.5
-			has_no_manufactory_trigger = yes
-		}
-		modifier = {
-			factor = 0.75
-			FROM = { NOT = { treasury = 400 } }
-		}
-		modifier = {
-			factor = 0.75
-			FROM = { is_in_deficit = yes }
-		}
-		#TREASURY
 		modifier = {
 			factor = 1.1
-			FROM = { treasury = 400 }
-		}
-		modifier = {
-			factor = 1.2
-			FROM = { treasury = 500 }
-		}
-		modifier = {
-			factor = 1.3
-			FROM = { treasury = 750 }
-		}
-		modifier = {
-			factor = 1.4
-			FROM = { treasury = 1000 }
-		}
-		#ARMY SIZE
-		modifier = {
-			factor = 1.5
-			FROM = { army_size_percentage = 0.8 }
-		}
-		modifier = {
-			factor = 1.5
-			FROM = { army_size_percentage = 0.9 }
-		}
-		modifier = {
-			factor = 1.5
-			FROM = { army_size_percentage = 1 }
-		}
-		#BUILDINGS
-		modifier = {
-			factor = 5.0
-			has_building = regimental_camp
-		}
-		modifier = {
-			factor = 10.0
-			xorme_has_every_essential_building_trigger = yes
+			local_autonomy = 50
 		}
 	}
 }
 
-
-
 fort_18th = {
-	cost = 800
+	cost = 1600
 	time = 30
 
 
@@ -2634,65 +1891,115 @@ fort_18th = {
 		fort_level = 8
 	}
 
-#	# THIS = Province, FROM = Builder(not nessecairly owner, can be overlord)
-#	on_built = {
-#		FROM = {
-#			add_army_professionalism = 0.04
-#		}
-#	}
-#
-#	# THIS = Province, FROM = Destroyer, Will not be called on buildings made obsolete!
-#	on_destroyed = {
-#		FROM = {
-#			add_army_professionalism = -0.08
-#		}
-#	}
-#
-#	# THIS = Province, FROM = Destroyer, Will not be called on buildings destroyed!
-#	on_obsolete = {
-#		hidden_effect = {
-#			FROM = {
-#				add_army_professionalism = -0.04
-#			}
-#		}
-#	}
+	build_trigger = {
+		NOT = { has_province_modifier = verdant_link }
+	}
+
+	# THIS = Province, FROM = Builder(not nessecairly owner, can be overlord)
+	on_built = {
+		if = {
+			limit = {
+				FROM = { has_government_attribute = on_fort_built_nobles_loyalty }
+			}
+			FROM = {
+				if = {
+					limit = {
+						has_estate = estate_nobles
+					}
+					add_estate_loyalty = {
+						estate = estate_nobles
+						loyalty = 5
+					}
+				}
+				if = {
+					limit = {
+						has_estate = estate_maratha
+					}
+					add_estate_loyalty = {
+						estate = estate_maratha
+						loyalty = 5
+					}
+				}
+				if = {
+					limit = {
+						has_estate = estate_rajput
+					}
+					add_estate_loyalty = {
+						estate = estate_rajput
+						loyalty = 5
+					}
+				}
+			}
+		}
+
+		if = { #1.35
+			limit = {
+				owner = {
+					has_estate_privilege = estate_nobles_development_of_castles
+				}
+				NOT = { has_province_modifier = estate_nobles_development_of_castles_mod }
+			}
+			add_province_modifier = {
+				name = estate_nobles_development_of_castles_mod
+				duration = -1
+			}
+		}
+
+		#ANBENNAR - windward stuff
+		if = {
+			limit = {
+				region = alecand_region
+			}
+			hidden_effect = {
+				province_event = { id = kheionai.2 }
+			}
+		}
+		#Anbennar
+		FROM = {
+			if = {
+				limit = {
+					has_church_aspect = white_dragon_1
+				}
+				add_church_power = 5
+			}
+		}
+		if = {
+			limit = { FROM = { has_estate_privilege = estate_elephant_command_war_room_rights } }
+			FROM = { add_legitimacy = 1 }
+		}
+		#Anbennar
+		anbennar_building_effect = yes
+	}
+
+	# THIS = Province, FROM = Destroyer, Will not be called on buildings made obsolete!
+	on_destroyed = {
+		if = { #1.35
+			limit = {
+				has_province_modifier = estate_nobles_development_of_castles_mod
+			}
+			remove_province_modifier = estate_nobles_development_of_castles_mod
+		}
+		#ANBENNAR - windward stuff
+		if = {
+			limit = {
+				region = alecand_region
+			}
+			hidden_effect = {
+				province_event = { id = kheionai.2 }
+			}
+		}
+	}
+
+	# THIS = Province, FROM = Destroyer, Will not be called on buildings destroyed!
+	on_obsolete = {
+	}
 
 	onmap = yes
 
 	influencing_fort = yes
 
 	ai_will_do = {
-		factor = 10.0
-		modifier = {
-			factor = 0.1
-			any_neighbor_province = {
-				xorme_ai_has_any_fort_trigger = yes
-			}
-		}
-		modifier = {
-			factor = 1.5
-			FROM = { treasury = 800 }
-		}
-		modifier = {
-			factor = 1.5
-			FROM = { treasury = 1000 }
-		}
-		modifier = {
-			factor = 1.5
-			FROM = { treasury = 1200 }
-		}
-		modifier = {
-			factor = 1.5
-			FROM = { treasury = 1400 }
-		}
-		modifier = {
-			factor = 2.0
-			xorme_high_terrain_trigger = yes
-		}
-		modifier = {
-			factor = 2.5
-			is_capital = yes
-		}
+		factor = 1 #Lots of logic in code instead, that multiplies with this value
 	}
 }
 
@@ -2701,14 +2008,23 @@ fort_18th = {
 ################################################
 
 manufactory = {
-	cost = 500
+	cost = 1000
 	time = 60
 	modifier = {
-		trade_goods_size = 1.0
+		trade_goods_size = 0.25
 	}
 }
 
+#If trade good assignment changes, also update scripted trigger "has_manufactory_trigger"!
+
 wharf = {
+	build_trigger = {
+		if = {
+			limit = { FROM = { ai = yes } }
+			FROM = { NOT = { num_of_loans = 4 } }
+			development = 10
+		}
+	}
 	manufactory = {
 		naval_supplies
 		fish
@@ -2718,14 +2034,20 @@ wharf = {
 	}
 	onmap = yes
 
-
-	# ANBENNAR
 	on_built = {
+		manufactory_goods_giver_building_modifier_effect = yes
 		add_development_from_building = {
 			building = manufactory
 			type = production
 			value = 2
 		}
+		add_dev_from_building = {
+			building = manufactory 
+			type = production 
+			value = 1 
+		}
+
+		# ANBENNAR
 		if = {
 			limit = {
 				area = castonath_area
@@ -2744,70 +2066,32 @@ wharf = {
 			clr_province_flag = latest_manufactory_built_is_furnace
 			clr_province_flag = latest_manufactory_built_is_mage_tower
 		}
+		#Anbennar
+		anbennar_building_effect = yes
 	}
-	# END ANBENNAR
+
 	on_destroyed = {
+		manufactory_goods_remover_building_modifier_effect = yes
 		remove_development_from_building = {
 			building = manufactory
 			type = production
 			value = 2
+		}
+		remove_dev_from_building = {
+			building = manufactory 
+			type = production 
+			value = 1
 		}
 	}
 	on_obsolete = {
 	}
 
 	ai_will_do = {
-		factor = 10.0
-		#LIMIT
+		factor = 1
+
 		modifier = {
-			factor = 0
-			FROM = { num_of_loans = 3 }
-		}
-		modifier = {
-			factor = 0.3
-			FROM = { num_of_loans = 2 }
-		}
-		modifier = {
-			factor = 0.5
-			FROM = { num_of_loans = 1 }
-		}
-		modifier = {
-			factor = 0.75
-			FROM = { NOT = { treasury = 500 } }
-		}
-		modifier = {
-			factor = 0.75
-			FROM = { is_in_deficit = yes }
-		}
-		#TREASURY
-		modifier = {
-			factor = 1.2
-			FROM = { treasury = 500 }
-		}
-		modifier = {
-			factor = 1.3
-			FROM = { treasury = 750 }
-		}
-		modifier = {
-			factor = 1.4
-			FROM = { treasury = 1000 }
-		}
-		#BASE
-		modifier = {
-			factor = 1.5
-			base_production = 2
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 4
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 6
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 8
+			factor = 0.4
+			NOT = { base_production = 6 }
 		}
 		modifier = {
 			factor = 1.5
@@ -2815,82 +2099,32 @@ wharf = {
 		}
 		modifier = {
 			factor = 1.5
-			base_production = 12
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 14
-		}
-		modifier = {
-			factor = 1.5
 			base_production = 15
 		}
-
-		#AI
+		# These do not exist
+		#modifier = {
+		#	factor = 5
+		#	OR = {
+		#		has_province_modifier = skanemarket
+		#		has_province_modifier = comet_ore_modifier
+		#		has_province_modifier = paradise_modifier
+		#	}
+		#}
 		modifier = {
-			factor = 2.0
-			FROM = { ruler_has_good_adm_personality = yes }
-		}
-		modifier = {
-			factor = 2.0
-			FROM = {
-				OR = {
-					personality = ai_capitalist
-					personality = ai_balanced
-				}
-			}
-		}
-
-		#PROVINCE IMPORTANCE
-		modifier = {
-			factor = 3.5
-			development = 10
-		}
-		modifier = {
-			factor = 3.5
-			development = 20
-		}
-		modifier = {
-			factor = 5.0
-			xorme_wealthy_province_trigger = yes
-		}
-		#TERRAIN
-		modifier = {
-			factor = 5.0
-			xorme_flat_terrain_trigger = yes
-		}
-
-		#BUILDINGS
-		modifier = {
-			factor = 5.0
-			has_manufactory_trigger = yes
-		}
-		
-		#TRADE GOODS
-		modifier = {
-			factor = 10.0
-			xorme_province_with_special_goods_produced_trigger = yes
-		}
-		modifier = {
-			factor = 15.0
-			xorme_lowest_quality_trade_goods_trigger = yes
-		}
-		modifier = {
-			factor = 20.0
-			xorme_low_quality_trade_goods_trigger = yes
-		}
-		modifier = {
-			factor = 25.5
-			xorme_medium_quality_trade_goods_trigger = yes
-		}
-		modifier = {
-			factor = 30.0
-			xorme_high_quality_trade_goods_trigger = yes
+			NOT = { num_free_building_slots = 3 }
+			factor = 1.5
 		}
 	}
 }
 
 weapons = {
+	build_trigger = {
+		if = {
+			limit = { FROM = { ai = yes } }
+			FROM = { NOT = { num_of_loans = 4 } }
+			development = 10
+		}
+	}
 	manufactory = {
 		copper
 		iron
@@ -2902,18 +2136,24 @@ weapons = {
 		munitions
 		zinc
 		cannon
-		#Anbennar
-		mithril
+		mithril	#Anbennar
 	}
 	onmap = yes
 
-	# ANBENNAR
 	on_built = {
+		manufactory_goods_giver_building_modifier_effect = yes
 		add_development_from_building = {
 			building = manufactory
 			type = production
 			value = 2
 		}
+		add_dev_from_building = {
+			building = manufactory 
+			type = manpower 
+			value = 1 
+		}
+
+		# ANBENNAR
 		if = {
 			limit = {
 				area = castonath_area
@@ -2932,171 +2172,68 @@ weapons = {
 			clr_province_flag = latest_manufactory_built_is_furnace
 			clr_province_flag = latest_manufactory_built_is_mage_tower
 		}
+		if = {
+			limit = { FROM = { has_estate_privilege = estate_dragon_command_war_room_rights } }
+			FROM = { add_legitimacy = 1 }
+		}
+		#Anbennar
+		anbennar_building_effect = yes
 	}
-	# END ANBENNAR
 
 	on_destroyed = {
+		manufactory_goods_remover_building_modifier_effect = yes
 		remove_development_from_building = {
 			building = manufactory
 			type = production
 			value = 2
+		}
+		remove_dev_from_building = {
+			building = manufactory 
+			type = manpower 
+			value = 1
 		}
 	}
 	on_obsolete = {
 	}
 
 	ai_will_do = {
-		factor = 10.0
-		#LIMIT
-		modifier = {
-			factor = 0
-			FROM = { num_of_loans = 3 }
-		}
-		modifier = {
-			factor = 0.3
-			FROM = { num_of_loans = 2 }
-		}
-		modifier = {
-			factor = 0.5
-			FROM = { num_of_loans = 1 }
-		}
-		modifier = {
-			factor = 0.75
-			FROM = { NOT = { treasury = 500 } }
-		}
-		modifier = {
-			factor = 0.75
-			FROM = { is_in_deficit = yes }
-		}
-		#TREASURY
-		modifier = {
-			factor = 1.2
-			FROM = { treasury = 500 }
-		}
-		modifier = {
-			factor = 1.3
-			FROM = { treasury = 750 }
-		}
-		modifier = {
-			factor = 1.4
-			FROM = { treasury = 1000 }
-		}
-		#BASE
-		modifier = {
-			factor = 1.5
-			base_production = 2
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 4
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 6
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 8
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 10
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 12
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 14
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 15
-		}
-
-		#AI
-		modifier = {
-			factor = 2.0
-			FROM = { ruler_has_good_adm_personality = yes }
-		}
-		modifier = {
-			factor = 2.0
-			FROM = {
-				OR = {
-					personality = ai_capitalist
-					personality = ai_balanced
-				}
-			}
-		}
-
-		#PROVINCE IMPORTANCE
-		modifier = {
-			factor = 3.5
-			development = 10
-		}
-		modifier = {
-			factor = 3.5
-			development = 20
-		}
-		modifier = {
-			factor = 5.0
-			xorme_wealthy_province_trigger = yes
-		}
-		#TERRAIN
-		modifier = {
-			factor = 5.0
-			xorme_flat_terrain_trigger = yes
-		}
-
-		#BUILDINGS
-		modifier = {
-			factor = 5.0
-			has_manufactory_trigger = yes
-		}
-		
-		#TRADE GOODS
-		modifier = {
-			factor = 10.0
-			xorme_province_with_special_goods_produced_trigger = yes
-		}
-		modifier = {
-			factor = 15.0
-			xorme_lowest_quality_trade_goods_trigger = yes
-		}
-		modifier = {
-			factor = 20.0
-			xorme_low_quality_trade_goods_trigger = yes
-		}
-		modifier = {
-			factor = 25.5
-			xorme_medium_quality_trade_goods_trigger = yes
-		}
-		modifier = {
-			factor = 30.0
-			xorme_high_quality_trade_goods_trigger = yes
-		}
+		factor = 1
 	}
 }
 
 textile = {
+	build_trigger = {
+		if = {
+			limit = { FROM = { ai = yes } }
+			FROM = { NOT = { num_of_loans = 4 } }
+			development = 10
+		}
+	}
 	manufactory = {
 		wool
 		cloth
 		silk
 		dyes
+		
 		indigo
 		uniforms
+		carpet
 	}
 	onmap = yes
 
-	# ANBENNAR
 	on_built = {
+		manufactory_goods_giver_building_modifier_effect = yes
 		add_development_from_building = {
 			building = manufactory
 			type = production
 			value = 2
 		}
+		add_dev_from_building = {
+			building = manufactory 
+			type = production 
+			value = 1 
+		}
+		# ANBENNAR
 		if = {
 			limit = {
 				area = castonath_area
@@ -3115,153 +2252,39 @@ textile = {
 			clr_province_flag = latest_manufactory_built_is_furnace
 			clr_province_flag = latest_manufactory_built_is_mage_tower
 		}
+		#Anbennar
+		anbennar_building_effect = yes
 	}
-	# END ANBENNAR
+
 	on_destroyed = {
+		manufactory_goods_remover_building_modifier_effect = yes
 		remove_development_from_building = {
 			building = manufactory
 			type = production
 			value = 2
+		}
+		remove_dev_from_building = {
+			building = manufactory 
+			type = production 
+			value = 1
 		}
 	}
 	on_obsolete = {
 	}
 
 	ai_will_do = {
-		factor = 10.0
-		#LIMIT
-		modifier = {
-			factor = 0
-			FROM = { num_of_loans = 3 }
-		}
-		modifier = {
-			factor = 0.3
-			FROM = { num_of_loans = 2 }
-		}
-		modifier = {
-			factor = 0.5
-			FROM = { num_of_loans = 1 }
-		}
-		modifier = {
-			factor = 0.75
-			FROM = { NOT = { treasury = 500 } }
-		}
-		modifier = {
-			factor = 0.75
-			FROM = { is_in_deficit = yes }
-		}
-		#TREASURY
-		modifier = {
-			factor = 1.2
-			FROM = { treasury = 500 }
-		}
-		modifier = {
-			factor = 1.3
-			FROM = { treasury = 750 }
-		}
-		modifier = {
-			factor = 1.4
-			FROM = { treasury = 1000 }
-		}
-		#BASE
-		modifier = {
-			factor = 1.5
-			base_production = 2
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 4
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 6
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 8
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 10
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 12
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 14
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 15
-		}
-
-		#AI
-		modifier = {
-			factor = 2.0
-			FROM = { ruler_has_good_adm_personality = yes }
-		}
-		modifier = {
-			factor = 2.0
-			FROM = {
-				OR = {
-					personality = ai_capitalist
-					personality = ai_balanced
-				}
-			}
-		}
-
-		#PROVINCE IMPORTANCE
-		modifier = {
-			factor = 3.5
-			development = 10
-		}
-		modifier = {
-			factor = 3.5
-			development = 20
-		}
-		modifier = {
-			factor = 5.0
-			xorme_wealthy_province_trigger = yes
-		}
-		#TERRAIN
-		modifier = {
-			factor = 5.0
-			xorme_flat_terrain_trigger = yes
-		}
-
-		#BUILDINGS
-		modifier = {
-			factor = 5.0
-			has_manufactory_trigger = yes
-		}
-		
-		#TRADE GOODS
-		modifier = {
-			factor = 10.0
-			xorme_province_with_special_goods_produced_trigger = yes
-		}
-		modifier = {
-			factor = 15.0
-			xorme_lowest_quality_trade_goods_trigger = yes
-		}
-		modifier = {
-			factor = 20.0
-			xorme_low_quality_trade_goods_trigger = yes
-		}
-		modifier = {
-			factor = 25.5
-			xorme_medium_quality_trade_goods_trigger = yes
-		}
-		modifier = {
-			factor = 30.0
-			xorme_high_quality_trade_goods_trigger = yes
-		}
+		factor = 1
 	}
 }
 
 plantations = {
+	build_trigger = {
+		if = {
+			limit = { FROM = { ai = yes } }
+			FROM = { NOT = { num_of_loans = 4 } }
+			development = 10
+		}
+	}
 	manufactory = {
 		coffee
 		cotton
@@ -3269,24 +2292,22 @@ plantations = {
 		tobacco
 		tea
 		cocoa
-		palm_oil
-		saffron
-		cinnamon
-		cloves
-		opium
-		dates
-		vanilla
-		nutmeg
 	}
 	onmap = yes
 
-	# ANBENNAR
 	on_built = {
+		manufactory_goods_giver_building_modifier_effect = yes
 		add_development_from_building = {
 			building = manufactory
 			type = production
 			value = 2
 		}
+		add_dev_from_building = {
+			building = manufactory 
+			type = production 
+			value = 1 
+		}
+		# ANBENNAR
 		if = {
 			limit = {
 				area = castonath_area
@@ -3305,154 +2326,39 @@ plantations = {
 			clr_province_flag = latest_manufactory_built_is_furnace
 			clr_province_flag = latest_manufactory_built_is_mage_tower
 		}
+		#Anbennar
+		anbennar_building_effect = yes
 	}
-	# END ANBENNAR
 
 	on_destroyed = {
+		manufactory_goods_remover_building_modifier_effect = yes
 		remove_development_from_building = {
 			building = manufactory
 			type = production
 			value = 2
+		}
+		remove_dev_from_building = {
+			building = manufactory 
+			type = production 
+			value = 1
 		}
 	}
 	on_obsolete = {
 	}
 
 	ai_will_do = {
-		factor = 10.0
-		#LIMIT
-		modifier = {
-			factor = 0
-			FROM = { num_of_loans = 3 }
-		}
-		modifier = {
-			factor = 0.3
-			FROM = { num_of_loans = 2 }
-		}
-		modifier = {
-			factor = 0.5
-			FROM = { num_of_loans = 1 }
-		}
-		modifier = {
-			factor = 0.75
-			FROM = { NOT = { treasury = 500 } }
-		}
-		modifier = {
-			factor = 0.75
-			FROM = { is_in_deficit = yes }
-		}
-		#TREASURY
-		modifier = {
-			factor = 1.2
-			FROM = { treasury = 500 }
-		}
-		modifier = {
-			factor = 1.3
-			FROM = { treasury = 750 }
-		}
-		modifier = {
-			factor = 1.4
-			FROM = { treasury = 1000 }
-		}
-		#BASE
-		modifier = {
-			factor = 1.5
-			base_production = 2
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 4
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 6
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 8
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 10
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 12
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 14
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 15
-		}
-
-		#AI
-		modifier = {
-			factor = 2.0
-			FROM = { ruler_has_good_adm_personality = yes }
-		}
-		modifier = {
-			factor = 2.0
-			FROM = {
-				OR = {
-					personality = ai_capitalist
-					personality = ai_balanced
-				}
-			}
-		}
-
-		#PROVINCE IMPORTANCE
-		modifier = {
-			factor = 3.5
-			development = 10
-		}
-		modifier = {
-			factor = 3.5
-			development = 20
-		}
-		modifier = {
-			factor = 5.0
-			xorme_wealthy_province_trigger = yes
-		}
-		#TERRAIN
-		modifier = {
-			factor = 5.0
-			xorme_flat_terrain_trigger = yes
-		}
-
-		#BUILDINGS
-		modifier = {
-			factor = 5.0
-			has_manufactory_trigger = yes
-		}
-		
-		#TRADE GOODS
-		modifier = {
-			factor = 10.0
-			xorme_province_with_special_goods_produced_trigger = yes
-		}
-		modifier = {
-			factor = 15.0
-			xorme_lowest_quality_trade_goods_trigger = yes
-		}
-		modifier = {
-			factor = 20.0
-			xorme_low_quality_trade_goods_trigger = yes
-		}
-		modifier = {
-			factor = 25.5
-			xorme_medium_quality_trade_goods_trigger = yes
-		}
-		modifier = {
-			factor = 30.0
-			xorme_high_quality_trade_goods_trigger = yes
-		}
+		factor = 1
 	}
 }
 
 tradecompany = {
+	build_trigger = {
+		if = {
+			limit = { FROM = { ai = yes } }
+			FROM = { NOT = { num_of_loans = 4 } }
+			development = 10
+		}
+	}
 	manufactory = {
 		ivory
 		slaves
@@ -3463,10 +2369,10 @@ tradecompany = {
 		beer
 		rum
 		jade
+		jade_sculptures
 		marble
+		marble_sculpture
 		gunpowder
-		cheese
-		carpet
 		exotic_animals
 		sulfur
 		leather
@@ -3474,19 +2380,27 @@ tradecompany = {
 		jewellery
 		maple_syrup
 		sea_turtle
+		fur_clothing
+
 		#Anbennar
 		precursor_relics
 		damestear
 	}
 	onmap = yes
 
-	# ANBENNAR
 	on_built = {
+		manufactory_goods_giver_building_modifier_effect = yes
 		add_development_from_building = {
 			building = manufactory
 			type = production
 			value = 2
 		}
+		add_dev_from_building = {
+			building = manufactory 
+			type = production 
+			value = 1 
+		}
+		# ANBENNAR
 		if = {
 			limit = {
 				area = castonath_area
@@ -3505,153 +2419,39 @@ tradecompany = {
 			clr_province_flag = latest_manufactory_built_is_furnace
 			clr_province_flag = latest_manufactory_built_is_mage_tower
 		}
+		#Anbennar
+		anbennar_building_effect = yes
 	}
-	# END ANBENNAR
+
 	on_destroyed = {
+		manufactory_goods_remover_building_modifier_effect = yes
 		remove_development_from_building = {
 			building = manufactory
 			type = production
 			value = 2
+		}
+		remove_dev_from_building = {
+			building = manufactory 
+			type = production 
+			value = 1
 		}
 	}
 	on_obsolete = {
 	}
 
 	ai_will_do = {
-		factor = 10.0
-		#LIMIT
-		modifier = {
-			factor = 0
-			FROM = { num_of_loans = 3 }
-		}
-		modifier = {
-			factor = 0.3
-			FROM = { num_of_loans = 2 }
-		}
-		modifier = {
-			factor = 0.5
-			FROM = { num_of_loans = 1 }
-		}
-		modifier = {
-			factor = 0.75
-			FROM = { NOT = { treasury = 500 } }
-		}
-		modifier = {
-			factor = 0.75
-			FROM = { is_in_deficit = yes }
-		}
-		#TREASURY
-		modifier = {
-			factor = 1.2
-			FROM = { treasury = 500 }
-		}
-		modifier = {
-			factor = 1.3
-			FROM = { treasury = 750 }
-		}
-		modifier = {
-			factor = 1.4
-			FROM = { treasury = 1000 }
-		}
-		#BASE
-		modifier = {
-			factor = 1.5
-			base_production = 2
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 4
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 6
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 8
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 10
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 12
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 14
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 15
-		}
-
-		#AI
-		modifier = {
-			factor = 2.0
-			FROM = { ruler_has_good_adm_personality = yes }
-		}
-		modifier = {
-			factor = 2.0
-			FROM = {
-				OR = {
-					personality = ai_capitalist
-					personality = ai_balanced
-				}
-			}
-		}
-
-		#PROVINCE IMPORTANCE
-		modifier = {
-			factor = 3.5
-			development = 10
-		}
-		modifier = {
-			factor = 3.5
-			development = 20
-		}
-		modifier = {
-			factor = 5.0
-			xorme_wealthy_province_trigger = yes
-		}
-		#TERRAIN
-		modifier = {
-			factor = 5.0
-			xorme_flat_terrain_trigger = yes
-		}
-
-		#BUILDINGS
-		modifier = {
-			factor = 5.0
-			has_manufactory_trigger = yes
-		}
-		
-		#TRADE GOODS
-		modifier = {
-			factor = 10.0
-			xorme_province_with_special_goods_produced_trigger = yes
-		}
-		modifier = {
-			factor = 15.0
-			xorme_lowest_quality_trade_goods_trigger = yes
-		}
-		modifier = {
-			factor = 20.0
-			xorme_low_quality_trade_goods_trigger = yes
-		}
-		modifier = {
-			factor = 25.5
-			xorme_medium_quality_trade_goods_trigger = yes
-		}
-		modifier = {
-			factor = 30.0
-			xorme_high_quality_trade_goods_trigger = yes
-		}
+		factor = 1
 	}
 }
 
 farm_estate = {
+	build_trigger = {
+		if = {
+			limit = { FROM = { ai = yes } }
+			FROM = { NOT = { num_of_loans = 4 } }
+			development = 10
+		}
+	}
 	manufactory = {
 		grain
 		livestock
@@ -3666,21 +2466,28 @@ farm_estate = {
 		potato
 		maize
 		tomato
-		champagne
 		llama
+		cheese
+
 		#Anbennar
 		fungi
 		serpentbloom
 	}
 	onmap = yes
 
-	# ANBENNAR
 	on_built = {
+		manufactory_goods_giver_building_modifier_effect = yes
 		add_development_from_building = {
 			building = manufactory
 			type = production
 			value = 2
 		}
+		add_dev_from_building = {
+			building = manufactory 
+			type = production 
+			value = 1
+		}
+		# ANBENNAR
 		if = {
 			limit = {
 				area = castonath_area
@@ -3699,160 +2506,50 @@ farm_estate = {
 			clr_province_flag = latest_manufactory_built_is_furnace
 			clr_province_flag = latest_manufactory_built_is_mage_tower
 		}
+		#Anbennar
+		anbennar_building_effect = yes
+		if = {
+			limit = { FROM = { has_estate_privilege = estate_wolf_command_war_room_rights } }
+			FROM = { add_legitimacy = 1 }
+		}
 	}
-	# END ANBENNAR
+
 	on_destroyed = {
-		remove_development_from_building = {
-			building = manufactory
-			type = production
-			value = 2
+		manufactory_goods_remover_building_modifier_effect = yes
+		add_dev_from_building = {
+			building = manufactory 
+			type = production 
+			value = 2 
+		}
+		remove_dev_from_building = {
+			building = manufactory 
+			type = production 
+			value = 1
 		}
 	}
 	on_obsolete = {
 	}
 
 	ai_will_do = {
-		factor = 10.0
-		#LIMIT
-		modifier = {
-			factor = 0
-			FROM = { num_of_loans = 3 }
-		}
-		modifier = {
-			factor = 0.3
-			FROM = { num_of_loans = 2 }
-		}
-		modifier = {
-			factor = 0.5
-			FROM = { num_of_loans = 1 }
-		}
-		modifier = {
-			factor = 0.75
-			FROM = { NOT = { treasury = 500 } }
-		}
-		modifier = {
-			factor = 0.75
-			FROM = { is_in_deficit = yes }
-		}
-		#TREASURY
-		modifier = {
-			factor = 1.2
-			FROM = { treasury = 500 }
-		}
-		modifier = {
-			factor = 1.3
-			FROM = { treasury = 750 }
-		}
-		modifier = {
-			factor = 1.4
-			FROM = { treasury = 1000 }
-		}
-		#BASE
-		modifier = {
-			factor = 1.5
-			base_production = 2
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 4
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 6
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 8
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 10
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 12
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 14
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 15
-		}
-
-		#AI
-		modifier = {
-			factor = 2.0
-			FROM = { ruler_has_good_adm_personality = yes }
-		}
-		modifier = {
-			factor = 2.0
-			FROM = {
-				OR = {
-					personality = ai_capitalist
-					personality = ai_balanced
-				}
-			}
-		}
-
-		#PROVINCE IMPORTANCE
-		modifier = {
-			factor = 3.5
-			development = 10
-		}
-		modifier = {
-			factor = 3.5
-			development = 20
-		}
-		modifier = {
-			factor = 5.0
-			xorme_wealthy_province_trigger = yes
-		}
-		#TERRAIN
-		modifier = {
-			factor = 5.0
-			xorme_flat_terrain_trigger = yes
-		}
-
-		#BUILDINGS
-		modifier = {
-			factor = 5.0
-			has_manufactory_trigger = yes
-		}
-		
-		#TRADE GOODS
-		modifier = {
-			factor = 10.0
-			xorme_province_with_special_goods_produced_trigger = yes
-		}
-		modifier = {
-			factor = 15.0
-			xorme_lowest_quality_trade_goods_trigger = yes
-		}
-		modifier = {
-			factor = 20.0
-			xorme_low_quality_trade_goods_trigger = yes
-		}
-		modifier = {
-			factor = 25.5
-			xorme_medium_quality_trade_goods_trigger = yes
-		}
-		modifier = {
-			factor = 30.0
-			xorme_high_quality_trade_goods_trigger = yes
-		}
+		factor = 1
 	}
 }
 
 mills = {
+	build_trigger = {
+		if = {
+			limit = { FROM = { ai = yes } }
+			FROM = { NOT = { num_of_loans = 4 } }
+			development = 10
+		}
+	}
 	manufactory = {
-		paper
-		gems
-		pearls
-		tropical_wood
-		glass
 		chinaware
+		gems
+		glass
+		paper
+		tropical_wood
+		pearls
 		lumber
 		ebony
 		amber
@@ -3861,28 +2558,20 @@ mills = {
 	}
 	onmap = yes
 	on_built = {
+		manufactory_goods_giver_building_modifier_effect = yes
 		add_development_from_building = {
 			building = manufactory
 			type = production
 			value = 2
 		}
-	}
-	on_destroyed = {
-		remove_development_from_building = {
-			building = manufactory
-			type = production
-			value = 2
+		add_dev_from_building = {
+			building = manufactory 
+			type = production 
+			value = 1 
 		}
-	}
-	on_obsolete = {
-	}
-
-	# ANBENNAR
-	on_built = {
+		# ANBENNAR
 		if = {
-			limit = {
-				area = castonath_area
-			}
+			limit = { area = castonath_area }
 			set_province_flag = latest_manufactory_built_is_mills
 			clr_province_flag = latest_manufactory_built_is_farm_estate
 			clr_province_flag = latest_manufactory_built_is_ramparts
@@ -3897,139 +2586,31 @@ mills = {
 			clr_province_flag = latest_manufactory_built_is_furnace
 			clr_province_flag = latest_manufactory_built_is_mage_tower
 		}
+		if = {
+			limit = { FROM = { has_estate_privilege = estate_elephant_command_war_room_rights } }
+			FROM = { add_legitimacy = 1 }
+		}
+		#Anbennar
+		anbennar_building_effect = yes
 	}
-	# END ANBENNAR
+	on_destroyed = {
+		manufactory_goods_remover_building_modifier_effect = yes
+		remove_development_from_building = {
+			building = manufactory
+			type = production
+			value = 2
+		}
+		remove_dev_from_building = {
+			building = manufactory 
+			type = production 
+			value = 1
+		}
+	}
+	on_obsolete = {
+	}
+
 	ai_will_do = {
-		factor = 10.0
-		#LIMIT
-		modifier = {
-			factor = 0
-			FROM = { num_of_loans = 3 }
-		}
-		modifier = {
-			factor = 0.3
-			FROM = { num_of_loans = 2 }
-		}
-		modifier = {
-			factor = 0.5
-			FROM = { num_of_loans = 1 }
-		}
-		modifier = {
-			factor = 0.75
-			FROM = { NOT = { treasury = 500 } }
-		}
-		modifier = {
-			factor = 0.75
-			FROM = { is_in_deficit = yes }
-		}
-		#TREASURY
-		modifier = {
-			factor = 1.2
-			FROM = { treasury = 500 }
-		}
-		modifier = {
-			factor = 1.3
-			FROM = { treasury = 750 }
-		}
-		modifier = {
-			factor = 1.4
-			FROM = { treasury = 1000 }
-		}
-		#BASE
-		modifier = {
-			factor = 1.5
-			base_production = 2
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 4
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 6
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 8
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 10
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 12
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 14
-		}
-		modifier = {
-			factor = 1.5
-			base_production = 15
-		}
-
-		#AI
-		modifier = {
-			factor = 2.0
-			FROM = { ruler_has_good_adm_personality = yes }
-		}
-		modifier = {
-			factor = 2.0
-			FROM = {
-				OR = {
-					personality = ai_capitalist
-					personality = ai_balanced
-				}
-			}
-		}
-
-		#PROVINCE IMPORTANCE
-		modifier = {
-			factor = 3.5
-			development = 10
-		}
-		modifier = {
-			factor = 3.5
-			development = 20
-		}
-		modifier = {
-			factor = 5.0
-			xorme_wealthy_province_trigger = yes
-		}
-		#TERRAIN
-		modifier = {
-			factor = 5.0
-			xorme_flat_terrain_trigger = yes
-		}
-
-		#BUILDINGS
-		modifier = {
-			factor = 5.0
-			has_manufactory_trigger = yes
-		}
-		
-		#TRADE GOODS
-		modifier = {
-			factor = 10.0
-			xorme_province_with_special_goods_produced_trigger = yes
-		}
-		modifier = {
-			factor = 15.0
-			xorme_lowest_quality_trade_goods_trigger = yes
-		}
-		modifier = {
-			factor = 20.0
-			xorme_low_quality_trade_goods_trigger = yes
-		}
-		modifier = {
-			factor = 25.5
-			xorme_medium_quality_trade_goods_trigger = yes
-		}
-		modifier = {
-			factor = 30.0
-			xorme_high_quality_trade_goods_trigger = yes
-		}
+		factor = 1
 	}
 }
 
@@ -4043,16 +2624,21 @@ furnace = {
 	}
 
 	modifier = {
-		global_trade_goods_size_modifier = 0.05
+		global_trade_goods_size_modifier = 0.05 #National Bonus
 	}
 	onmap = yes
-	# ANBENNAR
+	show_separate = yes # Means as a manufactory it will be shown according to the old way
+
 	on_built = {
+	on_built = {
+		manufactory_goods_giver_building_modifier_effect = yes
 		add_development_from_building = {
 			building = manufactory
 			type = production
 			value = 2
 		}
+	}
+		# ANBENNAR
 		if = {
 			limit = {
 				area = castonath_area
@@ -4071,9 +2657,12 @@ furnace = {
 			clr_province_flag = latest_manufactory_built_is_mills
 			clr_province_flag = latest_manufactory_built_is_mage_tower
 		}
+		#Anbennar
+		anbennar_building_effect = yes
 	}
-	# END ANBENNAR
+
 	on_destroyed = {
+		manufactory_goods_remover_building_modifier_effect = yes
 		remove_development_from_building = {
 			building = manufactory
 			type = production
@@ -4083,10 +2672,8 @@ furnace = {
 	on_obsolete = {
 	}
 
-	show_separate = yes
-
 	ai_will_do = {
-		factor = 1000
+		factor = 1
 	}
 }
 
@@ -4095,16 +2682,33 @@ ramparts = {
 		all
 	}
 	modifier = {
-		local_hostile_attrition = 1
-		local_defensiveness = 0.15
+		local_hostile_attrition = 3
+		local_defensiveness = 0.25
 		local_defender_dice_roll_bonus = 1
-
 	}
 	onmap = no
-	show_separate = yes
+	show_separate = yes # Means as a manufactory it will be shown according to the old way
 
-	# ANBENNAR
+
 	on_built = {
+		add_dev_from_building = { #1.35
+			building = manufactory 
+			type = manpower 
+			value = 1 
+		}
+		if = {
+			limit = {
+				owner = {
+					has_estate_privilege = estate_nobles_development_of_castles
+				}
+				NOT = { has_province_modifier = estate_nobles_development_of_castles_ramparts_mod }
+			}
+			add_province_modifier = {
+				name = estate_nobles_development_of_castles_ramparts_mod
+				duration = -1
+			}
+		}
+		# ANBENNAR
 		if = {
 			limit = {
 				area = castonath_area
@@ -4123,10 +2727,39 @@ ramparts = {
 			clr_province_flag = latest_manufactory_built_is_furnace
 			clr_province_flag = latest_manufactory_built_is_mage_tower
 		}
+		#Anbennar
+		anbennar_building_effect = yes
 	}
-	# END ANBENNAR
+
+	on_destroyed = { #1.35
+		remove_dev_from_building = {
+			building = manufactory 
+			type = manpower 
+			value = 1
+		}
+		if = {
+			limit = {
+				has_province_modifier = estate_nobles_development_of_castles_ramparts_mod
+			}
+			remove_province_modifier = estate_nobles_development_of_castles_ramparts_mod
+		}
+	}
+
+
 	ai_will_do = {
 		factor = 1
+		modifier = {
+			factor = 0
+			from = { num_of_loans = 3 }
+		}
+		modifier = {
+			factor = 20
+			has_terrain = mountain
+		}
+		modifier = {
+			factor = 0
+			from = { personality = ai_militarist }
+		}
 	}
 }
 
@@ -4135,7 +2768,7 @@ soldier_households = {
 		all
 	}
 
-	bonus_manufactory = {
+	bonus_manufactory = { # Will apply an extra modifier if these goods
 		grain
 		fish
 		livestock
@@ -4146,30 +2779,48 @@ soldier_households = {
 		olive_oil
 		camel
 		elephants
-		citrus
 		potato
 		tomato
 		maize
 		llama
 		cheese
+		#Anbennar
 		fungi
 		serpentbloom
 	}
 
 	modifier = {
-		local_manpower = 0.50
+		local_manpower = 0.5
 	}
 	bonus_modifier = {
-		local_manpower = 0.50
+		local_manpower = 0.5
 	}
 	onmap = no
-	# ANBENNAR
+	show_separate = yes # Means as a manufactory it will be shown according to the old way
+
 	on_built = {
 		add_development_from_building = {
 			building = manufactory
 			type = production
 			value = 2
 		}
+		add_dev_from_building = { #1.35
+			building = manufactory 
+			type = manpower 
+			value = 1 
+		}
+		if = { #1.35
+			limit = {
+				FROM = {
+					has_government_attribute = improved_military_buildings
+				}
+			}
+			add_province_modifier = {
+				name = wei_suo_system_reform_soldier_households_modifier
+				duration = -1
+			}
+		}
+		# ANBENNAR
 		if = {
 			limit = {
 				area = castonath_area
@@ -4188,129 +2839,73 @@ soldier_households = {
 			clr_province_flag = latest_manufactory_built_is_furnace
 			clr_province_flag = latest_manufactory_built_is_mage_tower
 		}
+		#Anbennar
+		anbennar_building_effect = yes
 	}
-	# END ANBENNAR
+
 	on_destroyed = {
 		remove_development_from_building = {
 			building = manufactory
 			type = production
 			value = 2
 		}
+		remove_dev_from_building = { #1.35
+			building = manufactory 
+			type = manpower 
+			value = 1
+		}
+		if = { #1.35
+			limit = {
+				has_province_modifier = wei_suo_system_reform_soldier_households_modifier
+			}
+			remove_province_modifier = wei_suo_system_reform_soldier_households_modifier
+		}
 	}
 	on_obsolete = {
 	}
 
-	show_separate = yes
-
 	ai_will_do = {
 		factor = 10.0
-		#LIMIT
 		modifier = {
 			factor = 0
-			FROM = { num_of_loans = 3 }
-		}
-		modifier = {
-			factor = 0.3
-			FROM = { num_of_loans = 2 }
-		}
-		modifier = {
-			factor = 0.5
 			FROM = { num_of_loans = 1 }
 		}
 		modifier = {
-			factor = 0.75
-			FROM = { NOT = { treasury = 500 } }
+			factor = 4.5
+			owner = { is_subject = yes }
 		}
 		modifier = {
-			factor = 0.75
-			FROM = { is_in_deficit = yes }
-		}
-		#TREASURY
-		modifier = {
-			factor = 1.2
-			FROM = { treasury = 500 }
+			factor = 100.0
+			FROM = { treasury = 10000 }
 		}
 		modifier = {
-			factor = 1.3
-			FROM = { treasury = 750 }
+			factor = 3
+			base_manpower = 5
 		}
 		modifier = {
-			factor = 1.4
-			FROM = { treasury = 1000 }
-		}
-		#BASE
-		modifier = {
-			factor = 1.5
-			base_manpower = 2
-		}
-		modifier = {
-			factor = 1.5
-			base_manpower = 4
-		}
-		modifier = {
-			factor = 1.5
-			base_manpower = 6
-		}
-		modifier = {
-			factor = 1.5
+			factor = 6
 			base_manpower = 8
 		}
 		modifier = {
-			factor = 1.5
-			base_manpower = 10
-		}
-		modifier = {
-			factor = 1.5
+			factor = 9
 			base_manpower = 12
 		}
 		modifier = {
-			factor = 1.5
-			base_manpower = 14
-		}
-		modifier = {
-			factor = 1.5
-			base_manpower = 15
-		}
-
-		#AI
-		modifier = {
-			factor = 2.0
-			FROM = { ruler_has_good_mil_personality = yes }
-		}
-		modifier = {
-			factor = 2.0
-			FROM = { personality = ai_militarist }
-		}
-
-		#PROVINCE IMPORTANCE
-		modifier = {
-			factor = 2.5
-			development = 10
-		}
-		modifier = {
-			factor = 2.5
-			development = 20
-		}
-		#TERRAIN
-		modifier = {
-			factor = 2.5
-			xorme_flat_terrain_trigger = yes
-		}
-
-		#BUILDINGS
-		modifier = {
-			factor = 5.0
-			has_manpower_building_trigger = yes
-		}
-		#TRADE GOODS
-		modifier = {
 			factor = 10.0
-			xorme_lowest_quality_trade_goods_trigger = yes
+			OR = {
+				has_building = barracks
+				has_building = training_fields
+			}
 		}
 		modifier = {
-			factor = 15.0
-			xorme_additional_manpower_goods_trigger = yes
-		}		
+			factor = 1000
+			OR = {
+				trade_goods = grain
+				trade_goods = fish
+				trade_goods = livestock
+				trade_goods = wine
+			}
+		}
 	}
 }
 
@@ -4319,12 +2914,13 @@ impressment_offices = {
 		all
 	}
 
-	bonus_manufactory = {
+	bonus_manufactory = { # Will apply an extra modifier if these goods
 		salt
 		fish
 		naval_supplies
 		tropical_wood
 		seafood
+		citrus
 		tar
 	}
 
@@ -4333,23 +2929,30 @@ impressment_offices = {
 	}
 
 	modifier = {
-		local_sailors = 250
+		local_sailors = 500
 		ship_recruit_speed = -0.1
 		local_ship_cost = -0.05
 	}
 	bonus_modifier = {
-		local_sailors = 250
+		local_sailors = 500
 		ship_recruit_speed = -0.1
 		local_ship_cost = -0.05
 	}
 	onmap = no
-	# ANBENNAR
+	show_separate = yes # Means as a manufactory it will be shown according to the old way
+
 	on_built = {
 		add_development_from_building = {
 			building = impressment_offices
 			type = manpower
 			value = 2
 		}
+		add_dev_from_building = { #1.35
+			building = impressment_offices 
+			type = manpower 
+			value = 1 
+		}
+		# ANBENNAR
 		if = {
 			limit = {
 				area = castonath_area
@@ -4368,6 +2971,8 @@ impressment_offices = {
 			clr_province_flag = latest_manufactory_built_is_furnace
 			clr_province_flag = latest_manufactory_built_is_mage_tower
 		}
+		#Anbennar
+		anbennar_building_effect = yes
 	}
 	on_destroyed = {
 		remove_development_from_building = {
@@ -4375,12 +2980,14 @@ impressment_offices = {
 			type = manpower
 			value = 2
 		}
+		remove_dev_from_building = { #1.35
+			building = impressment_offices 
+			type = manpower 
+			value = 1 
+		}
 	}
 	on_obsolete = {
 	}
-	# END ANBENNAR
-
-	show_separate = yes
 
 	ai_will_do = {
 		factor = 1
@@ -4392,11 +2999,12 @@ state_house = {
 		all
 	}
 
-	bonus_manufactory = {
+	bonus_manufactory = { # Will apply an extra modifier if these goods
 		paper
 		glass
 		gems
 		amber
+		pearls
 	}
 
 	build_trigger = {
@@ -4412,7 +3020,7 @@ state_house = {
 			}
 		}
 	}
-	
+
 	keep_trigger = {
 		NOT = {
 			area_for_scope_province = {
@@ -4429,21 +3037,28 @@ state_house = {
 	}
 
 	modifier = {
-		statewide_governing_cost = -0.25
+		statewide_governing_cost = -0.2
 		min_local_autonomy = -5
 		local_governing_cost = -0.15
 		local_governing_cost_increase = -10
 		allowed_num_of_buildings = 1
 	}
 	bonus_modifier = {
-		statewide_governing_cost = -0.25
+		statewide_governing_cost = -0.2
 		min_local_autonomy = -5
 		local_governing_cost = -0.15
 		local_governing_cost_increase = -10
 	}
 	onmap = no
-	# ANBENNAR
+	show_separate = yes # Means as a manufactory it will be shown according to the old way
+
 	on_built = {
+		add_development_from_building = {
+			building = state_house
+			type = tax
+			value = 2
+		}
+		# ANBENNAR
 		if = {
 			limit = {
 				area = castonath_area
@@ -4462,13 +3077,9 @@ state_house = {
 			clr_province_flag = latest_manufactory_built_is_furnace
 			clr_province_flag = latest_manufactory_built_is_mage_tower
 		}
-		add_development_from_building = {
-			building = state_house
-			type = tax
-			value = 2
-		}
+		#Anbennar
+		anbennar_building_effect = yes
 	}
-	# END ANBENNAR
 	on_destroyed = {
 		remove_development_from_building = {
 			building = state_house
@@ -4479,296 +3090,14 @@ state_house = {
 	on_obsolete = {
 	}
 
-	show_separate = yes
-
 	ai_will_do = {
 		factor = 1
-		#LIMIT
+		#Provinces in the Capital Area don't need a state house
 		modifier = {
 			factor = 0
-			FROM = { num_of_loans = 3 }
+			area_for_scope_province = {
+				is_capital_of = FROM
+			}
 		}
-		modifier = {
-			factor = 0.3
-			FROM = { num_of_loans = 2 }
-		}
-		modifier = {
-			factor = 0.5
-			FROM = { num_of_loans = 1 }
-		}
-		modifier = {
-			factor = 0.5
-			FROM = { NOT = { governing_capacity_percentage = 0.5 } }
-		}
-		modifier = {
-			factor = 0.5
-			has_no_manufactory_trigger = yes
-		}
-		modifier = {
-			factor = 0.75
-			FROM = { NOT = { treasury = 500 } }
-		}
-		modifier = {
-			factor = 0.75
-			FROM = { is_in_deficit = yes }
-		}
-		#TREASURY
-		modifier = {
-			factor = 1.2
-			FROM = { treasury = 500 }
-		}
-		modifier = {
-			factor = 1.3
-			FROM = { treasury = 750 }
-		}
-		modifier = {
-			factor = 1.4
-			FROM = { treasury = 1000 }
-		}
-		#TRADE GOODS
-		modifier = {
-			factor = 0
-			xorme_province_with_special_goods_produced_trigger = yes
-		}
-		modifier = {
-			factor = 0.2
-			xorme_high_quality_trade_goods_trigger = yes
-		}
-		modifier = {
-			factor = 0.4
-			xorme_medium_quality_trade_goods_trigger = yes
-		}
-		modifier = {
-			factor = 0.5
-			xorme_low_quality_trade_goods_trigger = yes
-		}
-		modifier = {
-			factor = 2.0
-			trade_goods = gold
-		}
-		modifier = {
-			factor = 2.0
-			FROM = { governing_capacity_percentage = 0.8 }
-		}
-		modifier = {
-			factor = 2.0
-			FROM = { governing_capacity_percentage = 1.0 }
-		}
-		modifier = {
-			factor = 2.0
-			FROM = { governing_capacity_percentage = 1.1 }
-		}
-	}
-}
-
-#### MODDED BUILDINGS - ROAD
-
-early_road = {
-    cost = 100
-    time = 8
-
-	build_trigger = {
-		NOT = { has_terrain = dwarven_road }
-	}
-
-    one_per_country = no
-    allow_in_gold_provinces = yes
-    onmap = no
-    modifier = {
-		# Economy
-    	province_trade_power_modifier = 0.1
-		#local_tax_modifier = 0.05
-		#local_production_efficiency = 0.05
-
-		# Development
-		#local_development_cost = None
-
-		# Other
-		#allowed_num_of_buildings = 1
-		#local_culture_conversion_cost = None
-		local_state_maintenance_modifier = 0.20
-
-		# Movement
-		local_friendly_movement_speed = 0.1
-		#local_hostile_movement_speed = None
-
-		
-    }
-    ai_will_do = {
-        factor = 5
-    }
-}
-
-
-gravel_road= {
-    cost = 300
-    time = 16
-	make_obsolete = early_road
-
-	build_trigger = {
-		NOT = { has_terrain = dwarven_road }
-	}
-
-    one_per_country = no
-    allow_in_gold_provinces = yes
-    onmap = no
-    modifier = {
-		# Economy
-    	province_trade_power_modifier = 0.2
-		#local_tax_modifier = 0.1
-		#local_production_efficiency = 0.1
-
-		# Development
-		local_development_cost = -0.025
-
-		# Other
-		#allowed_num_of_buildings = 1
-		#local_culture_conversion_cost = None
-		local_state_maintenance_modifier = 0.40
-
-		# Movement
-		local_friendly_movement_speed = 0.15
-		#local_hostile_movement_speed = 0.05
-
-    }
-    ai_will_do = {
-        factor = 5
-    }
-}
-
-royal_road= {
-    cost = 400
-    time = 24
-	make_obsolete = gravel_road
-
-	build_trigger = {
-		NOT = { has_terrain = dwarven_road }
-	}
-
-    one_per_country = no
-    allow_in_gold_provinces = yes
-    onmap = no
-    modifier = {
-		# Economy
-    	province_trade_power_modifier = 0.3
-		#local_tax_modifier = 0.2
-		#local_production_efficiency = 0.2
-
-		# Development
-		local_development_cost = -0.05
-
-		# Other
-		allowed_num_of_buildings = 1
-		#local_culture_conversion_cost = None
-		local_state_maintenance_modifier = 0.60
-
-		# Movement
-		local_friendly_movement_speed = 0.2
-		#local_hostile_movement_speed = 0.1
-    }
-    ai_will_do = {
-        factor = 5
-    }
-}
-
-macadam_road= {
-    cost = 500
-    time = 32
-	make_obsolete = royal_road
-
-	build_trigger = {
-		NOT = { has_terrain = dwarven_road }
-	}
-
-    one_per_country = no
-    allow_in_gold_provinces = yes
-    onmap = no
-    modifier = {
-		# Economy
-    	province_trade_power_modifier = 0.4
-		#local_tax_modifier = 0.3
-		#local_production_efficiency = 0.3
-
-		# Development
-		local_development_cost = -0.075
-
-		# Other
-		allowed_num_of_buildings = 1
-		local_culture_conversion_cost = -0.1
-		local_state_maintenance_modifier = 0.80
-
-		# Movement
-		local_friendly_movement_speed = 0.25
-		#local_hostile_movement_speed = 0.15
-    }
-    ai_will_do = {
-        factor = 5
-    }
-}
-
-
-railroad = {
-	cost = 1000
-	time = 40
-	make_obsolete = macadam_road
-
-    one_per_country = no
-    allow_in_gold_provinces = yes
-    onmap = no
-
-	build_trigger = {
-		NOT = { has_terrain = dwarven_road }
-	}
-	
-	#build_trigger = {
-	#	NOT = {
-	#		OR = { 
-	#			has_province_modifier = restored_rail
-	#			has_province_modifier = advanced_rail
-	#		}
-	#	}
-	#}
-
-    modifier = {
-		# Economy
-    	province_trade_power_modifier = 0.5
-		#local_tax_modifier = 0.5
-		#local_production_efficiency = 0.5
-
-		# Development
-		local_development_cost = -0.1
-
-		# Other
-		allowed_num_of_buildings = 1
-		local_culture_conversion_cost = -0.2
-		local_state_maintenance_modifier = 2
-
-		# Movement
-		local_friendly_movement_speed = 0.5
-		#local_hostile_movement_speed = 0.3
-    }
-
-	ai_will_do = {
-		factor = 5
-#		modifier = {
-#			factor = 0
-#			NOT = { development = 10 }
-#		}	
-#		modifier = {
-#			factor = 0.5
-#			NOT = { development = 20 }
-#		}
-#		modifier = {
-#			factor = 1.5
-#			development = 30
-#		}
-#		modifier = {
-#			factor = 1.5
-#			development = 40
-#		}
-#		modifier = {
-#			factor = 0.1
-#			is_overseas = yes
-#		}
 	}
 }

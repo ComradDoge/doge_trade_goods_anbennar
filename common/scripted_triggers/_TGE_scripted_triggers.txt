@@ -75,7 +75,6 @@ has_mining_goods = {
 		trade_goods = tar
 		trade_goods = sulfur
 		trade_goods = zinc
-		trade_goods = brass
 		trade_goods = cannon
 	}
 }
@@ -106,5 +105,87 @@ has_plantage_goods = {
 		trade_goods = indigo
 		trade_goods = cigars
 		trade_goods = chocolate
+	}
+}
+
+has_metal_goods = {
+	custom_trigger_tooltip = {
+		tooltip = has_metal_goods_tt
+		OR = { 
+			trade_goods = tin
+			trade_goods = iron
+			trade_goods = lead
+			trade_goods = zinc
+			trade_goods = copper
+		}
+	}
+}
+
+# Dwarf Shit
+has_foundry_district_goods = {
+	OR = { 
+		trade_goods = tin
+		trade_goods = iron
+		trade_goods = lead
+		trade_goods = zinc
+		trade_goods = copper
+
+		trade_goods = damestear
+		trade_goods = mithril
+
+		trade_goods = steam_engine
+		trade_goods = metalworking
+		trade_goods = cannon
+	}	
+}
+
+has_city_hub_district_goods = {
+	OR = { 
+		trade_goods = beer
+		trade_goods = carpet
+		trade_goods = jewellery
+		trade_goods = cheese
+		trade_goods = rum
+		trade_goods = opium
+		trade_goods = saffron
+		trade_goods = vanilla
+		trade_goods = cigars
+		trade_goods = pearls
+	}
+}
+
+has_artisan_district_goods = {
+	OR = { 
+		trade_goods = lumber
+		trade_goods = optics
+		trade_goods = marble_sculpture
+		trade_goods = marble
+		trade_goods = jade_sculptures
+		trade_goods = jade
+		trade_goods = woodworking
+	}
+}
+
+has_vertical_farm_district_goods = {
+	OR = { 
+		trade_goods = rice
+		trade_goods = horses
+	}
+}
+
+has_military_district_goods = {
+	OR = { 
+		trade_goods = tin
+		trade_goods = iron
+		trade_goods = lead
+		trade_goods = zinc
+		trade_goods = copper
+
+		trade_goods = horses
+		trade_goods = gunpowder
+		trade_goods = tar
+		trade_goods = uniforms
+		trade_goods = munitions
+		trade_goods = cannon
 	}
 }

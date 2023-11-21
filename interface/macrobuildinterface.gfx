@@ -190,6 +190,7 @@ spriteTypes = {
 	spriteType = {
 		name = "GFX_banner_left_4"
 		texturefile = "gfx//interface//banner_left_4.dds"
+		legacy_lazy_load=no
 	}
 
 	spriteType = {
@@ -228,6 +229,11 @@ spriteTypes = {
 	spriteType = {
 		name = "GFX_estate_entry"
 		texturefile = "gfx/interface/estate_interface/estate_entry.dds"
+	}
+
+	spriteType = {
+		name = "GFX_estate_entry_new"
+		texturefile = "gfx/interface/estate_interface/estate_entry_new.dds"
 	}
 
 	spriteType = {
@@ -626,6 +632,11 @@ spriteTypes = {
 	spriteType = {
 		name = "GFX_macro_diplomacy_slot"
 		texturefile = "gfx//interface//macro_diplomacy_slot.dds"
+	}
+
+	spriteType = {
+		name = "GFX_macro_diplomacy_slot_small"
+		texturefile = "gfx//interface//macro_diplomacy_slot_small.dds"
 	}
 
 	spriteType = {

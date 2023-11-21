@@ -387,3 +387,25 @@ xorme_exploration_idea_group_priority_trigger = {
 		tag = SOS
 	}
 }
+
+xorme_additional_manpower_goods_trigger = {
+	OR = {
+		trade_goods = grain
+		trade_goods = fish
+		trade_goods = livestock
+		trade_goods = wine
+		trade_goods = apiculture
+		trade_goods = rice
+		trade_goods = dates
+		trade_goods = cheese
+		trade_goods = maize
+	}
+}
+
+xorme_has_production_buildings_trigger = {
+	xorme_has_any_manufactory_trigger = yes
+	OR = {
+		has_building = workshop
+		has_building = counting_house
+	}
+}

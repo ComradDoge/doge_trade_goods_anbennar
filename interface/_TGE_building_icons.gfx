@@ -41,7 +41,11 @@ spriteTypes = {
 		loadType = "INGAME"
 	}
 	
-	
+	spriteType = {
+		name = "GFX_off_11"
+		texturefile = "gfx//interface//TGE//buildings//off_11.dds"
+		loadType = "INGAME"
+	}	
 	
 	spriteType = {
 		name = "GFX_import_from_subjects"
@@ -81,6 +85,12 @@ spriteTypes = {
 		loadType = "INGAME"
 	}
 	
+	spriteType = {
+		name = "GFX_fur_workshop"
+		texturefile = "gfx//interface//TGE//buildings//fur_workshop.tga"
+		loadType = "INGAME"
+	}
+
 	spriteType = {
 		name = "GFX_sculpture_workshop"
 		texturefile = "gfx//interface//TGE//buildings//sculpture_workshop.tga"
@@ -129,6 +139,11 @@ spriteTypes = {
 		loadType = "INGAME"
 	}
 	spriteType = {
+		name = "GFX_latent_fur"
+		texturefile = "gfx//interface//TGE//latent_stuff//latent_fur.dds"
+		loadType = "INGAME"
+	}
+	spriteType = {
 		name = "GFX_latent_marble"
 		texturefile = "gfx//interface//TGE//latent_stuff//latent_marble.dds"
 		loadType = "INGAME"
@@ -172,6 +187,12 @@ spriteTypes = {
 	spriteType = {
 		name = "GFX_camel_icon"
 		texturefile = "gfx//interface//ideas_EU4//camel_icon.dds"
+		loadType = "INGAME"
+	}
+
+	spriteType = {
+		name = "GFX_fur_icon"
+		texturefile = "gfx//interface//ideas_EU4//fur_icon.dds"
 		loadType = "INGAME"
 	}
 
@@ -289,6 +310,16 @@ spriteTypes = {
 	spriteType = {
 		name = "GFX_latent_cheese"
 		texturefile = "gfx//interface//TGE//latent_stuff//latent_cheese.dds"
+		loadType = "INGAME"
+	}
+	spriteType = {
+		name = "GFX_cloth_workshop"
+		texturefile = "gfx//interface//TGE//buildings//cloth_workshop.tga"
+		loadType = "INGAME"
+	}
+	spriteType = {
+		name = "GFX_latent_cloth"
+		texturefile = "gfx//interface//TGE//latent_stuff//latent_cloth.dds"
 		loadType = "INGAME"
 	}
 	spriteType = {

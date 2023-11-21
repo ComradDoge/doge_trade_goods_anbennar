@@ -277,7 +277,7 @@ guiTypes = {
 			font = "vic_18"
 			borderSize = {x = 0 y = 0}
 			text = "UNIT_NAME"
-			maxWidth = 200
+			maxWidth = 120
 			maxHeight = 32
 			format = left
 			alwaystransparent = yes
@@ -299,7 +299,7 @@ guiTypes = {
 
 		instantTextBoxType = {
 			name = "amount"
-			position = { x = 5 y = 22 }
+			position = { x = 60 y = 22 }
 			font = "vic_18"
 			borderSize = {x = 0 y = 0}
 			text = ""
@@ -466,7 +466,7 @@ guiTypes = {
 		name = "new_buildings_entry"
 		backGround=""
 		position = { x=0 y =0}	
-		size = { x=470 y = 1620}
+		size = { x=470 y = 1700}
 		moveable = 0
 		dontRender = ""
 		horizontalBorder= ""
@@ -672,19 +672,6 @@ guiTypes = {
 			spriteType = "GFX_building_upgrade_icon"
 		}
 
-
-		#iconType = {
-		#	name = "town_hall_to_government_lvl_3_arrow"
-		#	position = { x = 285 y = 41 }
-		#	spriteType = "GFX_building_upgrade_icon"
-		#}
-		#iconType = {
-		#	name = "government_lvl_3_to_government_lvl_4_arrow"
-		#	position = { x = 338 y = 41 }
-		#	spriteType = "GFX_building_upgrade_icon"
-		#}
-		
-		
 		#iconType = {
 		#	name = "town_hall_to_government_lvl_3_arrow"
 		#	position = { x = 285 y = 41 }
@@ -1188,43 +1175,6 @@ guiTypes = {
 			spriteType = "GFX_building_upgrade_icon"
 		}
 
-		#MODDED Polygon Fort and Trenches
-
-		#checkboxType = {
-		#	name = "build_fort_19th"
-		#	position = {x = 217 y = 323 }
-		#	quadTextureSprite = "GFX_courthouse_muslimgfx"
-		#}
-		#instantTextBoxType ={
-		#	name = "fort_19th_cost"
-		#	position = {x = 217 y = 373 }
-		#	font = "vic_18"
-		#	borderSize = {x = 0 y = 0}
-		#	maxWidth = 128
-		#	maxHeight = 18
-		#	text = "2000¤"	
-		#}
-		#
-		#iconType = {
-		#	name = "fort_18th_to_fort_19th_arrow"
-		#	position = { x = 209 y = 332 }
-		#	spriteType = "GFX_building_upgrade_icon"
-		#}
-		#
-		#checkboxType = {
-		#	name = "build_trenches"
-		#	position = {x = 269 y = 323 }
-		#	quadTextureSprite = "GFX_courthouse_muslimgfx"
-		#}
-		#instantTextBoxType ={
-		#	name = "trenches_cost"
-		#	position = {x = 269 y = 373 }
-		#	font = "vic_18"
-		#	borderSize = {x = 0 y = 0}
-		#	maxWidth = 128
-		#	maxHeight = 18
-		#	text = "2000¤"	
-		#}
 
 		iconType = {
 			name = "manufactory_banner"
@@ -1248,7 +1198,6 @@ guiTypes = {
 			position = { x = 15 y = 391}
 			frame = 8
 		}
-
 		checkboxType = {
 			name = "build_manufactory"
 			position = { x = 9 y = 420 }
@@ -1281,7 +1230,7 @@ guiTypes = {
 			maxHeight = 18
 			text = "2000¤"
 		}
-	
+
 		iconType = {
 			name = "Mining_banner"
 			position = { x = 268 y = 595 }
@@ -1458,7 +1407,7 @@ guiTypes = {
 			borderSize = {x = 0 y = 0}	
 			maxWidth = 120
 			maxHeight = 18
-			text = "Road System"	
+			text = "Road Infrastructure"	
 		}
 		
 		iconType ={
@@ -1657,9 +1606,11 @@ guiTypes = {
 			position = { x = 340 y = 429 }
 			spriteType = "GFX_building_upgrade_icon"
 		}
-		
+
+		##################################################################################
 		# Trade Goods Expanded Latent
-		
+		##################################################################################
+
 		iconType = {
 			name = "latent_banner"
 			position = { x = 3 y = 700 }
@@ -1675,16 +1626,17 @@ guiTypes = {
 			maxHeight = 18
 			text = "LATENT"
 		}
-		
+
+		################################################################################## Beginning of Latent Goods ##################################################################################
 		checkboxType = {
-			name = "build_cannon_foundry"
+			name = "build_leather_workshop"
 			position = { x = 9  y = 778 }
 			quadTextureSprite = "GFX_courthouse_muslimgfx" #Placeholder, real sprite is decided by game (based on button name).
 		}
 		
 
 		instantTextBoxType={
-			name = "cannon_foundry_cost"
+			name = "leather_workshop_cost"
 			position = {x = 9 y = 828 }
 			font = "vic_18"
 			borderSize = {x = 0 y = 0}
@@ -1693,171 +1645,173 @@ guiTypes = {
 			text = "2000¤"
 		}
 			
+			
+		
+		
 		
 		iconType = {
-			name = "latent_arrow_cannon"
+			name = "latent_arrow_leather"
 			position = { x = 60 y = 793 }
 			spriteType = "GFX_arrow_lat_str"
 		}
 
 		iconType = {
-			name = "frame_cannon"
-			position = { x = 90 y = 775 }
-			spriteType = "GFX_tge_goods_frame"
-		}	
-
-		iconType = {
-			name = "latent_cannon"
-			position = { x = 87 y = 775 }
-			spriteType = "GFX_latent_cannon"
-		}
-		
-		instantTextBoxType={
-			name = "title_latent_cannon"
-			position = {x = 145 y = 778 }
-			font = "ToolTip_Font"
-			borderSize = {x = 0 y = 0}
-			maxWidth = 180
-			maxHeight = 18
-			text = "LATENT_CANNON"
-		}
-		
-		checkboxType = {
-			name = "build_metalworking_workshop"
-			position = { x = 9 y = 845 }
-			quadTextureSprite = "GFX_courthouse_muslimgfx" #Placeholder, real sprite is decided by game (based on button name).
-		}
-		
-
-		instantTextBoxType={
-			name = "metalworking_workshop_cost"
-			position = {x = 9 y = 895 }
-			font = "vic_18"
-			borderSize = {x = 0 y = 0}
-			maxWidth = 128
-			maxHeight = 18
-			text = "2000¤"
-		}
-		
-		iconType = {
-			name = "latent_arrow_metalworking"
-			position = { x = 60 y = 860 }
-			spriteType = "GFX_arrow_lat_str"
-		}
-
-		iconType = {
-			name = "frame_metal"
-			position = { x = 90 y = 842 }
-			spriteType = "GFX_tge_goods_frame"
-		}
-			
-		iconType = {
-			name = "latent_metal"
-			position = { x = 87 y = 842 }
-			spriteType = "GFX_latent_metal"
-		}
-		
-		instantTextBoxType={
-			name = "title_latent_metalworking"
-			position = {x = 145 y = 845 }
-			font = "ToolTip_Font"
-			borderSize = {x = 0 y = 0}
-			maxWidth = 180
-			maxHeight = 18
-			text = "LATENT_METALWORKING"
-		}
-		
-		checkboxType = {
-			name = "build_munition_factory"
-			position = { x = 9  y = 912 }
-			quadTextureSprite = "GFX_courthouse_muslimgfx" #Placeholder, real sprite is decided by game (based on button name).
-		}
-		
-
-		instantTextBoxType={
-			name = "munition_factory_cost"
-			position = {x = 9 y = 962 }
-			font = "vic_18"
-			borderSize = {x = 0 y = 0}
-			maxWidth = 128
-			maxHeight = 18
-			text = "2000¤"
-		}
-
-		iconType = {
-			name = "latent_arrow_muni"
-			position = { x = 60 y = 927 }
-			spriteType = "GFX_arrow_lat_str"
-		}
-
-		iconType = {
-			name = "frame_muni"
-			position = { x = 90 y = 909 }
-			spriteType = "GFX_tge_goods_frame"
-		}
-			
-		iconType = {
-			name = "latent_muni"
-			position = { x = 87 y = 909 }
-			spriteType = "GFX_latent_muni"
-		}
-		
-		instantTextBoxType={
-			name = "title_latent_muni"
-			position = {x = 145 y = 912 }
-			font = "ToolTip_Font"
-			borderSize = {x = 0 y = 0}
-			maxWidth = 180
-			maxHeight = 18
-			text = "LATENT_MUNI"
-		}
-		
-		checkboxType = {
-			name = "build_leather_workshop"
-			position = { x = 9  y = 979 }
-			quadTextureSprite = "GFX_courthouse_muslimgfx" #Placeholder, real sprite is decided by game (based on button name).
-		}
-		
-
-		instantTextBoxType={
-			name = "leather_workshop_cost"
-			position = {x = 9 y = 1029 }
-			font = "vic_18"
-			borderSize = {x = 0 y = 0}
-			maxWidth = 128
-			maxHeight = 18
-			text = "2000¤"
-		}
-		
-		iconType = {
-			name = "latent_arrow_leather"
-			position = { x = 60 y = 994 }
-			spriteType = "GFX_arrow_lat_str"
-		}
-
-		iconType = {
 			name = "frame_leather"
-			position = { x = 90 y = 976 }
+			position = { x = 90 y = 775 }
 			spriteType = "GFX_tge_goods_frame"
 		}
 					
 		iconType = {
 			name = "latent_leather"
-			position = { x = 87 y = 976 }
+			position = { x = 87 y = 775 }
 			spriteType = "GFX_latent_leather"
 		}
 		
 		instantTextBoxType={
 			name = "title_latent_leather"
-			position = {x = 145 y = 979 }
+			position = {x = 145 y = 778 }
 			font = "ToolTip_Font"
 			borderSize = {x = 0 y = 0}
 			maxWidth = 180
 			maxHeight = 18
 			text = "LATENT_LEATHER"
+		}		
+
+		##################################################################################
+		checkboxType = {
+			name = "build_cheese_workshop"
+			position = { x = 9 y = 845 } #+67
+			quadTextureSprite = "GFX_courthouse_muslimgfx" #Placeholder, real sprite is decided by game (based on button name).
 		}
 		
-			
+		instantTextBoxType={
+			name = "cheese_workshop_cost"
+			position = {x = 9 y = 895 }
+			font = "vic_18"
+			borderSize = {x = 0 y = 0}	
+			maxWidth = 128
+			maxHeight = 18
+			text = "2000¤"
+		}
+		
+		iconType = {
+			name = "latent_arrow_cheese"
+			position = { x = 60 y = 860 }
+			spriteType = "GFX_arrow_lat_str"
+		}
+
+		iconType = {
+			name = "frame_cheese"
+			position = { x = 90 y = 842 }
+			spriteType = "GFX_tge_goods_frame"
+		}
+						
+		iconType = {
+			name = "latent_cheese"
+			position = { x = 87 y = 842 }
+			spriteType = "GFX_latent_cheese"
+		}
+		
+		instantTextBoxType={
+			name = "title_latent_cheesee"
+			position = {x = 145 y = 845 }
+			font = "ToolTip_Font"
+			borderSize = {x = 0 y = 0}
+			maxWidth = 180
+			maxHeight = 18
+			text = "LATENT_CHEESE"
+		}
+		##################################################################################
+		checkboxType = {
+			name = "build_cloth_workshop" #+67
+			position = { x = 9 y = 912 }
+			quadTextureSprite = "GFX_courthouse_muslimgfx" #Placeholder, real sprite is decided by game (based on button name).
+		}
+		
+		instantTextBoxType={
+			name = "cloth_workshop_cost"
+			position = {x = 9 y = 962 }
+			font = "vic_18"
+			borderSize = {x = 0 y = 0}	
+			maxWidth = 128
+			maxHeight = 18
+			text = "2000¤"	
+		}
+		
+		iconType = {
+			name = "latent_arrow_cloth_workshop"
+			position = { x = 60 y = 927 }
+			spriteType = "GFX_arrow_lat_str"
+		}
+
+		iconType = {
+			name = "frame_cloth_workshop"
+			position = { x = 90 y = 909 }
+			spriteType = "GFX_tge_goods_frame"
+		}
+						
+		iconType = {
+			name = "latent_cloth"
+			position = { x = 87 y = 909 }
+			spriteType = "GFX_latent_cloth"
+		}
+		
+		instantTextBoxType={
+			name = "title_latent_cloth"
+			position = {x = 145 y = 912 }
+			font = "ToolTip_Font"
+			borderSize = {x = 0 y = 0}
+			maxWidth = 180
+			maxHeight = 18
+			text = "LATENT_CLOTH"
+		}
+
+		##################################################################################
+		checkboxType = {
+			name = "build_fur_workshop" #+67
+			position = { x = 9 y = 979 }
+			quadTextureSprite = "GFX_courthouse_muslimgfx" #Placeholder, real sprite is decided by game (based on button name).
+		}
+		
+		instantTextBoxType={
+			name = "fur_workshop_cost"
+			position = {x = 9 y = 1029 }
+			font = "vic_18"
+			borderSize = {x = 0 y = 0}	
+			maxWidth = 128
+			maxHeight = 18
+			text = "2000¤"	
+		}
+		
+		iconType = {
+			name = "latent_arrow_fur_workshop"
+			position = { x = 60 y = 994 }
+			spriteType = "GFX_arrow_lat_str"
+		}
+
+		iconType = {
+			name = "frame_fur_workshop"
+			position = { x = 90 y = 976 }
+			spriteType = "GFX_tge_goods_frame"
+		}
+						
+		iconType = {
+			name = "latent_fur_clothing"
+			position = { x = 87 y = 976 }
+			spriteType = "GFX_latent_fur"
+		}
+		
+		instantTextBoxType={
+			name = "title_latent_fur_clothing"
+			position = {x = 145 y = 979 }
+			font = "ToolTip_Font"
+			borderSize = {x = 0 y = 0}
+			maxWidth = 180
+			maxHeight = 18
+			text = "LATENT_FUR"
+		}
+
+		##################################################################################
 		checkboxType = {
 			name = "build_wood_workshop"
 			position = { x = 9 y = 1046 }
@@ -1902,16 +1856,17 @@ guiTypes = {
 			maxHeight = 18
 			text = "LATENT_WOOD"
 		}
-		
+
+		##################################################################################		
 		checkboxType = {
-			name = "build_jewellery_workshop"
+			name = "build_cannon_foundry"
 			position = { x = 9  y = 1113 }
 			quadTextureSprite = "GFX_courthouse_muslimgfx" #Placeholder, real sprite is decided by game (based on button name).
 		}
 		
 
 		instantTextBoxType={
-			name = "jewellery_workshop_cost"
+			name = "cannon_foundry_cost"
 			position = {x = 9 y = 1163 }
 			font = "vic_18"
 			borderSize = {x = 0 y = 0}
@@ -1919,43 +1874,45 @@ guiTypes = {
 			maxHeight = 18
 			text = "2000¤"
 		}
+			
 		
 		iconType = {
-			name = "latent_arrow_jev"
+			name = "latent_arrow_cannon"
 			position = { x = 60 y = 1128 }
 			spriteType = "GFX_arrow_lat_str"
 		}
 
 		iconType = {
-			name = "frame_jev"
+			name = "frame_cannon"
 			position = { x = 90 y = 1110 }
 			spriteType = "GFX_tge_goods_frame"
-		}
-					
+		}	
+
 		iconType = {
-			name = "latent_jev"
+			name = "latent_cannon"
 			position = { x = 87 y = 1110 }
-			spriteType = "GFX_latent_jev"
+			spriteType = "GFX_latent_cannon"
 		}
 		
 		instantTextBoxType={
-			name = "title_latent_jev"
+			name = "title_latent_cannon"
 			position = {x = 145 y = 1113 }
 			font = "ToolTip_Font"
 			borderSize = {x = 0 y = 0}
 			maxWidth = 180
 			maxHeight = 18
-			text = "LATENT_JEV"
+			text = "LATENT_CANNON"
 		}
 
+		##################################################################################		
 		checkboxType = {
-			name = "build_steam_engine_manu"
+			name = "build_sculpture_workshop" #+67
 			position = { x = 9 y = 1180 }
 			quadTextureSprite = "GFX_courthouse_muslimgfx" #Placeholder, real sprite is decided by game (based on button name).
 		}
 		
 		instantTextBoxType={
-			name = "steam_engine_manu_cost"
+			name = "sculpture_workshop_cost"
 			position = {x = 9 y = 1230 }
 			font = "vic_18"
 			borderSize = {x = 0 y = 0}	
@@ -1965,34 +1922,34 @@ guiTypes = {
 		}
 		
 		iconType = {
-			name = "latent_arrow_steam"
+			name = "latent_arrow_sculpture"
 			position = { x = 60 y = 1195 }
 			spriteType = "GFX_arrow_lat_str"
 		}
 
 		iconType = {
-			name = "frame_steam"
+			name = "frame_marble"
 			position = { x = 90 y = 1177 }
 			spriteType = "GFX_tge_goods_frame"
 		}
 						
 		iconType = {
-			name = "latent_steam"
+			name = "latent_marble"
 			position = { x = 87 y = 1177 }
-			spriteType = "GFX_latent_steam"
+			spriteType = "GFX_latent_marble"
 		}
 		
 		instantTextBoxType={
-			name = "title_latent_steam"
+			name = "title_latent_sculpture"
 			position = {x = 145 y = 1180 }
 			font = "ToolTip_Font"
 			borderSize = {x = 0 y = 0}
 			maxWidth = 180
 			maxHeight = 18
-			text = "LATENT_STEAM"
+			text = "LATENT_SCULPTURE"
 		}
-		
-		
+
+		##################################################################################		
 		checkboxType = {
 			name = "build_spectacle_factory"
 			position = { x = 9 y = 1247 }
@@ -2037,97 +1994,154 @@ guiTypes = {
 			text = "LATENT_OPT"
 		}
 
-		#checkboxType = {
-		#	name = "build_milkies_workshop"
-		#	position = { x = 9 y = 1314 }
-		#	quadTextureSprite = "GFX_courthouse_muslimgfx" #Placeholder, real sprite is decided by game (based on button name).
-		#}
-		#
-		#instantTextBoxType={
-		#	name = "milkies_workshop_cost"
-		#	position = {x = 9 y = 1364 }
-		#	font = "vic_18"
-		#	borderSize = {x = 0 y = 0}	
-		#	maxWidth = 128
-		#	maxHeight = 18
-		#	text = "2000¤"
-		#}
-		#
-		#iconType = {
-		#	name = "latent_arrow_milkies"
-		#	position = { x = 60 y = 1320 }
-		#	spriteType = "GFX_arrow_lat_str"
-		#}
-		#	
-		#iconType = {
-		#	name = "latent_milkies"
-		#	position = { x = 87 y = 1311 }
-		#	spriteType = "GFX_latent_milkies"
-		#}
-		#
-		#instantTextBoxType={
-		#	name = "title_latent_milkies"
-		#	position = {x = 145 y = 1314 }
-		#	font = "ToolTip_Font"
-		#	borderSize = {x = 0 y = 0}
-		#	maxWidth = 180
-		#	maxHeight = 18
-		#	text = "LATENT_MILKIES"
-		#}
-
+		##################################################################################
 		checkboxType = {
-			name = "build_cheese_workshop"
-			position = { x = 9 y = 1314 } #+67
+			name = "build_jewellery_workshop"
+			position = { x = 9  y = 1314 }
 			quadTextureSprite = "GFX_courthouse_muslimgfx" #Placeholder, real sprite is decided by game (based on button name).
 		}
 		
+
 		instantTextBoxType={
-			name = "cheese_workshop_cost"
+			name = "jewellery_workshop_cost"
 			position = {x = 9 y = 1364 }
 			font = "vic_18"
-			borderSize = {x = 0 y = 0}	
+			borderSize = {x = 0 y = 0}
 			maxWidth = 128
 			maxHeight = 18
 			text = "2000¤"
 		}
 		
 		iconType = {
-			name = "latent_arrow_cheese"
+			name = "latent_arrow_jev"
 			position = { x = 60 y = 1329 }
 			spriteType = "GFX_arrow_lat_str"
 		}
 
 		iconType = {
-			name = "frame_cheese"
+			name = "frame_jev"
 			position = { x = 90 y = 1311 }
 			spriteType = "GFX_tge_goods_frame"
 		}
-						
+					
 		iconType = {
-			name = "latent_cheese"
+			name = "latent_jev"
 			position = { x = 87 y = 1311 }
-			spriteType = "GFX_latent_cheese"
+			spriteType = "GFX_latent_jev"
 		}
 		
 		instantTextBoxType={
-			name = "title_latent_cheesee"
+			name = "title_latent_jev"
 			position = {x = 145 y = 1314 }
 			font = "ToolTip_Font"
 			borderSize = {x = 0 y = 0}
 			maxWidth = 180
 			maxHeight = 18
-			text = "LATENT_CHEESE"
+			text = "LATENT_JEV"
 		}
 
+		##################################################################################
+		checkboxType = {
+			name = "build_munition_factory"
+			position = { x = 9  y = 1381 }
+			quadTextureSprite = "GFX_courthouse_muslimgfx" #Placeholder, real sprite is decided by game (based on button name).
+		}
+		
+
+		instantTextBoxType={
+			name = "munition_factory_cost"
+			position = {x = 9 y = 1431 }
+			font = "vic_18"
+			borderSize = {x = 0 y = 0}
+			maxWidth = 128
+			maxHeight = 18
+			text = "2000¤"
+		}
+
+		iconType = {
+			name = "latent_arrow_muni"
+			position = { x = 60 y = 1396 }
+			spriteType = "GFX_arrow_lat_str"
+		}
+
+		iconType = {
+			name = "frame_muni"
+			position = { x = 90 y = 1378 }
+			spriteType = "GFX_tge_goods_frame"
+		}
+			
+		iconType = {
+			name = "latent_muni"
+			position = { x = 87 y = 1378 }
+			spriteType = "GFX_latent_muni"
+		}
+		
+		instantTextBoxType={
+			name = "title_latent_muni"
+			position = {x = 145 y = 1381 }
+			font = "ToolTip_Font"
+			borderSize = {x = 0 y = 0}
+			maxWidth = 180
+			maxHeight = 18
+			text = "LATENT_MUNI"
+		}
+
+		##################################################################################
+		checkboxType = {
+			name = "build_metalworking_workshop"
+			position = { x = 9 y = 1448 }
+			quadTextureSprite = "GFX_courthouse_muslimgfx" #Placeholder, real sprite is decided by game (based on button name).
+		}
+		
+
+		instantTextBoxType={
+			name = "metalworking_workshop_cost"
+			position = {x = 9 y = 1498 }
+			font = "vic_18"
+			borderSize = {x = 0 y = 0}
+			maxWidth = 128
+			maxHeight = 18
+			text = "2000¤"
+		}
+		
+		iconType = {
+			name = "latent_arrow_metalworking"
+			position = { x = 60 y = 1463 }
+			spriteType = "GFX_arrow_lat_str"
+		}
+
+		iconType = {
+			name = "frame_metal"
+			position = { x = 90 y = 1445 }
+			spriteType = "GFX_tge_goods_frame"
+		}
+			
+		iconType = {
+			name = "latent_metal"
+			position = { x = 87 y = 1445 }
+			spriteType = "GFX_latent_metal"
+		}
+		
+		instantTextBoxType={
+			name = "title_latent_metalworking"
+			position = {x = 145 y = 1448 }
+			font = "ToolTip_Font"
+			borderSize = {x = 0 y = 0}
+			maxWidth = 180
+			maxHeight = 18
+			text = "LATENT_METALWORKING"
+		}
+		
+		##################################################################################
 		checkboxType = {
 			name = "build_uniforms_workshop"
-			position = { x = 9 y = 1381 }
+			position = { x = 9 y = 1515 }
 			quadTextureSprite = "GFX_courthouse_muslimgfx" #Placeholder, real sprite is decided by game (based on button name).
 		}
 		
 		instantTextBoxType={
 			name = "uniforms_workshop_cost"
-			position = {x = 9 y = 1431 }
+			position = {x = 9 y = 1565 }
 			font = "vic_18"
 			borderSize = {x = 0 y = 0}	
 			maxWidth = 128
@@ -2137,40 +2151,42 @@ guiTypes = {
 		
 		iconType = {
 			name = "latent_arrow_uniforms"
-			position = { x = 60 y = 1396 }
+			position = { x = 60 y = 1530 }
 			spriteType = "GFX_arrow_lat_str"
 		}
 
 		iconType = {
 			name = "frame_uniforms"
-			position = { x = 90 y = 1378 }
+			position = { x = 90 y = 1512 }
 			spriteType = "GFX_tge_goods_frame"
 		}
 						
 		iconType = {
 			name = "latent_uniforms"
-			position = { x = 87 y = 1378 }
+			position = { x = 87 y = 1512 }
 			spriteType = "GFX_latent_uniforms"
 		}
 		
 		instantTextBoxType={
 			name = "title_latent_uniforms"
-			position = {x = 145 y = 1381 }
+			position = {x = 145 y = 1515 }
 			font = "ToolTip_Font"
 			borderSize = {x = 0 y = 0}
 			maxWidth = 180
 			maxHeight = 18
 			text = "LATENT_UNIFORMS"
 		}
+
+		##################################################################################
 		checkboxType = {
-			name = "build_sculpture_workshop" #+67
-			position = { x = 9 y = 1448 }
+			name = "build_steam_engine_manu"
+			position = { x = 9 y = 1582 }
 			quadTextureSprite = "GFX_courthouse_muslimgfx" #Placeholder, real sprite is decided by game (based on button name).
 		}
 		
 		instantTextBoxType={
-			name = "sculpture_workshop_cost"
-			position = {x = 9 y = 1498 }
+			name = "steam_engine_manu_cost"
+			position = {x = 9 y = 1632 }
 			font = "vic_18"
 			borderSize = {x = 0 y = 0}	
 			maxWidth = 128
@@ -2179,32 +2195,35 @@ guiTypes = {
 		}
 		
 		iconType = {
-			name = "latent_arrow_sculpture"
-			position = { x = 60 y = 1463 }
+			name = "latent_arrow_steam"
+			position = { x = 60 y = 1597 }
 			spriteType = "GFX_arrow_lat_str"
 		}
 
 		iconType = {
-			name = "frame_marble"
-			position = { x = 90 y = 1445 }
+			name = "frame_steam"
+			position = { x = 90 y = 1579 }
 			spriteType = "GFX_tge_goods_frame"
 		}
 						
 		iconType = {
-			name = "latent_marble"
-			position = { x = 87 y = 1445 }
-			spriteType = "GFX_latent_marble"
+			name = "latent_steam"
+			position = { x = 87 y = 1579 }
+			spriteType = "GFX_latent_steam"
 		}
 		
 		instantTextBoxType={
-			name = "title_latent_sculpture"
-			position = {x = 145 y = 1448 }
+			name = "title_latent_steam"
+			position = {x = 145 y = 1582 }
 			font = "ToolTip_Font"
 			borderSize = {x = 0 y = 0}
 			maxWidth = 180
 			maxHeight = 18
-			text = "LATENT_SCULPTURE"
+			text = "LATENT_STEAM"
 		}
+
+		################################################################################## End of Latent Goods ##################################################################################
+		
 		iconType = {
 			name = "current_building"
 			#Moves around to be on top of current building
@@ -2545,7 +2564,7 @@ guiTypes = {
 				name ="list_to_fill"
 				position = { x=40 y = 0 }
 				backGround=""
-				size = { x= 380 y = 600 }
+				size = { x= 380 y = 800 }
 				horizontal = 0
 				spacing = 0
 				scrollbartype = "standardlistbox_slider"

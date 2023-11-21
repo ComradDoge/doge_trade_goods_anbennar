@@ -1,113 +1,17 @@
 spriteTypes = {
 
 	spriteType = {
-		name = "GFX_doge_infopanel_window"
-		texturefile = "gfx//interface//localisation//doge_infopanel_window.dds"
+		name = "GFX_goods_info_icon"
+		texturefile = "gfx//interface//custom_buttons//goods_info_icon.dds"
 		loadType = "INGAME"
 	}
 	spriteType = {
-		name = "GFX_great_conqueror_window"
-		texturefile = "gfx//interface//ideas_EU4//great_conqueror_window.dds"
-		loadType = "INGAME"
-	}
-
-	spriteType = {
-		name = "GFX_question_icon"
-		texturefile = "gfx//interface//ideas_EU4//question_icon.dds"
+		name = "GFX_goods_resources_icon"
+		texturefile = "gfx//interface//custom_buttons//goods_resources_icon.dds"
 		loadType = "INGAME"
 	}
 
-	spriteType = {
-		name = "GFX_development_icon"
-		texturefile = "gfx//interface//ideas_EU4//development_icon.dds"
-		loadType = "INGAME"
-	}
 
-	spriteType = {
-		name = "GFX_government_icon"
-		texturefile = "gfx//interface//ideas_EU4//government_icon.dds"
-		loadType = "INGAME"
-	}
-
-	spriteType = {
-		name = "GFX_piracy_icon"
-		texturefile = "gfx//interface//ideas_EU4//piracy_icon.dds"
-		loadType = "INGAME"
-	}
-
-	spriteType = {
-		name = "GFX_rank1_icon"
-		texturefile = "gfx//interface//ideas_EU4//rank1_icon.dds"
-		loadType = "INGAME"
-	}
-    
-	spriteType = {
-		name = "GFX_rank2_icon"
-		texturefile = "gfx//interface//ideas_EU4//rank2_icon.dds"
-		loadType = "INGAME"
-	}  
-	spriteType = {
-		name = "GFX_trading_icon"
-		texturefile = "gfx//interface//ideas_EU4//trading_icon.dds"
-		loadType = "INGAME"
-	} 
-	spriteType = {
-		name = "GFX_bulb_icon"
-		texturefile = "gfx//interface//ideas_EU4//bulb_icon.dds"
-		loadType = "INGAME"
-	}
-	spriteType = {
-		name = "GFX_estate_icon"
-		texturefile = "gfx//interface//ideas_EU4//estate_icon.dds"
-		loadType = "INGAME"
-	}
-	spriteType = {
-		name = "GFX_slavery_icon"
-		texturefile = "gfx//interface//ideas_EU4//slavery_icon.dds"
-		loadType = "INGAME"
-	} 
-
-	# Religious 
-	spriteType = {
-		name = "GFX_religion_icon"
-		texturefile = "gfx//interface//ideas_EU4//religion_icon.dds"
-		loadType = "INGAME"
-	}   
-	spriteType = {
-		name = "GFX_catholic_icon"
-		texturefile = "gfx//interface//ideas_EU4//catholic_icon.dds"
-		loadType = "INGAME"
-	}    
-	spriteType = {
-		name = "GFX_sunni_icon"
-		texturefile = "gfx//interface//ideas_EU4//sunni_icon.dds"
-		loadType = "INGAME"
-	}
-	spriteType = {
-		name = "GFX_confucian_icon"
-		texturefile = "gfx//interface//ideas_EU4//confucian_icon.dds"
-		loadType = "INGAME"
-	}
-	spriteType = {
-		name = "GFX_hindu_icon"
-		texturefile = "gfx//interface//ideas_EU4//hindu_icon.dds"
-		loadType = "INGAME"
-	}
-	spriteType = {
-		name = "GFX_hellenic_icon"
-		texturefile = "gfx//interface//ideas_EU4//hellenic_icon.dds"
-		loadType = "INGAME"
-	} 
-	spriteType = {
-		name = "GFX_kemetic_icon"
-		texturefile = "gfx//interface//ideas_EU4//kemetic_icon.dds"
-		loadType = "INGAME"
-	}
-	spriteType = {
-		name = "GFX_animist_icon"
-		texturefile = "gfx//interface//ideas_EU4//animist_icon.dds"
-		loadType = "INGAME"
-	} 
     # Trade Goods
 	
 	spriteType = {
@@ -221,25 +125,6 @@ spriteTypes = {
 	spriteType = {
 		name = "GFX_jade_sculpture_icon"
 		texturefile = "gfx//interface//ideas_EU4//jade_sculpture_icon.dds"
-		loadType = "INGAME"
-	}
-	
-	spriteType = {
-		name = "GFX_Administrative_technology_TGE"
-		texturefile = "gfx//interface//ideas_EU4//Administrative_technology_TGE.dds"
-		loadType = "INGAME"
-	}
-	
-	
-	spriteType = {
-		name = "GFX_Military_technology_TGE"
-		texturefile = "gfx//interface//ideas_EU4//Military_technology_TGE.dds"
-		loadType = "INGAME"
-	}
-	
-	spriteType = {
-		name = "GFX_Diplomatic_technology_TGE"
-		texturefile = "gfx//interface//ideas_EU4//Diplomatic_technology_TGE.dds"
 		loadType = "INGAME"
 	}
 
