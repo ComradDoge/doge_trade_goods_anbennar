@@ -346,7 +346,7 @@ shipyard = {
 		has_port = yes
 	}
 	modifier = {
-		naval_forcelimit = 2
+		naval_forcelimit = 0.5
 		ship_recruit_speed = -0.25
 		local_ship_repair = 0.25
 		local_has_man_of_war = yes #1.35
@@ -360,6 +360,7 @@ shipyard = {
 		}
 		#Anbennar
 		anbennar_building_effect = yes
+		navy_forcelimit_giver_building_modifier_effect = yes
 	}
 	on_destroyed = {
 		remove_development_from_building = {
@@ -367,6 +368,7 @@ shipyard = {
 			type = production
 			value = 1
 		}
+		x_forcelimit_remover_building_modifier_effect = yes
 	}
 	on_obsolete = {
 	}
@@ -770,7 +772,7 @@ regimental_camp = {
 	cost = 150
 	time = 12
 	modifier = {
-		land_forcelimit = 1
+		land_forcelimit = 0.5
 	}
 
 #	# THIS = Province, FROM = Builder(not nessecairly owner, can be overlord)
@@ -810,6 +812,7 @@ regimental_camp = {
 		update_improved_military_buildings_modifier = { #1.35
 			building = regimental_camp
 		}
+		land_forcelimit_giver_building_modifier_effect = yes
 	}
 	on_destroyed = {
 		update_improved_military_buildings_modifier = { #1.35
@@ -820,6 +823,7 @@ regimental_camp = {
 			type = manpower
 			value = 1
 		}
+		x_forcelimit_remover_building_modifier_effect = yes
 	}
 	on_obsolete = {
 	}
@@ -1248,6 +1252,7 @@ grand_shipyard = {
 	}
 
 	on_built = {
+		navy_forcelimit_giver_building_modifier_effect = yes
 		add_development_from_upgrading_or_building = {
 			building = grand_shipyard
 			obsolete_building = shipyard
@@ -1259,6 +1264,7 @@ grand_shipyard = {
 		anbennar_building_effect = yes
 	}
 	on_destroyed = {
+		x_forcelimit_remover_building_modifier_effect = yes
 		remove_development_from_building = {
 			building = grand_shipyard
 			type = production
@@ -1851,6 +1857,7 @@ conscription_center = {
 			limit = { FROM = { has_estate_privilege = estate_boar_command_war_room_rights } }
 			FROM = { add_legitimacy = 0.5 }
 		}
+		land_forcelimit_giver_building_modifier_effect = yes
 
 	}
 	on_destroyed = {
@@ -1863,6 +1870,7 @@ conscription_center = {
 		update_improved_military_buildings_modifier = { #1.35
 			building = conscription_center
 		}
+		x_forcelimit_remover_building_modifier_effect = yes
 	}
 	on_obsolete = {
 	}
