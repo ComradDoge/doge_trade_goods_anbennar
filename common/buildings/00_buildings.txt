@@ -2300,6 +2300,15 @@ plantations = {
 		tobacco
 		tea
 		cocoa
+		
+		palm_oil
+		saffron
+		cinnamon
+		cloves
+		opium
+		dates
+		vanilla
+		nutmeg
 	}
 	onmap = yes
 
