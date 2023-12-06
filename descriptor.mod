@@ -9,3 +9,4 @@ tags={
 name="1.36 Doge's Anbennar - Goods & Buildings"
 supported_version="1.36.*"
 path="mod/doge_trade_goods_anbennar"
+remote_file_id="2803852011"
