@@ -122,6 +122,12 @@ country_event = {
                         province_id = 1143
                         province_id = 2049
                         province_id = 5234
+                        province_id = 542
+                        province_id = 525
+                        province_id = 528
+                        province_id = 547
+                        province_id = 535
+                        province_id = 548
                     }
                 }
 
@@ -308,6 +314,7 @@ country_event = {
                     OR = {
                         province_id = 534
                         province_id = 540
+                        province_id = 531
                     }
                 }
 
