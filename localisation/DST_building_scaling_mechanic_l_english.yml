@@ -1,5 +1,4 @@
 ﻿l_english:
-
  # Building Force Limit
  building_landforcelimit_1: "Army Limit Increase I"
  building_landforcelimit_2: "Army Limit Increase II"
@@ -36,15 +35,18 @@
  building_manufactorygoods_9: "Manufactory Production Increase IX"
  building_manufactorygoods_10: "Manufactory Production Increase X"
 
- building_manufactory_desc:0 "Local Goods Produced per §Y10§! Development: §G+1§W\n"
- building_wharf_desc:0 "This building helps with the spread of §YManufactories§! institution.\n\nLocal Goods Produced per §Y10§! Development: §G+1§W\n"
- building_weapons_desc:0 "This building helps with the spread of §Y[GetManufactoriesRuleBritannia]§! institution.\n\nLocal Goods Produced per §Y10§! Development: §G+1§W\n"
- building_textile_desc:0 "This building helps with the spread of §Y[GetManufactoriesRuleBritannia]§! institution.\n\nLocal Goods Produced per §Y10§! Development: §G+1§W\n"
- building_plantations_desc:0 "This building helps with the spread of §YManufactories§! institution.\n\nLocal Goods Produced per §Y10§! Development: §G+1§W\n"
- building_tradecompany_desc:0 "This building helps with the spread of §YManufactories§! institution.\n\nLocal Goods Produced per §Y10§! Development: §G+1§W\n"
- building_farm_estate_desc:0 "Local Goods Produced per §Y10§! Development: §G+1§W\n"
- building_mills_desc:0 "This building helps with the spread of §YManufactories§! institution.\n\nLocal Goods Produced per §Y10§! Development: §G+1§W\n"
- building_furnace_desc:0 "This building helps with the spread of §YIndustrialization§! institution.\n\nLocal Goods Produced per §Y10§! Development: §G+1§W\n"
+
+ building_fake_information_button: "Information Notice"
+ building_fake_information_button_desc: "§gManufactories give Local Goods Produced per §Y5§! Production Development:§! §G+1§!"
+
+ building_wharf_desc:0 "This building helps with the spread of §YManufactories§! institution.\nLocal Goods Produced per §Y5§! Production Development: §G+1§W\n\n"
+ building_weapons_desc:0 "This building helps with the spread of §Y[GetManufactoriesRuleBritannia]§! institution.\nLocal Goods Produced per §Y5§! Production Development: §G+1§W\n\n"
+ building_textile_desc:0 "This building helps with the spread of §Y[GetManufactoriesRuleBritannia]§! institution.\nLocal Goods Produced per §Y5§! Production Development: §G+1§W\n\n"
+ building_plantations_desc:0 "This building helps with the spread of §YManufactories§! institution.\nLocal Goods Produced per §Y5§! Production Development: §G+1§W\n\n"
+ building_tradecompany_desc:0 "This building helps with the spread of §YManufactories§! institution.\nLocal Goods Produced per §Y5§! Production Development: §G+1§W\n\n"
+ building_farm_estate_desc:0 "Local Goods Produced per §Y5§! Production Development: §G+1§W\n\n"
+ building_mills_desc:0 "This building helps with the spread of §YManufactories§! institution.\nLocal Goods Produced per §Y5§! Production Development: §G+1§W\n\n"
+ building_furnace_desc:0 "This building helps with the spread of §YIndustrialization§! institution.\nLocal Goods Produced per §Y5§! Production Development: §G+1§W\n\n"
 
  building_regimental_camp_desc:0 "Land Force Limit per §Y10§! Development: §G+0.5§W"
  building_conscription_center_desc:0 "Land Force Limit per §Y10§! Development: §G+0.5§W\n"

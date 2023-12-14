@@ -44,7 +44,7 @@ workshop = {
 	cost = 150
 	time = 12
 	modifier = {
-		local_production_efficiency = 1
+		local_production_efficiency = 0.75
 	}
 	on_built = {
 		add_development_from_building = {
@@ -346,7 +346,7 @@ shipyard = {
 		has_port = yes
 	}
 	modifier = {
-		naval_forcelimit = 0.5
+		naval_forcelimit = 1
 		ship_recruit_speed = -0.25
 		local_ship_repair = 0.25
 		local_has_man_of_war = yes #1.35
@@ -1244,7 +1244,7 @@ grand_shipyard = {
 		has_port = yes
 	}
 	modifier = {
-		naval_forcelimit = 1
+		naval_forcelimit = 2
 		ship_recruit_speed = -0.50
 		local_ship_repair = 0.50
 		local_has_man_of_war = yes
@@ -1593,7 +1593,7 @@ counting_house = {
 
 	make_obsolete = workshop
 	modifier = {
-		local_production_efficiency = 2
+		local_production_efficiency = 1.5
 	}
 
 	on_built = {
@@ -2095,33 +2095,49 @@ wharf = {
 	}
 
 	ai_will_do = {
-		factor = 1
-
+		factor = 100
+		
+		# Financial
 		modifier = {
-			factor = 0.4
-			NOT = { base_production = 6 }
+			factor = 0
+			FROM = { num_of_loans = 1 }
 		}
 		modifier = {
-			factor = 1.5
+			factor = 10
+			FROM = { treasury = 5000 }
+		}
+		# Base Production
+		modifier = {
+			factor = 5
+			base_production = 5
+		}
+		modifier = {
+			factor = 10
 			base_production = 10
 		}
 		modifier = {
-			factor = 1.5
+			factor = 15
 			base_production = 15
 		}
-		# These do not exist
-		#modifier = {
-		#	factor = 5
-		#	OR = {
-		#		has_province_modifier = skanemarket
-		#		has_province_modifier = comet_ore_modifier
-		#		has_province_modifier = paradise_modifier
-		#	}
-		#}
 		modifier = {
-			NOT = { num_free_building_slots = 3 }
-			factor = 1.5
+			factor = 20
+			base_production = 20
 		}
+		# Buildings
+		modifier = {
+			factor = 5
+			has_building = workshop
+		}
+		modifier = {
+			factor = 10
+			has_building = counting_house
+		}
+		# Triggers
+		modifier = {
+			factor = 0
+			has_soldier_households_goods = yes
+		}
+
 	}
 }
 
@@ -2205,7 +2221,49 @@ weapons = {
 	}
 
 	ai_will_do = {
-		factor = 1
+		factor = 100
+		
+		# Financial
+		modifier = {
+			factor = 0
+			FROM = { num_of_loans = 1 }
+		}
+		modifier = {
+			factor = 10
+			FROM = { treasury = 5000 }
+		}
+		# Base Production
+		modifier = {
+			factor = 5
+			base_production = 5
+		}
+		modifier = {
+			factor = 10
+			base_production = 10
+		}
+		modifier = {
+			factor = 15
+			base_production = 15
+		}
+		modifier = {
+			factor = 20
+			base_production = 20
+		}
+		# Buildings
+		modifier = {
+			factor = 5
+			has_building = workshop
+		}
+		modifier = {
+			factor = 10
+			has_building = counting_house
+		}
+		# Triggers
+		modifier = {
+			factor = 0
+			has_soldier_households_goods = yes
+		}
+
 	}
 }
 
@@ -2281,7 +2339,49 @@ textile = {
 	}
 
 	ai_will_do = {
-		factor = 1
+		factor = 100
+		
+		# Financial
+		modifier = {
+			factor = 0
+			FROM = { num_of_loans = 1 }
+		}
+		modifier = {
+			factor = 10
+			FROM = { treasury = 5000 }
+		}
+		# Base Production
+		modifier = {
+			factor = 5
+			base_production = 5
+		}
+		modifier = {
+			factor = 10
+			base_production = 10
+		}
+		modifier = {
+			factor = 15
+			base_production = 15
+		}
+		modifier = {
+			factor = 20
+			base_production = 20
+		}
+		# Buildings
+		modifier = {
+			factor = 5
+			has_building = workshop
+		}
+		modifier = {
+			factor = 10
+			has_building = counting_house
+		}
+		# Triggers
+		modifier = {
+			factor = 0
+			has_soldier_households_goods = yes
+		}
+
 	}
 }
 
@@ -2364,7 +2464,49 @@ plantations = {
 	}
 
 	ai_will_do = {
-		factor = 1
+		factor = 100
+		
+		# Financial
+		modifier = {
+			factor = 0
+			FROM = { num_of_loans = 1 }
+		}
+		modifier = {
+			factor = 10
+			FROM = { treasury = 5000 }
+		}
+		# Base Production
+		modifier = {
+			factor = 5
+			base_production = 5
+		}
+		modifier = {
+			factor = 10
+			base_production = 10
+		}
+		modifier = {
+			factor = 15
+			base_production = 15
+		}
+		modifier = {
+			factor = 20
+			base_production = 20
+		}
+		# Buildings
+		modifier = {
+			factor = 5
+			has_building = workshop
+		}
+		modifier = {
+			factor = 10
+			has_building = counting_house
+		}
+		# Triggers
+		modifier = {
+			factor = 0
+			has_soldier_households_goods = yes
+		}
+
 	}
 }
 
@@ -2392,7 +2534,6 @@ tradecompany = {
 		gunpowder
 		exotic_animals
 		sulfur
-		leather
 		woodworking
 		jewellery
 		maple_syrup
@@ -2457,7 +2598,49 @@ tradecompany = {
 	}
 
 	ai_will_do = {
-		factor = 1
+		factor = 100
+		
+		# Financial
+		modifier = {
+			factor = 0
+			FROM = { num_of_loans = 1 }
+		}
+		modifier = {
+			factor = 10
+			FROM = { treasury = 5000 }
+		}
+		# Base Production
+		modifier = {
+			factor = 5
+			base_production = 5
+		}
+		modifier = {
+			factor = 10
+			base_production = 10
+		}
+		modifier = {
+			factor = 15
+			base_production = 15
+		}
+		modifier = {
+			factor = 20
+			base_production = 20
+		}
+		# Buildings
+		modifier = {
+			factor = 5
+			has_building = workshop
+		}
+		modifier = {
+			factor = 10
+			has_building = counting_house
+		}
+		# Triggers
+		modifier = {
+			factor = 0
+			has_soldier_households_goods = yes
+		}
+
 	}
 }
 
@@ -2548,7 +2731,49 @@ farm_estate = {
 	}
 
 	ai_will_do = {
-		factor = 1
+		factor = 100
+		
+		# Financial
+		modifier = {
+			factor = 0
+			FROM = { num_of_loans = 1 }
+		}
+		modifier = {
+			factor = 10
+			FROM = { treasury = 5000 }
+		}
+		# Base Production
+		modifier = {
+			factor = 5
+			base_production = 5
+		}
+		modifier = {
+			factor = 10
+			base_production = 10
+		}
+		modifier = {
+			factor = 15
+			base_production = 15
+		}
+		modifier = {
+			factor = 20
+			base_production = 20
+		}
+		# Buildings
+		modifier = {
+			factor = 5
+			has_building = workshop
+		}
+		modifier = {
+			factor = 10
+			has_building = counting_house
+		}
+		# Triggers
+		modifier = {
+			factor = 0
+			has_soldier_households_goods = yes
+		}
+
 	}
 }
 
@@ -2627,7 +2852,49 @@ mills = {
 	}
 
 	ai_will_do = {
-		factor = 1
+		factor = 100
+		
+		# Financial
+		modifier = {
+			factor = 0
+			FROM = { num_of_loans = 1 }
+		}
+		modifier = {
+			factor = 10
+			FROM = { treasury = 5000 }
+		}
+		# Base Production
+		modifier = {
+			factor = 5
+			base_production = 5
+		}
+		modifier = {
+			factor = 10
+			base_production = 10
+		}
+		modifier = {
+			factor = 15
+			base_production = 15
+		}
+		modifier = {
+			factor = 20
+			base_production = 20
+		}
+		# Buildings
+		modifier = {
+			factor = 5
+			has_building = workshop
+		}
+		modifier = {
+			factor = 10
+			has_building = counting_house
+		}
+		# Triggers
+		modifier = {
+			factor = 0
+			has_soldier_households_goods = yes
+		}
+
 	}
 }
 
@@ -2792,6 +3059,7 @@ soldier_households = {
 		wine
 		apiculture
 		rice
+		leather
 		horses
 		olive_oil
 		camel
@@ -2882,47 +3150,53 @@ soldier_households = {
 	}
 
 	ai_will_do = {
-		factor = 10.0
+		factor = 100
+		
+		# Financial
 		modifier = {
 			factor = 0
 			FROM = { num_of_loans = 1 }
 		}
 		modifier = {
-			factor = 4.5
-			owner = { is_subject = yes }
+			factor = 10
+			FROM = { treasury = 5000 }
+		}
+		# Base Production
+		modifier = {
+			factor = 5
+			base_production = 5
 		}
 		modifier = {
-			factor = 100.0
-			FROM = { treasury = 10000 }
+			factor = 10
+			base_production = 10
 		}
 		modifier = {
-			factor = 3
-			base_manpower = 5
+			factor = 15
+			base_production = 15
 		}
 		modifier = {
-			factor = 6
-			base_manpower = 8
+			factor = 20
+			base_production = 20
+		}
+		# Buildings
+		modifier = {
+			factor = 5
+			has_building = workshop
 		}
 		modifier = {
-			factor = 9
-			base_manpower = 12
+			factor = 10
+			has_building = counting_house
 		}
 		modifier = {
-			factor = 10.0
-			OR = {
-				has_building = barracks
-				has_building = training_fields
-			}
+			factor = 20
+			has_manpower_building_trigger = yes
 		}
+		# Triggers
 		modifier = {
-			factor = 1000
-			OR = {
-				trade_goods = grain
-				trade_goods = fish
-				trade_goods = livestock
-				trade_goods = wine
-			}
+			factor = 100
+			has_soldier_households_goods = yes
 		}
+
 	}
 }
 
@@ -3108,13 +3382,35 @@ state_house = {
 	}
 
 	ai_will_do = {
-		factor = 1
-		#Provinces in the Capital Area don't need a state house
+		factor = 25
+
+		# Financial
 		modifier = {
 			factor = 0
-			area_for_scope_province = {
-				is_capital_of = FROM
-			}
+			FROM = { num_of_loans = 1 }
+		}
+		modifier = {
+			factor = 100
+			FROM = { treasury = 10000 }
+		}
+		# Country
+		modifier = {
+			factor = 25
+			FROM = { governing_capacity_percentage = 0.9 }
+		}
+		# Province
+		modifier = {
+			factor = 25
+			development = 15
+		}
+		modifier = {
+			factor = 2000
+			trade_goods = gold
+		}
+		# Triggers
+		modifier = {
+			factor = 25
+			is_state = yes
 		}
 	}
 }

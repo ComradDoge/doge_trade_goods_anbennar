@@ -151,4 +151,42 @@ spriteTypes = {
 		texturefile = "gfx/interface/ideas_EU4/manufactory_goods_scaler_10.dds"
 	}
 
+
+
+	### ROADS
+	spriteType = {
+		name = "GFX_early_road"
+		texturefile = "gfx//interface//buildings//roads//early_road.tga"
+		loadType = "INGAME"
+	}
+		spriteType = {
+		name = "GFX_gravel_road"
+		texturefile = "gfx//interface//buildings//roads//gravel_road.tga"
+		loadType = "INGAME"
+	}
+		spriteType = {
+		name = "GFX_royal_road"
+		texturefile = "gfx//interface//buildings//roads//royal_road.tga"
+		loadType = "INGAME"
+	}
+		spriteType = {
+		name = "GFX_macadam_road"
+		texturefile = "gfx//interface//buildings//roads//macadam_road.tga"
+		loadType = "INGAME"
+	}
+	spriteType = {
+		name = "GFX_railroad"
+		texturefile = "gfx//interface//buildings//roads//railroad.tga"
+		loadType = "INGAME"
+	}
+
+
+
+
+	
+	spriteType = {
+		name = "GFX_fake_information_button"
+		texturefile = "gfx//interface//buildings//special_buildings//fake_information_button.tga"
+		loadType = "INGAME"
+	}
 }
