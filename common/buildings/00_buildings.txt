@@ -994,7 +994,6 @@ naval_battery = {
 		blockade_force_required = 1.0
 		hostile_disembark_speed = 2.0
 		hostile_fleet_attrition = 5
-		allowed_num_of_buildings = 1
 		block_slave_raid = yes
 	}
 
@@ -2914,14 +2913,12 @@ furnace = {
 	show_separate = yes # Means as a manufactory it will be shown according to the old way
 
 	on_built = {
-	on_built = {
 		manufactory_goods_giver_building_modifier_effect = yes
 		add_development_from_building = {
 			building = manufactory
 			type = production
 			value = 2
 		}
-	}
 		# ANBENNAR
 		if = {
 			limit = {
