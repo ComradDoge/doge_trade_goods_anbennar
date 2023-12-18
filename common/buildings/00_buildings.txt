@@ -2667,6 +2667,7 @@ farm_estate = {
 		tomato
 		llama
 		cheese
+		leather
 
 		#Anbennar
 		fungi
