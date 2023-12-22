@@ -1197,7 +1197,6 @@ fur_workshop = {
 
 	modifier = {
 		allowed_num_of_buildings = 1
-		local_governing_cost = 0.15
 	}	
 	
 	ai_will_do = {
