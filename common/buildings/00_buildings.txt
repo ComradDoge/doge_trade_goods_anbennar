@@ -343,6 +343,11 @@ shipyard = {
 	cost = 150
 	time = 12
 	build_trigger = {
+		if = {
+			limit = { FROM = { ai = yes } }
+			FROM = { NOT = { num_of_loans = 4 } }
+			development = 10
+		}
 		has_port = yes
 	}
 	modifier = {
@@ -1240,6 +1245,11 @@ grand_shipyard = {
 	make_obsolete = shipyard
 
 	build_trigger = {
+		if = {
+			limit = { FROM = { ai = yes } }
+			FROM = { NOT = { num_of_loans = 4 } }
+			development = 10
+		}
 		has_port = yes
 	}
 	modifier = {
@@ -2029,7 +2039,7 @@ wharf = {
 		if = {
 			limit = { FROM = { ai = yes } }
 			FROM = { NOT = { num_of_loans = 4 } }
-			development = 10
+			base_production = 5
 		}
 	}
 	manufactory = {
@@ -2145,7 +2155,7 @@ weapons = {
 		if = {
 			limit = { FROM = { ai = yes } }
 			FROM = { NOT = { num_of_loans = 4 } }
-			development = 10
+			base_production = 5
 		}
 	}
 	manufactory = {
@@ -2271,7 +2281,7 @@ textile = {
 		if = {
 			limit = { FROM = { ai = yes } }
 			FROM = { NOT = { num_of_loans = 4 } }
-			development = 10
+			base_production = 5
 		}
 	}
 	manufactory = {
@@ -2389,7 +2399,7 @@ plantations = {
 		if = {
 			limit = { FROM = { ai = yes } }
 			FROM = { NOT = { num_of_loans = 4 } }
-			development = 10
+			base_production = 5
 		}
 	}
 	manufactory = {
@@ -2514,7 +2524,7 @@ tradecompany = {
 		if = {
 			limit = { FROM = { ai = yes } }
 			FROM = { NOT = { num_of_loans = 4 } }
-			development = 10
+			base_production = 5
 		}
 	}
 	manufactory = {
@@ -2648,7 +2658,7 @@ farm_estate = {
 		if = {
 			limit = { FROM = { ai = yes } }
 			FROM = { NOT = { num_of_loans = 4 } }
-			development = 10
+			base_production = 5
 		}
 	}
 	manufactory = {
@@ -2782,7 +2792,7 @@ mills = {
 		if = {
 			limit = { FROM = { ai = yes } }
 			FROM = { NOT = { num_of_loans = 4 } }
-			development = 10
+			base_production = 5
 		}
 	}
 	manufactory = {
