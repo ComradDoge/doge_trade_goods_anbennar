@@ -349,6 +349,7 @@ shipyard = {
 			development = 10
 		}
 		has_port = yes
+		forcelimit_development_limiter_trigger = yes
 	}
 	modifier = {
 		naval_forcelimit = 1
@@ -802,6 +803,16 @@ regimental_camp = {
 #			}
 #		}
 #	}
+
+	build_trigger = {
+		if = {
+			limit = { FROM = { ai = yes } }
+			FROM = { NOT = { num_of_loans = 4 } }
+			development = 10
+		}
+		forcelimit_development_limiter_trigger = yes
+	}
+
 	on_built = {
 		add_development_from_building = {
 			building = regimental_camp
@@ -1251,6 +1262,7 @@ grand_shipyard = {
 			development = 10
 		}
 		has_port = yes
+		forcelimit_development_limiter_trigger = yes
 	}
 	modifier = {
 		naval_forcelimit = 2
@@ -1811,7 +1823,6 @@ conscription_center = {
 	cost = 300
 	time = 12
 
-
 	make_obsolete = regimental_camp
 
 #	# THIS = Province, FROM = Builder(not nessecairly owner, can be overlord)
@@ -1842,6 +1853,7 @@ conscription_center = {
 			FROM = { NOT = { num_of_loans = 4 } }
 			development = 10
 		}
+		forcelimit_development_limiter_trigger = yes
 	}
 
 	modifier = {
@@ -2041,6 +2053,7 @@ wharf = {
 			FROM = { NOT = { num_of_loans = 4 } }
 			base_production = 5
 		}
+		manufactory_production_limiter_trigger = yes
 	}
 	manufactory = {
 		naval_supplies
@@ -2157,6 +2170,7 @@ weapons = {
 			FROM = { NOT = { num_of_loans = 4 } }
 			base_production = 5
 		}
+		manufactory_production_limiter_trigger = yes
 	}
 	manufactory = {
 		copper
@@ -2283,6 +2297,7 @@ textile = {
 			FROM = { NOT = { num_of_loans = 4 } }
 			base_production = 5
 		}
+		manufactory_production_limiter_trigger = yes
 	}
 	manufactory = {
 		wool
@@ -2401,6 +2416,7 @@ plantations = {
 			FROM = { NOT = { num_of_loans = 4 } }
 			base_production = 5
 		}
+		manufactory_production_limiter_trigger = yes
 	}
 	manufactory = {
 		coffee
@@ -2526,6 +2542,7 @@ tradecompany = {
 			FROM = { NOT = { num_of_loans = 4 } }
 			base_production = 5
 		}
+		manufactory_production_limiter_trigger = yes
 	}
 	manufactory = {
 		ivory
@@ -2660,6 +2677,7 @@ farm_estate = {
 			FROM = { NOT = { num_of_loans = 4 } }
 			base_production = 5
 		}
+		manufactory_production_limiter_trigger = yes
 	}
 	manufactory = {
 		grain
@@ -2794,6 +2812,7 @@ mills = {
 			FROM = { NOT = { num_of_loans = 4 } }
 			base_production = 5
 		}
+		manufactory_production_limiter_trigger = yes
 	}
 	manufactory = {
 		chinaware

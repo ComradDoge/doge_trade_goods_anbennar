@@ -427,7 +427,6 @@ country_event = {
                         province_id = 599
                         province_id = 604
                         province_id = 608
-                        province_id = 614
                         province_id = 624
                         province_id = 626
                         province_id = 630
