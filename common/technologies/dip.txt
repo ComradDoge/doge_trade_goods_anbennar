@@ -173,6 +173,7 @@ technology  = { #Docks
 	trade_range				=	10
 	naval_morale			=	0.2
 
+	gravel_road = yes
 }
 
 technology = { #Carracks & Caravel
@@ -208,7 +209,6 @@ technology = { #The Flute
 	enable = flute
 	enable = war_galley
 
-	gravel_road = yes
 }
 
 technology = { #Wharf
@@ -293,6 +293,7 @@ technology = { #The Galleon
 	enable = early_frigate
 	may_sabotage_recruitment = yes
 
+	royal_road = yes
 }
 
 technology = { #Development of Maritime Law
@@ -326,7 +327,6 @@ technology = { #Merchantman
 	
 	
 	trade_depot = yes 
-	royal_road = yes
 
 	enable = merchantman
 }
@@ -404,6 +404,7 @@ technology = { #The Chebeck
 	enable = chebeck
 	may_sabotage_reputation = yes
 
+	macadam_road = yes
 }
 
 technology = { #Limes
@@ -446,7 +447,6 @@ technology = { #Heavy Frigates
 	range					=	150
 	
 	allow_client_states = yes		
-	macadam_road = yes
 	
 	enable = heavy_frigate
 }
