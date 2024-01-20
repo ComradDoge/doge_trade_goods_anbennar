@@ -403,7 +403,7 @@ xorme_additional_manpower_goods_trigger = {
 }
 
 xorme_has_production_buildings_trigger = {
-	xorme_has_any_manufactory_trigger = yes
+	#xorme_has_any_manufactory_trigger = yes
 	OR = {
 		has_building = workshop
 		has_building = counting_house
