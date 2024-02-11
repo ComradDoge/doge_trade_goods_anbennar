@@ -189,6 +189,7 @@ has_artisan_district_goods = {
 		trade_goods = jade_sculptures
 		trade_goods = jade
 		trade_goods = woodworking
+		trade_goods = fur_clothing
 	}
 }
 
@@ -196,6 +197,7 @@ has_vertical_farm_district_goods = {
 	OR = { 
 		trade_goods = rice
 		trade_goods = horses
+		trade_goods = leather
 	}
 }
 
