@@ -4,7 +4,7 @@
 
  has_metal_goods_tt: "Has either §YTin§!, §YIron§!, §YLead§!, §YZinc§!, §YCopper§!"
 
- building_province_selection_decision_title: "Building Province Limiter"
+ building_province_selection_decision_title: "£goods_resources_icon£ Building Province Limiter"
  building_province_selection_decision_desc: "Forcelimit buildings and Manufactories scale of certain amount of development. To improve quality of life, using this you can limit the provinces that are shown in the macrobuilder."
  province_selection_flag_clearer_tt: "No Selection will be made and will clear any existing selections."
 

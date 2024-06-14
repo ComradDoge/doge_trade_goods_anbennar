@@ -2,7 +2,7 @@
 country_decisions = { 
 
 	tge_info_panel = {
-		major = yes
+		#major = yes
 		potential = {
 			ai = no
 		}
@@ -23,7 +23,7 @@ country_decisions = {
 	
 	# Resource Amount Shower
 	mod_goods = {
-		major = yes
+		#major = yes
 		potential = {
 			ai = no
 		}
@@ -47,6 +47,7 @@ country_decisions = {
 
 	# Manufactory Province Production Selector
     building_province_selection_decision = {
+		#major = yes
         potential = {
             NOT = { has_country_flag  = building_province_selection_decision_opened }
             ai = no

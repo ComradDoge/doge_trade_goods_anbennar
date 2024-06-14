@@ -208,6 +208,7 @@ has_military_district_goods = {
 		trade_goods = lead
 		trade_goods = zinc
 		trade_goods = copper
+		trade_goods = mithril
 
 		trade_goods = horses
 		trade_goods = gunpowder
