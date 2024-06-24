@@ -344,7 +344,7 @@ shipyard = {
 	time = 12
 	build_trigger = {
 		if = {
-			limit = { FROM = { ai = yes } }
+			limit = { FROM = { ai = yes overlord = { ai = yes } } }
 			FROM = { NOT = { num_of_loans = 4 } }
 			development = 10
 		}
@@ -806,7 +806,7 @@ regimental_camp = {
 
 	build_trigger = {
 		if = {
-			limit = { FROM = { ai = yes } }
+			limit = { FROM = { ai = yes overlord = { ai = yes } } }
 			FROM = { NOT = { num_of_loans = 4 } }
 			development = 10
 		}
@@ -1257,7 +1257,7 @@ grand_shipyard = {
 
 	build_trigger = {
 		if = {
-			limit = { FROM = { ai = yes } }
+			limit = { FROM = { ai = yes overlord = { ai = yes } } }
 			FROM = { NOT = { num_of_loans = 4 } }
 			development = 10
 		}
@@ -1849,7 +1849,7 @@ conscription_center = {
 #	}
 	build_trigger = {
 		if = {
-			limit = { FROM = { ai = yes } }
+			limit = { FROM = { ai = yes overlord = { ai = yes } } }
 			FROM = { NOT = { num_of_loans = 4 } }
 			development = 10
 		}
