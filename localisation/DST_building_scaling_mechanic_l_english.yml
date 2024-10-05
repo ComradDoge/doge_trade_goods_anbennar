@@ -37,7 +37,7 @@
 
 
  building_fake_information_button: "Information Notice"
- building_fake_information_button_desc: "§gManufactories give Local Goods Produced per §Y5§! Production Development:§! §G+1§!"
+ building_fake_information_button_desc: "§gManufactories give Local Goods Produced per §Y5§! Production Development:§! §G+0.5§!"
 
  building_wharf_desc:0 "This building helps with the spread of §YManufactories§! institution.\nLocal Goods Produced per §Y5§! Production Development: §G+1§W\n\n"
  building_weapons_desc:0 "This building helps with the spread of §Y[GetManufactoriesRuleBritannia]§! institution.\nLocal Goods Produced per §Y5§! Production Development: §G+1§W\n\n"
