@@ -219,3 +219,10 @@ has_military_district_goods = {
 		trade_goods = cannon
 	}
 }
+
+has_gem_type_goods = {
+	OR = { 
+		trade_goods = gems
+		trade_goods = jade
+	}
+}
