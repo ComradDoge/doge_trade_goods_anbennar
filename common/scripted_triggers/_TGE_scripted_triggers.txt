@@ -156,6 +156,7 @@ has_foundry_district_goods = {
 		trade_goods = zinc
 		trade_goods = copper
 		trade_goods = mercury
+		trade_goods = coal
 
 		trade_goods = damestear
 		trade_goods = mithril
