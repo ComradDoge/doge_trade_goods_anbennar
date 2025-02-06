@@ -16,11 +16,6 @@ grain = {
 		factor = 35
 		modifier = {
 			factor = 0
-			is_random_new_world = no
-			continent = asia
-		}
-		modifier = {
-			factor = 0
 			OR = {
 				has_terrain = desert
 				has_terrain = glacier
@@ -32,6 +27,7 @@ grain = {
 				has_terrain = city_terrain
 				has_terrain = mushroom_forest_terrain
 				has_climate = arctic
+				region = yezel_mora_region
 			}
 		}
 		modifier = {
@@ -45,6 +41,7 @@ grain = {
 				has_terrain = jungle
 				has_terrain = ancient_forest
 				has_terrain = gladeway
+				has_terrain = bloodgroves
 			}
 		}
 		modifier = {
@@ -59,7 +56,6 @@ grain = {
 			OR = {
 				has_climate = arid
 				has_climate = tropical
-				
 			}
 		}
 		modifier = {
@@ -83,37 +79,32 @@ grain = {
 			has_terrain = farmlands
 		}
 		modifier = {
-			factor = 2
-			AND = { # new world breadbasket
-				has_terrain = grasslands
-				OR = {
-				 	 region = endralliande_region
-				 	 region = ravenous_isle_region
-				}
+			factor = 2 # new world breadbasket
+			has_terrain = grasslands
+			OR = {
+				region = endralliande_region
+				region = ravenous_isle_region
 			}
 		}
 		modifier = {
-			factor = 1.2
-			AND = { # more grain for the grain gods
-				has_terrain = grasslands
-				OR = {
-				 	 region = bloodgroves_region
-				 	 region = trollsbay_region
-				 	 region = dry_coast_region
-				}
+			factor = 1.2 # more grain for the grain gods
+			has_terrain = grasslands
+			OR = {
+				region = trollsbay_region
+				region = dry_coast_region
 			}
 		}
 		modifier = {
 			factor = 0
-			AND = {
-				has_terrain = marsh
-				region = leechdens_region
-			}
+			has_terrain = marsh
+			region = leechdens_region
 		}
 		modifier = {
 			factor = 0
 			OR = {
 				province_id = 4236
+				province_id = 2978
+				province_id = 2914
 				region = moduk_region
 				area = somyonghon_area
 				continent = africa #chance is so low its not worth having as a possibility
@@ -168,13 +159,15 @@ wine = {
 		}
 		modifier = {
 			factor = 1.5
-			OR = {
-				region = severed_coast_region
-			}
+			region = severed_coast_region
 		}
 		modifier = {
 			factor = 0
-			province_id = 4236
+			OR = {
+				province_id = 4236
+				province_id = 2978
+				province_id = 2914
+			}
 		}
 		modifier = {
 			factor = 3
@@ -182,9 +175,15 @@ wine = {
 		}
 		modifier = {
 			factor = 1.1
-			FROM = {
-				culture_group = lencori
-			}
+			FROM = { culture_group = lencori }
+		}
+		modifier = {
+			factor = 8
+			region = bloodgroves_region
+		}
+		modifier = {
+			factor = 0.75
+			has_terrain = bloodgroves
 		}
 	}
 }
@@ -198,7 +197,7 @@ wool = {
 		local_development_cost = -0.025
 	}
 	chance = {
-		factor = 30
+		factor = 25
 		modifier = {
 			factor = 0
 			OR = {
@@ -212,7 +211,8 @@ wool = {
 				has_terrain = woods
 				has_terrain = dwarven_hold
 				has_terrain = dwarven_hold_surface
-                has_terrain = city_terrain   
+				has_terrain = city_terrain
+				region = yezel_mora_region   
 			}
 		}
 		modifier = {
@@ -224,6 +224,7 @@ wool = {
 				has_terrain = woods
 				has_terrain = ancient_forest
 				has_terrain = gladeway
+				has_terrain = bloodgroves
 			}
 		}
 		modifier = {
@@ -244,19 +245,19 @@ wool = {
 			}
 		}
 		modifier = {
-			factor = 3
-			AND = { # new world farms
-				has_terrain = grasslands
-				OR = {
-				 	 region = endralliande_region
-				 	 region = ravenous_isle_region
-				}
+			factor = 3 # new world farms
+			has_terrain = grasslands
+			OR = {
+				region = endralliande_region
+				region = ravenous_isle_region
 			}
 		}
 		modifier = {
 			factor = 0
 			OR = {
 				province_id = 4236
+				province_id = 2978
+				province_id = 2914
 				region = mushroom_forest_region
 				area = westnest_area
 				area = eastnest_area
@@ -299,7 +300,11 @@ cloth = {
 		}
 		modifier = {
 			factor = 0
-			province_id = 4236
+			OR = {
+				province_id = 4236
+				province_id = 2978
+				province_id = 2914
+			}
 		}
 	}
 }
@@ -317,6 +322,7 @@ fish = {
 		modifier = {
 			factor = 0
 			NOT = { has_port = yes }
+			NOT = { province_id = 2978 } #Claxac's Abyss
 		}
 		modifier = {
 			factor = 1.1
@@ -351,18 +357,23 @@ fish = {
 		}
 		modifier = {
 			factor = 2
-			AND = {
-				has_terrain = marsh
-				region = leechdens_region
-			}
+			has_terrain = marsh
+			region = leechdens_region
 		}
 		modifier = {
 			factor = 0
-			province_id = 4236
+			OR = {
+				province_id = 4236
+				province_id = 2914
+			}
 		}
 		modifier = {
 			factor = 0.4
 			continent = africa #fish has too high of a chance
+		}
+		modifier = {
+			factor = 1000
+			province_id = 2978 #Claxac's Abyss
 		}
 	}
 }
@@ -370,7 +381,7 @@ fish = {
 fur = {
 	color = { 0.54 0.40 0.31 }
 	modifier = {
-		prestige = 0.5
+		caravan_power = 0.15
 	}
 	province = {
 		province_trade_power_modifier = 0.10
@@ -449,19 +460,23 @@ fur = {
 		
 		modifier = {
 			factor = 0.25
-			OR = {
-				superregion = escann_superregion
-			}
+			superregion = escann_superregion
 		}
 		modifier = {
 			factor = 0
-			province_id = 4236
+			OR = {
+				province_id = 4236
+				province_id = 2978
+				province_id = 2914
+			}
 		}
 		modifier = {
 			factor = 2.0
-			FROM = {
-				has_country_flag = encourage_cash_crops_flag
-			}
+			FROM = { has_country_flag = encourage_cash_crops_flag }
+		}
+		modifier = {
+			factor = 0.75
+			region = bloodgroves_region
 		}
 	}
 }
@@ -476,7 +491,6 @@ salt = {
 	}
 	chance = {
 		factor = 5
-
 		modifier = {
 			factor = 0
 			NOT = { has_terrain = desert }
@@ -486,6 +500,7 @@ salt = {
 			NOT = { has_terrain = cavern }
 			NOT = { has_terrain = dwarven_hold }
 			NOT = { has_terrain = dwarven_road }
+			NOT = { region = dao_nako_region }
 		}
 		modifier = {
 			factor = 2
@@ -498,12 +513,20 @@ salt = {
 			}
 		}
 		modifier = {
+			factor = 5
+			region = dao_nako_region
+		}
+		modifier = {
 			factor = 0.5
 			superregion = gerudia_superregion
 		}
 		modifier = {
 			factor = 0
-			province_id = 4236
+			OR = {
+				province_id = 4236
+				province_id = 2978
+				province_id = 2914
+			}
 		}
 	}
 }
@@ -536,6 +559,8 @@ naval_supplies = {
 				has_terrain = dwarven_hold_surface
 				has_terrain = dwarven_road
 				superregion = northern_expanse_superregion
+				region = yezel_mora_region
+				region = dao_nako_region
 			}
 		}
 		modifier = {
@@ -561,10 +586,11 @@ naval_supplies = {
 		}
 		modifier = {
 			factor = 1.5
-			AND = {
+			OR = {
 				region = moduk_region
-				NOT = { has_terrain = steppe }
+				area = somyonghon_area
 			}
+			NOT = { has_terrain = steppe }
 		}
 		modifier = {
 			factor = 1.5
@@ -575,12 +601,17 @@ naval_supplies = {
 				has_terrain = jungle
 				has_terrain = ancient_forest
 				has_terrain = gladeway
+				has_terrain = bloodgroves
 				region = dalaire_region # old frozen trees! 
 			}
 		}
 		modifier = {
 			factor = 0
-			province_id = 4236
+			OR = {
+				province_id = 4236
+				province_id = 2978
+				province_id = 2914
+			}
 		}
 	}
 }
@@ -615,6 +646,9 @@ copper = {
 				region = yezel_mora_region
 				region = domandrod_region
 				province_id = 4236 #mithradhum
+				province_id = 2978 #Claxac's Abyss
+				province_id = 2914 #Verkal Gulan
+				region = dao_nako_region
 				AND = {
 					continent = africa
 					province_is_on_an_island = yes
@@ -633,7 +667,7 @@ copper = {
 			NOT = { continent = new_world }
 		}
 		modifier = {
-			factor = 5
+			factor = 2.5
 			is_random_new_world = yes
 			OR = {
 				has_terrain = mountain
@@ -757,13 +791,10 @@ gold = {
 		modifier = {
 			factor = 3 # not as much as mountains, but still a lot!
 			has_terrain = highlands
-			OR = { 
-				region = amadia_region # four provinces
-			}
+			region = amadia_region # four provinces
 		}
 		modifier = {
 			factor = 1.5
-			
 			OR = {
 				area = silvegor_area
 				area = borawid_area
@@ -775,24 +806,27 @@ gold = {
 		}
 		modifier = {
 			factor = 0.6
-			
 			superregion = escann_superregion
 		}
 		modifier = {
 			factor = 0
-			
 			continent = serpentspine
 			FROM = { NOT = { num_of_cities = 2 } }
 			FROM = { ai = yes }
 		}
 		modifier = {
 			factor = 1000	#dragon turtle's hoard
-			
-			province_id = 2262
+			OR = {
+				province_id = 2262
+				province_id = 2914 #Verkal Gulan
+			}
 		}
 		modifier = {
 			factor = 0
-			province_id = 4236
+			OR = {
+				province_id = 4236
+				province_id = 2978
+			}
 		}
 		modifier = {
 			factor = 1.1
@@ -800,7 +834,26 @@ gold = {
 		}
 		modifier = {
 			factor = 0
-			owner = { has_reform = roadwarrior_great_convoy }
+			FROM = { has_reform = roadwarrior_great_convoy }
+		}
+		modifier = {
+			factor = 2
+			FROM = { has_reform = dwarovar_treasures_of_our_forefathers }
+		}
+		modifier = {
+			factor = 2.5
+			OR = {
+				area = gor_burad_area
+				area = buradforge_area
+			}
+		}
+		modifier = {
+			factor = 7.5
+			area = greatcavern_area
+		}
+		modifier = {
+			factor = 0
+			province_group = effelai_hub_provinces_group
 		}
 	}
 }
@@ -816,7 +869,20 @@ iron = {
 	chance = {
 		factor = 7
 		modifier = {
-			factor = 5
+			factor = 0
+			OR = {
+				region = yezel_mora_region
+				province_id = 4236
+				province_id = 2978
+				province_id = 2914
+				AND = {
+					continent = africa
+					province_is_on_an_island = yes
+				}
+			}
+		}
+		modifier = {
+			factor = 1.2
 			normal_or_historical_nations = no
 			OR = {
 				has_terrain = mountain
@@ -829,21 +895,8 @@ iron = {
 			}
 		}
 		modifier = {
-			factor = 0
-			OR = {
-				region = yezel_mora_region
-				province_id = 4236
-				AND = {
-					continent = africa
-					province_is_on_an_island = yes
-				}
-			}
-		}
-		modifier = {
 			factor = 2
-			FROM = {
-				has_country_flag = kherkan_prospectors
-			}
+			FROM = { has_country_flag = kherkan_prospectors }
 		}	
 		modifier = {
 			factor = 1.5
@@ -854,22 +907,26 @@ iron = {
 		modifier = {
 			factor = 2 # new world mines
 			OR = {
-			 	 region = endralliande_region
-				 region = ravenous_isle_region
-				 superregion = ynn_superregion
-				 region = dalaire_region
-				 region = amadia_region
-				 region = leechdens_region
-				 region = dry_coast_region
+				region = endralliande_region
+				region = ravenous_isle_region
+				superregion = ynn_superregion
+				region = dalaire_region
+				region = amadia_region
+				region = leechdens_region
+				region = dry_coast_region
+				region = dao_nako_region
 			}
-		}
-		modifier = {
-			factor = 0
-			province_id = 4236
 		}
 		modifier = {
 			factor = 1000
 			province_id = 6254
+		}
+		modifier = {
+			factor = 3
+			OR = {
+				area = gor_burad_area
+				area = buradforge_area
+			}
 		}
 	}
 }
@@ -886,18 +943,14 @@ slaves = {
 	}
 	chance = {
 		factor = 7
-
 		modifier = {
 			factor = 0
 			FROM = { has_country_modifier = the_abolish_slavery_act }
 		}
 		modifier = {
 			factor = 0
-			FROM = { 
-				OR = {
-					NOT = { has_country_modifier = gnollish_administration } 
-				}
-			}
+			FROM = { NOT = { has_country_modifier = gnollish_administration } }
+			FROM = { NOT = { has_country_flag = orldhum_slaves } }
 		}
 		modifier = {
 			factor = 0
@@ -907,8 +960,13 @@ slaves = {
 					NOT = { is_city = yes }
 					NOT = { is_colony = yes }
 				}
-				has_terrain = dwarven_hold
-				has_terrain = dwarven_hold_surface
+				AND = {
+					FROM = { NOT = { has_country_flag = orldhum_slaves } }
+					OR = {
+						has_terrain = dwarven_hold
+						has_terrain = dwarven_hold_surface
+					}
+				} #Only Haraz Orldhum can spawn slaves on holds
 			}
 		}
 		# modifier = {
@@ -922,13 +980,29 @@ slaves = {
 		# }
 		modifier = {
 			factor = 0
-			province_id = 4236
+			OR = {
+				province_id = 4236
+				province_id = 2978
+				province_id = 2914
+				region = serpents_vale_region
+			}
 		}
 		modifier = {
 			factor = 2.0
-			FROM = {
-				has_country_flag = encourage_cash_crops_flag
+			FROM = { has_country_flag = encourage_cash_crops_flag }
+		}
+		modifier = {
+			factor = 2.0
+			FROM = { has_country_flag = orldhum_slaves }
+			OR = {
+				has_terrain = dwarven_road
+				province_group = hold_province
 			}
+		}
+		modifier = {
+			factor = 5.0
+			FROM = { has_country_flag = orldhum_slaves }
+			has_terrain = cavern
 		}
 	}
 }
@@ -1067,20 +1141,19 @@ tea = {
 		modifier = {
 			factor = 2 # new world plantations
 			OR = {
-			 	 region = ruined_isles_region
-			 	 superregion = greater_taychend_superregion
+				region = ruined_isles_region
+				superregion = taychend_superregion
 			}
 		}
 		modifier = {
 			factor = 1.5 # new world plantations
 			OR = {
-				region = bloodgroves_region
 				region = trollsbay_region
 				region = severed_coast_region
 			}
 		}
 		modifier = {
-			factor = 26 # mushroom tea
+			factor = 30 # mushroom tea
 			region = mushroom_forest_region
 		}
 		modifier = {
@@ -1089,9 +1162,7 @@ tea = {
 		}
 		modifier = {
 			factor = 2.0
-			FROM = {
-				has_country_flag = encourage_cash_crops_flag
-			}
+			FROM = { has_country_flag = encourage_cash_crops_flag }
 		}
 		modifier = {
 			factor = 1.1
@@ -1108,11 +1179,7 @@ tea = {
 chinaware = {
 	color = { 0.18 0.57 0.8 }
 	modifier = {
-		legitimacy = 0.25
-		devotion = 0.25
-		horde_unity = 0.25
-		republican_tradition = 0.12
-		meritocracy = 0.1
+		diplomats = 1
 	}
 	province = {
 		local_autonomy = -0.1
@@ -1121,13 +1188,10 @@ chinaware = {
 
 	chance = {
 		factor = 0
-
-
 		modifier = {
 			factor = 0
 			NOT = { development = 8 }
 		}
-		
 		modifier = {
 			factor = 0
 			continent = europe
@@ -1145,7 +1209,6 @@ spices = {
 	}
 	chance = {
 		factor = 25
-
 		modifier = {
 			factor = 0
 			OR  = {
@@ -1164,16 +1227,18 @@ spices = {
 			has_winter = normal_winter
 		}
 		modifier = {
+			factor = 0.4
+			region = yezel_mora_region
+		}
+		modifier = {
 			factor = 0.5
 			OR = {
 				continent = north_america
 				continent = south_america
 			}
 			NOT = {
-				OR = {
-					superregion = greater_taychend_superregion
-					region = domandrod_region
-				}
+				superregion = taychend_superregion
+				region = domandrod_region
 			}
 		}
 		modifier = {
@@ -1182,37 +1247,33 @@ spices = {
 				continent = europe
 				continent = serpentspine
 				superregion = forbidden_lands_superregion
-				superregion = north_haless_superregion
+				superregion = gozengun_superregion
 				superregion = yanshen_superregion
 			}
 		}
 		modifier = {
 			factor = 1.5
 			OR = {
-				superregion = greater_taychend_superregion
+				superregion = taychend_superregion
 				region = ringlet_isles_region 
 			}
 		}
 		modifier = {
 			factor = 1.2 # new world plantations
 			OR = {
-				 region = reapers_coast_region
-				 region = dry_coast_region
-				 region = domandrod_region
+				region = reapers_coast_region
+				region = dry_coast_region
+				region = domandrod_region
 			}
 		}
 		modifier = {
 			factor = 0 # no spices in ynn except the desert side
-			AND = {
-				superregion = ynn_superregion
-				NOT = { region = epednan_expanse_region }
-			}
+			superregion = ynn_superregion
+			NOT = { region = epednan_expanse_region }
 		}
 		modifier = {
 			factor = 2.0
-			FROM = {
-				has_country_flag = encourage_cash_crops_flag
-			}
+			FROM = { has_country_flag = encourage_cash_crops_flag }
 		}
 	}
 }
@@ -1222,14 +1283,13 @@ spices = {
 coffee = {
 	color = { 0.22 0.15 0.09 }
 	modifier = {
-		global_institution_spread = 0.05
+		global_institution_spread = 0.1
 	}
 	province = {
 		local_institution_spread = 0.1
 	}
 	chance = {
 		factor = 15
-
 		modifier = {
 			factor = 0
 			NOT = { province_id = 1036 }
@@ -1247,9 +1307,6 @@ coffee = {
 						continent = north_america
 						continent = south_america
 					}
-					# NOT = { is_year = 1445 }
-				}
-				AND = {
 					NOT = { is_city = yes }
 					NOT = { is_colony = yes }
 				}
@@ -1285,7 +1342,6 @@ coffee = {
 			continent = new_world #Always in RNW
 			NOT = { has_climate = tropical }
 		}
-		
 		modifier = {
 			factor = 1.5
 			# removed north because too cold; makes north vs south more unique
@@ -1294,9 +1350,11 @@ coffee = {
 		}
 		modifier = {
 			factor = 0.5
-			superregion = ynn_superregion
-			region = amadia_region
-			superregion = taychend_superregion # they prefer tea
+			OR = {
+				superregion = ynn_superregion
+				region = amadia_region
+				superregion = taychend_superregion # they prefer tea
+			}
 		}
 		modifier = {
 			factor = 3 # new world plantations
@@ -1308,9 +1366,9 @@ coffee = {
 		modifier = {
 			factor = 1.2 # new world plantations
 			OR = {
-				 region = reapers_coast_region
-				 region = soruin_region
-				 region = east_effelai_region
+				region = reapers_coast_region
+				region = soruin_region
+				region = east_effelai_region
 			}
 		}
 		modifier = {
@@ -1319,16 +1377,13 @@ coffee = {
 		}
 		modifier = {
 			factor = 2.0
-			FROM = {
-				has_country_flag = encourage_cash_crops_flag
-			}
+			FROM = { has_country_flag = encourage_cash_crops_flag }
 		}
 		modifier = {
 			factor = 1.1
-			FROM = {
-				culture_group = bulwari
-			}
+			FROM = { culture_group = bulwari }
 		}
+		# Jayek beans
 		modifier = {
 			factor = 100
 			province_id = 1036
@@ -1377,10 +1432,8 @@ cotton = {
 		}
 		modifier = {
 			factor = 0
-			AND = {
-				has_terrain = marsh
-				region = leechdens_region
-			}
+			has_terrain = marsh
+			region = leechdens_region
 		}
 		modifier = {
 			factor = 0.5
@@ -1403,9 +1456,7 @@ cotton = {
 		}
 		modifier = {
 			factor = 2.0
-			FROM = {
-				has_country_flag = encourage_cash_crops_flag
-			}
+			FROM = { has_country_flag = encourage_cash_crops_flag }
 		}
 	}
 }
@@ -1424,7 +1475,10 @@ sugar = {
 			factor = 0
 			OR = {
 				continent = europe
+				continent = serpentspine
 				region = northern_pass_region
+				region = yezel_mora_region
+				region = dao_nako_region
 			}
 		}
 		modifier = {
@@ -1440,10 +1494,6 @@ sugar = {
 				has_terrain = highlands
 				has_terrain = forest
 				has_terrain = steppe
-				has_terrain = cavern
-				has_terrain = dwarven_hold
-				has_terrain = dwarven_hold_surface
-				has_terrain = dwarven_road
 			}
 		}
 		
@@ -1461,6 +1511,12 @@ sugar = {
 				region = ravenous_isle_region
 				region = reapers_coast_region
 				region = haraf_region
+			}
+			#Keyolion exception
+			FROM = {
+				NOT = {
+					has_reform = G58_agronomers_association_reform
+				}
 			}
 		}
 		modifier = {
@@ -1482,10 +1538,9 @@ sugar = {
 		}
 		modifier = {
 			factor = 2.0
-			FROM = {
-				has_country_flag = encourage_cash_crops_flag
-			}
+			FROM = { has_country_flag = encourage_cash_crops_flag }
 		}
+		#Keyolion
 		modifier = {
 			factor = 4.0
 			FROM = { has_reform = G58_agronomers_association_reform }
@@ -1503,7 +1558,6 @@ tobacco = {
 	}
 	chance = {
 		factor = 15
-
 		modifier = {
 			factor = 0
 			is_random_new_world = yes
@@ -1529,14 +1583,12 @@ tobacco = {
 				has_terrain = city_terrain
 			}
 		}
-		
 		modifier = {
 			factor = 1.5
 			# removed south because too hot; makes north vs south more unique
 			# let's call it soil variation
 			continent = north_america
 		}
-		
 		modifier = {
 			factor = 0.1
 			continent = europe
@@ -1551,15 +1603,6 @@ tobacco = {
 				superregion = gerudia_superregion
 				continent = asia
 				continent = africa
-			}
-		}
-		modifier = {
-			factor = 0
-			OR = {
-				superregion = gerudia_superregion
-				superregion = forbidden_lands_superregion
-				superregion = north_haless_superregion
-				superregion = yanshen_superregion
 			}
 		}
 		modifier = {
@@ -1583,15 +1626,11 @@ tobacco = {
 		}
 		modifier = {
 			factor = 2.0
-			FROM = {
-				has_country_flag = encourage_cash_crops_flag
-			}
+			FROM = { has_country_flag = encourage_cash_crops_flag }
 		}
 		modifier = {
 			factor = 1.1
-			FROM = {
-				culture_group = halfling
-			}
+			FROM = { is_cannorian_halfling_primary_culture = yes }
 		}
 	}
 }
@@ -1640,23 +1679,18 @@ cocoa = {
 				has_winter = severe_winter
 			}
 		}
-		
 		modifier = {
 			factor = 1.5
-			OR = {
-				continent = south_america
-			}
+			continent = south_america
 		}
 		modifier = {
 			factor = 2.5 # new world plantations
-			AND = {
-				has_terrain = jungle
-				OR = {
-					region = ruined_isles_region
-					region = reapers_coast_region
-					region = haraf_region
-					region = tor_nayyi_region
-				}
+			has_terrain = jungle
+			OR = {
+				region = ruined_isles_region
+				region = reapers_coast_region
+				region = haraf_region
+				region = tor_nayyi_region
 			}
 		}
 		modifier = {
@@ -1671,11 +1705,6 @@ cocoa = {
 		modifier = {
 			factor = 1.15 #summer glade
 			area = domandrod_gladeway_2_area
-		}
-		# Gimme that cocoa
-		modifier = {
-			factor = 100
-			province_id = 1036
 		}
 	}
 }
@@ -1740,10 +1769,10 @@ silk = {
 dyes = {
 	color = { 0.63 0.17 0.50 }
 	modifier = {
-		caravan_power = 0.2
+		prestige = 0.5
 	}
 	province = {
-		province_trade_power_modifier = 0.10
+		province_trade_power_modifier = 0.15
 	}
 	
 	chance = {
@@ -1753,16 +1782,12 @@ dyes = {
 			continent = europe
 		}
 		modifier = {
-			factor = 0.25
-			has_terrain = cavern
-			NOT = { province_id = 2939 }
-		}
-		modifier = {
 			factor = 0
 			NOT = { has_terrain = jungle }
 			NOT = { province_id = 2939 }
 			NOT = { region = bloodgroves_region }	#Blood-red sap
 			NOT = { continent = africa }
+			NOT = { area = corinsfield_area } #Corinspoppies
 		}
 		modifier = {
 			factor = 0
@@ -1776,6 +1801,7 @@ dyes = {
 			NOT = { province_id = 2939 }
 			NOT = { region = bloodgroves_region }
 			NOT = { continent = africa }
+			NOT = { area = corinsfield_area } #Corinspoppies
 		}
 		modifier = {
 			factor = 0
@@ -1788,9 +1814,13 @@ dyes = {
 				area = outer_rankaty_islands_area
 			}
 		}
+		modifier = {
+			factor = 1.5
+			region = throden_gokad_region
+		}
         modifier = {
             factor = 4
-                has_terrain = city_terrain
+			has_terrain = city_terrain
         }
 		modifier = {
 			factor = 1000
@@ -1802,9 +1832,15 @@ dyes = {
 		}
 		modifier = {
 			factor = 2.0
-			FROM = {
-				has_country_flag = encourage_cash_crops_flag
-			}
+			FROM = { has_country_flag = encourage_cash_crops_flag }
+		}
+		modifier = {
+			factor = 2.6
+			has_terrain = bloodgroves
+		}
+		modifier = {
+			factor = 2.0 #Corinspoppies
+			province_id = 2807
 		}
 	}
 }
@@ -1832,6 +1868,7 @@ tropical_wood = {
 				has_terrain = gladeway
 				region = mushroom_forest_region
 				region = bloodgroves_region
+				region = yezel_mora_region
 			}
 		}
 		modifier = {
@@ -1853,7 +1890,7 @@ tropical_wood = {
 			region = mushroom_forest_region
 		}
 		modifier = {
-			factor = 2.5
+			factor = 0
 			has_terrain = mushroom_forest_terrain
 		}
 		modifier = {
@@ -1862,6 +1899,7 @@ tropical_wood = {
 			NOT = {
 				has_terrain = forest
 				has_terrain = woods
+				has_terrain = bloodgroves
 			}
 		}
 		modifier = {
@@ -1869,17 +1907,13 @@ tropical_wood = {
 			region = domandrod_region
 		}
 		modifier = {
-			factor = 1000
-			OR = {
-				has_province_modifier = abundant_woods
-				has_province_modifier = abundant_woods_cyranvar
-			}
+			factor = 1.2
+			region = yezel_mora_region
 		}
+
 		modifier = {
 			factor = 2.0
-			FROM = {
-				has_country_flag = encourage_cash_crops_flag
-			}
+			FROM = { has_country_flag = encourage_cash_crops_flag }
 		}
 	}
 }
@@ -1894,7 +1928,6 @@ livestock = {
 	}
 	chance = {
 		factor = 30
-
 		modifier = {
 			factor = 0
 			OR = {
@@ -1909,6 +1942,7 @@ livestock = {
 				has_terrain = city_terrain
 				has_terrain = ancient_forest
 				has_terrain = gladeway
+				has_terrain = bloodgroves
 				area = westnest_area
 				area = eastnest_area
 				region = yezel_mora_region
@@ -1917,7 +1951,6 @@ livestock = {
 		}
 		modifier = {
 			factor = 0.05
-			
 			OR = {
 				has_terrain = dwarven_hold
 				has_terrain = dwarven_hold_surface
@@ -1925,18 +1958,15 @@ livestock = {
 		}
 		modifier = {
 			factor = 0.1
-			
 			has_terrain = dwarven_road
 		}
 		
 		modifier = {
 			factor = 0.2
-			
 			has_terrain = cavern
 		}
 		modifier = {
 			factor = 0.75
-
 			OR = {
 				has_winter = severe_winter
 				has_terrain = mushroom_forest_terrain
@@ -1956,14 +1986,9 @@ livestock = {
 			factor = 1.5
 			has_terrain = steppe
 		}
-		
 		modifier = {
 			factor = 1.25
 			has_terrain = grasslands
-		}
-		modifier = {
-			factor = 2 # ranchland
-			superregion = greater_taychend_superregion
 		}
 		modifier = {
 			factor = 2 # ranchland
@@ -1972,6 +1997,14 @@ livestock = {
 		modifier = {
 			factor = 3.3 # there's no reference here, go away
 			region = mushroom_forest_region
+		}
+		modifier = {
+			factor = 0
+			OR = {
+				province_id = 4236 #Mithradhum
+				province_id = 2978 #Claxac's Abyss
+				province_id = 2914
+			}
 		}
 	}
 }
@@ -1986,7 +2019,6 @@ incense = {
 	}
 	chance = {
 		factor = 8
-
 		modifier = {
 			factor = 0
 			OR = {
@@ -2011,12 +2043,18 @@ incense = {
 		
 		modifier = {
 			factor = 1.25
-			superregion = bulwar_superregion
-			superregion = ynn_superregion
+			OR = {
+				superregion = bulwar_superregion
+				superregion = ynn_superregion
+			}
 		}
 		modifier = {
 			factor = 0
-			province_id = 4236
+			OR = {
+				province_id = 4236
+				province_id = 2978
+				province_id = 2914
+			}
 		}
 		modifier = {
 			factor = 1.25
@@ -2024,9 +2062,11 @@ incense = {
 		}
 		modifier = {
 			factor = 2.0
-			FROM = {
-				has_country_flag = encourage_cash_crops_flag
-			}
+			FROM = { has_country_flag = encourage_cash_crops_flag }
+		}
+		modifier = {
+			factor = 3
+			has_terrain = bloodgroves
 		}
 	}
 }
@@ -2041,7 +2081,6 @@ glass = {
 	}
 	chance = {
         factor = 5
-        
         modifier = {
             factor = 0
 			NOT = { development = 18 }
@@ -2059,17 +2098,15 @@ glass = {
 		}
 		modifier = {
 			factor = 1000
-			
 			province_id = 4238 #Orlghelovar
 		}
 		modifier = {
-			factor = 1000
-			
-			province_id = 4039 #Gor Burad
-		}
-		modifier = {
 			factor = 0
-			province_id = 4236
+			OR = {
+				province_id = 4236
+				province_id = 2978
+				province_id = 2914
+			}
 		}
 	}
 }
@@ -2084,7 +2121,6 @@ paper = {
 	}
 	chance = {
 		factor = 5
-
 		modifier = {
 			factor = 0
 			NOT = { development = 18 }
@@ -2098,7 +2134,11 @@ paper = {
 		}
 		modifier = {
 			factor = 0
-			province_id = 4236
+			OR = {
+				province_id = 4236
+				province_id = 2978
+				province_id = 2914
+			}
 		}
 	}
 }
@@ -2114,8 +2154,6 @@ gems = {
 	}
 	chance = {
 		factor = 5
-
-
 		modifier = {
 			factor = 0
 			is_random_new_world = yes
@@ -2148,7 +2186,6 @@ gems = {
 				AND = {
 					has_port = yes
 					OR = {
-						region = dao_nako_region
 						area = bavabetsaro_area
 						area = visage_isles_area
 						area = daagalkauva_area
@@ -2169,7 +2206,6 @@ gems = {
 				continent = north_america
 			}
 		}
-
 		modifier = {
 			factor = 1.5
 			OR = {
@@ -2202,23 +2238,24 @@ gems = {
 		}
 		modifier = {
 			factor = 0.6
-			
 			superregion = escann_superregion
 		}
 		modifier = {
 			factor = 1.2
-			
 			has_terrain = cavern
 			superregion = west_serpentspine_superregion
 		}
 		modifier = {
 			factor = 1.2	#dragon turtle's hoard
-			
 			region = turtleback_isle_region
 		}
 		modifier = {
 			factor = 0
-			province_id = 4236
+			OR = {
+				province_id = 4236
+				province_id = 2978
+				province_id = 2914
+			}
 		}
 		modifier = {
 			factor = 1.25
@@ -2226,8 +2263,17 @@ gems = {
 		}
 		modifier = {
 			factor = 2.0
-			FROM = {
-				has_country_flag = encourage_cash_crops_flag
+			FROM = { has_country_flag = encourage_cash_crops_flag }
+		}
+		modifier = {
+			factor = 10
+			area = arg_ordstun_area
+		}
+		modifier = {
+			factor = 100
+			OR = {
+				province_id = 2948 #diamond quarry
+				province_id = 4338 #emerald spire
 			}
 		}
 		modifier = {
@@ -2237,9 +2283,19 @@ gems = {
 			}
 		}
 		modifier = {
-			factor = 1000
-			
-			province_id = 2868
+			factor = 4
+			FROM = {
+				has_country_flag = H76_increased_gem_chance
+			}
+		}
+		modifier = {
+			factor = 4
+			FROM = {
+				overlord = {
+					has_country_flag = H76_increased_gem_chance
+				}
+			}
+			continent = serpentspine
 		}
 	}
 }
@@ -2412,7 +2468,7 @@ whaling = {
 		production_efficiency = 0.1
 	}
 	province = {
-		local_production_efficiency = 0.1
+		trade_goods_size_modifier = 0.1
 	}
 	chance = {
 		factor = 0
@@ -2740,11 +2796,12 @@ amber = {
 		local_development_cost = -0.05
 	}
 	chance = {
-		factor = 15
+		factor = 0.5
 		modifier = {
-			factor = 0
-			NOT = {
+			factor = 15
+			OR = {
 				superregion = deepwoods_superregion
+				region = tree_of_stone_region
 			}
 			
 		}
@@ -2835,8 +2892,8 @@ lead = {
 	}
 }
 
-cloves = { 
-	color = { 0.55 0.40 0.30 } 
+cloves = {
+	color = { 1.0 0.5 0.85 }
 	modifier = {
 		trade_efficiency = 0.1
 	}
@@ -2844,15 +2901,19 @@ cloves = {
 		province_trade_power_modifier = 0.1
 	}
 	chance = {
-		factor = 150
+		factor = 80
 		modifier = {
 			factor = 0
-			NOT = {
-				OR = {	#We'll need to change this for Sarhal
-					area = molluca_area
-					area = spice_islands_area
-				}
+			
+			OR = {
+				NOT = { region = fahvanosy_region }
+				area = havafonosy_area
+				area = bavabetsaro_area
 			}
+		}
+		modifier = {
+			factor = 5
+			area = velanynosy_area
 		}
 		modifier = {
 			factor = 2.0
@@ -2918,7 +2979,7 @@ mercury = {
 camel = { 
 	color = { 0.80 0.60 0.01 } 
 	modifier = { 
-		global_tax_modifier = 0.01
+		camel_terrain_development_cost = 0.1
 	} 
 	province = {  
 		local_production_efficiency = 0.15
@@ -3736,7 +3797,7 @@ leather = {
 		shock_damage_received = -0.05
 	}
 	province = {
-		province_trade_power_modifier = 0.15
+		province_trade_power_modifier = 0.1
 	}
 	chance = {
 		factor = 0
@@ -3750,7 +3811,7 @@ jewellery = {
 		administrative_efficiency = 0.025
 	}
 	province = {
-		province_trade_power_modifier = 0.10
+		province_trade_power_modifier = 0.1
 	}
 	chance = {
 		factor = 0
@@ -3999,10 +4060,10 @@ champagne = {
 llama = {
 	color = { 218 201 254 }
 	modifier = {
-		global_tax_modifier = 0.01
+		llama_terrain_development_cost = 0.1
 	}
 	province = {	
-		local_production_efficiency = 0.15
+		province_trade_power_modifier = 0.1
 	}
 	chance = {
 		factor = 1
@@ -4033,7 +4094,7 @@ llama = {
 indigo = {
 	color = { 0 26 227 }
 	modifier = {
-		global_tax_modifier = 0.01
+		indigo_cloth_trade_value_modifier = 0.15
 	}
 	province = {	
 		province_trade_power_modifier = 0.10
