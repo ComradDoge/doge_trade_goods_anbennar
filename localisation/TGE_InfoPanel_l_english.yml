@@ -23,3 +23,4 @@
  llama_terrain_development_cost: "Elevated Terrain Development Reduction"
  camel_terrain_development_cost: "Arid Terrain Development Reduction"
  indigo_cloth_trade_value_modifier: "Cloth Trade Value Modifier"
+ tge_mod_province_reset_title: "AI - Lack of Resource Source reset"
