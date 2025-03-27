@@ -19,6 +19,25 @@ marketplace = {
 			limit = { FROM = { has_government_attribute = learning_by_doing_reform_effect } }
 			FROM = { change_government_reform_progress = 4 }
 		}
+		if = {
+			limit = {
+				FROM = {
+					religion = genie_cult
+					has_country_flag = holy_buildings_active
+				}
+			}
+			add_province_modifier = {
+				name = holy_buildings_sailors
+				duration = 7300
+			}
+		}
+
+		owner = { accretive_path_jiangszun_chi_stacking_effect = { amount = 20 } }
+		owner = { accretive_path_upper_raheni_chi_stacking_effect = { amount = 20 } }
+
+		merfolk_dynamic_settlement_effect = yes
+
+		gronstunad_building_authority_effect = { value = 1 }
 	}
 	on_destroyed = {
 		remove_development_from_building = {
@@ -33,6 +52,7 @@ marketplace = {
 
 
 	on_obsolete = {
+		gronstunad_building_authority_effect = { value = -1 }
 	}
 
 	ai_will_do = {
@@ -59,6 +79,20 @@ workshop = {
 			limit = { FROM = { has_estate_privilege = estate_dragon_command_war_room_rights } }
 			FROM = { add_legitimacy = 0.5 }
 		}
+		if = {
+			limit = {
+				FROM = {
+					religion = genie_cult
+					has_country_flag = holy_buildings_active
+				}
+			}
+			add_province_modifier = {
+				name = holy_buildings_production
+				duration = 7300
+			}
+		}
+
+		gronstunad_building_authority_effect = { value = 1 }
 	}
 	on_destroyed = {
 		remove_development_from_building = {
@@ -68,6 +102,7 @@ workshop = {
 		}
 	}
 	on_obsolete = {
+		gronstunad_building_authority_effect = { value = -1 }
 	}
 
 	allow_in_gold_provinces = no
@@ -133,6 +168,27 @@ temple = {
 			type = tax
 			value = 1 
 		}
+		if = {
+			limit = { FROM = { tag = I98 mission_completed = I98_involuntary_revenue_service } }
+			add_province_modifier = { name = I98_IRS_activities duration = -1 }
+		}
+		if = {
+			limit = {
+				FROM = {
+					religion = genie_cult
+					has_country_flag = holy_buildings_active
+				}
+			}
+			add_province_modifier = {
+				name = holy_buildings_tax
+				duration = 7300
+			}
+		}
+
+		owner = { accretive_path_harimari_chi_stacking_effect = { amount = 20 } }
+		owner = { accretive_path_goldscale_kobold_chi_stacking_effect = { amount = 20 } }
+
+		gronstunad_building_authority_effect = { value = 1 }
 	}
 	on_destroyed = {
 		on_province_tax_building_destroyed_estate_privileges_effect = yes
@@ -182,8 +238,10 @@ temple = {
 			type = tax
 			value = 1 
 		}
+		remove_province_modifier = I98_IRS_activities
 	}
 	on_obsolete = {
+		gronstunad_building_authority_effect = { value = -1 }
 	}
 	ai_will_do = {
 		factor = 1
@@ -197,16 +255,6 @@ barracks = {
 		local_manpower_modifier = 0.25
 	}
 	on_built = {
-		# if = {
-			# limit = {
-				# FROM = {
-					# has_government_attribute = manpower_sailors_on_build
-				# }
-			# }
-			# FROM = {
-				# add_manpower = 1
-			# }
-		# }
 		add_development_from_building = {
 			building = barracks
 			type = manpower
@@ -223,6 +271,22 @@ barracks = {
 			limit = { FROM = { has_estate_privilege = estate_boar_command_war_room_rights } }
 			FROM = { add_legitimacy = 0.5 }
 		}
+		if = {
+			limit = {
+				FROM = {
+					religion = genie_cult
+					has_country_flag = holy_buildings_active
+				}
+			}
+			add_province_modifier = {
+				name = holy_buildings_manpower
+				duration = 7300
+			}
+		}
+
+		owner = { accretive_path_jiangyang_chi_stacking_effect = { amount = 20 } }
+
+		gronstunad_building_authority_effect = { value = 1 }
 	}
 	on_destroyed = {
 		# if = {
@@ -247,30 +311,8 @@ barracks = {
 
 	}
 	on_obsolete = {
+		gronstunad_building_authority_effect = { value = -1 }
 	}
-
-#	# THIS = Province, FROM = Builder(not nessecairly owner, can be overlord)
-#	on_built = {
-#		FROM = {
-#			add_army_professionalism = 0.005
-#		}
-#	}
-#
-#	# THIS = Province, FROM = Destroyer, Will not be called on buildings made obsolete!
-#	on_destroyed = {
-#		FROM = {
-#			add_army_professionalism = -0.01
-#		}
-#	}
-#
-#	# THIS = Province, FROM = Destroyer, Will not be called on buildings destroyed!
-#	on_obsolete = {
-#		hidden_effect = {
-#			FROM = {
-#				add_army_professionalism = -0.005
-#			}
-#		}
-#	}
 
 	ai_will_do = {
 		factor = 2.5
@@ -364,9 +406,13 @@ shipyard = {
 			type = production
 			value = 1
 		}
+		#Doge
+		navy_forcelimit_giver_building_modifier_effect = yes
 		#Anbennar
 		anbennar_building_effect = yes
-		navy_forcelimit_giver_building_modifier_effect = yes
+		merfolk_dynamic_settlement_effect = yes
+
+		gronstunad_building_authority_effect = { value = 1 }
 	}
 	on_destroyed = {
 		remove_development_from_building = {
@@ -374,9 +420,11 @@ shipyard = {
 			type = production
 			value = 1
 		}
+		#Doge
 		x_forcelimit_remover_building_modifier_effect = yes
 	}
 	on_obsolete = {
+		gronstunad_building_authority_effect = { value = -1 }
 	}
 
 	ai_will_do = {
@@ -396,7 +444,7 @@ fort_15th = {
 	}
 
 	build_trigger = {
-		NOT = { has_province_modifier = verdant_link }
+		NOT = { has_terrain = fey_gladeway }
 	}
 
 	# THIS = Province, FROM = Builder(not nessecairly owner, can be overlord)
@@ -462,20 +510,18 @@ fort_15th = {
 					}
 				}
 			}
-
-			if = { #1.35
-				limit = {
-					owner = {
-						has_estate_privilege = estate_nobles_development_of_castles
-					}
-					NOT = { has_province_modifier = estate_nobles_development_of_castles_mod }
+		}
+		if = { #1.35
+			limit = {
+				owner = {
+					has_estate_privilege = estate_nobles_development_of_castles
 				}
-				add_province_modifier = {
-					name = estate_nobles_development_of_castles_mod
-					duration = -1
-				}
+				NOT = { has_province_modifier = estate_nobles_development_of_castles_mod }
 			}
-
+			add_province_modifier = {
+				name = estate_nobles_development_of_castles_mod
+				duration = -1
+			}
 		}
 		#ANBENNAR - windward stuff
 		if = {
@@ -490,18 +536,30 @@ fort_15th = {
 			limit = { FROM = { has_estate_privilege = estate_elephant_command_war_room_rights } }
 			FROM = { add_legitimacy = 1 }
 		}
+		if = {
+			limit = { FROM = { has_government_attribute = command_elephant_elevation_modifier } }
+			add_province_modifier = {
+				name = command_elephant_fort_buff
+				duration = -1
+			}
+		}
 		#Anbennar
 		FROM = {
 			if = {
 				limit = {
-					has_church_aspect = white_dragon_1
+					religion = winter_court
 				}
-				add_church_power = 5
+				add_church_power = 10
 			}
 		}
-		
+		remove_province_modifier = command_elephant_fort_buff
+
+		owner = { accretive_path_xiaken_chi_stacking_effect = { amount = 40 } }
+
 		#Anbennar
 		anbennar_building_effect = yes
+
+		gronstunad_building_authority_effect = { value = 2 }
 	}
 
 	# THIS = Province, FROM = Destroyer, Will not be called on buildings made obsolete!
@@ -522,10 +580,15 @@ fort_15th = {
 			}
 			remove_province_modifier = estate_nobles_development_of_castles_mod
 		}
+		if = { # Anbennar Kobold Traps
+			limit = { has_province_flag = has_kobold_traps }
+			province_event = { id = kobold_traps.8 }
+		}
 	}
 
 	# THIS = Province, FROM = Destroyer, Will not be called on buildings destroyed!
 	on_obsolete = {
+		gronstunad_building_authority_effect = { value = -2 }
 	}
 
 	onmap = yes
@@ -562,11 +625,17 @@ coastal_defence = {
 	on_built = {
 		#Anbennar
 		anbennar_building_effect = yes
+
+		gronstunad_building_authority_effect = { value = 1 }
 	}
 	modifier = {
 		blockade_force_required = 0.5
 		hostile_disembark_speed = 1.0
 		block_slave_raid = yes
+	}
+
+	on_obsolete = {
+		gronstunad_building_authority_effect = { value = -1 }
 	}
 
 	ai_will_do = {
@@ -602,6 +671,20 @@ courthouse = {
 			limit = { FROM = { has_estate_privilege = estate_wolf_command_war_room_rights } }
 			FROM = { add_legitimacy = 0.5 }
 		}
+		if = {
+			limit = {
+				FROM = {
+					religion = genie_cult
+					has_country_flag = holy_buildings_active
+				}
+			}
+			add_province_modifier = {
+				name = holy_buildings_unrest
+				duration = 7300
+			}
+		}
+
+		gronstunad_building_authority_effect = { value = 1 }
 	}
 	on_destroyed = {
 		remove_development_from_building = {
@@ -611,6 +694,7 @@ courthouse = {
 		}
 	}
 	on_obsolete = {
+		gronstunad_building_authority_effect = { value = -1 }
 	}
 
 	ai_will_do = {
@@ -686,16 +770,6 @@ dock = {
 	}
 
 	on_built = {
-		# if = {
-			# limit = {
-				# FROM = {
-					# has_government_attribute = manpower_sailors_on_build
-				# }
-			# }
-			# FROM = {
-				# add_sailors = 200
-			# }
-		# }
 		add_development_from_building = {
 			building = dock
 			type = production
@@ -703,19 +777,24 @@ dock = {
 		}
 		#Anbennar
 		anbennar_building_effect = yes
+		if = {
+			limit = {
+				FROM = {
+					religion = genie_cult
+					has_country_flag = holy_buildings_active
+				}
+			}
+			add_province_modifier = {
+				name = holy_buildings_sailors
+				duration = 7300
+			}
+		}
+		merfolk_dynamic_settlement_effect = yes
+
+		gronstunad_building_authority_effect = { value = 1 }
 	}
 
 	on_destroyed = {
-		# if = {
-			# limit = {
-				# FROM = {
-					# has_government_attribute = manpower_sailors_on_build
-				# }
-			# }
-			# FROM = {
-				# add_sailors = -200
-			# }
-		# }
 		remove_development_from_building = {
 			building = dock
 			type = production
@@ -723,6 +802,7 @@ dock = {
 		}
 	}
 	on_obsolete = {
+		gronstunad_building_authority_effect = { value = -1 }
 	}
 
 	ai_will_do = {
@@ -781,29 +861,6 @@ regimental_camp = {
 		land_forcelimit = 0.5
 	}
 
-#	# THIS = Province, FROM = Builder(not nessecairly owner, can be overlord)
-#	on_built = {
-#		FROM = {
-#			add_army_professionalism = 0.005
-#		}
-#	}
-#
-#	# THIS = Province, FROM = Destroyer, Will not be called on buildings made obsolete!
-#	on_destroyed = {
-#		FROM = {
-#			add_army_professionalism = -0.01
-#		}
-#	}
-#
-#	# THIS = Province, FROM = Destroyer, Will not be called on buildings destroyed!
-#	on_obsolete = {
-#		hidden_effect = {
-#			FROM = {
-#				add_army_professionalism = -0.005
-#			}
-#		}
-#	}
-
 	build_trigger = {
 		if = {
 			limit = { FROM = { ai = yes overlord = { ai = yes } } }
@@ -819,6 +876,8 @@ regimental_camp = {
 			type = manpower
 			value = 1
 		}
+		#Doge
+		land_forcelimit_giver_building_modifier_effect = yes
 		#Anbennar
 		anbennar_building_effect = yes
 		if = {
@@ -828,7 +887,10 @@ regimental_camp = {
 		update_improved_military_buildings_modifier = { #1.35
 			building = regimental_camp
 		}
-		land_forcelimit_giver_building_modifier_effect = yes
+
+		gronstunad_building_authority_effect = { value = 2 }
+
+		owner = { accretive_path_jiangyang_chi_stacking_effect = { amount = 20 } }
 	}
 	on_destroyed = {
 		update_improved_military_buildings_modifier = { #1.35
@@ -839,9 +901,11 @@ regimental_camp = {
 			type = manpower
 			value = 1
 		}
+		#Doge
 		x_forcelimit_remover_building_modifier_effect = yes
 	}
 	on_obsolete = {
+		gronstunad_building_authority_effect = { value = -2 }
 	}
 
 	ai_will_do = {
@@ -866,7 +930,7 @@ fort_16th = {
 	}
 
 	build_trigger = {
-		NOT = { has_province_modifier = verdant_link }
+		NOT = { has_terrain = fey_gladeway }
 	}
 
 	# THIS = Province, FROM = Builder(not nessecairly owner, can be overlord)
@@ -932,18 +996,31 @@ fort_16th = {
 			limit = { FROM = { has_estate_privilege = estate_elephant_command_war_room_rights } }
 			FROM = { add_legitimacy = 1 }
 		}
+		if = {
+			limit = { FROM = { has_government_attribute = command_elephant_elevation_modifier } }
+			add_province_modifier = {
+				name = command_elephant_fort_buff
+				duration = -1
+			}
+		}
 		
 		#Anbennar
 		FROM = {
 			if = {
 				limit = {
-					has_church_aspect = white_dragon_1
+					religion = winter_court
 				}
-				add_church_power = 5
+				add_church_power = 10
 			}
 		}
+		remove_province_modifier = command_elephant_fort_buff
 		#Anbennar
+
+		owner = { accretive_path_xiaken_chi_stacking_effect = { amount = 40 } }
+
 		anbennar_building_effect = yes
+
+		gronstunad_building_authority_effect = { value = 4 }
 	}
 
 	# THIS = Province, FROM = Destroyer, Will not be called on buildings made obsolete!
@@ -957,6 +1034,10 @@ fort_16th = {
 				province_event = { id = kheionai.2 }
 			}
 		}
+		if = { # Anbennar Kobold Traps
+			limit = { has_province_flag = has_kobold_traps }
+			province_event = { id = kobold_traps.8 }
+		}			
 	}
 
 	# THIS = Province, FROM = Destroyer, Will not be called on buildings destroyed!
@@ -967,6 +1048,8 @@ fort_16th = {
 			}
 			remove_province_modifier = estate_nobles_development_of_castles_mod
 		}
+
+		gronstunad_building_authority_effect = { value = -4 }
 	}
 
 	onmap = yes
@@ -1005,6 +1088,18 @@ naval_battery = {
 	on_built = {
 		#Anbennar
 		anbennar_building_effect = yes
+		if = {
+			limit = { province_id = 4551 owner = { mission_completed = R38_relock_the_gate } }
+			add_province_modifier = { name = bhuvauri_gatehouse_of_rahen duration = -1 }
+		}
+
+		gronstunad_building_authority_effect = { value = 2 }
+	}
+	on_destroyed = {
+		if = {
+			limit = { province_id = 4551 }
+			remove_province_modifier = bhuvauri_gatehouse_of_rahen
+		}
 	}
 	modifier = {
 		blockade_force_required = 1.0
@@ -1076,6 +1171,22 @@ cathedral = {
 			type = tax
 			value = 2 
 		}
+		if = {
+			limit = { FROM = { tag = I98 mission_completed = I98_involuntary_revenue_service } }
+			add_province_modifier = { name = I98_IRS_activities duration = -1 }
+		}
+		if = {
+			limit = { FROM = { has_government_attribute = command_tiger_elevation_modifier } }
+			add_province_modifier = {
+				name = commmand_tiger_temple_buff
+				duration = -1
+			}
+		}
+		
+		owner = { accretive_path_harimari_chi_stacking_effect = { amount = 20 } }
+		owner = { accretive_path_goldscale_kobold_chi_stacking_effect = { amount = 20 } }
+
+		gronstunad_building_authority_effect = { value = 3 }
 	}
 	on_destroyed = {
 		on_province_tax_building_destroyed_estate_privileges_effect = yes
@@ -1102,6 +1213,8 @@ cathedral = {
 			type = tax
 			value = 2 
 		}
+		remove_province_modifier = I98_IRS_activities
+		remove_province_modifier = commmand_tiger_temple_buff
 	}
 	on_obsolete = {
 	}
@@ -1131,6 +1244,10 @@ university = {
 			limit = { FROM = { has_estate_privilege = estate_tiger_command_war_room_rights } }
 			FROM = { add_legitimacy = 1 }
 		}
+		
+		owner = { accretive_path_harimari_chi_stacking_effect = { amount = 20 } }
+
+		gronstunad_building_authority_effect = { value = 3 }
 	}
 	on_destroyed = {
 		remove_development_from_building = {
@@ -1229,10 +1346,16 @@ trade_depot = {
 		}
 		#Anbennar
 		anbennar_building_effect = yes
+		merfolk_dynamic_settlement_effect = yes
 		if = {
 			limit = { FROM = { has_government_attribute = learning_by_doing_reform_effect } }
 			FROM = { change_government_reform_progress = 4 }
 		}
+
+		owner = { accretive_path_jiangszun_chi_stacking_effect = { amount = 20 } }
+		owner = { accretive_path_upper_raheni_chi_stacking_effect = { amount = 20 } }
+
+		gronstunad_building_authority_effect = { value = 3 }
 	}
 	on_destroyed = {
 		remove_development_from_building = {
@@ -1242,6 +1365,7 @@ trade_depot = {
 		}
 	}
 	on_obsolete = {
+		gronstunad_building_authority_effect = { value = -3 }
 	}
 
 	ai_will_do = {
@@ -1273,7 +1397,6 @@ grand_shipyard = {
 	}
 
 	on_built = {
-		navy_forcelimit_giver_building_modifier_effect = yes
 		add_development_from_upgrading_or_building = {
 			building = grand_shipyard
 			obsolete_building = shipyard
@@ -1281,8 +1404,17 @@ grand_shipyard = {
 			value = 2
 			upgrade_value = 1
 		}
+		#Doge
+		navy_forcelimit_giver_building_modifier_effect = yes
 		#Anbennar
 		anbennar_building_effect = yes
+		merfolk_dynamic_settlement_effect = yes
+		if = {
+			limit = { province_id = 4372 owner = { mission_completed = iyarhashar_bavijay_shipyard } }
+			add_province_modifier = { name = iyarhashar_bavijay_shipyard duration = -1 }
+		}
+
+		gronstunad_building_authority_effect = { value = 3 }
 	}
 	on_destroyed = {
 		x_forcelimit_remover_building_modifier_effect = yes
@@ -1294,6 +1426,10 @@ grand_shipyard = {
 		if = {
 			limit = { has_province_modifier = sca_swe_danish_shipyard }
 			remove_province_modifier = sca_swe_danish_shipyard
+		}
+		if = {
+			limit = { province_id = 4372 has_province_modifier = iyarhashar_bavijay_shipyard }
+			remove_province_modifier = iyarhashar_bavijay_shipyard
 		}
 	}
 	on_obsolete = {
@@ -1317,29 +1453,6 @@ training_fields = {
 	time = 24
 
 	make_obsolete = barracks
-
-#	# THIS = Province, FROM = Builder(not nessecairly owner, can be overlord)
-#	on_built = {
-#		FROM = {
-#			add_army_professionalism = 0.01
-#		}
-#	}
-#
-#	# THIS = Province, FROM = Destroyer, Will not be called on buildings made obsolete!
-#	on_destroyed = {
-#		FROM = {
-#			add_army_professionalism = -0.02
-#		}
-#	}
-#
-#	# THIS = Province, FROM = Destroyer, Will not be called on buildings destroyed!
-#	on_obsolete = {
-#		hidden_effect = {
-#			FROM = {
-#				add_army_professionalism = -0.01
-#			}
-#		}
-#	}
 
 	modifier = {
 		local_manpower_modifier = 0.75
@@ -1373,10 +1486,27 @@ training_fields = {
 			limit = { FROM = { has_estate_privilege = estate_boar_command_war_room_rights } }
 			FROM = { add_legitimacy = 0.5 }
 		}
+
+		owner = { accretive_path_jiangyang_chi_stacking_effect = { amount = 20 } }
+
+		gronstunad_building_authority_effect = { value = 3 }
+		
+		if = { #Taychendi Empire
+			limit = { FROM =  { has_country_flag = J84_training_fields_flag } }
+			add_province_modifier = {
+				name = J84_training_fields_buff
+				duration = -1
+			}
+		}
 	}
 	on_destroyed = {
 		update_improved_military_buildings_modifier = { #1.35
 			building = training_fields
+		}
+		#Anbennar
+		if = { #Taychendi Empire
+			limit = { FROM =  { has_country_flag = J84_training_fields_flag } }
+			remove_province_modifier = J84_training_fields_buff
 		}
 		# if = {
 			# limit = {
@@ -1413,7 +1543,7 @@ fort_17th = {
 	}
 
 	build_trigger = {
-		NOT = { has_province_modifier = verdant_link }
+		NOT = { has_terrain = fey_gladeway }
 	}
 
 	# THIS = Province, FROM = Builder(not nessecairly owner, can be overlord)
@@ -1470,9 +1600,9 @@ fort_17th = {
 		FROM = {
 			if = {
 				limit = {
-					has_church_aspect = white_dragon_1
+					religion = winter_court
 				}
-				add_church_power = 5
+				add_church_power = 10
 			}
 		}
 		#ANBENNAR - windward stuff
@@ -1488,8 +1618,20 @@ fort_17th = {
 			limit = { FROM = { has_estate_privilege = estate_elephant_command_war_room_rights } }
 			FROM = { add_legitimacy = 1 }
 		}
+		if = {
+			limit = { FROM = { has_government_attribute = command_elephant_elevation_modifier } }
+			add_province_modifier = {
+				name = command_elephant_fort_buff
+				duration = -1
+			}
+		}
 		#Anbennar
+
+		owner = { accretive_path_xiaken_chi_stacking_effect = { amount = 40 } }
+
 		anbennar_building_effect = yes
+
+		gronstunad_building_authority_effect = { value = 6 }
 	}
 
 	# THIS = Province, FROM = Destroyer, Will not be called on buildings made obsolete!
@@ -1503,6 +1645,7 @@ fort_17th = {
 				province_event = { id = kheionai.2 }
 			}
 		}
+		remove_province_modifier = command_elephant_fort_buff
 
 		if = { #1.35
 			limit = {
@@ -1510,10 +1653,15 @@ fort_17th = {
 			}
 			remove_province_modifier = estate_nobles_development_of_castles_mod
 		}
+		if = { # Anbennar Kobold Traps
+			limit = { has_province_flag = has_kobold_traps }
+			province_event = { id = kobold_traps.8 }
+		}		
 	}
 
 	# THIS = Province, FROM = Destroyer, Will not be called on buildings destroyed!
 	on_obsolete = {
+		gronstunad_building_authority_effect = { value = -6 }
 	}
 
 	onmap = yes
@@ -1588,10 +1736,16 @@ stock_exchange = {
 		}
 		#Anbennar
 		anbennar_building_effect = yes
+		merfolk_dynamic_settlement_effect = yes
 		if = {
 			limit = { FROM = { has_government_attribute = learning_by_doing_reform_effect } }
 			FROM = { change_government_reform_progress = 4 }
 		}
+
+		owner = { accretive_path_jiangszun_chi_stacking_effect = { amount = 20 } }
+		owner = { accretive_path_upper_raheni_chi_stacking_effect = { amount = 20 } }
+
+		gronstunad_building_authority_effect = { value = 4 }
 	}
 	on_destroyed = {
 		remove_development_from_building = {
@@ -1631,6 +1785,8 @@ counting_house = {
 			limit = { FROM = { has_estate_privilege = estate_dragon_command_war_room_rights } }
 			FROM = { add_legitimacy = 0.5 }
 		}
+
+		gronstunad_building_authority_effect = { value = 4 }
 	}
 	on_destroyed = {
 		remove_development_from_building = {
@@ -1680,6 +1836,8 @@ town_hall = {
 			limit = { FROM = { has_government_attribute = learning_by_doing_reform_effect } }
 			FROM = { change_government_reform_progress = 4 }
 		}
+
+		gronstunad_building_authority_effect = { value = 2 }
 	}
 	on_destroyed = {
 		remove_development_from_building = {
@@ -1772,16 +1930,6 @@ drydock = {
 	}
 
 	on_built = {
-		# if = {
-			# limit = {
-				# FROM = {
-					# has_government_attribute = manpower_sailors_on_build
-				# }
-			# }
-			# FROM = {
-				# add_sailors = 200
-			# }
-		# }
 		add_development_from_upgrading_or_building = {
 			building = drydock
 			obsolete_building = dock
@@ -1791,19 +1939,12 @@ drydock = {
 		}
 		#Anbennar
 		anbennar_building_effect = yes
+		merfolk_dynamic_settlement_effect = yes
+
+		gronstunad_building_authority_effect = { value = 3 }
 	}
 
 	on_destroyed = {
-		# if = {
-			# limit = {
-				# FROM = {
-					# has_government_attribute = manpower_sailors_on_build
-				# }
-			# }
-			# FROM = {
-				# add_sailors = -200
-			# }
-		# }
 		remove_development_from_building = {
 			building = drydock
 			type = production
@@ -1823,38 +1964,10 @@ conscription_center = {
 	cost = 300
 	time = 12
 
+
 	make_obsolete = regimental_camp
 
-#	# THIS = Province, FROM = Builder(not nessecairly owner, can be overlord)
-#	on_built = {
-#		FROM = {
-#			add_army_professionalism = 0.01
-#		}
-#	}
-#
-#	# THIS = Province, FROM = Destroyer, Will not be called on buildings made obsolete!
-#	on_destroyed = {
-#		FROM = {
-#			add_army_professionalism = -0.02
-#		}
-#	}
-#
-#	# THIS = Province, FROM = Destroyer, Will not be called on buildings destroyed!
-#	on_obsolete = {
-#		hidden_effect = {
-#			FROM = {
-#				add_army_professionalism = -0.01
-#			}
-#		}
-#	}
-	build_trigger = {
-		if = {
-			limit = { FROM = { ai = yes overlord = { ai = yes } } }
-			FROM = { NOT = { num_of_loans = 4 } }
-			development = 10
-		}
-		forcelimit_development_limiter_trigger = yes
-	}
+	# THIS = Province, FROM = Builder(not nessecairly owner, can be overlord)
 
 	modifier = {
 		land_forcelimit = 1
@@ -1871,15 +1984,18 @@ conscription_center = {
 		update_improved_military_buildings_modifier = { #1.35
 			building = conscription_center
 		}
-
+		#Doge
+		land_forcelimit_giver_building_modifier_effect = yes
 		#Anbennar
 		anbennar_building_effect = yes
 		if = {
 			limit = { FROM = { has_estate_privilege = estate_boar_command_war_room_rights } }
 			FROM = { add_legitimacy = 0.5 }
 		}
-		land_forcelimit_giver_building_modifier_effect = yes
 
+		owner = { accretive_path_jiangyang_chi_stacking_effect = { amount = 20 } }
+
+		gronstunad_building_authority_effect = { value = 4 }
 	}
 	on_destroyed = {
 		remove_development_from_building = {
@@ -1921,7 +2037,7 @@ fort_18th = {
 	}
 
 	build_trigger = {
-		NOT = { has_province_modifier = verdant_link }
+		NOT = { has_terrain = fey_gladeway }
 	}
 
 	# THIS = Province, FROM = Builder(not nessecairly owner, can be overlord)
@@ -1987,17 +2103,29 @@ fort_18th = {
 		FROM = {
 			if = {
 				limit = {
-					has_church_aspect = white_dragon_1
+					religion = winter_court
 				}
-				add_church_power = 5
+				add_church_power = 10
 			}
 		}
 		if = {
 			limit = { FROM = { has_estate_privilege = estate_elephant_command_war_room_rights } }
 			FROM = { add_legitimacy = 1 }
 		}
+		if = {
+			limit = { FROM = { has_government_attribute = command_elephant_elevation_modifier } }
+			add_province_modifier = {
+				name = command_elephant_fort_buff
+				duration = -1
+			}
+		}
 		#Anbennar
+
+		owner = { accretive_path_xiaken_chi_stacking_effect = { amount = 40 } }
+
 		anbennar_building_effect = yes
+
+		gronstunad_building_authority_effect = { value = 8 }
 	}
 
 	# THIS = Province, FROM = Destroyer, Will not be called on buildings made obsolete!
@@ -2017,6 +2145,11 @@ fort_18th = {
 				province_event = { id = kheionai.2 }
 			}
 		}
+		if = { # Anbennar Kobold Traps
+			limit = { has_province_flag = has_kobold_traps }
+			province_event = { id = kobold_traps.8 }
+		}		
+		remove_province_modifier = command_elephant_fort_buff
 	}
 
 	# THIS = Province, FROM = Destroyer, Will not be called on buildings destroyed!
@@ -2059,10 +2192,14 @@ wharf = {
 		naval_supplies
 		fish
 		salt
+		
+		#TGE
 		seafood
 		tar
 	}
 	onmap = yes
+
+
 
 	on_built = {
 		manufactory_goods_giver_building_modifier_effect = yes
@@ -2071,11 +2208,14 @@ wharf = {
 			type = production
 			value = 2
 		}
-		add_dev_from_building = {
+
+		add_dev_from_building = { #1.35
 			building = manufactory 
 			type = production 
 			value = 1 
 		}
+		#Anbennar - Exwes
+		on_province_wharf_manufactory_built_estate_privileges_effect = yes 
 
 		# ANBENNAR
 		if = {
@@ -2096,8 +2236,15 @@ wharf = {
 			clr_province_flag = latest_manufactory_built_is_furnace
 			clr_province_flag = latest_manufactory_built_is_mage_tower
 		}
+		#Anbennar - Thangoya Tier 2 Reform Mechanic, Feel Free To Reuse
+		if = {
+			limit = { FROM = { has_reform = kai_diligent_bureucracy } }
+			anb_manufactory_discount = yes
+		}
 		#Anbennar
 		anbennar_building_effect = yes
+
+		gronstunad_building_authority_effect = { value = 5 }
 	}
 
 	on_destroyed = {
@@ -2107,10 +2254,18 @@ wharf = {
 			type = production
 			value = 2
 		}
-		remove_dev_from_building = {
+
+		remove_dev_from_building = { #1.35
 			building = manufactory 
 			type = production 
 			value = 1
+		}
+		#Anbennar - Exwes
+		on_province_wharf_manufactory_destroyed_estate_privileges_effect = yes
+
+		if = {
+			limit = { FROM = { has_reform = kai_diligent_bureucracy } }
+			anb_manufactory_discount_remove = yes
 		}
 	}
 	on_obsolete = {
@@ -2175,7 +2330,8 @@ weapons = {
 	manufactory = {
 		copper
 		iron
-		# TGE
+		
+		#TGE
 		lead
 		mercury
 		tin
@@ -2183,7 +2339,9 @@ weapons = {
 		munitions
 		zinc
 		cannon
-		mithril	#Anbennar
+		
+		#Anbennar
+		mithril
 	}
 	onmap = yes
 
@@ -2194,7 +2352,8 @@ weapons = {
 			type = production
 			value = 2
 		}
-		add_dev_from_building = {
+
+		add_dev_from_building = { #1.35
 			building = manufactory 
 			type = manpower 
 			value = 1 
@@ -2223,8 +2382,18 @@ weapons = {
 			limit = { FROM = { has_estate_privilege = estate_dragon_command_war_room_rights } }
 			FROM = { add_legitimacy = 1 }
 		}
+		#Anbennar - Thangoya Tier 2 Reform Mechanic, Feel Free To Reuse
+		if = {
+			limit = { FROM = { has_reform = kai_diligent_bureucracy } }
+			anb_manufactory_discount = yes
+		}
 		#Anbennar
+
+		owner = { accretive_path_beikling_chi_stacking_effect = { amount = 100 } }
+
 		anbennar_building_effect = yes
+
+		gronstunad_building_authority_effect = { value = 5 }
 	}
 
 	on_destroyed = {
@@ -2234,10 +2403,15 @@ weapons = {
 			type = production
 			value = 2
 		}
-		remove_dev_from_building = {
+
+		remove_dev_from_building = { #1.35
 			building = manufactory 
 			type = manpower 
 			value = 1
+		}
+		if = {
+			limit = { FROM = { has_reform = kai_diligent_bureucracy } }
+			anb_manufactory_discount_remove = yes
 		}
 	}
 	on_obsolete = {
@@ -2305,6 +2479,7 @@ textile = {
 		silk
 		dyes
 		
+		#TGE
 		indigo
 		uniforms
 		carpet
@@ -2318,7 +2493,7 @@ textile = {
 			type = production
 			value = 2
 		}
-		add_dev_from_building = {
+		add_dev_from_building = { #1.35
 			building = manufactory 
 			type = production 
 			value = 1 
@@ -2342,8 +2517,15 @@ textile = {
 			clr_province_flag = latest_manufactory_built_is_furnace
 			clr_province_flag = latest_manufactory_built_is_mage_tower
 		}
+		#Anbennar - Thangoya Tier 2 Reform Mechanic, Feel Free To Reuse
+		if = {
+			limit = { FROM = { has_reform = kai_diligent_bureucracy } }
+			anb_manufactory_discount = yes
+		}
 		#Anbennar
 		anbennar_building_effect = yes
+
+		gronstunad_building_authority_effect = { value = 5 }
 	}
 
 	on_destroyed = {
@@ -2353,10 +2535,14 @@ textile = {
 			type = production
 			value = 2
 		}
-		remove_dev_from_building = {
+		remove_dev_from_building = { #1.35
 			building = manufactory 
 			type = production 
 			value = 1
+		}
+		if = {
+			limit = { FROM = { has_reform = kai_diligent_bureucracy } }
+			anb_manufactory_discount_remove = yes
 		}
 	}
 	on_obsolete = {
@@ -2426,6 +2612,7 @@ plantations = {
 		tea
 		cocoa
 		
+		#TGE
 		palm_oil
 		saffron
 		cinnamon
@@ -2444,7 +2631,7 @@ plantations = {
 			type = production
 			value = 2
 		}
-		add_dev_from_building = {
+		add_dev_from_building = { #1.35
 			building = manufactory 
 			type = production 
 			value = 1 
@@ -2468,8 +2655,17 @@ plantations = {
 			clr_province_flag = latest_manufactory_built_is_furnace
 			clr_province_flag = latest_manufactory_built_is_mage_tower
 		}
+		#Anbennar - Thangoya Tier 2 Reform Mechanic, Feel Free To Reuse
+		if = {
+			limit = { FROM = { has_reform = kai_diligent_bureucracy } }
+			anb_manufactory_discount = yes
+		}
 		#Anbennar
 		anbennar_building_effect = yes
+
+		owner = { accretive_path_naamjyut_chi_stacking_effect = { amount = 100 } }
+
+		gronstunad_building_authority_effect = { value = 5 }
 	}
 
 	on_destroyed = {
@@ -2479,10 +2675,14 @@ plantations = {
 			type = production
 			value = 2
 		}
-		remove_dev_from_building = {
+		remove_dev_from_building = { #1.35
 			building = manufactory 
 			type = production 
 			value = 1
+		}
+		if = {
+			limit = { FROM = { has_reform = kai_diligent_bureucracy } }
+			anb_manufactory_discount_remove = yes
 		}
 	}
 	on_obsolete = {
@@ -2550,6 +2750,8 @@ tradecompany = {
 		spices
 		fur
 		incense
+		
+		#TGE
 		whaling
 		beer
 		rum
@@ -2579,7 +2781,7 @@ tradecompany = {
 			type = production
 			value = 2
 		}
-		add_dev_from_building = {
+		add_dev_from_building = { #1.35
 			building = manufactory 
 			type = production 
 			value = 1 
@@ -2603,8 +2805,26 @@ tradecompany = {
 			clr_province_flag = latest_manufactory_built_is_furnace
 			clr_province_flag = latest_manufactory_built_is_mage_tower
 		}
+		#Anbennar - Thangoya Tier 2 Reform Mechanic, Feel Free To Reuse
+		if = {
+			limit = { FROM = { has_reform = kai_diligent_bureucracy } }
+			anb_manufactory_discount = yes
+		}
 		#Anbennar
 		anbennar_building_effect = yes
+
+		gronstunad_building_authority_effect = { value = 5 }
+
+		if = { #Taychendi Empire
+			limit = {
+				FROM = { has_country_flag = J84_trade_station_bonus_flag }
+				trade_goods = precursor_relics
+			}
+			add_province_modifier = {
+				name = J84_trade_station_buff
+				duration = -1
+			}
+		}
 	}
 
 	on_destroyed = {
@@ -2614,10 +2834,22 @@ tradecompany = {
 			type = production
 			value = 2
 		}
-		remove_dev_from_building = {
+		remove_dev_from_building = { #1.35
 			building = manufactory 
 			type = production 
 			value = 1
+		}
+		if = {
+			limit = { FROM = { has_reform = kai_diligent_bureucracy } }
+			anb_manufactory_discount_remove = yes
+		}
+
+		if = { #Taychendi Empire
+			limit = {
+				FROM = { has_country_flag = J84_trade_station_bonus_flag }
+				trade_goods = precursor_relics
+			}
+			remove_province_modifier = J84_trade_station_buff
 		}
 	}
 	on_obsolete = {
@@ -2683,6 +2915,8 @@ farm_estate = {
 		grain
 		livestock
 		wine
+		
+		#TGE
 		apiculture
 		rice
 		horses
@@ -2710,7 +2944,7 @@ farm_estate = {
 			type = production
 			value = 2
 		}
-		add_dev_from_building = {
+		add_dev_from_building = { #1.35
 			building = manufactory 
 			type = production 
 			value = 1
@@ -2734,25 +2968,113 @@ farm_estate = {
 			clr_province_flag = latest_manufactory_built_is_furnace
 			clr_province_flag = latest_manufactory_built_is_mage_tower
 		}
+		#Anbennar - Thangoya Tier 2 Reform Mechanic, Feel Free To Reuse
+		if = {
+			limit = { FROM = { has_reform = kai_diligent_bureucracy } }
+			anb_manufactory_discount = yes
+		}
 		#Anbennar
 		anbennar_building_effect = yes
 		if = {
 			limit = { FROM = { has_estate_privilege = estate_wolf_command_war_room_rights } }
 			FROM = { add_legitimacy = 1 }
 		}
+
+		owner = { accretive_path_jiangyang_chi_stacking_effect = { amount = 20 } }
+
+		gronstunad_building_authority_effect = { value = 5 }
+		if = {
+			limit = {
+				FROM = { tag = J84 } #Taychendi Empire
+			}
+			hidden_effect = {
+				FROM = {
+					change_variable = {
+						which = J84_num_of_farm_estates_var
+						value = 1
+					}
+				}
+			}
+			if = { 
+				limit = { FROM = { has_country_flag = J84_sanguosynthesis_enabled_flag } }
+				FROM = { calc_sanguosynthesis_modifier = yes }
+			}
+		}
+		if = {
+			limit = { 
+				FROM = { has_estate_privilege = estate_nobles_rosande_noble_slaveowners } 
+				has_province_modifier = Z35_orcish_workforce
+			}
+			add_province_modifier = {
+				name = Z35_noble_slaveowners
+				duration = -1
+			}
+		}
+		if = {
+			limit = {
+				FROM = { has_estate_privilege = estate_nobles_rosande_competent_slaveowners } 
+				OR = {
+					has_province_modifier = Z35_orcish_workforce
+					has_province_modifier = Z35_grand_orcish_workforce
+				}
+			}
+			add_province_modifier = {
+				name = Z35_noble_slaveowners_2
+				duration = -1
+			}
+		}
 	}
 
 	on_destroyed = {
 		manufactory_goods_remover_building_modifier_effect = yes
-		add_dev_from_building = {
-			building = manufactory 
-			type = production 
-			value = 2 
+		remove_development_from_building = {
+			building = manufactory
+			type = production
+			value = 2
 		}
-		remove_dev_from_building = {
+		remove_dev_from_building = { #1.35
 			building = manufactory 
 			type = production 
 			value = 1
+		}
+		if = {
+			limit = { FROM = { has_reform = kai_diligent_bureucracy } }
+			anb_manufactory_discount_remove = yes
+		}
+
+		if = {
+			limit = {
+				FROM = { tag = J84 } #Taychendi Empire
+			}
+			hidden_effect = {
+				FROM = {
+					change_variable = {
+						which = J84_num_of_farm_estates_var
+						value = -1
+					}
+				}
+			}
+			if = { #Taychendi Empire
+				limit = { FROM = { has_country_flag = J84_sanguosynthesis_enabled_flag } }
+				FROM = { calc_sanguosynthesis_modifier = yes }
+			}
+		}
+		if = {
+			limit = { 
+				FROM = { has_estate_privilege = estate_nobles_rosande_noble_slaveowners } 
+				has_province_modifier = Z35_orcish_workforce
+			}
+			remove_province_modifier = Z35_noble_slaveowners
+		}
+		if = {
+			limit = {
+				FROM = { has_estate_privilege = estate_nobles_rosande_competent_slaveowners } 
+				OR = {
+					has_province_modifier = Z35_orcish_workforce
+					has_province_modifier = Z35_grand_orcish_workforce
+				}
+			}
+			remove_province_modifier = Z35_noble_slaveowners_2
 		}
 	}
 	on_obsolete = {
@@ -2819,6 +3141,8 @@ mills = {
 		gems
 		glass
 		paper
+		
+		#TGE
 		tropical_wood
 		pearls
 		lumber
@@ -2835,7 +3159,7 @@ mills = {
 			type = production
 			value = 2
 		}
-		add_dev_from_building = {
+		add_dev_from_building = { #1.35
 			building = manufactory 
 			type = production 
 			value = 1 
@@ -2861,8 +3185,15 @@ mills = {
 			limit = { FROM = { has_estate_privilege = estate_elephant_command_war_room_rights } }
 			FROM = { add_legitimacy = 1 }
 		}
+		#Anbennar - Thangoya Tier 2 Reform Mechanic, Feel Free To Reuse
+		if = {
+			limit = { FROM = { has_reform = kai_diligent_bureucracy } }
+			anb_manufactory_discount = yes
+		}
 		#Anbennar
 		anbennar_building_effect = yes
+
+		gronstunad_building_authority_effect = { value = 5 }
 	}
 	on_destroyed = {
 		manufactory_goods_remover_building_modifier_effect = yes
@@ -2871,10 +3202,14 @@ mills = {
 			type = production
 			value = 2
 		}
-		remove_dev_from_building = {
+		remove_dev_from_building = { #1.35
 			building = manufactory 
 			type = production 
 			value = 1
+		}
+		if = {
+			limit = { FROM = { has_reform = kai_diligent_bureucracy } }
+			anb_manufactory_discount_remove = yes
 		}
 	}
 	on_obsolete = {
@@ -2968,8 +3303,15 @@ furnace = {
 			clr_province_flag = latest_manufactory_built_is_mills
 			clr_province_flag = latest_manufactory_built_is_mage_tower
 		}
+		#Anbennar - Thangoya Tier 2 Reform Mechanic, Feel Free To Reuse
+		if = {
+			limit = { FROM = { has_reform = kai_diligent_bureucracy } }
+			anb_manufactory_discount = yes
+		}
 		#Anbennar
 		anbennar_building_effect = yes
+
+		gronstunad_building_authority_effect = { value = 5 }
 	}
 
 	on_destroyed = {
@@ -2978,6 +3320,10 @@ furnace = {
 			building = manufactory
 			type = production
 			value = 2
+		}
+		if = {
+			limit = { FROM = { has_reform = kai_diligent_bureucracy } }
+			anb_manufactory_discount_remove = yes
 		}
 	}
 	on_obsolete = {
@@ -3038,8 +3384,15 @@ ramparts = {
 			clr_province_flag = latest_manufactory_built_is_furnace
 			clr_province_flag = latest_manufactory_built_is_mage_tower
 		}
+		#Anbennar - Thangoya Tier 2 Reform Mechanic, Feel Free To Reuse
+		if = {
+			limit = { FROM = { has_reform = kai_diligent_bureucracy } }
+			anb_manufactory_discount = yes
+		}
 		#Anbennar
 		anbennar_building_effect = yes
+
+		gronstunad_building_authority_effect = { value = 5 }
 	}
 
 	on_destroyed = { #1.35
@@ -3053,6 +3406,10 @@ ramparts = {
 				has_province_modifier = estate_nobles_development_of_castles_ramparts_mod
 			}
 			remove_province_modifier = estate_nobles_development_of_castles_ramparts_mod
+		}
+		if = {
+			limit = { FROM = { has_reform = kai_diligent_bureucracy } }
+			anb_manufactory_discount_remove = yes
 		}
 	}
 
@@ -3084,6 +3441,8 @@ soldier_households = {
 		fish
 		livestock
 		wine
+		
+		#TGE
 		apiculture
 		rice
 		leather
@@ -3096,6 +3455,7 @@ soldier_households = {
 		maize
 		llama
 		cheese
+		
 		#Anbennar
 		fungi
 		serpentbloom
@@ -3151,8 +3511,26 @@ soldier_households = {
 			clr_province_flag = latest_manufactory_built_is_furnace
 			clr_province_flag = latest_manufactory_built_is_mage_tower
 		}
+		#Anbennar - Thangoya Tier 2 Reform Mechanic, Feel Free To Reuse
+		if = {
+			limit = { FROM = { has_reform = kai_diligent_bureucracy } }
+			anb_manufactory_discount = yes
+		}
 		#Anbennar
 		anbennar_building_effect = yes
+
+		gronstunad_building_authority_effect = { value = 5 }
+
+		if = {
+			limit = { FROM = { mission_completed = R38_raheni_regiments } }
+			add_province_modifier = { name = bhuvauri_adasa_workforce duration = -1 desc = while_soldier_households }
+		}
+
+		#Rakkaz MT 
+		if ={
+			limit = { FROM = { has_country_flag = rakkaz_soldiers_households_bonus } }
+			rakkaz_soldier_household_buffs = yes
+		}
 	}
 
 	on_destroyed = {
@@ -3172,6 +3550,26 @@ soldier_households = {
 			}
 			remove_province_modifier = wei_suo_system_reform_soldier_households_modifier
 		}
+		if = {
+			limit = { FROM = { has_reform = kai_diligent_bureucracy } }
+			anb_manufactory_discount_remove = yes
+		}
+		if = {
+            limit = { has_province_modifier = bhuvauri_adasa_workforce }
+            remove_province_modifier = bhuvauri_adasa_workforce
+        }
+		if = {
+            limit = { has_province_modifier = rakkaz_soldier_households_1 }
+            remove_province_modifier = rakkaz_soldier_households_1
+        }
+		if = {
+            limit = { has_province_modifier = rakkaz_soldier_households_2 }
+            remove_province_modifier = rakkaz_soldier_households_2
+        }
+		if = {
+            limit = { has_province_modifier = rakkaz_soldier_households_3 }
+            remove_province_modifier = rakkaz_soldier_households_3
+        }
 	}
 	on_obsolete = {
 	}
@@ -3237,6 +3635,8 @@ impressment_offices = {
 		fish
 		naval_supplies
 		tropical_wood
+		
+		#TGE
 		seafood
 		citrus
 		tar
@@ -3270,6 +3670,8 @@ impressment_offices = {
 			type = manpower 
 			value = 1 
 		}
+		#Anbennar - Exwes
+		on_province_impressment_offices_manufactory_built_estate_privileges_effect = yes
 		# ANBENNAR
 		if = {
 			limit = {
@@ -3289,8 +3691,15 @@ impressment_offices = {
 			clr_province_flag = latest_manufactory_built_is_furnace
 			clr_province_flag = latest_manufactory_built_is_mage_tower
 		}
+		#Anbennar - Thangoya Tier 2 Reform Mechanic, Feel Free To Reuse
+		if = {
+			limit = { FROM = { has_reform = kai_diligent_bureucracy } }
+			anb_manufactory_discount = yes
+		}
 		#Anbennar
 		anbennar_building_effect = yes
+
+		gronstunad_building_authority_effect = { value = 5 }
 	}
 	on_destroyed = {
 		remove_development_from_building = {
@@ -3302,6 +3711,18 @@ impressment_offices = {
 			building = impressment_offices 
 			type = manpower 
 			value = 1 
+		}
+		#Anbennar - Exwes
+		on_province_impressment_offices_manufactory_destroyed_estate_privileges_effect = yes
+		
+		if = {
+			limit = { FROM = { has_reform = kai_diligent_bureucracy } }
+			anb_manufactory_discount_remove = yes
+		}
+		if = { #themarenn
+			limit = { FROM = { has_country_flag = inland_impressment_offices } }
+			remove_province_modifier = a95_tier1_sailors
+			remove_province_modifier = a95_tier2_sailors
 		}
 	}
 	on_obsolete = {
@@ -3321,6 +3742,8 @@ state_house = {
 		paper
 		glass
 		gems
+		
+		#TGE
 		amber
 		pearls
 		jewellery
@@ -3398,14 +3821,25 @@ state_house = {
 			clr_province_flag = latest_manufactory_built_is_furnace
 			clr_province_flag = latest_manufactory_built_is_mage_tower
 		}
+		#Anbennar - Thangoya Tier 2 Reform Mechanic, Feel Free To Reuse
+		if = {
+			limit = { FROM = { has_reform = kai_diligent_bureucracy } }
+			anb_manufactory_discount = yes
+		}
 		#Anbennar
 		anbennar_building_effect = yes
+
+		gronstunad_building_authority_effect = { value = 5 }
 	}
 	on_destroyed = {
 		remove_development_from_building = {
 			building = state_house
 			type = tax
 			value = 2
+		}
+		if = {
+			limit = { FROM = { has_reform = kai_diligent_bureucracy } }
+			anb_manufactory_discount_remove = yes
 		}
 	}
 	on_obsolete = {

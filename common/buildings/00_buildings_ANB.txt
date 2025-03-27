@@ -20,6 +20,7 @@ mage_tower = {
 		precursor_relics
 		incense
 		chinaware
+		ivory
 	}
 
 	modifier = {
@@ -63,8 +64,57 @@ mage_tower = {
 				province_event = { id = kheionai.3 }
 			}
 		}
-		#Anbennar
+		#Anbennar - Thangoya Tier 2 Reform Mechanic, Feel Free To Reuse
+		if = {
+			limit = { FROM = { has_reform = kai_diligent_bureucracy } }
+			anb_manufactory_discount = yes
+		}
 		anbennar_building_effect = yes
+		#Anbennar - Irkorzik
+		if = {
+			limit = { 
+				AND = {
+					owner = { has_estate_privilege = estate_church_sandstorm_summoning }
+					owner = { has_country_flag = irkorzik_sandstorm_summoning_buff }
+				}
+			}
+			add_province_modifier = { name = irkorzik_sandstorm_summoning_buff duration = -1 }
+		}
+		else_if = {
+			limit = { 
+				AND = {
+					owner = { has_estate_privilege = estate_church_sandstorm_summoning }
+				}
+			}
+			add_province_modifier = { name = irkorzik_sandstorm_summoning duration = -1 }
+		}
+		#Anbennar - Irkorzik, but can be used by anyone. Feel free to use.
+		anb_add_extra_mage_tower_dev = yes
+
+		gronstunad_building_authority_effect = { value = 1 }
+
+		#Anbennar - Masked Butcher
+		if = {
+			limit = {
+				owner = { has_country_flag = mb_ichortap_flag }
+				NOT = { owner = { has_country_flag = mb_buffed_ichortap_flag } }
+				superregion = deepwoods_superregion
+			}
+			add_province_modifier = {
+				name = mb_ichortap
+				duration = -1
+			}
+		}
+		else_if = {
+			limit = {
+				owner = { has_country_flag = mb_buffed_ichortap_flag }
+				superregion = deepwoods_superregion
+			}
+			add_province_modifier = {
+				name = mb_ichortap2
+				duration = -1
+			}
+		}
 	}
 	on_destroyed = {
 		if = {
@@ -74,6 +124,43 @@ mage_tower = {
 			hidden_effect = {
 				province_event = { id = kheionai.3 }
 			}
+		}
+		if = {
+			limit = { FROM = { has_reform = kai_diligent_bureucracy } }
+			anb_manufactory_discount_remove = yes
+		}
+		anbennar_building_effect = yes
+		#Anbennar - Irkorzik
+		if = {
+			limit = { 
+				AND = {
+					owner = { has_estate_privilege = estate_church_sandstorm_summoning } 
+					owner = { has_country_flag = irkorzik_upgraded_sandstorm_summoning }
+					has_province_modifier = irkorzik_sandstorm_summoning_buff
+				}
+			}
+			remove_province_modifier = irkorzik_sandstorm_summoning_buff
+		}
+		else_if = {
+			limit = { 
+				AND = {
+					owner = { has_estate_privilege = estate_church_sandstorm_summoning } 
+					has_province_modifier = irkorzik_sandstorm_summoning
+				}
+			}
+			remove_province_modifier = irkorzik_sandstorm_summoning
+		}
+		#Anbennar - Irkorzik, but can be used by anyone. Feel free to use
+		anb_remove_extra_mage_tower_dev = yes
+
+		#Anbennar - Masked Butcher
+		if = {
+			limit = { has_province_modifier = mb_ichortap }
+			remove_province_modifier = mb_ichortap
+		}
+		if = {
+			limit = { has_province_modifier = mb_ichortap2 }
+			remove_province_modifier = mb_ichortap2
 		}
 	}
 }
@@ -174,6 +261,7 @@ restoring_hold = {
 			remove_building = restoring_hold
 			restored_hold = yes
 			province_event = { id = diggy.12 }
+			clr_province_flag = diggy_diggy_estimate_flag
 		}
     }
 
@@ -263,6 +351,30 @@ fort_magic = {
 	modifier = {
 		fort_level = 1
 		local_defensiveness = 1.5
+	}
+
+	on_built = {
+		#ANBENNAR - windward stuff
+		if = {
+			limit = {
+				region = alecand_region
+			}
+			hidden_effect = {
+				province_event = { id = kheionai.2 }
+			}
+		}
+	}
+
+	on_destroyed = {
+		#ANBENNAR - windward stuff
+		if = {
+			limit = {
+				region = alecand_region
+			}
+			hidden_effect = {
+				province_event = { id = kheionai.2 }
+			}
+		}
 	}
 
 	onmap = yes
@@ -562,7 +674,40 @@ railway_work = {
 					name = restored_rail
 					duration = -1
 				}
-				province_event = { id = diggy.36 }
+				FROM = { add_prestige = 1 }
+				if = { 
+					limit = {
+						FROM = { 
+							NOT = { has_country_flag = auto_build_rail }
+							NOT = { has_country_flag = never_auto_build_rail }
+							NOT = { has_country_modifier = temp_auto_build_rail }
+							NOT = { has_country_modifier = no_rail_and_event_notif_for_5_years }
+						}
+					}
+					if = {
+						limit = { 
+							FROM = { NOT = { has_country_modifier = no_event_notif_for_5_years } }
+						}
+						FROM = { country_event = { id = diggy.760 } }
+					}
+					province_event = { id = diggy.36 }
+				}
+				else_if = {
+					limit = {
+						FROM = { 
+							treasury = 15
+							OR = { 
+								has_country_flag = auto_build_rail 
+								has_country_modifier = temp_auto_build_rail
+							}
+						}
+					}
+					construct_every_adjacent_rail_road = {
+						rail = dwarovar_rail
+						speed = 1
+						cost = 1
+					}
+				}
 			}
 			else_if = {
 				limit = { has_province_modifier = restored_rail }
@@ -571,7 +716,40 @@ railway_work = {
 					name = advanced_rail
 					duration = -1
 				}
-				province_event = { id = diggy.42 }
+				FROM = { add_prestige = 2 }
+				if = { 
+					limit = {
+						FROM = { 
+							NOT = { has_country_flag = auto_build_rail }
+							NOT = { has_country_flag = never_auto_build_rail }
+							NOT = { has_country_modifier = temp_auto_build_rail }
+							NOT = { has_country_modifier = no_rail_and_event_notif_for_5_years }
+						}
+					}
+					if = {
+						limit = { 
+							FROM = { NOT = { has_country_modifier = no_event_notif_for_5_years } }
+						}
+						FROM = { country_event = { id = diggy.760 } }
+					}
+					province_event = { id = diggy.42 }
+				}
+				else_if = {
+					limit = {
+						FROM = { 
+							treasury = 30
+							OR = { 
+								has_country_flag = auto_build_rail 
+								has_country_modifier = temp_auto_build_rail
+							}
+						}
+					}
+					construct_every_adjacent_rail_road = {
+						rail = restored_rail
+						speed = 1.3
+						cost = 2
+					}
+				}
 			}
 			else_if = {
 				limit = { has_province_modifier = advanced_rail }
@@ -580,7 +758,40 @@ railway_work = {
 					name = rocket_rail
 					duration = -1
 				}
-				province_event = { id = allclan.99 }
+				FROM = { add_prestige = 2 }
+				if = { 
+					limit = {
+						FROM = { 
+							NOT = { has_country_flag = auto_build_rail }
+							NOT = { has_country_flag = never_auto_build_rail }
+							NOT = { has_country_modifier = temp_auto_build_rail }
+							NOT = { has_country_modifier = no_rail_and_event_notif_for_5_years }
+						}
+					}
+					if = {
+						limit = { 
+							FROM = { NOT = { has_country_modifier = no_event_notif_for_5_years } }
+						}
+						FROM = { country_event = { id = diggy.760 } }
+					} 
+					province_event = { id = allclan.99 }
+				}
+				else_if = {
+					limit = {
+						FROM = { 
+							treasury = 30
+							OR = { 
+								has_country_flag = auto_build_rail 
+								has_country_modifier = temp_auto_build_rail
+							}
+						}
+					}
+					construct_every_adjacent_rail_road = {
+						rail = advanced_rail
+						speed = 1.3
+						cost = 2
+					}
+				}
 			}
 		}
     }
@@ -632,40 +843,6 @@ digging_deeper = {
 	ai_will_do = {
 		factor = 0
 	}
-}
-
-ziggurat_of_surakel = {
-	cost = 1000
-	time = 120
-
-	build_trigger = {
-		has_building = ziggurat_of_surakel
-		# owner = { NOT = { num_of_owned_provinces_with = { value = 2 has_building = ziggurat_of_surakel } } }
-	}
-
-	modifier = {
-		allowed_num_of_buildings = 1
-		local_missionary_strength = -0.08
-		prestige = 1
-	}
-
-	on_built = {
-		hidden_effect = {
-			province_event = { id = dartaxagerdim_events.4 }
-			FROM = { set_country_flag = ziggurat_of_surakel_built }
-		}
-    }
-
-	ai_will_do = {
-		factor = 0
-	}
-
-	on_destroyed = {
-		FROM = {
-			add_prestige = 20
-			add_treasury = 500
-		}
-    }
 }
 
 garden_of_secrets_0 = {
