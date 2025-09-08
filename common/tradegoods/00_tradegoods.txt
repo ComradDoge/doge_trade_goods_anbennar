@@ -2561,8 +2561,8 @@ cinnamon = {
 			}
 		}
 		modifier = {
-			factor = 1.5
-			has_terrain = jungle
+			factor = 0
+			NOT = { has_terrain = jungle }
 		}
 	}
 }
