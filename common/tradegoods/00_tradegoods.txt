@@ -2528,14 +2528,42 @@ palm_oil = {
 cinnamon = { 
 	color = { 0.80 0.60 0.40 } 
 	modifier = { 
-		ae_impact = -0.1 
+		ae_impact = -0.1
 	}
 	province = {
 		trade_value_modifier = 0.10
 	}
 	
 	chance = { 
-		factor = 0 
+		factor = 5
+		modifier = {
+			factor = 0
+			NOT = {
+				OR = { 
+					superregion = rahen_superregion
+					superregion = vimdatrong_superregion
+
+					superregion = torn_gates_superregion
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			OR  = {
+				has_terrain = mountain
+				has_terrain = cavern
+				has_terrain = dwarven_hold
+				has_terrain = dwarven_hold_surface
+				has_terrain = dwarven_road
+				has_terrain = glacier
+				has_climate = arctic
+				has_winter = severe_winter
+			}
+		}
+		modifier = {
+			factor = 1.5
+			has_terrain = jungle
+		}
 	}
 }
 
@@ -3686,18 +3714,25 @@ tar = {
 		naval_maintenance_modifier = -0.01
 	}
 	chance = {
-		factor = 15
+		factor = 10
 		
 		modifier = {
 			factor = 0
 			NOT = {
 				OR = {
-					region = scandinavia_region
-					region = baltic_region
-					region = russia_region
-					continent = north_america
-					continent = south_america
-					continent = new_world
+					# New World
+					region = randrunnse_region
+					region = broken_isles_region
+					region = rzenta_region
+					region = forest_of_the_cursed_ones_region
+					region = dalaire_region
+					# Old World
+					region = dalr_region
+					region = gerudian_frontier_region
+					region = olavlund_region
+					region = northern_pass_region
+					region = yyl_moista_region
+					region = moduk_region
 				}
 			}
 		}
@@ -3715,36 +3750,9 @@ tar = {
 		}
 		modifier = {
 			factor = 0.3
-			OR = {
-				has_climate = tropical
-				AND = {
-					NOT = { region = canada_region }
-					NOT = { region = northeast_america_region }
-					NOT = { region = great_lakes_region }
-				}
-			}
-		}
-		modifier = {
-			factor = 0.3
 			NOT = { region = canada_region }
 			NOT = { region = northeast_america_region }
 			NOT = { region = great_lakes_region }
-		}
-		modifier = {
-			factor = 0.6
-			OR = {
-				continent = south_america
-			}
-		}
-		modifier = {
-			factor = 0.8
-			OR = {
-				has_terrain = mountain
-				has_terrain = hills
-				has_terrain = highlands
-				has_terrain = drylands
-				region = russia_region
-			}
 		}
 		modifier = {
 			factor = 2
@@ -3828,6 +3836,10 @@ maple_syrup = {
 	}
 	chance = {
 		factor = 5
+		modifier = {
+			factor = 5
+			superregion = broken_lands_superregion
+		}
 		modifier = {
 			factor = 0
 			NOT = { 

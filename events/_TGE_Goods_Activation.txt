@@ -150,7 +150,23 @@ country_event = {
             every_province = {
                 limit = {
                     OR = {
-
+                        province_id = 4395
+                        province_id = 4562
+                        province_id = 4572
+                        province_id = 4577
+                        province_id = 4374
+                        province_id = 4383
+                        province_id = 4715
+                        province_id = 4953
+                        province_id = 4736
+                        province_id = 4708
+                        province_id = 4723
+                        province_id = 4768
+                        province_id = 4771
+                        province_id = 4592
+                        province_id = 4946
+                        province_id = 4387
+                        province_id = 4393
                     }
                 }
 
