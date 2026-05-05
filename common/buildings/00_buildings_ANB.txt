@@ -1,5 +1,6 @@
 
 ####################### ANBENNAR ###########################
+# Mage Tower also has a small section for Dwarwen Knowledge
 
 mage_tower = {
 	manufactory = {
@@ -169,6 +170,18 @@ mage_tower = {
 				duration =  -1
 			}
 		}
+
+
+		#############################################################
+		# Dwarven Knowledge
+		if = {
+			limit = {
+				has_global_flag = Dwarven_knowledge_active
+			}
+			province_event = {
+				id = DA_building_event.40
+			}
+		}
 	}
 	on_destroyed = {
 		if = {
@@ -264,6 +277,26 @@ mage_tower = {
 				province_id = 33 owner = { mission_completed = toarnaire_mageblood }
 			}
 			remove_province_modifier = toarnaire_toarnaire_mage_tower
+		}
+
+		#############################################################
+		# Dwarven Knowledge
+		if = {
+			limit = {
+				has_global_flag = Dwarven_knowledge_active
+			}
+			remove_province_modifier = DA_Mage_Tower_Specialization.Abjuration
+			remove_province_modifier = DA_Mage_Tower_Specialization.Divination
+			remove_province_modifier = DA_Mage_Tower_Specialization.Illusion
+			remove_province_modifier = DA_Mage_Tower_Specialization.Conjuration
+			remove_province_modifier = DA_Mage_Tower_Specialization.Enchantment
+			remove_province_modifier = DA_Mage_Tower_Specialization.Evocation
+			remove_province_modifier = DA_Mage_Tower_Specialization.Transmutation
+			remove_province_modifier = DA_Mage_Tower_Specialization.Necromancy
+			remove_province_modifier = DA_Mage_Tower_Specialization.Elemental_Magic_Fire
+			remove_province_modifier = DA_Mage_Tower_Specialization.Elemental_Magic_Water
+			remove_province_modifier = DA_Mage_Tower_Specialization.Elemental_Magic_Earth
+			remove_province_modifier = DA_Mage_Tower_Specialization.Elemental_Magic_Air
 		}
 	}
 }
