@@ -1034,18 +1034,20 @@ guiTypes = {
 		
 		instantTextBoxType={
 			name = "title_innovation"
-			position = {x = 316 y = 497 }
+			#position = {x = 316 y = 497 } # Original, before moving for mining/other
+			position = {x = 335 y = 497 }
 			font = "vic_18"
 			borderSize = {x = 0 y = 0}	
 			maxWidth = 80
 			maxHeight = 18
-			text = "Education"	
+			text = "Others" # Education
 		}
 		
 		iconType ={
 			name ="innovation_icon"
 			spriteType = "GFX_macro_buildings_category_strip"
-			position = { x = 290 y = 488}
+			#position = { x = 290 y = 488} # Original, before moving for mining icon
+			position = { x = 310 y = 488}
 			frame = 9
 		}
 		
@@ -1238,38 +1240,41 @@ guiTypes = {
 			text = "2000¤"
 		}
 
-		iconType = {
-			name = "Mining_banner"
-			position = { x = 268 y = 595 }
-			spriteType = "GFX_banner_right_2"
-		}
+		#iconType = {
+		#	name = "Mining_banner"
+		#	position = { x = 268 y = 595 }
+		#	spriteType = "GFX_banner_right_2"
+		#}
 
-		instantTextBoxType={
-			name = "title_Mining"
-			position = {x = 316 y = 605 }
-			font = "vic_18"
-			borderSize = {x = 0 y = 0}	
-			maxWidth = 200
-			maxHeight = 18
-			text = "MINING"	
-		}
+		#instantTextBoxType={
+		#	name = "title_Mining"
+		#	position = {x = 316 y = 605 }
+		#	font = "vic_18"
+		#	borderSize = {x = 0 y = 0}	
+		#	maxWidth = 200
+		#	maxHeight = 18
+		#	text = "MINING"	
+		#}
 
 		iconType ={
 			name ="Mining_icon"
 			spriteType = "GFX_macro_buildings_category_strip"
-			position = { x = 290 y = 600}
+			#position = { x = 290 y = 600} # Original, below Education
+			position = { x = 290 y = 488}
 			frame = 12
 		}
 		
 		checkboxType = {
 			name = "build_mine"
-			position = { x = 348 y = 630 }
+			#position = { x = 348 y = 630 } # Original, below Education
+			position = { x = 296 y = 520 }
 			quadTextureSprite = "GFX_furnace"
 		}
 
 		instantTextBoxType={
 			name = "mine_cost"
-			position = {x = 348 y = 680 }
+			#position = {x = 348 y = 680 } # Original, below Education
+			position = {x = 296 y = 570 }
 			font = "vic_18"
 			borderSize = {x = 0 y = 0}
 			maxWidth = 128
@@ -1545,6 +1550,22 @@ guiTypes = {
 		instantTextBoxType={
 			name = "mage_tower_cost"
 			position = {x = 217 y = 680 }
+			font = "vic_18"
+			borderSize = {x = 0 y = 0}
+			maxWidth = 128
+			maxHeight = 18
+			text = "2000¤"
+		}
+
+		checkboxType = {
+			name = "build_automatory"
+			position = { x = 269 y = 630 } #x= +52
+			quadTextureSprite = "GFX_furnace"
+		}
+
+		instantTextBoxType={
+			name = "automatory_cost"
+			position = {x = 269 y = 680 }
 			font = "vic_18"
 			borderSize = {x = 0 y = 0}
 			maxWidth = 128
