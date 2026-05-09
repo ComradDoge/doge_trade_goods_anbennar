@@ -150,6 +150,7 @@ province_event = {
 			owner = { add_prestige = 2.5 }
 		}
 		custom_tooltip = hold_restored_tooltip
+		hyti_better_holds_effect = yes
 	}
 }
 
@@ -172,7 +173,7 @@ province_event = {
 		NOT = { has_province_modifier = infested_hold }
 		NOT = { has_province_modifier = fallen_great_excavation }
 		NOT = { ROOT = { owned_by = FROM } }
-		NOT = { has_province_modifier = siege_no_hold_damage }
+		NOT = { has_province_modifier = enchantment_3_dominate_to_surrender_siege_mod }
 	}
 
 	immediate = {
@@ -535,6 +536,23 @@ province_event = {
 			duration = -1
 		}
 	}
+	#Vaults
+	option = {
+        name = diggy.27.g
+        ai_chance = { factor = 100 }
+		trigger = {
+			custom_trigger_tooltip = {
+				tooltip = diggy.27.g_tt
+				has_province_flag = gor_vazumbrog_vaults_rebuilt
+			}
+		}
+		highlight = yes
+		goto = ROOT
+		add_permanent_province_modifier = {
+			name = hold_vaults
+			duration = -1
+		}
+	}
 }
 
 #A Hold develop
@@ -761,6 +779,7 @@ province_event = {
 		native_size = 10
 		NOT = { area = hjyrtsikki_area }
 		NOT = { area = fyllstyn_area }
+		NOT = { has_province_modifier = gor_vazumbrog_dauvek_veker_secure_road }
 	}
 	
 	immediate = {
@@ -1390,9 +1409,12 @@ country_event = {
 	option = {
         name = diggy.43.a
         ai_chance = { factor = 100 }
-		trigger = { NOT = { has_global_flag = irrigation_north } }
-		hidden_effect = { set_global_flag = irrigation_north }
+		trigger = { NOT = { has_global_flag = irrigation_north_done } }
+
+		hidden_effect = { set_country_flag = repairing_irrigation_north }
 		hidden_effect = { country_event = { id = diggy.44 days = 1825 random = 365 } }
+
+		# cost
 		if = {
 			limit = { 
 				ai = no
@@ -1425,9 +1447,12 @@ country_event = {
 	option = {
         name = diggy.43.b
         ai_chance = { factor = 100 }
-		trigger = { NOT = { has_global_flag = irrigation_south } }
-		hidden_effect = { set_global_flag = irrigation_south }
+		trigger = { NOT = { has_global_flag = irrigation_south_done } }
+
+		hidden_effect = { set_country_flag = repairing_irrigation_south }
 		hidden_effect = { country_event = { id = diggy.44 days = 1825 random = 365 } }
+
+		# cost
 		if = {
 			limit = { 
 				ai = no
@@ -1460,9 +1485,12 @@ country_event = {
 	option = {
         name = diggy.43.c
         ai_chance = { factor = 100 }
-		trigger = { NOT = { has_global_flag = irrigation_east } }
-		hidden_effect = { set_global_flag = irrigation_east }
+		trigger = { NOT = { has_global_flag = irrigation_east_done } }
+
+		hidden_effect = { set_country_flag = repairing_irrigation_east }
 		hidden_effect = { country_event = { id = diggy.44 days = 1825 random = 365 } }
+
+		# cost
 		if = {
 			limit = { 
 				ai = no
@@ -1496,9 +1524,12 @@ country_event = {
 	option = {
         name = diggy.43.e
         ai_chance = { factor = 100 }
-		trigger = { NOT = { has_global_flag = irrigation_west } }
-		hidden_effect = { set_global_flag = irrigation_west }
+		trigger = { NOT = { has_global_flag = irrigation_west_done } }
+
+		hidden_effect = { set_country_flag = repairing_irrigation_west }
 		hidden_effect = { country_event = { id = diggy.44 days = 1825 random = 365 } }
+
+		# cost
 		if = {
 			limit = { 
 				ai = no
@@ -1531,34 +1562,88 @@ country_event = {
 	option = {
         name = diggy.43.f
         ai_chance = { factor = 0 }
-		hidden_effect = { clr_country_flag = repairing_irrigation }
+	}
+	after = {
+		hidden_effect = {
+			clr_country_flag = irrigation_menu_open
+		}
 	}
 }
 
 country_event = {
 	id = diggy.44
 	title = diggy.44.t
-	desc = diggy.44.d
-	picture = FARMING_eventPicture
+
+	desc = { # repairing an already repaired section, bugged state
+		trigger = {
+			OR = {
+				AND = {
+					has_country_flag = repairing_irrigation_north
+					has_global_flag = irrigation_north_done
+				}
+				AND = {
+					has_country_flag = repairing_irrigation_south
+					has_global_flag = irrigation_south_done
+				}
+				AND = {
+					has_country_flag = repairing_irrigation_west
+					has_global_flag = irrigation_west_done
+				}
+				AND = {
+					has_country_flag = repairing_irrigation_east
+					has_global_flag = irrigation_east_done
+				}
+				has_global_flag = serpent_vale_irrigation
+			}
+		}
+		desc = diggy.44.d3
+	}
+
+	desc = { # success
+		trigger = {
+			amldihr_area = {
+				type = all
+				owned_by = ROOT
+				is_city = yes
+			}
+		}
+		desc = diggy.44.d1
+	}
 	
+	desc = { # failed, amldihr is lost
+		trigger = {
+			NOT = {
+				amldihr_area = {
+					type = all
+					owned_by = ROOT
+					is_city = yes
+				}
+			}
+		}
+		desc = diggy.44.d2
+	}
+	
+
+	picture = FARMING_eventPicture
 	is_triggered_only = yes
 	
 	trigger = {
 		always = yes
 	}
 	
-	immediate = {
-		hidden_effect = { clr_country_flag = repairing_irrigation }
-	}
-	
+	#Success North
 	option = {
         name = diggy.44.a
-        ai_chance = { factor = 100 }
-		if = {
-			limit = { 
-				has_global_flag = irrigation_north
+		trigger = {
+			has_country_flag = repairing_irrigation_north
+			amldihr_area = {
+				type = all
+				owned_by = ROOT
+				is_city = yes
+			}
 				NOT = { has_global_flag = irrigation_north_done }
 			}
+
 			castle_hill_area = {
 				if = {
 					limit = { NOT = { province_id = 4120 } }
@@ -1573,13 +1658,21 @@ country_event = {
 					set_province_flag = efficient_irrigation
 				}
 			}
-			hidden_effect = { set_global_flag = irrigation_north_done }
+		hidden_effect = { set_global_flag = irrigation_north_done clr_country_flag = repairing_irrigation_north }
 		}
-		else_if = {
-			limit = { 
-				has_global_flag = irrigation_south
+	# Success South
+	option = {
+		name = diggy.44.b
+		trigger = {
+			has_country_flag = repairing_irrigation_south
+			amldihr_area = {
+				type = all
+				owned_by = ROOT
+				is_city = yes
+			}
 				NOT = { has_global_flag = irrigation_south_done }
 			}
+
 			royal_terrace_area = {
 				if = {
 					limit = { NOT = { province_id = 4121 } }
@@ -1594,13 +1687,21 @@ country_event = {
 					set_province_flag = efficient_irrigation
 				}
 			}
-			hidden_effect = { set_global_flag = irrigation_south_done }
+		hidden_effect = { set_global_flag = irrigation_south_done clr_country_flag = repairing_irrigation_south }
 		}
-		else_if = {
-			limit = { 
-				has_global_flag = irrigation_west
+	# Success West
+	option = {
+		name = diggy.44.c
+		trigger = {
+			has_country_flag = repairing_irrigation_west
+			amldihr_area = {
+				type = all
+				owned_by = ROOT
+				is_city = yes
+			}
 				NOT = { has_global_flag = irrigation_west_done }
 			}
+
 			assembly_terrace_area = {
 				add_base_manpower = 1
 				add_base_tax = 1
@@ -1612,13 +1713,22 @@ country_event = {
 				add_permanent_province_modifier = { name = efficient_irrigation duration = -1 }
 				set_province_flag = efficient_irrigation
 			}
-			hidden_effect = { set_global_flag = irrigation_west_done }
+		hidden_effect = { set_global_flag = irrigation_west_done clr_country_flag = repairing_irrigation_west }
 		}
-		else_if = {
-			limit = { 
-				has_global_flag = irrigation_east
+
+	# Success East
+	option = {
+		name = diggy.44.e
+		trigger = {
+			has_country_flag = repairing_irrigation_east
+			amldihr_area = {
+				type = all
+				owned_by = ROOT
+				is_city = yes
+			}
 				NOT = { has_global_flag = irrigation_east_done }
 			}
+
 			common_terrace_area = {
 				add_base_manpower = 1
 				add_base_tax = 1
@@ -1630,7 +1740,69 @@ country_event = {
 				add_permanent_province_modifier = { name = efficient_irrigation duration = -1 }
 				set_province_flag = efficient_irrigation
 			}
-			hidden_effect = { set_global_flag = irrigation_east_done }
+		hidden_effect = { set_global_flag = irrigation_east_done clr_country_flag = repairing_irrigation_east }
+	}
+
+
+	#repair failed
+	option = {
+		name = diggy.44.f
+		trigger = {
+			NOT = {
+				amldihr_area = {
+					type = all
+					owned_by = ROOT
+					is_city = yes
+				}
+			}
+		}
+	}
+
+	# trying to repair intact section
+	option = {
+		name = diggy.44.g
+		trigger = {
+			OR = {
+				AND = {
+					has_country_flag = repairing_irrigation_north
+					has_global_flag = irrigation_north_done
+				}
+				AND = {
+					has_country_flag = repairing_irrigation_south
+					has_global_flag = irrigation_south_done
+				}
+				AND = {
+					has_country_flag = repairing_irrigation_west
+					has_global_flag = irrigation_west_done
+				}
+				AND = {
+					has_country_flag = repairing_irrigation_east
+					has_global_flag = irrigation_east_done
+				}
+				has_global_flag = serpent_vale_irrigation
+			}
+		}
+		custom_tooltip = this_is_a_bug_pls_report_tt
+		add_treasury = 500
+	}
+
+	after = {
+		hidden_effect = {
+
+			# are we fully done?
+			if = {
+				limit = {
+					has_global_flag = irrigation_north_done
+					has_global_flag = irrigation_south_done
+					has_global_flag = irrigation_west_done
+					has_global_flag = irrigation_east_done
+				}
+				clr_global_flag = irrigation_north_done
+				clr_global_flag = irrigation_south_done
+				clr_global_flag = irrigation_west_done
+				clr_global_flag = irrigation_east_done
+				set_global_flag = serpent_vale_irrigation
+			}
 		}
 	}
 }
@@ -1649,30 +1821,23 @@ country_event = {
 	}
 	
 	trigger = {
-		4119 = {
+		amldihr_area = {
+			type = all
 			owned_by = ROOT
 		}
 		irrigation_dwarovar = {
 			type = all
 			country_or_vassal_holds = ROOT
+			OR = {
 			has_province_modifier = efficient_irrigation
+				has_province_modifier = efficient_irrigation_inactive
+			}
 		}
 	}
 	
 	option = {
         name = diggy.45.a
         ai_chance = { factor = 100 }
-		hidden_effect = {
-			set_global_flag = serpent_vale_irrigation
-			clr_global_flag = irrigation_east
-			clr_global_flag = irrigation_north
-			clr_global_flag = irrigation_west
-			clr_global_flag = irrigation_south
-			clr_global_flag = irrigation_east_done
-			clr_global_flag = irrigation_north_done
-			clr_global_flag = irrigation_west_done
-			clr_global_flag = irrigation_south_done
-		}
 		4119 = {
 			add_permanent_province_modifier = {
 				name = dwarovar_granary
@@ -1721,7 +1886,15 @@ country_event = {
 			}
 		}
 		add_prestige = 5
-		every_owned_province = { change_religion = ancestor_worship }
+		every_owned_province = { 
+			limit = { 
+				OR = { 
+					culture_group = dwarven 
+					religion = ROOT 
+				} 
+			} 
+			change_religion = ancestor_worship 
+		}
 		change_religion = ancestor_worship
 		hidden_effect = {
 			add_prestige = 100
@@ -2424,7 +2597,7 @@ country_event = {
 }
 
 ###############
-##    AMLHARAZ
+##	AMLHARAZ
 ###############
 # Forming the Amlharaz
 country_event = {
@@ -3872,8 +4045,8 @@ country_event = {
 # 	}
 	
 # 	option = {
-#        name = diggy.116.a
-#        ai_chance = { factor = 100 }
+#		name = diggy.116.a
+#		ai_chance = { factor = 100 }
 # 	   remove_country_modifier = dont_colonize_but_migrate
 # 	}
 # }
@@ -4346,7 +4519,7 @@ province_event = {
 		
 		modifier = {
 			factor = 0.9
-			has_dwarven_hold_6 = yes     #deeper/richer holds are more likely to develop new customs
+			has_dwarven_hold_6 = yes	 #deeper/richer holds are more likely to develop new customs
 		}
 		modifier = {
 			factor = 0.9
@@ -4379,41 +4552,43 @@ province_event = {
 			}
 		}
 		
-		modifier = {                                #advanced rail in both this and previous modifier
-			factor = 2                              #to prevent only upgrading some rail being better than repairing all
+		modifier = {								#advanced rail in both this and previous modifier
+			factor = 2							  #to prevent only upgrading some rail being better than repairing all
 			any_neighbor_province = {
 				has_province_modifier = advanced_rail #more contact with outside
 			}
 		}
 		
-		modifier = {                                 #advanced specialised infrastructure
-			factor = 0.35                            #means it was a capital at one point, and more unique than the holds with tier 1 specialties
+		modifier = {								 #advanced specialised infrastructure
+			factor = 0.35							#means it was a capital at one point, and more unique than the holds with tier 1 specialties
 			OR = {
 				has_province_modifier = hold_foundry_2
 				has_province_modifier = hold_city_2
 				has_province_modifier = hold_artisan_2
 				has_province_modifier = hold_farm_2
 				has_province_modifier = hold_military_2
+				has_province_modifier = hold_vaults_2
 			}
 		}
 		
-		modifier = {                                 #unique wonder
-			factor = 0.25                            #means it was a capital at one point, and has one of the five globally-unique wonders
-			OR = {                                   #an easy point of pride and cultural specialisation
+		modifier = {								 #unique wonder
+			factor = 0.25							#means it was a capital at one point, and has one of the five globally-unique wonders
+			OR = {								   #an easy point of pride and cultural specialisation
 				has_province_modifier = magma_forge
 				has_province_modifier = artificier_hall
 				has_province_modifier = engineer_manufactory
 				has_province_modifier = high_gardens
 				has_province_modifier = military_academy
+				has_province_modifier = vault_museum
 			}
 		}
 		
-		modifier = {                                 #territories are much less involved with central government, more likely to split
+		modifier = {								 #territories are much less involved with central government, more likely to split
 			factor = 1.5
 			is_state_core = owner
 		}
 		
-		modifier = {                                 #stable country is more stable
+		modifier = {								 #stable country is more stable
 			factor = 2
 			owner = { stability = 3 }
 		}
@@ -4439,8 +4614,8 @@ province_event = {
 			has_terrain = dwarven_hold
 			has_terrain = dwarven_hold_surface
 		}
-		culture_group = dwarven                #No free race swap
-		OR = {                                 #Only when dug deep
+		culture_group = dwarven				#No free race swap
+		OR = {								 #Only when dug deep
 			has_dwarven_hold_5 = yes
 			AND = {								#AI digs slowly - possibly unnecessary
 				owner = {
@@ -4456,10 +4631,10 @@ province_event = {
 			province_id = 4149  #Amldihr child holds
 			province_id = 4313  #Gronstunad child hold
 			has_province_flag = dwarf_culture_emerging #let's not spam this
-			province_has_historical_culture = yes      #or try to convert the existing correct culture
+			province_has_historical_culture = yes	  #or try to convert the existing correct culture
 		}
-		is_capital = no                                #am dum - capital should be too bound to existing administration/the court/ways of life for this event to happen
-		NOT = { culture = obsidian_dwarf }     #Obsidian invasion is too angry to swap 
+		is_capital = no								#am dum - capital should be too bound to existing administration/the court/ways of life for this event to happen
+		NOT = { culture = obsidian_dwarf }	 #Obsidian invasion is too angry to swap 
 		NOT = { owner = { has_disaster = hoardcurse } }	#hoardcurse deals with this, just in case these want to fire (it should not!)
 	}
 	
@@ -4492,7 +4667,7 @@ province_event = {
 			name = diggy_suppressed_populace   #Much worse
 			duration = 7300
 		}
-		add_province_modifier = {              #so you don't plan around using it close to expiry and then the next event hits
+		add_province_modifier = {			  #so you don't plan around using it close to expiry and then the next event hits
 			name = diggy_cultural_integration_initiative
 			duration = 1825
 		}
@@ -4511,7 +4686,7 @@ province_event = {
 	
 	trigger = {
 		has_province_modifier = diggy_suppressed_populace
-		culture_group = dwarven                #No free race swap, dwarves can't rise in nationalist revolt if you killed them
+		culture_group = dwarven				#No free race swap, dwarves can't rise in nationalist revolt if you killed them
 		continent = serpentspine         
 	}
 	
@@ -4648,7 +4823,7 @@ country_event = {
     picture = ARTWORK_eventPicture
     major = yes
 	major_trigger = {
-		overlord_of = ROOT
+		overlord_of = FROM
 	}
     mean_time_to_happen = {
 		months = 3
@@ -4828,13 +5003,21 @@ country_event = {
 		desc = diggy.211.d_s
 	}
 	desc = {
-		trigger = { FROM = { is_subject_of = ROOT } }
+		trigger = { #To prevent errors when fragments are found by an expedition
+			NOT = { has_country_flag = expedition_found_dwarovkron_amethyst_fragment }
+			FROM = { is_subject_of = ROOT }
+		}
 		desc = diggy.211.d_g
 	}
 	desc = {
 		trigger = { 
+			OR = {
+				has_country_flag = expedition_found_dwarovkron_amethyst_fragment
+				AND = {
 			NOT = { has_country_flag = flag_dwarovkron_stolen_parts }
 			NOT = { FROM = { is_subject_of = ROOT } } 
+				}
+			}
 		}
 		desc = diggy.211.d_f
 	}
@@ -4864,7 +5047,10 @@ country_event = {
 		clr_country_flag = flag_dwarovkron_stolen_parts
 	}
 	option = {
-		trigger = { FROM = { is_subject_of = ROOT } }
+		trigger = {
+			NOT = { has_country_flag = expedition_found_dwarovkron_amethyst_fragment }
+			FROM = { is_subject_of = ROOT }
+		}
 		name = diggy.211.a_g
 		add_prestige_excess_to_splendour_effect = { VAL = 10 }
 		tooltip = {
@@ -4883,8 +5069,13 @@ country_event = {
 	}
 	option = {
 		trigger = { 
+			OR = {
+				has_country_flag = expedition_found_dwarovkron_amethyst_fragment
+				AND = {
 			NOT = { has_country_flag = flag_dwarovkron_stolen_parts }
 			NOT = { FROM = { is_subject_of = ROOT } } 
+				}
+			}
 		}
 		name = diggy.211.a_f
 		add_prestige_excess_to_splendour_effect = { VAL = 10 }
@@ -4901,6 +5092,9 @@ country_event = {
 				}
 			}
 		}
+		hidden_effect = {
+			clr_country_flag = expedition_found_dwarovkron_amethyst_fragment
+		}
 	}
 }
 
@@ -4913,13 +5107,21 @@ country_event = {
 		desc = diggy.212.d_s
 	}
 	desc = {
-		trigger = { FROM = { is_subject_of = ROOT } }
+		trigger = {
+			NOT = { has_country_flag = expedition_found_dwarovkron_diamond_fragment }
+			FROM = { is_subject_of = ROOT }
+		}
 		desc = diggy.212.d_g
 	}
 	desc = {
 		trigger = { 
+			OR = {
+				has_country_flag = expedition_found_dwarovkron_diamond_fragment
+				AND = {
 			NOT = { has_country_flag = flag_dwarovkron_stolen_parts }
 			NOT = { FROM = { is_subject_of = ROOT } } 
+				}
+			}
 		}
 		desc = diggy.212.d_f
 	}
@@ -4940,7 +5142,10 @@ country_event = {
 		clr_country_flag = flag_dwarovkron_stolen_parts
 	}
 	option = {
-		trigger = { FROM = { is_subject_of = ROOT } }
+		trigger = {
+			NOT = { has_country_flag = expedition_found_dwarovkron_diamond_fragment }
+			FROM = { is_subject_of = ROOT }
+		}
 		name = diggy.212.a_g
 		add_prestige_excess_to_splendour_effect = { VAL = 10 }
 		tooltip = {
@@ -4949,13 +5154,21 @@ country_event = {
 	}
 	option = {
 		trigger = { 
+			OR = {
+				has_country_flag = expedition_found_dwarovkron_diamond_fragment
+				AND = {
 			NOT = { has_country_flag = flag_dwarovkron_stolen_parts }
 			NOT = { FROM = { is_subject_of = ROOT } } 
+				}
+			}
 		}
 		name = diggy.212.a_f
 		add_prestige_excess_to_splendour_effect = { VAL = 10 }
 		tooltip = {
 			add_country_modifier = { name = dwarovkron_diamond duration = -1 } 
+		}
+		hidden_effect = {
+			clr_country_flag = expedition_found_dwarovkron_diamond_fragment
 		}
 	}
 }
@@ -4969,13 +5182,21 @@ country_event = {
 		desc = diggy.213.d_s
 	}
 	desc = {
-		trigger = { FROM = { is_subject_of = ROOT } }
+		trigger = {
+			NOT = { has_country_flag = expedition_found_dwarovkron_citrine_fragment }
+			FROM = { is_subject_of = ROOT }
+		}
 		desc = diggy.213.d_g
 	}
 	desc = {
 		trigger = { 
+			OR = {
+				has_country_flag = expedition_found_dwarovkron_citrine_fragment
+				AND = {
 			NOT = { has_country_flag = flag_dwarovkron_stolen_parts }
 			NOT = { FROM = { is_subject_of = ROOT } } 
+				}
+			}
 		}
 		desc = diggy.213.d_f
 	}
@@ -4996,7 +5217,10 @@ country_event = {
 		clr_country_flag = flag_dwarovkron_stolen_parts
 	}
 	option = {
-		trigger = { FROM = { is_subject_of = ROOT } }
+		trigger = {
+			NOT = { has_country_flag = expedition_found_dwarovkron_citrine_fragment }
+			FROM = { is_subject_of = ROOT }
+		}
 		name = diggy.213.a_g
 		add_prestige_excess_to_splendour_effect = { VAL = 10 }
 		tooltip = {
@@ -5005,13 +5229,21 @@ country_event = {
 	}
 	option = {
 		trigger = { 
+			OR = {
+				has_country_flag = expedition_found_dwarovkron_citrine_fragment
+				AND = {
 			NOT = { has_country_flag = flag_dwarovkron_stolen_parts }
 			NOT = { FROM = { is_subject_of = ROOT } } 
+				}
+			}
 		}
 		name = diggy.213.a_f
 		add_prestige_excess_to_splendour_effect = { VAL = 10 }
 		tooltip = {
 			add_country_modifier = { name = dwarovkron_citrine duration = -1 } 
+		}
+		hidden_effect = {
+			clr_country_flag = expedition_found_dwarovkron_citrine_fragment
 		}
 	}
 }
@@ -5025,13 +5257,21 @@ country_event = {
 		desc = diggy.214.d_s
 	}
 	desc = {
-		trigger = { FROM = { is_subject_of = ROOT } }
+		trigger = {
+			NOT = { has_country_flag = expedition_found_dwarovkron_ruby_fragment }
+			FROM = { is_subject_of = ROOT }
+		}
 		desc = diggy.214.d_g
 	}
 	desc = {
 		trigger = { 
+			OR = {
+				has_country_flag = expedition_found_dwarovkron_ruby_fragment
+				AND = {
 			NOT = { has_country_flag = flag_dwarovkron_stolen_parts }
 			NOT = { FROM = { is_subject_of = ROOT } } 
+				}
+			}
 		}
 		desc = diggy.214.d_f
 	}
@@ -5052,7 +5292,10 @@ country_event = {
 		clr_country_flag = flag_dwarovkron_stolen_parts
 	}
 	option = {
-		trigger = { FROM = { is_subject_of = ROOT } }
+		trigger = {
+			NOT = { has_country_flag = expedition_found_dwarovkron_ruby_fragment }
+			FROM = { is_subject_of = ROOT }
+		}
 		name = diggy.214.a_g
 		add_prestige_excess_to_splendour_effect = { VAL = 10 }
 		tooltip = {
@@ -5061,13 +5304,21 @@ country_event = {
 	}
 	option = {
 		trigger = { 
+			OR = {
+				has_country_flag = expedition_found_dwarovkron_ruby_fragment
+				AND = {
 			NOT = { has_country_flag = flag_dwarovkron_stolen_parts }
 			NOT = { FROM = { is_subject_of = ROOT } } 
+				}
+			}
 		}
 		name = diggy.214.a_f
 		add_prestige_excess_to_splendour_effect = { VAL = 10 }
 		tooltip = {
 			add_country_modifier = { name = dwarovkron_ruby duration = -1 } 
+		}
+		hidden_effect = {
+			clr_country_flag = expedition_found_dwarovkron_ruby_fragment
 		}
 	}
 }
@@ -6306,6 +6557,15 @@ country_event = {
 	desc = diggy.507.d
 	picture = ARTWORK_eventPicture
 	
+	immediate = {
+		hidden_effect = {
+			capital_scope = {
+				save_event_target_as = capital
+			}
+		}
+	}
+	goto = capital
+	
 	mean_time_to_happen = {
 		years = 30
 		
@@ -6421,6 +6681,7 @@ country_event = {
 				NOT = { mil = 1 }
 			}
 			has_regency = no
+			hidden_trigger = {	NOT = { has_ruler_flag = krakazol_regency }	}
 		}
 		custom_tooltip = spark_tooltip
 		reduce_legitimacy_huge_effect = yes
@@ -6630,8 +6891,7 @@ country_event = {
 	option = {
         name = diggy.511.b
         ai_chance = { factor = 10 }
-		add_stability_or_adm_power = yes
-		add_stability_or_adm_power = yes
+		add_2_stability_or_adm_power = yes
 		capital_scope = {
 			hidden_effect = { change_variable = { cons_prog = -0.125 } }
 			tooltip = { change_variable = { cons_prog = -0.25 } }
@@ -7709,6 +7969,18 @@ country_event = {
 		hidden_effect = { capital_scope = { change_variable = { cons_prog = -0.05 } } }
 		tooltip = { capital_scope = { change_variable = { cons_prog = -0.1 } } }
 	}
+
+	#Gor Vazumbrog, purple worm hunt
+	option = {
+		name = diggy.531.c
+		highlight = yes
+		trigger = { tag = I14 }
+		ai_chance = { factor = 1000 }
+
+		hidden_effect = {
+			set_country_flag = purple_worm_hunt_available
+		}
+	}
 }
 
 #Purple Worm Attack
@@ -7837,9 +8109,7 @@ country_event = {
 		}
 	}
 	
-	option = {
-        name = diggy.551.a
-        ai_chance = { factor = 100 }
+	immediate = {
 		hidden_effect = {
 			random_owned_province = {
 				limit = {
@@ -7854,6 +8124,17 @@ country_event = {
 					}
 					any_neighbor_province = { has_terrain = cavern }
 				}
+				save_event_target_as = yipyip
+			}
+		}
+	}
+	
+	option = {
+		name = diggy.551.a
+		ai_chance = { factor = 100 }
+		goto = yipyip
+		hidden_effect = {
+			event_target:yipyip = {
 				spawn_dwarovar_orc_rebels = { size = 3 }
 			}
 		}
@@ -8128,9 +8409,15 @@ country_event = {
 
 	trigger = {
 		capital_scope = { continent = serpentspine }
-		NOT = { 
-			culture_group = orcish 
-			culture_group = ogre
+		OR = {
+			culture_group = dwarven
+			culture_group = goblin
+			culture_group = kobold
+			has_idea_group = innovativeness_ideas
+			estate_loyalty = {
+				estate = estate_artificers
+				loyalty = 30
+			}
 		}
 	}
 
@@ -9927,8 +10214,8 @@ country_event = {
 		add_dip_power = -10
 		hidden_effect = {
 			random_list = {
-				50 = {country_event  = { id = diggy.584 }}
-				50 = {country_event  = { id = diggy.585 }}
+				50 = { event_target:event_province = { province_event  = { id = diggy.584 } } }
+				50 = { event_target:event_province = { province_event  = { id = diggy.585 } } }
 			}
 		}
 		ai_chance = { factor = 75 }
@@ -11054,11 +11341,7 @@ country_event = {
 		name = diggy.598.e
 		highlight = yes
 		trigger = {
-			custom_trigger_tooltip = {
-				tooltip = dwarovar_ruler_skilled_necromancer_tt
-				ruler_has_personality = mage_personality
-				has_ruler_flag = necromancy_2
-			}
+			is_ruler_necromancy_level_2_minimum = yes
 		}
 		ai_chance = { factor = 1 }
 		add_dip_power = -25
@@ -11070,7 +11353,7 @@ country_event = {
 			add_base_production = 2
 			add_base_manpower = 2
 		}
-		increase_witch_king_points_medium = yes
+		increase_ruler_witch_king_points = { size = medium }
 		if = {
 			limit = { culture_group = dwarven }
 			add_estate_loyalty = {
@@ -11499,6 +11782,38 @@ country_event = {
 		ai_chance = { factor = 80 }
 		add_yearly_manpower = -0.5
 		add_prestige = 10
+	}
+}
+
+#D.R.U.M. (Easter Egg Event)
+country_event = {
+	id = diggy.604
+	title = diggy.604.t
+	desc = diggy.604.d
+	picture = "INVENTION_eventPicture"
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+		
+		modifier = { #offset Ravelian events which are on the same pulse
+			factor = 2
+			has_dlc = "Cradle of Civilization"
+			is_religion_enabled = ravelian
+		}
+	}
+
+	trigger = {
+		ai = no
+		culture_group = goblin #Also available for non-Serpentspine goblins
+		has_government_attribute = is_technocracy
+	}
+	
+	option = {
+		name = diggy.604.a
+		add_country_modifier = { name = goblin_drum_maintenance duration = 7300 }
 	}
 }
 
@@ -12321,7 +12636,7 @@ country_event = { #Hidden event to make the squatters start colonizing
 		trigger = {
 			tag = H73
 		}
-		2886 = { #Dwarovrod |27|
+		2886 = { #Dwarovrod | 27 |
             create_colony = 50
         }
 		add_country_modifier = {
@@ -12680,6 +12995,9 @@ country_event = { #Lava flood
 				id = diggy.764
 				days = 3650
 			}
+			hidden_effect = {
+				set_country_flag = dwarovar_exploited_rich_soils_flag
+			}
 		}
 	}
 
@@ -12696,12 +13014,16 @@ country_event = { #Lava flood
 				duration = 3650
 			}
 			add_colonysize = -200
+			change_trade_goods = serpentbloom
 		}
 		random = {
 			chance = 50
 			country_event = {
 				id = diggy.764
 				days = 3650
+			}
+			hidden_effect = {
+				set_country_flag = dwarovar_exploited_rich_soils_flag
 			}
 		}
 	}
@@ -12744,10 +13066,13 @@ country_event = { #Not again!
 			add_base_production = -2
 			add_base_manpower = -2
 			add_colonysize = -200
+			if = {
+				limit = { ROOT = { has_country_flag = dwarovar_exploited_rich_soils_flag } }
 			random = {
 				chance = 50
 				remove_province_modifier = dwarovar_volcanic_farming_industry
 				remove_province_modifier = dwarovar_volcanic_farming_villages
+				}
 			}
 		}
 	}
@@ -12969,5 +13294,211 @@ country_event = { #Idiot New Colonizers
 			name = dwarovar_attrition_settlers
 			duration = 1825 #5 years
 		}
+	}
+}
+
+country_event = { #Yearnings for Liberty
+	id = diggy.768
+	title = diggy.768.t
+	desc = diggy.768.d
+	picture = DARK_EXPEDITION_eventPicture
+
+	is_triggered_only = yes
+	trigger = {
+		capital_scope = { superregion = west_serpentspine_superregion }
+		culture_group = dwarven
+		government = monarchy
+		num_of_cities = 5
+		is_year = 1500
+		NOT = { is_year = 1550 }
+	}
+	
+	immediate = {
+		hidden_effect = {
+			random_owned_province = { save_event_target_as = event_province }
+		}
+	}
+	goto = event_province
+
+	option = { #Remind them who the ruler is
+		name = diggy.768.a
+		ai_chance = { factor = 100 }
+		event_target:event_province = { anti_tax_rebels = 2 }
+		change_government_reform_progress = 10
+	}
+	
+	option = { #Maybe they have a point?
+		name = diggy.768.b
+		ai_chance = { factor = 100 }
+		add_prestige = -15
+		change_government_reform_progress = 10
+		event_target:event_province = {
+			region = {
+				add_local_autonomy = 5
+			}
+		}
+	}
+}
+
+country_event = { #The People do not Yearn for the Mines
+	id = diggy.769
+	title = diggy.769.t
+	desc = diggy.769.d
+	picture = DARK_EXPEDITION_eventPicture
+
+	is_triggered_only = yes
+	trigger = {
+		capital_scope = { superregion = west_serpentspine_superregion }
+		culture_group = dwarven
+		any_owned_province = {
+			continent = serpentspine
+			OR = {
+				trade_goods = iron
+				trade_goods = copper
+				trade_goods = gold
+				trade_goods = mithril
+			}
+		}
+		is_year = 1500
+		NOT = { is_year = 1550 }
+	}
+
+	option = { #Work in the mines!
+		name = diggy.769.a
+		ai_chance = { factor = 100 }
+		every_owned_province = {
+			limit = {
+				continent = serpentspine
+				OR = {
+					trade_goods = iron
+					trade_goods = copper
+					trade_goods = gold
+					trade_goods = mithril
+				}
+			}
+			add_local_autonomy = -5
+			add_province_modifier = {
+				name = dwarovar_more_mines_province
+				duration = 3650 #10 years
+			}
+		}
+		add_country_modifier = {
+			name = dwarovar_more_mines_country
+			duration = 3650 #10 years
+		}
+	}
+	
+	option = { #Let them do whatever
+		name = diggy.769.b
+		ai_chance = { factor = 100 }
+		every_owned_province = {
+			limit = {
+				continent = serpentspine
+				OR = {
+					trade_goods = iron
+					trade_goods = copper
+					trade_goods = gold
+					trade_goods = mithril
+				}
+			}
+			add_local_autonomy = 5
+			add_province_modifier = {
+				name = dwarovar_less_mines_province
+				duration = 3650 #10 years
+			}
+		}
+		add_country_modifier = {
+			name = dwarovar_less_mines_country
+			duration = 3650 #10 years
+		}
+	}
+}
+
+country_event = { #Old Habits Die Hard
+	id = diggy.770
+	title = diggy.770.t
+	desc = diggy.770.d
+	picture = DARK_EXPEDITION_eventPicture
+
+	is_triggered_only = yes
+	trigger = {
+		capital_scope = { superregion = west_serpentspine_superregion }
+		culture_group = dwarven
+		is_year = 1500
+		NOT = { is_year = 1550 }
+	}
+
+	option = { #Don't care about the sun!
+		name = diggy.770.a
+		ai_chance = { factor = 100 }
+		add_country_modifier = {
+			name = dwarovar_more_time_more_settlers
+			duration = 3650 #10 years
+		}
+	}
+	
+	option = { #Let them do time however
+		name = diggy.770.b
+		ai_chance = { factor = 100 }
+		add_country_modifier = {
+			name = dwarovar_less_time_less_settlers
+			duration = 3650 #10 years
+		}
+		random_list = {
+			1 = {
+				hire_advisor = {
+					type = philosopher
+					cost_multiplier = 0.5
+				}
+			}
+			1 = {
+				hire_advisor = {
+					type = artist
+					cost_multiplier = 0.5
+				}
+			}
+		}
+	}
+}
+
+# Greetings event for conquering Gor Vazumbrog, pure lore dump
+province_event = {
+	id = diggy.800
+	title = diggy.800.t
+	desc = diggy.800.d
+	picture = DRAGON_ATTACK_eventPicture
+
+	is_triggered_only = yes
+	trigger = {
+		owner = { ai = no }
+		has_province_modifier = gor_vazumbrog_dragons_wound
+	}
+
+	option = {
+		name = diggy.800.a
+		trigger = { owner = { culture_group = orcish } }
+		ai_chance = { factor = 10 }
+	}
+	option = {
+		name = diggy.800.b
+		trigger = { owner = { culture_group = kobold } }
+		ai_chance = { factor = 10 }
+		owner = { add_prestige = 10 }
+	}
+	option = {
+		name = diggy.800.c
+		trigger = { owner = { culture_group = dwarven } }
+		ai_chance = { factor = 10 }
+	}
+	option = {
+		name = diggy.800.e
+		trigger = {
+			owner = {
+				NOT = { culture_group = orcish }
+				NOT = { culture_group = kobold }
+				NOT = { culture_group = dwarven }
+			}
+		}
+		ai_chance = { factor = 10 }
 	}
 }
