@@ -1,0 +1,7 @@
+﻿l_english:
+ divination_1_deposit_divination_trigger:0 "Any owned province produces one of the following: §YCopper§!, §YIron§!, §YGems§!, §YSalt§!, §YGold§!, §YMithril§!, §YDamestear§!, §YCoal§!, §YAmber§!, §YJade§!, §YMarble§!, §YLead§!, §YMercury§!, §YTin§!, §YTar§!, §YSulfur§!, or §YZinc§!"
+ enchantment_1_command_animals_trigger:0 "Any owned province produces one of the following: §YLivestock§!, §YWool§!, §YFish§!, §YFur§!, §YIvory§!, §YSilk§!, §YApiculture§!, §YWhales§!, §YHorses§!, §YCamels§!, §YElephants§!, §YSeafood§!, §YPearls§!, §YLlama§!, §YSea Turtles§!, §YExotic Animals§!, §YLeather§!, or §YFur Clothing§!"
+ necromancy_1_steal_vitality_trigger:0 "Any owned province produces one of the following: §YCloth§!, §YGlass§!, §YPaper§!, §YPorcelain§!, §YPrecursor Relics§!, §YDyes§!, §YSlaves§!, §YIndigo Dye§!, §YJsewellery§!, §YCarpet§!, §YCannons§!, §YMarble Sculptures§!, §YJade Sculptures§!, or §YWoodworking§!"
+ transmutation_1_plant_growth_trigger:0 "Any owned province produces one of the following: §YFungi§!, §YSerpentbloom§!, §YGrain§!, §YTea§!, §YSpices§!, §YCoffee§!, §YCocoa§!, §YCotton§!, §YSugar§!, §YWine§!, §YTobacco§!, §YCloves§!, §YIncense§!, §YNaval Supplies§!, §YExotic Wood§!, §YLumber§!, §YEbony§!, §YRice§!, §YOlives§!, §YCitrus§!, §YMaize§!, §YMaple Syrup§!, §YPotatoes§!, §YTomatoes§!, §YPalm Oil§!, §YCinnamon§!, §YSaffron§!, §YOpium§!, §YRum§!, §YDates§!, §YVanilla§!, or §YNutmeg§!"
+
+ # Not used: Exotic Fur, Millet, Chocolate, Cigars, Champagne

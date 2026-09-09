@@ -23,7 +23,6 @@ divination_1_deposit_divination_trigger = { # Deposit Divination
 			tar = 1
 			sulfur = 1
 			zinc = 1
-			cannon = 1
 		}
 	}
 }
@@ -77,6 +76,7 @@ necromancy_1_steal_vitality_trigger = { # Steal Vitality
 			indigo = 1
 			jewellery = 1
 			carpet = 1
+			cannon = 1
 			marble_sculpture = 1
 			jade_sculptures = 1
 			woodworking = 1
@@ -116,7 +116,7 @@ transmutation_1_plant_growth_trigger = { # Plant Growth
 			maple_syrup = 1
 			potato = 1
 			tomato = 1
-			millet = 1
+			#millet = 1
 			palm_oil = 1
 			cinnamon = 1
 			saffron = 1
@@ -125,8 +125,8 @@ transmutation_1_plant_growth_trigger = { # Plant Growth
 			dates = 1
 			vanilla = 1
 			nutmeg = 1
-			cigars = 1
-			chocolate = 1
+			#cigars = 1
+			#chocolate = 1
 		}
 	}
 }
@@ -154,7 +154,7 @@ province_with_farm_goods = {
 		trade_goods = maple_syrup
 		trade_goods = potato
 		trade_goods = tomato
-		trade_goods = millet
+		#trade_goods = millet
 		trade_goods = palm_oil
 		trade_goods = cinnamon
 		trade_goods = saffron
@@ -163,8 +163,8 @@ province_with_farm_goods = {
 		trade_goods = dates
 		trade_goods = vanilla
 		trade_goods = nutmeg
-		trade_goods = cigars
-		trade_goods = chocolate
+		#trade_goods = cigars
+		#trade_goods = chocolate
 	}
 }
 
@@ -188,7 +188,6 @@ province_with_mineable_goods = {
 		trade_goods = tar
 		trade_goods = sulfur
 		trade_goods = zinc
-		trade_goods = cannon
 	}
 }
 province_with_animal_goods = {
@@ -241,7 +240,7 @@ province_with_arable_goods = {
 		trade_goods = maple_syrup
 		trade_goods = potato
 		trade_goods = tomato
-		trade_goods = millet
+		#trade_goods = millet
 		trade_goods = palm_oil
 		trade_goods = cinnamon
 		trade_goods = saffron
@@ -250,8 +249,8 @@ province_with_arable_goods = {
 		trade_goods = dates
 		trade_goods = vanilla
 		trade_goods = nutmeg
-		trade_goods = cigars
-		trade_goods = chocolate
+		#trade_goods = cigars
+		#trade_goods = chocolate
 	}
 }
 
@@ -267,6 +266,7 @@ province_with_urban_goods = {
 		trade_goods = indigo
 		trade_goods = jewellery
 		trade_goods = carpet
+		trade_goods = cannon
 		trade_goods = marble_sculpture
 		trade_goods = jade_sculptures
 		trade_goods = woodworking
