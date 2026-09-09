@@ -1,0 +1,132 @@
+divination_1_deposit_divination_trigger = { # Deposit Divination
+	is_overall_divination_level_1_minimum = yes
+	[[player] has_mana_to_cast_spell = { school = divination level = 1 id = deposit_divination } ]
+	has_not_cast_deposit_divination = yes
+	custom_trigger_tooltip = {
+		tooltip = divination_1_deposit_divination_trigger
+		OR = {
+			copper = 1
+			iron = 1
+			gems = 1
+			salt = 1
+			gold = 1
+			mithril = 1
+			damestear = 1
+			coal = 1
+			#added - mining goods
+			amber = 1
+			jade = 1
+			marble = 1
+			lead = 1
+			mercury = 1
+			tin = 1
+			tar = 1
+			sulfur = 1
+			zinc = 1
+			cannon = 1
+		}
+	}
+}
+
+enchantment_1_command_animals_trigger = { # Command Animals
+	is_overall_enchantment_level_1_minimum = yes
+	[[player] has_mana_to_cast_spell = { school = enchantment level = 1 id = command_animals } ]
+	has_not_cast_command_animals = yes
+	custom_trigger_tooltip = {
+		tooltip = enchantment_1_command_animals_trigger
+		OR = {
+			livestock = 1
+			wool = 1
+			fish = 1
+			fur = 1
+			ivory = 1
+			silk = 1
+			#added - animal goods
+			apiculture = 1
+			whaling = 1
+			horses = 1
+			camel = 1
+			elephants = 1
+			seafood = 1
+			pearls = 1
+			llama = 1
+			sea_turtle = 1
+			exotic_animals = 1
+			leather = 1
+			fur_clothing = 1
+		}
+	}
+}
+
+necromancy_1_steal_vitality_trigger = { # Steal Vitality
+	has_not_banned_necromancy = yes
+	is_overall_necromancy_level_1_minimum = yes
+	[[player] has_mana_to_cast_spell = { school = necromancy level = 1 id = steal_vitality } ]
+	has_not_cast_steal_vitality = yes
+	custom_trigger_tooltip = {
+		tooltip = necromancy_1_steal_vitality_trigger
+		OR = {
+			glass = 1
+			paper = 1
+			cloth = 1
+			chinaware = 1
+			precursor_relics = 1
+			dyes = 1
+			slaves = 1
+			#added - dye/fine craft goods
+			indigo = 1
+			jewellery = 1
+			carpet = 1
+			marble_sculpture = 1
+			jade_sculptures = 1
+			woodworking = 1
+		}
+	}
+}
+
+transmutation_1_plant_growth_trigger = { # Plant Growth
+	is_overall_transmutation_level_1_minimum = yes
+	[[player] has_mana_to_cast_spell = { school = transmutation level = 1 id = plant_growth } ]
+	has_not_cast_plant_growth = yes
+	custom_trigger_tooltip = {
+		tooltip = transmutation_1_plant_growth_trigger
+		OR = {
+			fungi = 1
+			serpentbloom = 1
+			grain = 1
+			wine = 1
+			spices = 1
+			tea = 1
+			coffee = 1
+			cocoa = 1
+			cotton = 1
+			sugar = 1
+			tobacco = 1
+			cloves = 1
+			incense = 1
+			naval_supplies = 1
+			tropical_wood = 1
+			#added - plant goods
+			lumber = 1
+			ebony = 1
+			rice = 1
+			olive_oil = 1
+			citrus = 1
+			maize = 1
+			maple_syrup = 1
+			potato = 1
+			tomato = 1
+			millet = 1
+			palm_oil = 1
+			cinnamon = 1
+			saffron = 1
+			opium = 1
+			rum = 1
+			dates = 1
+			vanilla = 1
+			nutmeg = 1
+			cigars = 1
+			chocolate = 1
+		}
+	}
+}
