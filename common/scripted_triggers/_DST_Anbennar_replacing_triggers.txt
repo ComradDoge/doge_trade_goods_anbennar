@@ -130,3 +130,145 @@ transmutation_1_plant_growth_trigger = { # Plant Growth
 		}
 	}
 }
+
+
+province_with_farm_goods = {
+	OR = {
+		trade_goods = serpentbloom
+		trade_goods = grain
+		trade_goods = livestock
+		trade_goods = wine
+		trade_goods = spices
+		trade_goods = tea
+		trade_goods = coffee
+		trade_goods = cocoa
+		trade_goods = cotton
+		trade_goods = sugar
+		trade_goods = tobacco
+		trade_goods = silk
+		#added - plant goods
+		trade_goods = rice
+		trade_goods = olive_oil
+		trade_goods = citrus
+		trade_goods = maize
+		trade_goods = maple_syrup
+		trade_goods = potato
+		trade_goods = tomato
+		trade_goods = millet
+		trade_goods = palm_oil
+		trade_goods = cinnamon
+		trade_goods = saffron
+		trade_goods = opium
+		trade_goods = rum
+		trade_goods = dates
+		trade_goods = vanilla
+		trade_goods = nutmeg
+		trade_goods = cigars
+		trade_goods = chocolate
+	}
+}
+
+province_with_mineable_goods = {
+	OR = {
+		trade_goods = gold
+		trade_goods = copper
+		trade_goods = iron
+		trade_goods = mithril
+		trade_goods = coal
+		trade_goods = gems
+		trade_goods = salt
+		trade_goods = damestear
+		#added - mining goods
+		trade_goods = amber
+		trade_goods = jade
+		trade_goods = marble
+		trade_goods = lead
+		trade_goods = mercury
+		trade_goods = tin
+		trade_goods = tar
+		trade_goods = sulfur
+		trade_goods = zinc
+		trade_goods = cannon
+	}
+}
+province_with_animal_goods = {
+	OR = {
+		trade_goods = livestock
+		trade_goods = wool
+		trade_goods = fish
+		trade_goods = fur
+		trade_goods = ivory
+		trade_goods = silk
+		#added - animal goods
+		trade_goods = apiculture
+		trade_goods = whaling
+		trade_goods = horses
+		trade_goods = camel
+		trade_goods = elephants
+		trade_goods = seafood
+		trade_goods = pearls
+		trade_goods = llama
+		trade_goods = sea_turtle
+		trade_goods = exotic_animals
+		trade_goods = leather
+		trade_goods = fur_clothing
+	}
+}
+province_with_arable_goods = {
+	OR = {
+		trade_goods = fungi
+		trade_goods = serpentbloom
+		trade_goods = grain
+		trade_goods = wine
+		trade_goods = spices
+		trade_goods = tea
+		trade_goods = coffee
+		trade_goods = cocoa
+		trade_goods = cotton
+		trade_goods = sugar
+		trade_goods = tobacco
+		trade_goods = cloves
+		trade_goods = incense
+		trade_goods = naval_supplies
+		trade_goods = tropical_wood
+		#added - plant goods
+		trade_goods = lumber
+		trade_goods = ebony
+		trade_goods = rice
+		trade_goods = olive_oil
+		trade_goods = citrus
+		trade_goods = maize
+		trade_goods = maple_syrup
+		trade_goods = potato
+		trade_goods = tomato
+		trade_goods = millet
+		trade_goods = palm_oil
+		trade_goods = cinnamon
+		trade_goods = saffron
+		trade_goods = opium
+		trade_goods = rum
+		trade_goods = dates
+		trade_goods = vanilla
+		trade_goods = nutmeg
+		trade_goods = cigars
+		trade_goods = chocolate
+	}
+}
+
+province_with_urban_goods = {
+	OR = {
+		trade_goods = glass
+		trade_goods = paper
+		trade_goods = cloth
+		trade_goods = chinaware
+		trade_goods = precursor_relics
+		trade_goods = dyes
+		#added - dye/fine craft goods
+		trade_goods = indigo
+		trade_goods = jewellery
+		trade_goods = carpet
+		trade_goods = marble_sculpture
+		trade_goods = jade_sculptures
+		trade_goods = woodworking
+	}
+}
