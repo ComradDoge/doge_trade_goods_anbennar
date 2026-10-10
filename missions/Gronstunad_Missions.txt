@@ -279,12 +279,7 @@ gronstunad_1 = {
 				limit = {
 					trade_goods = serpentbloom
 					NOT = { has_building = soldier_households }
-					NOT = { has_construction = building }
-					NOT = { has_construction = great_project }
-					NOT = { has_construction = canal }
-					NOT = { has_construction = culture }
-					NOT = { has_construction = missionary }
-					NOT = { has_construction = core }
+					has_any_ongoing_construction = no
 				}
 				add_building_construction = {
 					building = soldier_households
@@ -295,12 +290,7 @@ gronstunad_1 = {
 				limit = {
 					trade_goods = serpentbloom
 					NOT = { has_building = soldier_households }
-					NOT = { has_construction = building }
-					NOT = { has_construction = great_project }
-					NOT = { has_construction = canal }
-					NOT = { has_construction = culture }
-					NOT = { has_construction = missionary }
-					NOT = { has_construction = core }
+					has_any_ongoing_construction = no
 				}
 				add_building_construction = {
 					building = soldier_households
@@ -1337,8 +1327,7 @@ gronstunad_2 = {
 			has_terrain = cavern
 			OR = {
 				trade_goods = gold
-				trade_goods = copper
-				trade_goods = iron
+				has_metal_goods = yes
 				trade_goods = mithril
 				has_gem_type_goods = yes
 				trade_goods = salt
@@ -1457,6 +1446,7 @@ gronstunad_2 = {
 				}
 				4338 = {
 					spawn_expedition = yes
+					hidden_effect = { generate_expedition = { base_floor = 1 base_danger = 1 } }
 				}
 			}
 		}
@@ -1563,8 +1553,7 @@ gronstunad_2 = {
 							has_terrain = cavern
 							OR = {
 								trade_goods = gold
-								trade_goods = copper
-								trade_goods = iron
+								has_metal_goods = yes
 								trade_goods = mithril
 								has_gem_type_goods = yes
 								trade_goods = salt
@@ -2071,7 +2060,7 @@ gronstunad_3 = {
 
 		effect = {
 			override_country_name = JADEEMPIRE
-			set_government_rank = 3
+			set_government_rank_scripted_effect = { rank = 3 }
 			add_power_projection = {
 				type = 10_permanent_power_projection
 				amount = 10
@@ -2337,11 +2326,9 @@ gronstunad_3 = {
 							has_terrain = highlands
 							NOT = {
 								trade_goods = gold
-								trade_goods = copper
-								trade_goods = iron
+								has_metal_goods = yes
 								trade_goods = mithril
-								trade_goods = gems
-								trade_goods = jade
+								has_gem_type_goods = yes
 								trade_goods = salt
 								trade_goods = damestear
 								trade_goods = coal
@@ -2384,11 +2371,9 @@ gronstunad_3 = {
 							has_terrain = highlands
 							NOT = {
 								trade_goods = gold
-								trade_goods = copper
-								trade_goods = iron
+								has_metal_goods = yes
 								trade_goods = mithril
-								trade_goods = gems
-								trade_goods = jade
+								has_gem_type_goods = yes
 								trade_goods = salt
 								trade_goods = damestear
 								trade_goods = coal
@@ -3008,6 +2993,11 @@ gronstunad_3 = {
 						cede_province = Y63
 					}
 				}
+				Y63 = {
+					every_subject_country = {
+						Y63 = { inherit = PREV }
+					}
+				}
 			}
 			if = {
 				limit = {
@@ -3387,8 +3377,7 @@ gronstunad_4 = {
 			has_terrain = cavern
 			OR = {
 				trade_goods = gold
-				trade_goods = copper
-				trade_goods = iron
+				has_metal_goods = yes
 				trade_goods = mithril
 				has_gem_type_goods = yes
 				trade_goods = salt
@@ -3431,6 +3420,7 @@ gronstunad_4 = {
 					}
 				}
 				spawn_expedition = yes
+				hidden_effect = { generate_expedition = { base_floor = 1 base_danger = 1 } }
 				spawn_rebels = {
 					size = 2
 					type = cave_goblin_rebel
@@ -3450,7 +3440,10 @@ gronstunad_4 = {
 
 		trigger = {
 			4334 = { #Truesilver Hollow
-				has_province_modifier = gronstunad_mining_operation
+				OR = {
+					has_province_modifier = gronstunad_mining_operation
+					has_province_modifier = gronstunad_upgraded_mining_operation
+				}
 				base_production = 5
 			}
 			OR = {
@@ -3795,12 +3788,7 @@ gronstunad_4 = {
 					has_building = state_house
 					AND = {
 						has_manufactory_trigger = yes
-						NOT = { has_construction = building }
-						NOT = { has_construction = great_project }
-						NOT = { has_construction = canal }
-						NOT = { has_construction = culture }
-						NOT = { has_construction = missionary }
-						NOT = { has_construction = core }
+						has_any_ongoing_construction = no
 						ROOT = { treasury = 500 }
 					}
 				}
@@ -4651,7 +4639,7 @@ gronstunad_5 = {
 			OR = {
 				NOT = { country_or_subject_holds = ROOT }
 				AND = {
-					has_province_modifier = azjakuma_shirgrii
+					province_has_shigrii = yes
 					NOT = {
 						AND = {
 							num_of_units_in_province = {
@@ -4675,7 +4663,7 @@ gronstunad_5 = {
 				owner = { NOT = { religion = devouring_path } }
 				country_or_subject_holds = ROOT
 				OR = {
-					NOT = { has_province_modifier = azjakuma_shirgrii }
+					NOT = { province_has_shigrii = yes }
 					AND = {
 						num_of_units_in_province = {
 							amount = 10
@@ -4706,8 +4694,8 @@ gronstunad_5 = {
 			custom_tooltip = gronstunad_destroy_shirgrii_tt
 			hidden_effect = {
 				demon_hills_region = {
-					limit = { has_province_modifier = azjakuma_shirgrii }
-					remove_province_modifier = azjakuma_shirgrii
+					limit = { province_has_shigrii = yes }
+					destroy_shirgrii_effect = yes
 					remove_fortifications = yes
 					for = {
 						amount = 6
@@ -4802,15 +4790,13 @@ gronstunad_5 = {
 				estate = estate_mages
 				influence = 34
 			}
-			OR = { #MAGICREWORK
-				has_country_modifier = magic_estate_scrying_neighbours_1
-				has_country_modifier = magic_estate_scrying_neighbours_2
-				has_country_modifier = magic_estate_scrying_neighbours_3
+			OR = {
+				at_least_magical_infrastructure_level_2 = yes
+				has_cast_scry = yes
 			}
 		}
 
 		effect = {
-			#MAGICREWORK TODO add Magical infrastructure bypass
 			country_event = {
 				id = flavour_gronstunad.580
 			}

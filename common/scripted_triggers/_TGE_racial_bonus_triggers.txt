@@ -1,0 +1,158 @@
+# Racial building bonuses - triggers.
+# Per bonus: a non-oppressed majority (coexisting, integrated or primary Anbennar pop modifier) gives the full bonus,
+# a non-oppressed minority (coexisting or integrated, small or large) gives the half one, if the province has one of the race's buildings.
+# Applied by common/scripted_effects/TGE_racial_bonus_effects.txt. The majority/minority triggers also drive the mine prospecting bonus (mine_marcin.1).
+
+tge_racial_dwarven_forgecraft_majority_trigger = {
+	OR = {
+		has_province_modifier = dwarven_majority_coexisting
+		has_province_modifier = dwarven_majority_integrated
+		has_province_modifier = dwarven_majority_primary
+	}
+}
+
+tge_racial_dwarven_forgecraft_minority_trigger = {
+	OR = {
+		has_province_modifier = dwarven_minority_coexisting_small
+		has_province_modifier = dwarven_minority_coexisting_large
+		has_province_modifier = dwarven_minority_integrated_small
+		has_province_modifier = dwarven_minority_integrated_large
+	}
+}
+
+tge_racial_dwarven_forgecraft_buildings_trigger = {
+	OR = {
+		has_building = metalworking_workshop
+		has_building = cannon_foundry
+		has_building = furnace
+		has_building = weapons
+	}
+}
+
+tge_racial_gnomish_tinkering_majority_trigger = {
+	OR = {
+		has_province_modifier = gnomish_majority_coexisting
+		has_province_modifier = gnomish_majority_integrated
+		has_province_modifier = gnomish_majority_primary
+	}
+}
+
+tge_racial_gnomish_tinkering_minority_trigger = {
+	OR = {
+		has_province_modifier = gnomish_minority_coexisting_small
+		has_province_modifier = gnomish_minority_coexisting_large
+		has_province_modifier = gnomish_minority_integrated_small
+		has_province_modifier = gnomish_minority_integrated_large
+	}
+}
+
+tge_racial_gnomish_tinkering_buildings_trigger = {
+	OR = {
+		has_building = spectacle_factory
+		has_building = steam_factory
+		has_building = steam_engine_manu
+	}
+}
+
+tge_racial_halfling_hearthcraft_majority_trigger = {
+	OR = {
+		has_province_modifier = halfling_majority_coexisting
+		has_province_modifier = halfling_majority_integrated
+		has_province_modifier = halfling_majority_primary
+	}
+}
+
+tge_racial_halfling_hearthcraft_minority_trigger = {
+	OR = {
+		has_province_modifier = halfling_minority_coexisting_small
+		has_province_modifier = halfling_minority_coexisting_large
+		has_province_modifier = halfling_minority_integrated_small
+		has_province_modifier = halfling_minority_integrated_large
+	}
+}
+
+tge_racial_halfling_hearthcraft_buildings_trigger = {
+	OR = {
+		has_building = cheese_workshop
+		has_building = farm_estate
+		has_building = mills
+	}
+}
+
+tge_racial_elven_artisanry_majority_trigger = {
+	OR = {
+		has_province_modifier = elven_majority_coexisting
+		has_province_modifier = elven_majority_integrated
+		has_province_modifier = elven_majority_primary
+	}
+}
+
+tge_racial_elven_artisanry_minority_trigger = {
+	OR = {
+		has_province_modifier = elven_minority_coexisting_small
+		has_province_modifier = elven_minority_coexisting_large
+		has_province_modifier = elven_minority_integrated_small
+		has_province_modifier = elven_minority_integrated_large
+	}
+}
+
+tge_racial_elven_artisanry_buildings_trigger = {
+	OR = {
+		has_building = jewellery_workshop
+		has_building = sculpture_workshop
+		has_building = textile
+		has_building = cloth_workshop
+	}
+}
+
+tge_racial_kobold_tunnelling_majority_trigger = {
+	OR = {
+		has_province_modifier = kobold_majority_coexisting
+		has_province_modifier = kobold_majority_integrated
+		has_province_modifier = kobold_majority_primary
+	}
+}
+
+tge_racial_kobold_tunnelling_minority_trigger = {
+	OR = {
+		has_province_modifier = kobold_minority_coexisting_small
+		has_province_modifier = kobold_minority_coexisting_large
+		has_province_modifier = kobold_minority_integrated_small
+		has_province_modifier = kobold_minority_integrated_large
+	}
+}
+
+tge_racial_kobold_tunnelling_buildings_trigger = {
+	has_building = munition_factory
+}
+
+tge_racial_goblin_sapperwork_majority_trigger = {
+	OR = {
+		has_province_modifier = goblin_majority_coexisting
+		has_province_modifier = goblin_majority_integrated
+		has_province_modifier = goblin_majority_primary
+		has_province_modifier = hobgoblin_majority_coexisting
+		has_province_modifier = hobgoblin_majority_integrated
+		has_province_modifier = hobgoblin_majority_primary
+	}
+}
+
+tge_racial_goblin_sapperwork_minority_trigger = {
+	OR = {
+		has_province_modifier = goblin_minority_coexisting_small
+		has_province_modifier = goblin_minority_coexisting_large
+		has_province_modifier = goblin_minority_integrated_small
+		has_province_modifier = goblin_minority_integrated_large
+		has_province_modifier = hobgoblin_minority_coexisting_small
+		has_province_modifier = hobgoblin_minority_coexisting_large
+		has_province_modifier = hobgoblin_minority_integrated_small
+		has_province_modifier = hobgoblin_minority_integrated_large
+	}
+}
+
+tge_racial_goblin_sapperwork_buildings_trigger = {
+	OR = {
+		has_building = munition_factory
+		has_building = weapons
+	}
+}

@@ -1,0 +1,307 @@
+# Anbennar triggers from common/scripted_triggers/00_scripted_triggers.txt, with the goods this mod's manufactories accept
+# (common/buildings/00_buildings.txt). Named 00_DST_ so it loads before 00_scripted_triggers.txt, like _DST_Anbennar_replacing_triggers.txt loads before anb_*.
+# Keep in step with Anbennar when it changes these triggers.
+
+has_nobles_trade_good_trigger = {
+	OR = {
+		trade_goods = copper
+		trade_goods = iron
+		trade_goods = livestock
+		trade_goods = grain
+		trade_goods = gems
+		#AND = {
+			trade_goods = slaves
+			#ROOT = { NOT = { religion = nahuatl } }
+		#}
+		#added - metal and gem goods (written out: this file loads before has_metal_goods / has_gem_type_goods)
+		trade_goods = tin
+		trade_goods = lead
+		trade_goods = zinc
+		trade_goods = jade
+		trade_goods = amber
+	}
+}
+
+root_can_build_manufactory_here_trigger = {
+	has_no_manufactory_trigger = yes
+	num_free_building_slots = 1
+	NOT = { trade_goods = gold }
+	OR = {
+		AND = {
+			OR = {
+				trade_goods = naval_supplies
+				trade_goods = fish
+				trade_goods = salt
+				#added
+				trade_goods = seafood
+				trade_goods = tar
+			}
+			ROOT = { dip_tech = 11 }
+		}
+		AND = {
+			OR = {
+				trade_goods = copper
+				trade_goods = iron
+				trade_goods = mithril
+				#added
+				trade_goods = lead
+				trade_goods = mercury
+				trade_goods = tin
+				trade_goods = zinc
+				trade_goods = metalworking
+				trade_goods = munitions
+				trade_goods = cannon
+			}
+			ROOT = { mil_tech = 11 }
+		}
+		AND = {
+			OR = {
+				trade_goods = wool
+				trade_goods = cloth
+				trade_goods = silk
+				trade_goods = dyes
+				#added
+				trade_goods = indigo
+				trade_goods = uniforms
+				trade_goods = carpet
+			}
+			ROOT = { adm_tech = 11 }
+		}
+		AND = {
+			OR = {
+				trade_goods = coffee
+				trade_goods = cotton
+				trade_goods = sugar
+				trade_goods = tobacco
+				trade_goods = tea
+				trade_goods = cocoa
+				#added
+				trade_goods = palm_oil
+				trade_goods = saffron
+				trade_goods = cinnamon
+				trade_goods = opium
+				trade_goods = dates
+				trade_goods = vanilla
+				trade_goods = nutmeg
+			}
+			ROOT = { adm_tech = 14 }
+		}
+		AND = {
+			OR = {
+				trade_goods = ivory
+				trade_goods = slaves
+				trade_goods = spices
+				trade_goods = cloves
+				trade_goods = fur
+				trade_goods = incense
+
+				#Anbennar
+				trade_goods = precursor_relics
+				trade_goods = damestear
+				#added
+				trade_goods = whaling
+				trade_goods = beer
+				trade_goods = rum
+				trade_goods = jade
+				trade_goods = jade_sculptures
+				trade_goods = marble
+				trade_goods = marble_sculpture
+				trade_goods = gunpowder
+				trade_goods = exotic_animals
+				trade_goods = sulfur
+				trade_goods = woodworking
+				trade_goods = jewellery
+				trade_goods = maple_syrup
+				trade_goods = sea_turtle
+				trade_goods = fur_clothing
+			}
+			ROOT = { dip_tech = 14 }
+		}
+		AND = {
+			OR = {
+				trade_goods = grain
+				trade_goods = livestock
+				trade_goods = wine
+
+				#Anbennar
+				trade_goods = fungi
+				trade_goods = serpentbloom
+				#added
+				trade_goods = apiculture
+				trade_goods = rice
+				trade_goods = horses
+				trade_goods = olive_oil
+				trade_goods = camel
+				trade_goods = elephants
+				trade_goods = citrus
+				trade_goods = potato
+				trade_goods = maize
+				trade_goods = tomato
+				trade_goods = llama
+				trade_goods = cheese
+				trade_goods = leather
+			}
+			ROOT = { adm_tech = 6 }
+		}
+		AND = {
+			OR = {
+				trade_goods = paper
+				trade_goods = gems
+				trade_goods = tropical_wood
+				trade_goods = glass
+				trade_goods = chinaware
+				#added
+				trade_goods = pearls
+				trade_goods = lumber
+				trade_goods = ebony
+				trade_goods = amber
+				trade_goods = steam_engine
+				trade_goods = optics
+			}
+			ROOT = { adm_tech = 16 }
+		}
+		AND = {
+			trade_goods = coal
+			ROOT = { adm_tech = 21 }
+		}
+	}
+}
+
+has_wharf_trade_goods = {
+	OR = {
+		trade_goods = salt
+		trade_goods = fish
+		trade_goods = naval_supplies
+		#added
+		trade_goods = seafood
+		trade_goods = tar
+	}
+}
+
+#For Weapons manufactories
+has_weapons_trade_goods = {
+	OR = {
+		trade_goods = copper
+		trade_goods = iron
+		#Anbennar
+		trade_goods = mithril
+		#added
+		trade_goods = lead
+		trade_goods = mercury
+		trade_goods = tin
+		trade_goods = zinc
+		trade_goods = metalworking
+		trade_goods = munitions
+		trade_goods = cannon
+	}
+}
+
+#For Textile manufactories
+has_textile_trade_goods = {
+	OR = {
+		trade_goods = wool
+		trade_goods = cloth
+		trade_goods = silk
+		trade_goods = dyes
+		#added
+		trade_goods = indigo
+		trade_goods = uniforms
+		trade_goods = carpet
+	}
+}
+
+#For Plantation manufactories
+has_plantation_trade_goods = {
+	OR = {
+		trade_goods = coffee
+		trade_goods = cotton
+		trade_goods = sugar
+		trade_goods = tobacco
+		trade_goods = tea
+		trade_goods = cocoa
+		#added
+		trade_goods = palm_oil
+		trade_goods = saffron
+		trade_goods = cinnamon
+		trade_goods = cloves
+		trade_goods = opium
+		trade_goods = dates
+		trade_goods = vanilla
+		trade_goods = nutmeg
+	}
+}
+
+#For Trade Company manufactories
+has_trade_company_trade_goods = {
+	OR = {
+		trade_goods = ivory
+		trade_goods = slaves
+		trade_goods = spices
+		trade_goods = fur
+		trade_goods = incense
+		trade_goods = cloves
+		#Anbennar
+		trade_goods = precursor_relics
+		trade_goods = damestear
+		#added
+		trade_goods = whaling
+		trade_goods = beer
+		trade_goods = rum
+		trade_goods = jade
+		trade_goods = jade_sculptures
+		trade_goods = marble
+		trade_goods = marble_sculpture
+		trade_goods = gunpowder
+		trade_goods = exotic_animals
+		trade_goods = sulfur
+		trade_goods = woodworking
+		trade_goods = jewellery
+		trade_goods = maple_syrup
+		trade_goods = sea_turtle
+		trade_goods = fur_clothing
+	}
+}
+
+#For Farm manufactories
+has_farm_trade_goods = {
+	OR = {
+		trade_goods = grain
+		trade_goods = livestock
+		trade_goods = wine
+		#Anbennar
+		trade_goods = fungi
+		trade_goods = serpentbloom
+		#added
+		trade_goods = apiculture
+		trade_goods = rice
+		trade_goods = horses
+		trade_goods = olive_oil
+		trade_goods = camel
+		trade_goods = elephants
+		trade_goods = citrus
+		trade_goods = potato
+		trade_goods = maize
+		trade_goods = tomato
+		trade_goods = llama
+		trade_goods = cheese
+		trade_goods = leather
+	}
+}
+
+#For Mills manufactories
+has_mills_trade_goods = {
+	OR = {
+		trade_goods = paper
+		trade_goods = gems
+		trade_goods = tropical_wood
+		trade_goods = glass
+		trade_goods = chinaware
+		#added
+		trade_goods = pearls
+		trade_goods = lumber
+		trade_goods = ebony
+		trade_goods = amber
+		trade_goods = steam_engine
+		trade_goods = optics
+	}
+}

@@ -25,7 +25,52 @@ province_event = {
 				which = SuccessChance
 				value = 20
 			}
-			
+			# Racial building bonuses: dwarven and kobold mines prospect better (half the bonus for a minority)
+			if = {
+				limit = { tge_racial_dwarven_forgecraft_majority_trigger = yes }
+				set_variable = {
+					which = FailChance
+					value = 60
+				}
+				set_variable = {
+					which = SuccessChance
+					value = 40
+				}
+			}
+			else_if = {
+				limit = { tge_racial_kobold_tunnelling_majority_trigger = yes }
+				set_variable = {
+					which = FailChance
+					value = 70
+				}
+				set_variable = {
+					which = SuccessChance
+					value = 30
+				}
+			}
+			else_if = {
+				limit = { tge_racial_dwarven_forgecraft_minority_trigger = yes }
+				set_variable = {
+					which = FailChance
+					value = 70
+				}
+				set_variable = {
+					which = SuccessChance
+					value = 30
+				}
+			}
+			else_if = {
+				limit = { tge_racial_kobold_tunnelling_minority_trigger = yes }
+				set_variable = {
+					which = FailChance
+					value = 75
+				}
+				set_variable = {
+					which = SuccessChance
+					value = 25
+				}
+			}
+
 			set_base_value0 = {
 				which = baseCost
 			}

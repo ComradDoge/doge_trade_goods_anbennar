@@ -1,0 +1,69 @@
+# Racial building bonuses - effects.
+# A province with one of a race's buildings gets that race's bonus: the full one for a non-oppressed majority,
+# the half one (tge_<BONUS>_minority) for a non-oppressed minority.
+# Refreshed monthly for humans and yearly for AI (on_dst_uncategorized.txt), and when a province changes owner.
+
+# Province scope: adds or removes one bonus (triggers tge_racial_<BONUS>_majority/minority/buildings_trigger, modifiers tge_<BONUS>(_minority))
+tge_racial_bonus_apply = {
+	if = {
+		limit = {
+			tge_racial_$BONUS$_buildings_trigger = yes
+			tge_racial_$BONUS$_majority_trigger = yes
+		}
+		if = {
+			limit = { NOT = { has_province_modifier = tge_$BONUS$ } }
+			add_province_modifier = {
+				name = tge_$BONUS$
+				duration = -1
+			}
+		}
+		if = {
+			limit = { has_province_modifier = tge_$BONUS$_minority }
+			remove_province_modifier = tge_$BONUS$_minority
+		}
+	}
+	else_if = {
+		limit = {
+			tge_racial_$BONUS$_buildings_trigger = yes
+			tge_racial_$BONUS$_minority_trigger = yes
+		}
+		if = {
+			limit = { NOT = { has_province_modifier = tge_$BONUS$_minority } }
+			add_province_modifier = {
+				name = tge_$BONUS$_minority
+				duration = -1
+			}
+		}
+		if = {
+			limit = { has_province_modifier = tge_$BONUS$ }
+			remove_province_modifier = tge_$BONUS$
+		}
+	}
+	else = {
+		if = {
+			limit = { has_province_modifier = tge_$BONUS$ }
+			remove_province_modifier = tge_$BONUS$
+		}
+		if = {
+			limit = { has_province_modifier = tge_$BONUS$_minority }
+			remove_province_modifier = tge_$BONUS$_minority
+		}
+	}
+}
+
+# Province scope: all bonuses
+tge_racial_bonus_refresh_province = {
+	tge_racial_bonus_apply = { BONUS = dwarven_forgecraft }
+	tge_racial_bonus_apply = { BONUS = gnomish_tinkering }
+	tge_racial_bonus_apply = { BONUS = halfling_hearthcraft }
+	tge_racial_bonus_apply = { BONUS = elven_artisanry }
+	tge_racial_bonus_apply = { BONUS = kobold_tunnelling }
+	tge_racial_bonus_apply = { BONUS = goblin_sapperwork }
+}
+
+# Country scope: all owned provinces
+tge_racial_bonus_refresh = {
+	every_owned_province = {
+		tge_racial_bonus_refresh_province = yes
+	}
+}

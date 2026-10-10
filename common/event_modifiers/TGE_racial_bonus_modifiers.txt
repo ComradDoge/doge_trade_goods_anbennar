@@ -1,0 +1,79 @@
+# Racial building bonuses (see common/scripted_effects/TGE_racial_bonus_effects.txt)
+
+tge_dwarven_forgecraft = {
+	picture = "tge_dwarven_forgecraft"
+	trade_goods_size_modifier = 0.1
+	local_regiment_cost = -0.1
+}
+
+tge_gnomish_tinkering = {
+	picture = "tge_gnomish_tinkering"
+	local_build_time = -0.15
+	local_development_cost = -0.1
+}
+
+tge_halfling_hearthcraft = {
+	picture = "tge_halfling_hearthcraft"
+	local_unrest = -1
+	local_prosperity_growth = 0.25
+	local_monthly_devastation = -0.05
+}
+
+tge_elven_artisanry = {
+	picture = "tge_elven_artisanry"
+	trade_goods_size_modifier = 0.1
+	local_great_project_upgrade_cost = -0.2
+}
+
+tge_kobold_tunnelling = {
+	picture = "tge_kobold_tunnelling"
+	local_hostile_attrition = 1
+	local_defensiveness = 0.15
+}
+
+tge_goblin_sapperwork = {
+	picture = "tge_goblin_sapperwork"
+	local_manpower_modifier = 0.1
+	local_regiment_cost = -0.1
+	local_hostile_movement_speed = -0.25
+}
+
+# Half bonuses for a non-oppressed minority
+
+tge_dwarven_forgecraft_minority = {
+	picture = "tge_dwarven_forgecraft_minority"
+	trade_goods_size_modifier = 0.05
+	local_regiment_cost = -0.05
+}
+
+tge_gnomish_tinkering_minority = {
+	picture = "tge_gnomish_tinkering_minority"
+	local_build_time = -0.075
+	local_development_cost = -0.05
+}
+
+tge_halfling_hearthcraft_minority = {
+	picture = "tge_halfling_hearthcraft_minority"
+	local_unrest = -0.5
+	local_prosperity_growth = 0.125
+	local_monthly_devastation = -0.025
+}
+
+tge_elven_artisanry_minority = {
+	picture = "tge_elven_artisanry_minority"
+	trade_goods_size_modifier = 0.05
+	local_great_project_upgrade_cost = -0.1
+}
+
+tge_kobold_tunnelling_minority = {
+	picture = "tge_kobold_tunnelling_minority"
+	local_hostile_attrition = 0.5
+	local_defensiveness = 0.075
+}
+
+tge_goblin_sapperwork_minority = {
+	picture = "tge_goblin_sapperwork_minority"
+	local_manpower_modifier = 0.05
+	local_regiment_cost = -0.05
+	local_hostile_movement_speed = -0.125
+}
