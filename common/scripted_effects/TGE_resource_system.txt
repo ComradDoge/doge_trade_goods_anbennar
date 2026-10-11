@@ -189,6 +189,18 @@ tge_request_recalc_owner = {
 	}
 }
 
+# Province scope. Factory construction started or canceled: humans see it as "being built" the next day.
+# The AI is left out; its scripted queue reserves directly and engine-placed factories count at the next recalculation.
+tge_factory_construction_changed = {
+	if = {
+		limit = {
+			is_empty = no
+			owner = { ai = no }
+		}
+		owner = { country_event = { id = New_TradeGood_Events.2 days = 1 } }
+	}
+}
+
 # Global, any scope. Runs once: on a new game, or the first load of a save from before this system.
 tge_resource_system_init = {
 	if = {
